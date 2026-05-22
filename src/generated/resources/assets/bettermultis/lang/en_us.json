@@ -1,4 +1,6 @@
 {
-  "block.bettermultis.advanced_cracking_unit": "Advanced Cracking Unit [ACU]",
-  "block.bettermultis.robust_alloy_materializer": "Robust Alloy Materializer [RAM]"
+  "block.bettermultis.advanced_cracking_unit": "Advanced Cracking Unit",
+  "block.bettermultis.enlarged_reaction_chamber": "Enlarged Reaction Chamber",
+  "block.bettermultis.large_pyrolysis_unit": "Large Pyrolysis Unit",
+  "block.bettermultis.robust_alloy_materializer": "Robust Alloy Materializer"
 }
