@@ -12,8 +12,8 @@ import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.FusionReactorMachine;
 
 import com.vyx.extraadditions.machines.extras.LaserLogic;
-
 import com.vyx.extraadditions.machines.extras.parallel.FusionReactorParallel;
+
 import net.minecraft.world.level.block.Block;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
@@ -177,10 +177,11 @@ public class ExtraAdditionsMultis {
                     GTCEu.id("block/multiblock/pyrolyse_oven"))
             .register();
 
-    public static final MultiblockMachineDefinition[] ADVANCED_FUSION_REACTOR = registerTieredMultis("advanced_fusion_reactor",
+    public static MultiblockMachineDefinition[] ADVANCED_FUSION_REACTOR = registerTieredMultis("advanced_fusion_reactor",
             FusionReactorMachine::new, (tier, builder) -> builder
                     .rotationState(RotationState.ALL)
-                    .langValue("Advanced Fusion Reactor MK %s".formatted(toRomanNumeral(tier - 5)))
+                    .langValue("Advanced Fusion Reactor MK %s"
+                            .formatted(toRomanNumeral(tier - 5)))
                     .recipeType(GTRecipeTypes.FUSION_RECIPES)
                     .recipeModifiers(DEFAULT_ENVIRONMENT_REQUIREMENT,
                             FusionReactorMachine::recipeModifier,
@@ -203,7 +204,7 @@ public class ExtraAdditionsMultis {
                                 .aisle(" 1           1 ", "2#2         2#2", " 1           1 ")
                                 .aisle("  F         F  ", " FHG       GHF ", "  F         F  ")
                                 .aisle("  F         F  ", " GHFG     GFHG ", "  F         F  ")
-                                .aisle("   FF     FF   ", "  FHH2FYF2HHF  ", "   FF     FF   ")
+                                .aisle("   FF     FF   ", "  FHH2FFF2HHF  ", "   FF     FF   ")
                                 .aisle("     1FFF1     ", "   GF#####FG   ", "     1FFF1     ")
                                 .aisle("               ", "     2C@C2     ", "               ")
                                 .where('@', controller(Predicates.blocks(definition.get())))
@@ -222,8 +223,6 @@ public class ExtraAdditionsMultis {
                                                     .setMinGlobalLimited(1)
                                                     .setPreviewCount(16)))
                                 .where('H', blocks(FusionReactorMachine.getCoilState(tier)))
-                                .where('Y', casing.or(
-                                        Predicates.abilities(PartAbility.PARALLEL_HATCH).setExactLimit(1)))
                                 .build();
                     })
                     /*
