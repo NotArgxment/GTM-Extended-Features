@@ -178,6 +178,7 @@ public class ExtraAdditionsMultis {
                     GTCEu.id("block/multiblock/pyrolyse_oven"))
             .register();
 
+    // registered using the addon namespace from EAMachineUtils
     public static MultiblockMachineDefinition[] ADVANCED_FUSION_REACTOR = TieredMultis("advanced_fusion_reactor",
             FusionReactorMachine::new, (tier, builder) -> builder
                     .rotationState(RotationState.ALL)
