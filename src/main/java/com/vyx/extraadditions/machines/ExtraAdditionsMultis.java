@@ -28,6 +28,7 @@ import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.createWor
 import static com.gregtechceu.gtceu.utils.FormattingUtil.*;
 
 import static com.vyx.extraadditions.ExtraAdditionsCore.EAREGISTRATE;
+import static com.vyx.extraadditions.machines.extras.EAMachineUtils.TieredMultis;
 
 public class ExtraAdditionsMultis {
 
@@ -177,7 +178,7 @@ public class ExtraAdditionsMultis {
                     GTCEu.id("block/multiblock/pyrolyse_oven"))
             .register();
 
-    public static MultiblockMachineDefinition[] ADVANCED_FUSION_REACTOR = registerTieredMultis("advanced_fusion_reactor",
+    public static MultiblockMachineDefinition[] ADVANCED_FUSION_REACTOR = TieredMultis("advanced_fusion_reactor",
             FusionReactorMachine::new, (tier, builder) -> builder
                     .rotationState(RotationState.ALL)
                     .langValue("Advanced Fusion Reactor MK %s"
