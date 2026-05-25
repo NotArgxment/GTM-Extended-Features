@@ -129,7 +129,7 @@ legacyForge {
 }
 jar {
     manifest.attributes([
-            "MixinConfigs": "extraadditions.mixins.json"
+            "MixinConfigs": "extraadditions.mixin.json"
     ])
 }
 
@@ -157,8 +157,8 @@ dependencies {
 }
 
 mixin {
-    add sourceSets.main, "mixins.${mod_id}.refmap.json"
-    config "${mod_id}.mixins.json"
+    add sourceSets.main, "mixin.${mod_id}.refmap.json"
+    config "${mod_id}.mixin.json"
 }
 
 tasks.named('processResources', ProcessResources).configure {

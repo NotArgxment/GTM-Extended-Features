@@ -2,17 +2,30 @@ package com.vyx.extraadditions.machines;
 
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.RotationState;
-import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
+import com.gregtechceu.gtceu.api.machine.*;
 import com.gregtechceu.gtceu.api.machine.multiblock.*;
+import com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties;
+import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.pattern.*;
+import com.gregtechceu.gtceu.client.renderer.machine.DynamicRenderHelper;
 import com.gregtechceu.gtceu.common.data.*;
+import com.gregtechceu.gtceu.common.machine.multiblock.electric.FusionReactorMachine;
+
 import com.vyx.extraadditions.machines.extras.LaserLogic;
 
+import com.vyx.extraadditions.machines.extras.parallel.FusionReactorParallel;
+import net.minecraft.world.level.block.Block;
+
+import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.pattern.Predicates.*;
 import static com.gregtechceu.gtceu.common.data.GCYMBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GCYMRecipeTypes.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
+import static com.gregtechceu.gtceu.common.data.GTRecipeModifiers.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
+import static com.gregtechceu.gtceu.common.data.machines.GTMachineUtils.*;
+import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.createWorkableCasingMachineModel;
+import static com.gregtechceu.gtceu.utils.FormattingUtil.*;
 
 import static com.vyx.extraadditions.ExtraAdditionsCore.EAREGISTRATE;
 
@@ -163,4 +176,104 @@ public class ExtraAdditionsMultis {
                     GTCEu.id("block/casings/voltage/ulv/side") ,
                     GTCEu.id("block/multiblock/pyrolyse_oven"))
             .register();
+
+    public static final MultiblockMachineDefinition[] ADVANCED_FUSION_REACTOR = registerTieredMultis("advanced_fusion_reactor",
+            FusionReactorMachine::new, (tier, builder) -> builder
+                    .rotationState(RotationState.ALL)
+                    .langValue("Advanced Fusion Reactor MK %s".formatted(toRomanNumeral(tier - 5)))
+                    .recipeType(GTRecipeTypes.FUSION_RECIPES)
+                    .recipeModifiers(DEFAULT_ENVIRONMENT_REQUIREMENT,
+                            FusionReactorMachine::recipeModifier,
+                            FusionReactorParallel::perfectParallel)
+                    .appearanceBlock(() -> FusionReactorMachine.getCasingState(tier))
+                    .pattern((definition) -> {
+
+                        var casing = blocks(FusionReactorMachine.getCasingState(tier));
+
+                        return FactoryBlockPattern.start()
+                                .aisle("               ", "     2CCC2     ", "               ")
+                                .aisle("     1FFF1     ", "   GF#####FG   ", "     1FFF1     ")
+                                .aisle("   FF     FF   ", "  FHH2CCC2HHF  ", "   FF     FF   ")
+                                .aisle("  F         F  ", " GHFG     GFHG ", "  F         F  ")
+                                .aisle("  F         F  ", " FHG       GHF ", "  F         F  ")
+                                .aisle(" 1           1 ", "2#2         2#2", " 1           1 ")
+                                .aisle(" F           F ", "C#C         C#C", " F           F ")
+                                .aisle(" F           F ", "C#C         C#C", " F           F ")
+                                .aisle(" F           F ", "C#C         C#C", " F           F ")
+                                .aisle(" 1           1 ", "2#2         2#2", " 1           1 ")
+                                .aisle("  F         F  ", " FHG       GHF ", "  F         F  ")
+                                .aisle("  F         F  ", " GHFG     GFHG ", "  F         F  ")
+                                .aisle("   FF     FF   ", "  FHH2FYF2HHF  ", "   FF     FF   ")
+                                .aisle("     1FFF1     ", "   GF#####FG   ", "     1FFF1     ")
+                                .aisle("               ", "     2C@C2     ", "               ")
+                                .where('@', controller(Predicates.blocks(definition.get())))
+                                .where('#', Predicates.air())
+                                .where(' ', Predicates.any())
+                                .where('C', casing
+                                        .or(Predicates.blocks(GTBlocks.FUSION_GLASS.get())))
+                                .where('F', casing)
+                                .where('1', casing.or(
+                                        Predicates.abilities(PartAbility.IMPORT_FLUIDS).setMaxGlobalLimited(16)))
+                                .where('2', casing.or(
+                                        Predicates.abilities(PartAbility.EXPORT_FLUIDS).setMaxGlobalLimited(16)))
+                                .where('G', casing
+                                        .or(blocks(PartAbility.INPUT_ENERGY.getBlockRange(tier, UV)
+                                                .toArray(Block[]::new))
+                                                    .setMinGlobalLimited(1)
+                                                    .setPreviewCount(16)))
+                                .where('H', blocks(FusionReactorMachine.getCoilState(tier)))
+                                .where('Y', casing.or(
+                                        Predicates.abilities(PartAbility.PARALLEL_HATCH).setExactLimit(1)))
+                                .build();
+                    })
+                    /*
+                    .shapeInfos((controller) -> {
+                        List<MultiblockShapeInfo> shapeInfos = new ArrayList<>();
+                        MultiblockShapeInfo.ShapeInfoBuilder baseBuilder = MultiblockShapeInfo.builder()
+                                .aisle("               ", "     2CCC2     ", "               ")
+                                .aisle("     1FFF1     ", "   GF#####FG   ", "     1FFF1     ")
+                                .aisle("   FF     FF   ", "  FHH2CCC2HHF  ", "   FF     FF   ")
+                                .aisle("  F         F  ", " GHFG     GFHG ", "  F         F  ")
+                                .aisle("  F         F  ", " FHG       GHF ", "  F         F  ")
+                                .aisle(" 1           1 ", "2#2         2#2", " 1           1 ")
+                                .aisle(" F           F ", "C#C         C#C", " F           F ")
+                                .aisle(" F           F ", "C#C         C#C", " F           F ")
+                                .aisle(" F           F ", "C#C         C#C", " F           F ")
+                                .aisle(" 1           1 ", "2#2         2#2", " 1           1 ")
+                                .aisle("  F         F  ", " FHG       GHF ", "  F         F  ")
+                                .aisle("  F         F  ", " GHFG     GFHG ", "  F         F  ")
+                                .aisle("   FF     FF   ", "  FHH2FYF2HHF  ", "   FF     FF   ")
+                                .aisle("     1FFF1     ", "   GF#####FG   ", "     1FFF1     ")
+                                .aisle("               ", "     2C@C2     ", "               ")
+                                .where('@', controller, Direction.NORTH)
+                                .where(' ', FusionReactorMachine.getCasingState(tier))
+                                .where(' ', FUSION_GLASS.get())
+                                .where(' ', FusionReactorMachine.getCoilState(tier))
+                                .where(' ', GTMachines.FLUID_EXPORT_HATCH[tier], Direction.WEST)
+                                .where(' ', GTMachines.FLUID_EXPORT_HATCH[tier], Direction.EAST)
+                                .where(' ', GTMachines.FLUID_EXPORT_HATCH[tier], Direction.SOUTH)
+                                .where(' ', GTMachines.FLUID_EXPORT_HATCH[tier], Direction.NORTH)
+                                .where(' ', GTMachines.ENERGY_INPUT_HATCH[tier], Direction.WEST)
+                                .where(' ', GTMachines.ENERGY_INPUT_HATCH[tier], Direction.EAST)
+                                .where(' ', GTMachines.ENERGY_INPUT_HATCH[tier], Direction.SOUTH)
+                                .where(' ', GTMachines.ENERGY_INPUT_HATCH[tier], Direction.NORTH)
+                                .where(' ', GTMachines.FLUID_IMPORT_HATCH[tier], Direction.UP)
+                                .where(' ', GTMachines.FLUID_IMPORT_HATCH[tier], Direction.DOWN)
+                                .where('#', Blocks.AIR.defaultBlockState());
+
+                        shapeInfos.add(baseBuilder.shallowCopy()
+                                .where('G', FusionReactorMachine.getCasingState(tier))
+                                .build());
+                        shapeInfos.add(baseBuilder.build());
+                        return shapeInfos;
+                    })
+                    */
+                    .modelProperty(GTMachineModelProperties.RECIPE_LOGIC_STATUS, RecipeLogic.Status.IDLE)
+                    .model(createWorkableCasingMachineModel(FusionReactorMachine.getCasingType(tier).getTexture(),
+                            GTCEu.id("block/multiblock/fusion_reactor"))
+                            .andThen(b -> b
+                                    .addDynamicRenderer(DynamicRenderHelper::createFusionRingRender)))
+                    .hasBER(true)
+                    .register(),
+            LuV, ZPM, UV);
 }
