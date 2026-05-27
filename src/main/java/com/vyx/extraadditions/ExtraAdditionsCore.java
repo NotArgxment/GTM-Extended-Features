@@ -9,7 +9,7 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import com.gregtechceu.gtceu.api.sound.SoundEntry;
 
-import com.vyx.extraadditions.machines.extras.parallel.ExtraParaHatches;
+// import com.vyx.extraadditions.machines.extras.parallel.ExtraParaHatches;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.MinecraftForge;
@@ -122,7 +122,7 @@ public class ExtraAdditionsCore {
      */
     private void registerMachines(GTCEuAPI.RegisterEvent<ResourceLocation, MachineDefinition> event) {
         ExtraAdditionsMultis.init();
-        ExtraParaHatches.init();
+        // ExtraParaHatches.init();
     }
 
     /**

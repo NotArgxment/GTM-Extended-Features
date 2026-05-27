@@ -4,33 +4,19 @@ import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.machine.*;
 import com.gregtechceu.gtceu.api.machine.multiblock.*;
-import com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties;
-import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.pattern.*;
-import com.gregtechceu.gtceu.client.renderer.machine.DynamicRenderHelper;
 import com.gregtechceu.gtceu.common.data.*;
-import com.gregtechceu.gtceu.common.machine.multiblock.electric.FusionReactorMachine;
 
-import com.vyx.extraadditions.machines.extras.LaserLogic;
+import com.vyx.extraadditions.machines.extras.utils.LaserLogic;
 
-import net.minecraft.core.Direction;
+import com.vyx.extraadditions.machines.extras.utils.EARecipeModifiers;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-
-import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.pattern.Predicates.*;
 import static com.gregtechceu.gtceu.common.data.GCYMBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GCYMRecipeTypes.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
-import static com.gregtechceu.gtceu.common.data.GTRecipeModifiers.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
-import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.*;
-import static com.gregtechceu.gtceu.utils.FormattingUtil.*;
 
 import static com.vyx.extraadditions.ExtraAdditionsCore.EAREGISTRATE;
 import static com.vyx.extraadditions.machines.extras.utils.EAMachineUtils.TieredMultis;
@@ -41,7 +27,6 @@ public class ExtraAdditionsMultis {
 
     public static MultiblockMachineDefinition ROBUST_ALLOY_MATERIALIZER = EAREGISTRATE
             .multiblock("robust_alloy_materializer", LaserLogic::new)
-            .langValue("Robust Alloy Materializer [RAM]")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(ALLOY_BLAST_RECIPES)
             .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers::ebfOverclock)
@@ -78,7 +63,6 @@ public class ExtraAdditionsMultis {
 
     public static MultiblockMachineDefinition ADVANCED_CRACKING_UNIT = EAREGISTRATE
             .multiblock("advanced_cracking_unit", CoilWorkableElectricMultiblockMachine::new)
-            .langValue("Advanced Cracking Unit [ACU]")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CRACKING_RECIPES)
             .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers::crackerOverclock)
@@ -111,7 +95,6 @@ public class ExtraAdditionsMultis {
 
     public static MultiblockMachineDefinition ENLARGED_REACTION_CHAMBER = EAREGISTRATE
             .multiblock("enlarged_reaction_chamber", WorkableElectricMultiblockMachine::new)
-            .langValue("Enlarged Reaction Chamber [ERC]")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(LARGE_CHEMICAL_RECIPES)
             .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers.OC_PERFECT, GTRecipeModifiers.OC_PERFECT_SUBTICK)
@@ -146,7 +129,6 @@ public class ExtraAdditionsMultis {
 
     public static MultiblockMachineDefinition LARGE_PYROLYSIS_UNIT = EAREGISTRATE
             .multiblock("large_pyrolysis_unit", CoilWorkableElectricMultiblockMachine::new)
-            .langValue("Large Pyrolysis Unit [LPU]")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(PYROLYSE_RECIPES)
             .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers.OC_PERFECT, GTRecipeModifiers::pyrolyseOvenOverclock)
@@ -182,6 +164,9 @@ public class ExtraAdditionsMultis {
                     GTCEu.id("block/casings/voltage/ulv/side") ,
                     GTCEu.id("block/multiblock/pyrolyse_oven"))
             .register();
+/*
+
+ to be changed
 
     // registered using the addon namespace from EAMachineUtils
     public static MultiblockMachineDefinition[] ADVANCED_FUSION_REACTOR = TieredMultis("advanced_fusion_reactor",
@@ -285,4 +270,40 @@ public class ExtraAdditionsMultis {
                     .hasBER(true)
                     .register(),
             LuV, ZPM, UV);
+            */
+
+    public static MultiblockMachineDefinition COMPACT_ASSEMBLY_LINE = EAREGISTRATE
+            .multiblock("compact_assembly_line", WorkableElectricMultiblockMachine::new)
+            .langValue("Compact Assembly Line [CAL]")
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(ASSEMBLY_LINE_RECIPES)
+            .recipeModifiers(EARecipeModifiers.SIMPLE_PARALLEL.apply(4), GTRecipeModifiers.OC_NON_PERFECT)
+            .appearanceBlock(CASING_STEEL_SOLID)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("ENE", "EKE", "EHE")
+                    .aisle("EDE", "RLR", "EHE")
+                    .aisle("EDE", "RKR", "EHE")
+                    .aisle("EDE", "RLR", "EHE")
+                    .aisle("EDE", "RKR", "EHE")
+                    .aisle("EDE", "RLR", "EHE")
+                    .aisle("E@E", "EKE", "EHE")
+                    .where('@', controller(blocks(definition.get())))
+                    .where('E', blocks(CASING_STEEL_SOLID.get()))
+                    .where('L', blocks(CASING_ASSEMBLY_CONTROL.get()))
+                    .where('K', blocks(CASING_ASSEMBLY_LINE.get()))
+                    .where('H', blocks(CASING_GRATE.get()))
+                    .where('R', blocks(CASING_LAMINATED_GLASS.get()))
+                    .where('D', blocks(CASING_STEEL_SOLID.get())
+                            .or(Predicates.abilities(PartAbility.IMPORT_ITEMS))
+                            .or(Predicates.abilities(PartAbility.IMPORT_FLUIDS))
+                            .or(Predicates.abilities(PartAbility.INPUT_ENERGY).setMaxGlobalLimited(1))
+                            .or(dataHatchPredicate(blocks(CASING_STEEL_SOLID.get()))))
+                    .where('N', Predicates.abilities(PartAbility.EXPORT_ITEMS))
+                    .build())
+            .tooltips(Component.translatable("block.extraadditions.compact_assembly_line.tooltip.0"),
+                    Component.translatable("block.extraadditions.compact_assembly_line.tooltip.1"))
+            .workableCasingModel(
+                    GTCEu.id("block/casings/solid/machine_casing_solid_steel") ,
+                    GTCEu.id("block/multiblock/assembly_line"))
+            .register();
 }

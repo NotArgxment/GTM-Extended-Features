@@ -1,4 +1,4 @@
-package com.vyx.extraadditions.machines.extras;
+package com.vyx.extraadditions.machines.extras.utils;
 
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiPart;
