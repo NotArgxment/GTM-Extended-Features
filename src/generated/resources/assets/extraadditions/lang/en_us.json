@@ -1,0 +1,11 @@
+{
+  "block.extraadditions.advanced_cracking_unit": "Advanced Cracking Unit [ACU]",
+  "block.extraadditions.compact_assembly_line": "Compact Assembly Line [CAL]",
+  "block.extraadditions.enlarged_reaction_chamber": "Enlarged Reaction Chamber [ERC]",
+  "block.extraadditions.large_pyrolysis_unit": "Large Pyrolysis Unit [LPU]",
+  "block.extraadditions.luv_advanced_fusion_reactor": "Advanced Fusion Reactor MK I",
+  "block.extraadditions.robust_alloy_materializer": "Robust Alloy Materializer [RAM]",
+  "block.extraadditions.uv_advanced_fusion_reactor": "Advanced Fusion Reactor MK III",
+  "block.extraadditions.zpm_advanced_fusion_reactor": "Advanced Fusion Reactor MK II",
+  "extraadditions.machine.compact_assembly_line.tooltip.0": "§7Can perform 4 recipes in parallel without increasing the EU"
+}
