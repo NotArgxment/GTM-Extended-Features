@@ -12,8 +12,9 @@ import com.gregtechceu.gtceu.client.util.TooltipHelper;
 import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.FusionReactorMachine;
 
-import com.vyx.extraadditions.machines.extras.utils.LaserLogic;
-import com.vyx.extraadditions.machines.extras.utils.EARecipeModifiers;
+import com.vyx.extraadditions.machines.client.EAFancyTooltips;
+import com.vyx.extraadditions.machines.client.utils.LaserLogic;
+import com.vyx.extraadditions.machines.client.utils.EARecipeModifiers;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.Block;
@@ -31,9 +32,9 @@ import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.*;
 import static com.gregtechceu.gtceu.utils.FormattingUtil.*;
 
 import static com.vyx.extraadditions.ExtraAdditionsCore.EXTRA_ADDITIONS_REGISTRATE;
-import static com.vyx.extraadditions.machines.extras.utils.EAMachineUtils.TieredMultis;
+import static com.vyx.extraadditions.machines.client.utils.EAMachineUtils.TieredMultis;
 
-public class ExtraAdditionsMultis {
+public class EAMultis {
 
     public static void init() {}
 
@@ -43,12 +44,12 @@ public class ExtraAdditionsMultis {
                     Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.1"),
                     Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.2"))
             .tooltipBuilder((stack, list) -> {
-                list.add(Component.translatable("extraadditions.machine.robust_alloy_materializer.tooltip.0")
-                    .append(Component.translatable("extraadditions.machine.robust_alloy_materializer.tooltip.1")
+                list.add(Component.translatable("extraadditions.fancytooltip.tooltip.0")
+                    .append(Component.translatable("extraadditions.fancytooltip.tooltip.1")
                             .withStyle(TooltipHelper.RAINBOW_HSL_SLOW))
-                        .append(Component.translatable("extraadditions.machine.robust_alloy_materializer.tooltip.2"))
-                            .append(Component.translatable("extraadditions.machine.robust_alloy_materializer.tooltip.3")
-                                    .withStyle(TooltipHelper.RAINBOW_HSL_SLOW))
+                        .append(Component.translatable("extraadditions.fancytooltip.tooltip.2"))
+                            .append(Component.translatable("extraadditions.fancytooltip.tooltip.3")
+                                    .withStyle(EAFancyTooltips.ZPM_GRADIENT))
                 );
             })
             .rotationState(RotationState.NON_Y_AXIS)
@@ -87,6 +88,15 @@ public class ExtraAdditionsMultis {
 
     public static MultiblockMachineDefinition ADVANCED_CRACKING_UNIT = EXTRA_ADDITIONS_REGISTRATE
             .multiblock("advanced_cracking_unit", CoilWorkableElectricMultiblockMachine::new)
+            .tooltips(Component.translatable("gtceu.machine.cracker.tooltip"),
+                    Component.translatable("gtceu.machine.cracker.tooltip.1")
+            )
+            .tooltipBuilder((stack, list) -> {
+                list.add(Component.translatable("extraadditions.fancytooltip.tooltip.0")
+                        .append(Component.translatable("extraadditions.fancytooltip.tooltip.3")
+                                .withStyle(TooltipHelper.RAINBOW_HSL_SLOW))
+                );
+            })
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CRACKING_RECIPES)
             .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers::crackerOverclock)
@@ -119,6 +129,12 @@ public class ExtraAdditionsMultis {
 
     public static MultiblockMachineDefinition ENLARGED_REACTION_CHAMBER = EXTRA_ADDITIONS_REGISTRATE
             .multiblock("enlarged_reaction_chamber", WorkableElectricMultiblockMachine::new)
+            .tooltipBuilder((stack, list) -> {
+                list.add(Component.translatable("extraadditions.fancytooltip.tooltip.0")
+                        .append(Component.translatable("extraadditions.fancytooltip.tooltip.3")
+                                .withStyle(TooltipHelper.RAINBOW_HSL_SLOW))
+                );
+            })
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(LARGE_CHEMICAL_RECIPES)
             .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers.OC_PERFECT, GTRecipeModifiers.OC_PERFECT_SUBTICK)
@@ -153,6 +169,14 @@ public class ExtraAdditionsMultis {
 
     public static MultiblockMachineDefinition LARGE_PYROLYSIS_UNIT = EXTRA_ADDITIONS_REGISTRATE
             .multiblock("large_pyrolysis_unit", CoilWorkableElectricMultiblockMachine::new)
+            .tooltips(Component.translatable("gtceu.machine.pyrolyse_oven.tooltip"),
+                    Component.translatable("gtceu.machine.pyrolyse_oven.tooltip.1"))
+            .tooltipBuilder((stack, list) -> {
+                list.add(Component.translatable("extraadditions.fancytooltip.tooltip.0")
+                        .append(Component.translatable("extraadditions.fancytooltip.tooltip.3")
+                                .withStyle(TooltipHelper.RAINBOW_HSL_SLOW))
+                );
+            })
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(PYROLYSE_RECIPES)
             .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers.OC_PERFECT, GTRecipeModifiers::pyrolyseOvenOverclock)
@@ -199,8 +223,9 @@ public class ExtraAdditionsMultis {
                             Component.translatable("gtceu.machine.fusion_reactor.capacity",
                                     FusionReactorMachine.calculateEnergyStorageFactor(tier, 16) / 1000000L),
                             Component.translatable("gtceu.machine.fusion_reactor.overclocking"),
-                            Component.translatable("gtceu.multiblock.%s_fusion_reactor.description"
-                                    .formatted(VN[tier].toLowerCase(Locale.ROOT))))
+                                    Component.translatable("extraadditions.multiblock.%s_advanced_fusion_reactor"
+                                            .formatted(VN[tier].toLowerCase(Locale.ROOT)))
+                    )
                     .recipeType(GTRecipeTypes.FUSION_RECIPES)
                     .recipeModifiers(DEFAULT_ENVIRONMENT_REQUIREMENT,
                             FusionReactorMachine::recipeModifier,
@@ -256,7 +281,14 @@ public class ExtraAdditionsMultis {
 
     public static MultiblockMachineDefinition COMPACT_ASSEMBLY_LINE = EXTRA_ADDITIONS_REGISTRATE
             .multiblock("compact_assembly_line", WorkableElectricMultiblockMachine::new)
-            .tooltips(Component.translatable("extraadditions.machine.compact_assembly_line.tooltip.0"))
+            .tooltips(Component.translatable("extraadditions.machine.compact_assembly_line.tooltip.0"),
+                    Component.translatable("extraadditions.machine.compact_assembly_line.tooltip.1"))
+            .tooltipBuilder((stack, list) -> {
+                list.add(Component.translatable("extraadditions.fancytooltip.tooltip.0")
+                        .append(Component.translatable("extraadditions.fancytooltip.tooltip.3")
+                                .withStyle(TooltipHelper.RAINBOW_HSL_SLOW))
+                );
+            })
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(ASSEMBLY_LINE_RECIPES)
             .recipeModifiers(EARecipeModifiers.SIMPLE_PARALLEL.apply(4), GTRecipeModifiers.OC_NON_PERFECT)

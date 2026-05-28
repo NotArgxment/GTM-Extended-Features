@@ -1,4 +1,4 @@
-package com.vyx.extraadditions.machines.extras.utils;
+package com.vyx.extraadditions.machines.client.utils;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;

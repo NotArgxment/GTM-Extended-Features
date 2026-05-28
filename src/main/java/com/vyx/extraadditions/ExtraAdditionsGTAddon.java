@@ -3,9 +3,13 @@ package com.vyx.extraadditions;
 import com.gregtechceu.gtceu.api.addon.GTAddon;
 import com.gregtechceu.gtceu.api.addon.IGTAddon;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
+
 import com.tterrag.registrate.providers.ProviderType;
-import com.vyx.extraadditions.machines.ExtraAdditionsMultis;
-import com.vyx.extraadditions.machines.extras.EALangHandler;
+
+import com.vyx.extraadditions.machines.EAMultis;
+import com.vyx.extraadditions.machines.client.EALangHandler;
+import com.vyx.extraadditions.machines.EARecipes;
+
 import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
@@ -21,7 +25,7 @@ public class ExtraAdditionsGTAddon implements IGTAddon {
 
     @Override
     public void initializeAddon() {
-        ExtraAdditionsMultis.init();
+        EAMultis.init();
         ExtraAdditionsCore.EXTRA_ADDITIONS_REGISTRATE.addDataGenerator(ProviderType.LANG, EALangHandler::init);
     }
 
@@ -37,7 +41,7 @@ public class ExtraAdditionsGTAddon implements IGTAddon {
 
     @Override
     public void addRecipes(Consumer<FinishedRecipe> provider) {
-        // CustomRecipes.init(provider);
+        EARecipes.init(provider);
     }
 
     @Override

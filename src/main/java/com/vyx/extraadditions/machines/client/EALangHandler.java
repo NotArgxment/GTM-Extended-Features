@@ -1,12 +1,6 @@
-package com.vyx.extraadditions.machines.extras;
+package com.vyx.extraadditions.machines.client;
 
-import com.gregtechceu.gtceu.client.util.TooltipHelper;
 import com.tterrag.registrate.providers.RegistrateLangProvider;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.ItemStack;
-
-import java.util.List;
-import java.util.function.BiConsumer;
 
 import static com.gregtechceu.gtceu.data.lang.LangHandler.replace;
 
@@ -35,17 +29,6 @@ public class EALangHandler {
         §e	yellow
         §f	white
         §g	minecoin_gold
-        §h	material_quartz
-        §i	material_iron
-        §j	material_netherite
-        §m	material_redstone
-        §n	material_copper
-        §p	material_gold
-        §q	material_emerald
-        §s	material_diamond
-        §t	material_lapis
-        §u	material_amethyst
-        §v	material_resin
         §k	obfuscated
         §l	bold
         §m	strikethrough
@@ -66,10 +49,23 @@ public class EALangHandler {
 
     private static void initControllerTooltips(RegistrateLangProvider provider) {
         provider.add("extraadditions.machine.compact_assembly_line.tooltip.0", "§7This machine is able to perform the work of a regular Assembly Line without §6Ordered Inputs");
-        provider.add("extraadditions.machine.compact_assembly_line.tooltip.1", "§fOnly allows §bone energy hatch");
-        provider.add("extraadditions.machine.robust_alloy_materializer.tooltip.0", "§7Allows");
-        provider.add("extraadditions.machine.robust_alloy_materializer.tooltip.1", " Laser Hatches ");
-        provider.add("extraadditions.machine.robust_alloy_materializer.tooltip.2", "§7and");
-        provider.add("extraadditions.machine.robust_alloy_materializer.tooltip.3", " Parallel Hatches");
+        provider.add("extraadditions.machine.compact_assembly_line.tooltip.1", "§fOnly allows §bone §fenergy hatch");
+
+        provider.add("extraadditions.machine.enlarged_reaction_chamber.tooltip", "§fEven larger Black Box Reactor");
+
+        provider.add("extraadditions.multiblock.luv_advanced_fusion_reactor.tooltip.0", "§7Runs");
+        provider.add("extraadditions.multiblock.luv_advanced_fusion_reactor.tooltip.1", " 4 Parallels");
+
+        provider.add("extraadditions.multiblock.zpm_advanced_fusion_reactor.tooltip.0", "§7Runs");
+        provider.add("extraadditions.multiblock.zpm_advanced_fusion_reactor.tooltip.1", " 8 Parallels");
+
+        provider.add("extraadditions.multiblock.uv_advanced_fusion_reactor.tooltip.0", "§7Runs");
+        provider.add("extraadditions.multiblock.uv_advanced_fusion_reactor.tooltip.1", " 16 Parallels");
+
+        provider.add("extraadditions.fancytooltip.tooltip.0", "§7Allows");
+        provider.add("extraadditions.fancytooltip.tooltip.1", " Laser Hatches ");
+        provider.add("extraadditions.fancytooltip.tooltip.2", "§7and");
+        provider.add("extraadditions.fancytooltip.tooltip.3", " Parallel Hatches");
+
     }
 }

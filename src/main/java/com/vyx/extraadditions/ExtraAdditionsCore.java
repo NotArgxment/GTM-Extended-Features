@@ -1,6 +1,6 @@
 package com.vyx.extraadditions;
 
-import com.vyx.extraadditions.machines.ExtraAdditionsMultis;
+import com.vyx.extraadditions.machines.EAMultis;
 
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.*;
@@ -9,7 +9,7 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import com.gregtechceu.gtceu.api.sound.SoundEntry;
 
-// import com.vyx.extraadditions.machines.extras.parallel.ExtraParaHatches;
+// import com.vyx.extraadditions.machines.client.parallel.ExtraParaHatches;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.MinecraftForge;
@@ -121,7 +121,7 @@ public class ExtraAdditionsCore {
      * @param event
      */
     private void registerMachines(GTCEuAPI.RegisterEvent<ResourceLocation, MachineDefinition> event) {
-        ExtraAdditionsMultis.init();
+        EAMultis.init();
         // ExtraParaHatches.init();
     }
 

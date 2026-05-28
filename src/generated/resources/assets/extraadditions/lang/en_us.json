@@ -7,10 +7,17 @@
   "block.extraadditions.robust_alloy_materializer": "Robust Alloy Materializer [RAM]",
   "block.extraadditions.uv_advanced_fusion_reactor": "Advanced Fusion Reactor MK III",
   "block.extraadditions.zpm_advanced_fusion_reactor": "Advanced Fusion Reactor MK II",
+  "extraadditions.fancytooltip.tooltip.0": "§7Allows",
+  "extraadditions.fancytooltip.tooltip.1": " Laser Hatches ",
+  "extraadditions.fancytooltip.tooltip.2": "§7and",
+  "extraadditions.fancytooltip.tooltip.3": " Parallel Hatches",
   "extraadditions.machine.compact_assembly_line.tooltip.0": "§7This machine is able to perform the work of a regular Assembly Line without §6Ordered Inputs",
-  "extraadditions.machine.compact_assembly_line.tooltip.1": "§fOnly allows §bone energy hatch",
-  "extraadditions.machine.robust_alloy_materializer.tooltip.0": "§7Allows",
-  "extraadditions.machine.robust_alloy_materializer.tooltip.1": " Laser Hatches",
-  "extraadditions.machine.robust_alloy_materializer.tooltip.2": "§7and",
-  "extraadditions.machine.robust_alloy_materializer.tooltip.3": " Parallel Hatches"
+  "extraadditions.machine.compact_assembly_line.tooltip.1": "§fOnly allows §bone §fenergy hatch",
+  "extraadditions.machine.enlarged_reaction_chamber.tooltip": "§fEven larger Black Box Reactor",
+  "extraadditions.multiblock.luv_advanced_fusion_reactor.tooltip.0": "§7Runs",
+  "extraadditions.multiblock.luv_advanced_fusion_reactor.tooltip.1": " 4 Parallels",
+  "extraadditions.multiblock.uv_advanced_fusion_reactor.tooltip.0": "§7Runs",
+  "extraadditions.multiblock.uv_advanced_fusion_reactor.tooltip.1": " 16 Parallels",
+  "extraadditions.multiblock.zpm_advanced_fusion_reactor.tooltip.0": "§7Runs",
+  "extraadditions.multiblock.zpm_advanced_fusion_reactor.tooltip.1": " 8 Parallels"
 }
