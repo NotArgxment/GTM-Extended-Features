@@ -1,6 +1,17 @@
 Work in progress!
 
-eventually im gonna wrote a proper README 
+## Multiblocks:
+- Robust alloy materializer
+- Advanced Cracking Unit
+- Enlarged Reaction Chamber
+- Large Pyrolysis Unit
+- Advanced Fusion Reactors
+- Compact Assembly Line
 
-but in short terms, addon that adds 4 multis being parallel counterparts of pre existing 
-multiblocks on the mod
+## Features:
+- XOR logic for multiblock formation using laser hatches
+- Custom recipe modifier for tiered and independent parallel per controller -> time multiplied by 2x but eu/t remains the same as running 1 recipe
+
+## Future additions:
+- Wireless Databank (+ wireless data hatches)
+- Mega Rock Processing Plant (process various types of stones into their respecting resources)
