@@ -39,15 +39,17 @@ public class ExtraAdditionsMultis {
 
     public static MultiblockMachineDefinition ROBUST_ALLOY_MATERIALIZER = EXTRA_ADDITIONS_REGISTRATE
             .multiblock("robust_alloy_materializer", LaserLogic::new)
+            .tooltips(Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.0"),
+                    Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.1"),
+                    Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.2"))
             .tooltipBuilder((stack, list) -> {
-                list.add(Component.translatable("gtceu.multiblock.parallelizable.tooltip"));
-                list.add(Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.0",
-                        Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.1",
-                        Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.2"))));
-                list.add(
-                        Component.translatable("extraadditions.machine.robust_alloy_materializer.tooltip.1")
-                                .append(Component.translatable("extraadditions.machine.robust_alloy_materializer.tooltip.2"))
-                                        .withStyle(TooltipHelper.RAINBOW_HSL_SLOW));
+                list.add(Component.translatable("extraadditions.machine.robust_alloy_materializer.tooltip.0")
+                    .append(Component.translatable("extraadditions.machine.robust_alloy_materializer.tooltip.1")
+                            .withStyle(TooltipHelper.RAINBOW_HSL_SLOW))
+                        .append(Component.translatable("extraadditions.machine.robust_alloy_materializer.tooltip.2"))
+                            .append(Component.translatable("extraadditions.machine.robust_alloy_materializer.tooltip.3")
+                                    .withStyle(TooltipHelper.RAINBOW_HSL_SLOW))
+                );
             })
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(ALLOY_BLAST_RECIPES)
@@ -202,7 +204,8 @@ public class ExtraAdditionsMultis {
                     .recipeType(GTRecipeTypes.FUSION_RECIPES)
                     .recipeModifiers(DEFAULT_ENVIRONMENT_REQUIREMENT,
                             FusionReactorMachine::recipeModifier,
-                            EARecipeModifiers.TIERED_PARALLEL) // each reactor has its own parallel modifier
+                            EARecipeModifiers.TIERED_PARALLEL)
+                    // each reactor has its own parallel modifier, LuV -> 4, ZPM -> 8, UV -> 16
                     .appearanceBlock(() -> FusionReactorMachine.getCasingState(tier))
                     .pattern((definition) -> {
 
@@ -241,8 +244,6 @@ public class ExtraAdditionsMultis {
                                 .where('H', blocks(FusionReactorMachine.getCoilState(tier)))
                                 .build();
                     })
-
-
                     .modelProperty(GTMachineModelProperties.RECIPE_LOGIC_STATUS, RecipeLogic.Status.IDLE)
                     .model(
                             createWorkableCasingMachineModel(FusionReactorMachine.getCasingType(tier).getTexture(),
