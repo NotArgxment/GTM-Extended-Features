@@ -13,6 +13,7 @@ import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.FusionReactorMachine;
 
 import com.vyx.extraadditions.machines.client.EAFancyTooltips;
+import com.vyx.extraadditions.machines.client.EARecipeTypes;
 import com.vyx.extraadditions.machines.client.utils.LaserLogic;
 import com.vyx.extraadditions.machines.client.utils.EARecipeModifiers;
 
@@ -32,6 +33,7 @@ import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.*;
 import static com.gregtechceu.gtceu.utils.FormattingUtil.*;
 
 import static com.vyx.extraadditions.ExtraAdditionsCore.EXTRA_ADDITIONS_REGISTRATE;
+import static com.vyx.extraadditions.machines.client.EARecipeTypes.*;
 import static com.vyx.extraadditions.machines.client.utils.EAMachineUtils.TieredMultis;
 
 public class EAMultis {
@@ -318,4 +320,47 @@ public class EAMultis {
                     GTCEu.id("block/casings/solid/machine_casing_solid_steel") ,
                     GTCEu.id("block/multiblock/assembly_line"))
             .register();
+
+    public static MultiblockMachineDefinition ROCK_PROCESSING_FACILITY = EXTRA_ADDITIONS_REGISTRATE
+            .multiblock("rock_processing_facility", WorkableElectricMultiblockMachine::new)
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(ROCK_PROCESSING)
+            .recipeModifiers(PARALLEL_HATCH, OC_PERFECT)
+            .appearanceBlock(CASING_SECURE_MACERATION)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("JJJJJJJ", "JGJGJGJ", "JGJGJGJ", "JJJJJJJ", "       ")
+                    .aisle("JKJKJKJ", "JKJKJKJ", "JKJKJKJ", "JKJKJKJ", "       ")
+                    .aisle("JKJKJKJ", "JKJKJKJ", "JKJKJKJ", "JKJKJKJ", "       ")
+                    .aisle("JKJKJKJ", "JKJKJKJ", "JKJKJKJ", "JKJKJKJ", "       ")
+                    .aisle("JJJJJJJ", "JJJIJJJ", "JJJJJJJ", "JJJJJJJ", "       ")
+                    .aisle("       ", "   I   ", "       ", "       ", "       ")
+                    .aisle(" BCCCB ", " CCICC ", " CCCCC ", " CCCCC ", " BCCCB ")
+                    .aisle(" CCCCC ", " CEEEC ", " CFFFC ", " C###C ", " CGGGC ")
+                    .aisle(" CCCCC ", " CEEEC ", " HFFFH ", " C###C ", " CGGGC ")
+                    .aisle(" CCCCC ", " CEEEC ", " CFFFC ", " C###C ", " CGGGC ")
+                    .aisle(" BCCCB ", " CCCCC ", " CC@CC ", " CCCCC ", " BCCCB ")
+                    .where('@', controller(blocks(definition.get())))
+                    .where(' ', any())
+                    .where('#', air())
+                    .where('E', blocks(CASING_TUNGSTENSTEEL_GEARBOX.get()))
+                    .where('B', frames(GTMaterials.BlackSteel))
+                    .where('I', blocks(LD_ITEM_PIPE.get()))
+                    .where('J', blocks(CASING_NONCONDUCTING.get()))
+                    .where('K', blocks(ELECTROLYTIC_CELL.get()))
+                    .where('F', blocks(CRUSHING_WHEELS.get()))
+                    .where('G', blocks(CASING_LAMINATED_GLASS.get()))
+                    .where('H', abilities(PartAbility.ROTOR_HOLDER))
+                    .where('C', blocks(CASING_SECURE_MACERATION.get())
+                            .or(Predicates.abilities(PartAbility.IMPORT_ITEMS))
+                            .or(Predicates.abilities(PartAbility.EXPORT_FLUIDS))
+                            .or(Predicates.abilities(PartAbility.EXPORT_ITEMS))
+                            .or(Predicates.abilities(PartAbility.INPUT_ENERGY).setMaxGlobalLimited(2))
+                            .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1))
+                            .or(Predicates.abilities(PartAbility.PARALLEL_HATCH).setMaxGlobalLimited(1)))
+                    .build())
+            .workableCasingModel(
+                    GTCEu.id("block/casings/gcym/secure_maceration_casing") ,
+                    GTCEu.id("block/multiblock/gcym/large_maceration_tower"))
+            .register();
+
 }

@@ -10,6 +10,8 @@ import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import com.gregtechceu.gtceu.api.sound.SoundEntry;
 
 // import com.vyx.extraadditions.machines.client.parallel.ExtraParaHatches;
+import com.vyx.extraadditions.machines.EARecipes;
+import com.vyx.extraadditions.machines.client.EARecipeTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.MinecraftForge;
@@ -111,7 +113,7 @@ public class ExtraAdditionsCore {
      * @param event
      */
     private void registerRecipeTypes(GTCEuAPI.RegisterEvent<ResourceLocation, GTRecipeType> event) {
-        // CustomRecipeTypes.init();
+        EARecipeTypes.init();
     }
 
     /**

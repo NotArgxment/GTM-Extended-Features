@@ -10,6 +10,7 @@ import com.vyx.extraadditions.machines.EAMultis;
 import com.vyx.extraadditions.machines.client.EALangHandler;
 import com.vyx.extraadditions.machines.EARecipes;
 
+import com.vyx.extraadditions.machines.client.EARecipeTypes;
 import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
