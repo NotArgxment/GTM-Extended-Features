@@ -21,6 +21,7 @@ public class EARecipes {
 
     public static void init(Consumer<FinishedRecipe> provider) {
 
+/*
         //.circuitMeta(int 1 > 32)
         // placeholder, not the actual recipe
         ASSEMBLY_LINE_RECIPES.recipeBuilder("robust_alloy_materializer")
@@ -92,5 +93,6 @@ public class EARecipes {
                 .EUt(GTValues.VA[GTValues.UV])
                 .save(provider);
 // =====================================================================================
+*/
     }
 }

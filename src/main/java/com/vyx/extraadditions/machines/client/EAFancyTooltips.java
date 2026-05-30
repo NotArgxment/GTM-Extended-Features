@@ -7,12 +7,10 @@ import java.util.function.UnaryOperator;
 
 public class EAFancyTooltips {
 
-    private static final double SPEED_SLOW   = 0.1;
-    private static final double SPEED_NORMAL = 0.1;
-    private static final double SPEED_FAST   = 0.1;
+    private static final double SPEED = 0.2;
 
     public static final UnaryOperator<Style> LUV_GRADIENT = style -> {
-        float t = (float)(Math.sin(GTValues.CLIENT_TIME * SPEED_SLOW) * 0.5 + 0.5);
+        float t = (float)(Math.sin(GTValues.CLIENT_TIME * SPEED) * 0.5 + 0.5);
         int r = 255;
         int g = (int)(255 - t * 105);
         int b = (int)(255 - t * 75);
@@ -20,7 +18,7 @@ public class EAFancyTooltips {
     };
 
     public static final UnaryOperator<Style> ZPM_GRADIENT = style -> {
-            float t = (float)(Math.sin(GTValues.CLIENT_TIME * SPEED_NORMAL) * 0.5 + 0.5);
+            float t = (float)(Math.sin(GTValues.CLIENT_TIME * SPEED) * 0.5 + 0.5);
             int r = (int)(255 + t * (252 - 255));
             int g = (int)(51 + t * (154 - 51));
             int b = (int)(51 + t * (154 - 51));
@@ -28,7 +26,7 @@ public class EAFancyTooltips {
     };
 
     public static final UnaryOperator<Style> UV_GRADIENT = style -> {
-        float t = (float)(Math.sin(GTValues.CLIENT_TIME * SPEED_FAST) * 0.5 + 0.5);
+        float t = (float)(Math.sin(GTValues.CLIENT_TIME * SPEED) * 0.5 + 0.5);
         int r = (int)(0 + t * (255 - 0));
         int g = (int)(170 + t * (255 - 170));
         int b = (int)(170 + t * (255 - 170));

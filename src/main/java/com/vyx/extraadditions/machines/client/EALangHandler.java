@@ -28,7 +28,6 @@ public class EALangHandler {
         §d	light_purple
         §e	yellow
         §f	white
-        §g	minecoin_gold
         §k	obfuscated
         §l	bold
         §m	strikethrough
