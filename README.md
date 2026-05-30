@@ -15,3 +15,5 @@ Work in progress!
 ## Future additions:
 - Wireless Databank (+ wireless data hatches)
 - Mega Rock Processing Plant (process various types of stones into their respecting resources)
+
+# Still working on for the next release!
