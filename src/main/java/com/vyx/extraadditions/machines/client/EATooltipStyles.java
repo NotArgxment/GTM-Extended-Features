@@ -3,6 +3,8 @@ package com.vyx.extraadditions.machines.client;
 import com.gregtechceu.gtceu.api.GTValues;
 import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextColor;
+
+import java.util.Map;
 import java.util.function.UnaryOperator;
 
 public class EATooltipStyles {
@@ -32,4 +34,14 @@ public class EATooltipStyles {
         int b = (int)(170 + t * (255 - 170));
         return style.withColor(TextColor.fromRgb((r << 16) | (g << 8) | b));
     };
+
+    public static final Map<Integer, UnaryOperator<Style>> TIER_GRADIENTS = Map.of(
+            GTValues.LuV, LUV_GRADIENT,
+            GTValues.ZPM, ZPM_GRADIENT,
+            GTValues.UV,  UV_GRADIENT
+    );
+
+    public static UnaryOperator<Style> forTier(int tier) {
+        return TIER_GRADIENTS.getOrDefault(tier, LUV_GRADIENT); // fallback
+    }
 }

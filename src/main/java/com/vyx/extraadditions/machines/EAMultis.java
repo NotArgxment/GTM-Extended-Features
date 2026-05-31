@@ -1,6 +1,7 @@
 package com.vyx.extraadditions.machines;
 
 import com.gregtechceu.gtceu.GTCEu;
+import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.machine.*;
 import com.gregtechceu.gtceu.api.machine.multiblock.*;
@@ -10,6 +11,7 @@ import com.gregtechceu.gtceu.api.pattern.*;
 import com.gregtechceu.gtceu.client.renderer.machine.DynamicRenderHelper;
 import com.gregtechceu.gtceu.client.util.TooltipHelper;
 import com.gregtechceu.gtceu.common.data.*;
+import com.gregtechceu.gtceu.common.machine.multiblock.electric.AssemblyLineMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.FusionReactorMachine;
 
 import com.vyx.extraadditions.ExtraAdditionsCore;
@@ -56,7 +58,7 @@ public class EAMultis {
                             .withStyle(TooltipHelper.RAINBOW_HSL_SLOW))
                         .append(Component.translatable("extraadditions.fancytooltip.tooltip.2"))
                             .append(Component.translatable("extraadditions.fancytooltip.tooltip.3")
-                                    .withStyle(EATooltipStyles.ZPM_GRADIENT))
+                                    .withStyle(TooltipHelper.RAINBOW_HSL_SLOW))
                 );
             })
             .rotationState(RotationState.NON_Y_AXIS)
@@ -229,10 +231,17 @@ public class EAMultis {
                     .tooltips(
                             Component.translatable("gtceu.machine.fusion_reactor.capacity",
                                     FusionReactorMachine.calculateEnergyStorageFactor(tier, 16) / 1000000L),
-                            Component.translatable("gtceu.machine.fusion_reactor.overclocking"),
-                                    Component.translatable("extraadditions.multiblock.%s_advanced_fusion_reactor.tooltip.0"
-                                            .formatted(VN[tier].toLowerCase(Locale.ROOT)))
+                            Component.translatable("gtceu.machine.fusion_reactor.overclocking")
                     )
+                    .tooltipBuilder((stack, list) -> {
+                        list.add(Component.translatable(
+                                        "extraadditions.multiblock.%s_advanced_fusion_reactor.tooltip.0"
+                                                .formatted(VN[tier].toLowerCase(Locale.ROOT)))
+                                .append(Component.translatable(
+                                                "extraadditions.multiblock.%s_advanced_fusion_reactor.tooltip.1"
+                                                        .formatted(VN[tier].toLowerCase(Locale.ROOT)))
+                                        .withStyle(EATooltipStyles.forTier(tier))));
+                    })
                     .recipeType(GTRecipeTypes.FUSION_RECIPES)
                     .recipeModifiers(DEFAULT_ENVIRONMENT_REQUIREMENT,
                             FusionReactorMachine::recipeModifier,
@@ -287,7 +296,7 @@ public class EAMultis {
             LuV, ZPM, UV);
 
     public static MultiblockMachineDefinition COMPACT_ASSEMBLY_LINE = EXTRA_ADDITIONS_REGISTRATE
-            .multiblock("compact_assembly_line", WorkableElectricMultiblockMachine::new)
+            .multiblock("compact_assembly_line", AssemblyLineMachine::new)
             .tooltips(Component.translatable("extraadditions.machine.compact_assembly_line.tooltip.0"),
                     Component.translatable("extraadditions.machine.compact_assembly_line.tooltip.1"))
             .tooltipBuilder((stack, list) -> {
@@ -328,10 +337,12 @@ public class EAMultis {
 
     public static MultiblockMachineDefinition ROCK_PROCESSING_FACILITY = EXTRA_ADDITIONS_REGISTRATE
             .multiblock("rock_processing_facility", WorkableElectricMultiblockMachine::new)
-            .tooltips(Component.translatable(""))
+            .tooltips(
+                    Component.translatable("extraadditions.machine.rock_processing_facility.tooltip.0",
+                    Component.translatable("extraadditions.machine.rock_processing_facility.tooltip.1")))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(ROCK_PROCESSING)
-            .recipeModifiers(SIMPLE_PARALLEL.apply(16))
+            .recipeModifiers(OC_NON_PERFECT)
             .appearanceBlock(CASING_SECURE_MACERATION)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("JJJJJJJ", "JGJGJGJ", "JGJGJGJ", "JJJJJJJ", "       ")

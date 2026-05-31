@@ -36,6 +36,7 @@ public class ExtraAdditionsCore {
     public static final Logger LOGGER = LogManager.getLogger();
     public static final GTRegistrate EXTRA_ADDITIONS_REGISTRATE = GTRegistrate.create(ExtraAdditionsCore.MOD_ID);
 
+    // Credits to Herr Jolo for making the creative tab!
     public static RegistryEntry<CreativeModeTab> EA_TAB = EXTRA_ADDITIONS_REGISTRATE
             .defaultCreativeTab(ExtraAdditionsCore.MOD_ID,
                     builder -> builder
@@ -43,7 +44,7 @@ public class ExtraAdditionsCore {
                                     new GTCreativeModeTabs.RegistrateDisplayItemsGenerator(ExtraAdditionsCore.MOD_ID,
                                             EXTRA_ADDITIONS_REGISTRATE))
                             .title(EXTRA_ADDITIONS_REGISTRATE.addLang("itemGroup", ExtraAdditionsCore.id("creative_tab"),
-                                    "Gregtech: Extra Additions"))
+                                    "GT:EA Multiblocks"))
                             .icon(GTBlocks.ANTIMATTER_HAZARD_SIGN_BLOCK::asStack)
                             .build())
             .register();

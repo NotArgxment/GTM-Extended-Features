@@ -53,6 +53,9 @@ public class EALangHandler {
 
         provider.add("extraadditions.machine.enlarged_reaction_chamber.tooltip", "§fEven larger Black Box Reactor");
 
+        provider.add("extraadditions.machine.rock_processing_facility.tooltip.0", "§7An all in one processing facility, turns the rocks you normally get from the rock breaker into their direct processed outputs");
+        provider.add("extraadditions.machine.rock_processing_facility.tooltip.1", "§7All recipes have §dRanged Outputs");
+
         provider.add("extraadditions.multiblock.luv_advanced_fusion_reactor.tooltip.0", "§7Runs");
         provider.add("extraadditions.multiblock.luv_advanced_fusion_reactor.tooltip.1", " 4 Parallels");
 

@@ -48,7 +48,7 @@ public class EARecipes {
                 .EUt(GTValues.VA[GTValues.UV])
                 .duration(1500)
                 .save(provider);
-*/
+
 // =====  Reactors  ================================================================
         ASSEMBLY_LINE_RECIPES.recipeBuilder("advanced_fusion_reactor_mk1")
                 .inputItems(SUPERCONDUCTING_COIL.asStack(), 4)
@@ -105,12 +105,14 @@ public class EARecipes {
                 .outputItemsRanged(dust, Silicon, UniformInt.of(1,128))
                 .outputFluidsRanged(
                         new FluidStack(Fluorine.getFluid(), 1000),
-                            UniformInt.of(1008, 16000))
+                            UniformInt.of(1000, 16000))
                 .outputFluidsRanged(
                         new FluidStack(Oxygen.getFluid(), 1000),
-                            UniformInt.of(1008, 16000))
+                            UniformInt.of(1000, 16000))
                 .duration(5000)
                 .EUt(GTValues.VA[GTValues.LuV])
                 .save(provider);
+
+        */
     }
 }
