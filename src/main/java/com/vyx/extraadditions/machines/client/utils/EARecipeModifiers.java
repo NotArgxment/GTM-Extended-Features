@@ -10,13 +10,9 @@ import java.util.function.IntFunction;
 
 public class EARecipeModifiers {
 
-    private static final int MAX_SIMPLE_PARALLEL = 16;
+    private static final int MAX_SIMPLE_PARALLEL = 64;
 
     public static final IntFunction<RecipeModifier> SIMPLE_PARALLEL = parallels -> {
-        if (parallels < 1 || parallels > MAX_SIMPLE_PARALLEL) {
-            throw new IllegalArgumentException(
-                    "SIMPLE_PARALLEL count must be between 1 and " + MAX_SIMPLE_PARALLEL + ", got " + parallels);
-        }
         if (parallels == 1) return RecipeModifier.NO_MODIFIER;
 
         return (machine, recipe) -> {

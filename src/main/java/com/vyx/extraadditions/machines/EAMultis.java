@@ -14,12 +14,14 @@ import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.AssemblyLineMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.FusionReactorMachine;
 
-import com.vyx.extraadditions.ExtraAdditionsCore;
-import com.vyx.extraadditions.machines.client.EATooltipStyles;
-import com.vyx.extraadditions.machines.client.utils.LaserLogic;
+import com.gregtechceu.gtceu.utils.FormattingUtil;
+import com.vyx.extraadditions.machines.client.utils.EATooltipStyles;
+import com.vyx.extraadditions.machines.client.utils.LaserMultiblock;
 import com.vyx.extraadditions.machines.client.utils.EARecipeModifiers;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
 import net.minecraft.world.level.block.Block;
 
 import java.util.Locale;
@@ -43,19 +45,19 @@ public class EAMultis {
 
     public static void init() {}
 
-    static {
-        EXTRA_ADDITIONS_REGISTRATE.creativeModeTab(() -> ExtraAdditionsCore.EA_TAB);
-    }
+//    static {
+//        EXTRA_ADDITIONS_REGISTRATE.creativeModeTab(() -> ExtraAdditionsCore.EA_TAB);
+//    }
 
     public static MultiblockMachineDefinition ROBUST_ALLOY_MATERIALIZER = EXTRA_ADDITIONS_REGISTRATE
-            .multiblock("robust_alloy_materializer", LaserLogic::new)
+            .multiblock("robust_alloy_materializer", LaserMultiblock::new)
             .tooltips(Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.0"),
                     Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.1"),
                     Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.2"))
             .tooltipBuilder((stack, list) -> {
                 list.add(Component.translatable("extraadditions.fancytooltip.tooltip.0")
                     .append(Component.translatable("extraadditions.fancytooltip.tooltip.1")
-                            .withStyle(TooltipHelper.RAINBOW_HSL_SLOW))
+                            .withStyle(EATooltipStyles.ZPM_GRADIENT))
                         .append(Component.translatable("extraadditions.fancytooltip.tooltip.2"))
                             .append(Component.translatable("extraadditions.fancytooltip.tooltip.3")
                                     .withStyle(TooltipHelper.RAINBOW_HSL_SLOW))
@@ -63,7 +65,10 @@ public class EAMultis {
             })
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(ALLOY_BLAST_RECIPES)
-            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers::ebfOverclock)
+            .recipeModifiers(
+                    SIMPLE_PARALLEL.apply(64), // No EU/t increase, but 2x the time
+                    GTRecipeModifiers::ebfOverclock
+            )
             .appearanceBlock(CASING_STRESS_PROOF)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("   CCC   ", "   XXX   ", "   XXX   ", "   EEE   ", "   XXX   ", "   XXX   ", "   CCC   ")
@@ -80,8 +85,7 @@ public class EAMultis {
                             .or(Predicates.abilities(PartAbility.IMPORT_ITEMS, PartAbility.IMPORT_FLUIDS, PartAbility.EXPORT_FLUIDS))
                             .or(Predicates.abilities(PartAbility.INPUT_ENERGY).setMaxGlobalLimited(2).setPreviewCount(2))
                             .or(Predicates.abilities(PartAbility.INPUT_LASER).setMaxGlobalLimited(1).setPreviewCount(1))
-                            .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1))
-                            .or(Predicates.abilities(PartAbility.PARALLEL_HATCH).setMaxGlobalLimited(1)))
+                            .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
                     .where('B', Predicates.blocks(CASING_HIGH_TEMPERATURE_SMELTING.get()))
                     .where('F', Predicates.blocks(CASING_TUNGSTENSTEEL_PIPE.get()))
                     .where('E', Predicates.blocks(HEAT_VENT.get()))
@@ -93,6 +97,15 @@ public class EAMultis {
             .workableCasingModel(
                     GTCEu.id("block/casings/gcym/stress_proof_casing"),
                     GTCEu.id("block/multiblock/gcym/blast_alloy_smelter"))
+            .additionalDisplay((controller, components) -> {
+                if (controller instanceof CoilWorkableElectricMultiblockMachine coilMachine && controller.isFormed()) {
+                    components.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature",
+                            Component.translatable(
+                                    FormattingUtil.formatNumbers(coilMachine.getCoilType().getCoilTemperature()
+                                            + 100L * Math.max(0, coilMachine.getTier() - GTValues.MV)) + "K")
+                                    .setStyle(Style.EMPTY.withColor(ChatFormatting.RED))));
+                }
+            })
             .register();
 
     public static MultiblockMachineDefinition ADVANCED_CRACKING_UNIT = EXTRA_ADDITIONS_REGISTRATE
@@ -108,7 +121,10 @@ public class EAMultis {
             })
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(CRACKING_RECIPES)
-            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers::crackerOverclock)
+            .recipeModifiers(
+                    GTRecipeModifiers.PARALLEL_HATCH,
+                    GTRecipeModifiers::crackerOverclock
+            )
             .appearanceBlock(CASING_STAINLESS_CLEAN)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("FIIFIIF", "FIIFIIF", "FFFYFFF", "FIIFIIF", "FIIFIIF")
@@ -134,6 +150,12 @@ public class EAMultis {
             .workableCasingModel(
                     GTCEu.id("block/casings/solid/machine_casing_clean_stainless_steel"),
                     GTCEu.id("block/multiblock/cracking_unit"))
+            .additionalDisplay((controller, components) -> {
+                if (controller instanceof CoilWorkableElectricMultiblockMachine coilMachine && controller.isFormed()) {
+                    components.add(Component.translatable("gtceu.multiblock.cracking_unit.energy",
+                            100 - 10 * coilMachine.getCoilTier()));
+                }
+            })
             .register();
 
     public static MultiblockMachineDefinition ENLARGED_REACTION_CHAMBER = EXTRA_ADDITIONS_REGISTRATE
@@ -146,7 +168,10 @@ public class EAMultis {
             })
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(LARGE_CHEMICAL_RECIPES)
-            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers.OC_PERFECT, GTRecipeModifiers.OC_PERFECT_SUBTICK)
+            .recipeModifiers(
+                    GTRecipeModifiers.PARALLEL_HATCH,
+                    GTRecipeModifiers.OC_PERFECT
+            )
             .appearanceBlock(CASING_PTFE_INERT)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle(" FDDDF "," FDDDF "," FDDDF ")
@@ -188,7 +213,11 @@ public class EAMultis {
             })
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(PYROLYSE_RECIPES)
-            .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, GTRecipeModifiers.OC_PERFECT, GTRecipeModifiers::pyrolyseOvenOverclock)
+            .recipeModifiers(
+                    GTRecipeModifiers.PARALLEL_HATCH,
+                    GTRecipeModifiers.OC_PERFECT,
+                    GTRecipeModifiers::pyrolyseOvenOverclock
+            )
             .appearanceBlock(MACHINE_CASING_ULV)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("  EEE  ", "  HHH  ", "  HHH  ", "  HHH  ", "  EEE  ")
@@ -220,6 +249,12 @@ public class EAMultis {
             .workableCasingModel(
                     GTCEu.id("block/casings/voltage/ulv/side") ,
                     GTCEu.id("block/multiblock/pyrolyse_oven"))
+            .additionalDisplay((controller, components) -> {
+                if (controller instanceof CoilWorkableElectricMultiblockMachine coilMachine && controller.isFormed()) {
+                    components.add(Component.translatable("gtceu.multiblock.pyrolyse_oven.speed",
+                            coilMachine.getCoilTier() == 0 ? 75 : 50 * (coilMachine.getCoilTier() + 1)));
+                }
+            })
             .register();
 
     // registered using the addon namespace from EAMachineUtils
@@ -243,10 +278,10 @@ public class EAMultis {
                                         .withStyle(EATooltipStyles.forTier(tier))));
                     })
                     .recipeType(GTRecipeTypes.FUSION_RECIPES)
-                    .recipeModifiers(DEFAULT_ENVIRONMENT_REQUIREMENT,
+                    .recipeModifiers(
                             FusionReactorMachine::recipeModifier,
-                            EARecipeModifiers.TIERED_PARALLEL)
-                    // each reactor has its own parallel modifier, LuV -> 4, ZPM -> 8, UV -> 16
+                            EARecipeModifiers.TIERED_PARALLEL // each reactor has its own parallel modifier, LuV -> 4, ZPM -> 8, UV -> 16
+                    )
                     .appearanceBlock(() -> FusionReactorMachine.getCasingState(tier))
                     .pattern((definition) -> {
 
@@ -299,15 +334,11 @@ public class EAMultis {
             .multiblock("compact_assembly_line", AssemblyLineMachine::new)
             .tooltips(Component.translatable("extraadditions.machine.compact_assembly_line.tooltip.0"),
                     Component.translatable("extraadditions.machine.compact_assembly_line.tooltip.1"))
-            .tooltipBuilder((stack, list) -> {
-                list.add(Component.translatable("extraadditions.fancytooltip.tooltip.0")
-                        .append(Component.translatable("extraadditions.fancytooltip.tooltip.3")
-                                .withStyle(TooltipHelper.RAINBOW_HSL_SLOW))
-                );
-            })
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(ASSEMBLY_LINE_RECIPES)
-            .recipeModifiers(SIMPLE_PARALLEL.apply(4), GTRecipeModifiers.OC_NON_PERFECT)
+            .recipeModifiers(
+                    SIMPLE_PARALLEL.apply(8),
+                    GTRecipeModifiers.OC_NON_PERFECT)
             .appearanceBlock(CASING_STEEL_SOLID)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("ENE", "EKE", "EHE")
@@ -339,7 +370,8 @@ public class EAMultis {
             .multiblock("rock_processing_facility", WorkableElectricMultiblockMachine::new)
             .tooltips(
                     Component.translatable("extraadditions.machine.rock_processing_facility.tooltip.0",
-                    Component.translatable("extraadditions.machine.rock_processing_facility.tooltip.1")))
+                    Component.translatable("extraadditions.machine.rock_processing_facility.tooltip.1"))
+            )
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(ROCK_PROCESSING)
             .recipeModifiers(OC_NON_PERFECT)

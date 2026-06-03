@@ -49,7 +49,7 @@ public class EALangHandler {
 
     private static void initControllerTooltips(RegistrateLangProvider provider) {
         provider.add("extraadditions.machine.compact_assembly_line.tooltip.0", "§7This machine is able to perform the work of a regular Assembly Line without §6Ordered Inputs");
-        provider.add("extraadditions.machine.compact_assembly_line.tooltip.1", "§fOnly allows §bone §fenergy hatch");
+        provider.add("extraadditions.machine.compact_assembly_line.tooltip.1", "§fOnly allows §bone §fenergy hatch and has §9Simple Parallels");
 
         provider.add("extraadditions.machine.enlarged_reaction_chamber.tooltip", "§fEven larger Black Box Reactor");
 

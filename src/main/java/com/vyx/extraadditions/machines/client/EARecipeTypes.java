@@ -15,10 +15,10 @@ public class EARecipeTypes {
     public static GTRecipeType ROCK_PROCESSING;
 
     public static void init() {
-// credits to Herr Jolo for fixing it - wasnt loading because of wrong registry type
+    // credits to Herr Jolo for fixing it - wasn't loading because of wrong registry type
         ROCK_PROCESSING = register("rock_processing", MULTIBLOCK)
                 .setEUIO(IO.IN)
-                .setMaxIOSize(1, 6, 1, 3)
+                .setMaxIOSize(1, 9, 1, 3)
                 .setSlotOverlay(false, false, GuiTextures.DUST_OVERLAY)
                 .setProgressBar(GuiTextures.PROGRESS_BAR_MACERATE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
                 .setSound(GTSoundEntries.MACERATOR);

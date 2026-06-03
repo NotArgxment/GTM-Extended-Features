@@ -1,4 +1,4 @@
-package com.vyx.extraadditions.machines.client;
+package com.vyx.extraadditions.machines.client.utils;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import net.minecraft.network.chat.Style;
@@ -9,7 +9,7 @@ import java.util.function.UnaryOperator;
 
 public class EATooltipStyles {
 
-    private static final double SPEED = 0.2;
+    private static final double SPEED = 0.1;
 
     public static final UnaryOperator<Style> LUV_GRADIENT = style -> {
         float t = (float)(Math.sin(GTValues.CLIENT_TIME * SPEED) * 0.5 + 0.5);

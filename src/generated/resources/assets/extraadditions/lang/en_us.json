@@ -13,7 +13,7 @@
   "extraadditions.fancytooltip.tooltip.2": "§7and",
   "extraadditions.fancytooltip.tooltip.3": " Parallel Hatches",
   "extraadditions.machine.compact_assembly_line.tooltip.0": "§7This machine is able to perform the work of a regular Assembly Line without §6Ordered Inputs",
-  "extraadditions.machine.compact_assembly_line.tooltip.1": "§fOnly allows §bone §fenergy hatch",
+  "extraadditions.machine.compact_assembly_line.tooltip.1": "§fOnly allows §bone §fenergy hatch and has §9Simple Parallels",
   "extraadditions.machine.enlarged_reaction_chamber.tooltip": "§fEven larger Black Box Reactor",
   "extraadditions.machine.rock_processing_facility.tooltip.0": "§7An all in one processing facility, turns the rocks you normally get from the rock breaker into their direct processed outputs",
   "extraadditions.machine.rock_processing_facility.tooltip.1": "§7All recipes have §dRanged Outputs",

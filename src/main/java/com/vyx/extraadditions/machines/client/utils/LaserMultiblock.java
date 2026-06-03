@@ -10,9 +10,9 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class LaserLogic extends CoilWorkableElectricMultiblockMachine {
+public class LaserMultiblock extends CoilWorkableElectricMultiblockMachine {
 
-    public LaserLogic(IMachineBlockEntity holder) {
+    public LaserMultiblock(IMachineBlockEntity holder) {
         super(holder);
     }
 
