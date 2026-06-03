@@ -99,7 +99,7 @@ public class EARecipes {
                 .save(provider);
 
          */
-
+/*
         ROCK_PROCESSING.recipeBuilder("deepslate_processing")
                 .inputItems(new ItemStack(Blocks.DEEPSLATE), 256)
                 .perTick(true).inputFluids(DrillingFluid.getFluid(5)).perTick(false)
@@ -166,5 +166,6 @@ public class EARecipes {
                 .duration(5000)
                 .EUt(GTValues.VA[GTValues.LuV])
                 .save(provider);
+ */
     }
 }
