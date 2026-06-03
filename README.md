@@ -14,7 +14,7 @@
 - Soon: being able to disable each module/feature by their own to allow easier modpack personalization within the mod
 
 ## Future additions:
-- Wireless Optical/Computation Components
+- Wireless Optical/Computation Components (tbd if it will be on covers or direct hatches)
 - Large Air Reprocessor [LARp]
 - Implossion Chamber [IC]
-- Quantum Trascendental Plasma Matrix [QTPM]  
+- Quantum Trascendental Plasma Matrix [QTPM]
