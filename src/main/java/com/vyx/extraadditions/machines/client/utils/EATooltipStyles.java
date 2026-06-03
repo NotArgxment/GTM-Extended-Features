@@ -42,6 +42,6 @@ public class EATooltipStyles {
     );
 
     public static UnaryOperator<Style> forTier(int tier) {
-        return TIER_GRADIENTS.getOrDefault(tier, LUV_GRADIENT); // fallback
+        return TIER_GRADIENTS.getOrDefault(tier, LUV_GRADIENT);
     }
 }
