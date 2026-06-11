@@ -31,6 +31,5 @@
 - Large Air Reprocessor [LARp]
 - Implossion Chamber [IC]
 - Quantum Plasma Forge [QPF]
-- Universal Ore Processing Factory [UOPF] (probably not the best idea, tbd)
 - Chemical skips for the ERC regarding specific lines required for progression
 - Configuration integration for easier modpack customization
