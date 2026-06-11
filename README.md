@@ -11,10 +11,12 @@
 - Custom formation logic for laser hatches
 - Custom recipe modifier for tiered and independent parallel per controller -> time multiplied by 2x but eu/t remains the same as running 1 recipe
 - LuV to UV color based gradients
-- Soon: being able to disable each module/feature by their own to allow easier modpack personalization within the mod
 
 ## Future additions:
-- Wireless Optical/Computation Components (tbd if it will be on covers or direct hatches)
+- Wireless Optical/Computation Components (Covers format)
 - Large Air Reprocessor [LARp]
 - Implossion Chamber [IC]
-- Quantum Trascendental Plasma Matrix [QTPM]
+- Quantum Plasma Forge [QPF]
+- Universal Ore Processing Factory [UOPF] (probably not the best idea, tbd)
+- Chemical skips foe the ERC regarding specific lines required for progression
+- Configuration integration for easier modpack customization
