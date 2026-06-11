@@ -99,10 +99,12 @@ public class EARecipes {
                 .save(provider);
 
          */
-/*
+
         ROCK_PROCESSING.recipeBuilder("deepslate_processing")
                 .inputItems(new ItemStack(Blocks.DEEPSLATE), 256)
-                .perTick(true).inputFluids(DrillingFluid.getFluid(5)).perTick(false)
+                .perTick(true)
+                    .inputFluids(DrillingFluid.getFluid(5))
+                .perTick(false)
                 .outputItemsRanged(dust, Potassium, UniformInt.of(1,128))
                 .outputItemsRanged(dust, Magnesium, UniformInt.of(1,128))
                 .outputItemsRanged(dust, Aluminium, UniformInt.of(1,128))
@@ -121,7 +123,9 @@ public class EARecipes {
 
         ROCK_PROCESSING.recipeBuilder("andesite_processing")
                 .inputItems(new ItemStack(Blocks.ANDESITE), 256)
-                .perTick(true).inputFluids(DrillingFluid.getFluid(5)).perTick(false)
+                .perTick(true)
+                    .inputFluids(DrillingFluid.getFluid(5))
+                .perTick(false)
                 .outputItemsRanged(dust, Magnesium, UniformInt.of(1,128))
                 .outputItemsRanged(dust, Silicon, UniformInt.of(1,128))
                 .outputFluidsRanged(
@@ -138,7 +142,9 @@ public class EARecipes {
 
         ROCK_PROCESSING.recipeBuilder("diorite_processing")
                 .inputItems(new ItemStack(Blocks.DIORITE), 256)
-                .perTick(true).inputFluids(DrillingFluid.getFluid(5)).perTick(false)
+                .perTick(true)
+                    .inputFluids(DrillingFluid.getFluid(5))
+                .perTick(false)
                 .outputItemsRanged(dust, Sodium, UniformInt.of(1,96))
                 .outputItemsRanged(dust, Sulfur, UniformInt.of(1,64))
                 .outputFluidsRanged(
@@ -155,7 +161,9 @@ public class EARecipes {
 
         ROCK_PROCESSING.recipeBuilder("obsidian_processing")
                 .inputItems(new ItemStack(Blocks.OBSIDIAN), 256)
-                .perTick(true).inputFluids(DrillingFluid.getFluid(5)).perTick(false)
+                .perTick(true)
+                    .inputFluids(DrillingFluid.getFluid(5))
+                .perTick(false)
                 .outputItemsRanged(dust, Magnesium, UniformInt.of(1,96))
                 .outputItemsRanged(dust, Iron, UniformInt.of(1,96))
                 .outputItemsRanged(dust, Silicon, UniformInt.of(1,64))
@@ -166,6 +174,5 @@ public class EARecipes {
                 .duration(5000)
                 .EUt(GTValues.VA[GTValues.LuV])
                 .save(provider);
- */
     }
 }

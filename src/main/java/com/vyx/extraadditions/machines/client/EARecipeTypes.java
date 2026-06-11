@@ -12,15 +12,32 @@ import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.register;
 
 public class EARecipeTypes {
 
+    // credits to Herr Jolo for fixing it - wasn't loading because of wrong registry type
+
     public static GTRecipeType ROCK_PROCESSING;
+    public static GTRecipeType CHEMICAL_REDUCTION;
+    public static GTRecipeType AIR_REPROCESSING;
 
     public static void init() {
-    // credits to Herr Jolo for fixing it - wasn't loading because of wrong registry type
-        ROCK_PROCESSING = register("rock_processing", MULTIBLOCK)
+
+        ROCK_PROCESSING = register("rock_processing_facility", MULTIBLOCK)
                 .setEUIO(IO.IN)
-                .setMaxIOSize(1, 9, 1, 3)
-                .setSlotOverlay(false, false, GuiTextures.DUST_OVERLAY)
+                .setMaxIOSize(1, 6, 1, 3)
                 .setProgressBar(GuiTextures.PROGRESS_BAR_MACERATE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
                 .setSound(GTSoundEntries.MACERATOR);
+
+        CHEMICAL_REDUCTION = register("chemical_skipping", MULTIBLOCK)
+                .setEUIO(IO.IN)
+                .setMaxIOSize(6, 6, 6, 6)
+                .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+                .setSound(GTSoundEntries.CHEMICAL);
+
+        AIR_REPROCESSING = register("air_reprocessor", MULTIBLOCK)
+                .setEUIO(IO.IN)
+                .setMaxIOSize(0, 9, 1, 0)
+                .setProgressBar(GuiTextures.PROGRESS_BAR_MIXER, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+                .setSound(GTSoundEntries.MACERATOR);
+
+
     }
 }

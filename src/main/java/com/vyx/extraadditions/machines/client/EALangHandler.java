@@ -18,30 +18,31 @@ public class EALangHandler {
         replace(provider, "block.extraadditions.large_pyrolysis_unit", "Large Pyrolysis Unit [LPU]");
         replace(provider, "block.extraadditions.compact_assembly_line", "Compact Assembly Line [CAL]");
         replace(provider, "block.extraadditions.rock_processing_facility", "Rock Processing Facility [RPF]");
-        // note: fusion reactor lang entries aren't required here at all, only tooltips
+        replace(provider, "block.extraadditions.industrial_greenhouse", "Industrial Greenhouse [IGh]");
+        replace(provider, "block.extraadditions.tree_growing_chamber", "Tree Growing Chamber [TGCh]");
     }
 
     private static void initControllerTooltips(RegistrateLangProvider provider) {
-        provider.add("extraadditions.machine.compact_assembly_line.tooltip.0", "§7This machine is able to perform the work of a regular Assembly Line without §6Ordered Inputs");
-        provider.add("extraadditions.machine.compact_assembly_line.tooltip.1", "§fOnly allows §bone §fenergy hatch and has §9Simple Parallels");
+        provider.add("extraadditions.machine.compact_assembly_line.tooltip.0", "§7This machine is able to perform the work of a regular Assembly Line without requiring §6Ordered Inputs");
+        provider.add("extraadditions.machine.compact_assembly_line.tooltip.1", "§7Only allows §bone §7energy hatch and performs §b4 Recipes in parallel");
 
         provider.add("extraadditions.machine.enlarged_reaction_chamber.tooltip", "§fEven larger Black Box Reactor");
 
         provider.add("extraadditions.machine.rock_processing_facility.tooltip.0", "§7An all in one processing facility, turns the rocks you normally get from the rock breaker into their direct processed outputs");
         provider.add("extraadditions.machine.rock_processing_facility.tooltip.1", "§7All recipes have §dRanged Outputs");
 
-        provider.add("extraadditions.multiblock.luv_advanced_fusion_reactor.tooltip.0", "§7Runs");
+        provider.add("extraadditions.multiblock.luv_advanced_fusion_reactor.tooltip.0", "§fRuns");
         provider.add("extraadditions.multiblock.luv_advanced_fusion_reactor.tooltip.1", " 4 Parallels");
 
-        provider.add("extraadditions.multiblock.zpm_advanced_fusion_reactor.tooltip.0", "§7Runs");
+        provider.add("extraadditions.multiblock.zpm_advanced_fusion_reactor.tooltip.0", "§fRuns");
         provider.add("extraadditions.multiblock.zpm_advanced_fusion_reactor.tooltip.1", " 8 Parallels");
 
-        provider.add("extraadditions.multiblock.uv_advanced_fusion_reactor.tooltip.0", "§7Runs");
+        provider.add("extraadditions.multiblock.uv_advanced_fusion_reactor.tooltip.0", "§fRuns");
         provider.add("extraadditions.multiblock.uv_advanced_fusion_reactor.tooltip.1", " 16 Parallels");
 
-        provider.add("extraadditions.fancytooltip.tooltip.0", "§7Allows");
+        provider.add("extraadditions.fancytooltip.tooltip.0", "§fAllows");
         provider.add("extraadditions.fancytooltip.tooltip.1", " Laser Hatches ");
-        provider.add("extraadditions.fancytooltip.tooltip.2", "§7and");
+        provider.add("extraadditions.fancytooltip.tooltip.2", "§fand");
         provider.add("extraadditions.fancytooltip.tooltip.3", " Parallel Hatches");
 
     }
