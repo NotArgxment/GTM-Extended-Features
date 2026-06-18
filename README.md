@@ -37,7 +37,7 @@
 |   0   |       1      |           1          |
 |   1   |       1      |           0          |
 
-- Custom parallel recipe modifier, base limit set on 256
+- Custom parallel recipe modifier, limited to 256
   - SIMPLE_PARALLEL.apply(value)
   - TIERED_PARALLEL (Used on the AFRs)
     - LuV -> 4
