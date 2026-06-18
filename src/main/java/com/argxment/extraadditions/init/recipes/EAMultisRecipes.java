@@ -1,4 +1,4 @@
-package com.argxment.extraadditions.init.client.recipes;
+package com.argxment.extraadditions.init.recipes;
 
 import com.gregtechceu.gtceu.api.GTValues;
 
