@@ -20,7 +20,7 @@ public class EAMachineUtils {
                                                                      BiFunction<IMachineBlockEntity, Integer, MultiblockControllerMachine> factory,
                                                                      BiFunction<Integer, MultiblockMachineBuilder<?, ?>, MultiblockMachineDefinition> builder,
                                                                      int... tiers) {
-        return TieredMultis(ExtraAdditionsCore.EXTRA_ADDITIONS_REGISTRATE, name, factory, builder, tiers);
+        return TieredMultis(ExtraAdditionsCore.ExtAddRegistrate, name, factory, builder, tiers);
     }
 
     public static MultiblockMachineDefinition[] TieredMultis(GTRegistrate registrate, String name,
@@ -44,7 +44,7 @@ public class EAMachineUtils {
                                                              int... tiers) {
         MachineDefinition[] definitions = new MachineDefinition[GTValues.TIER_COUNT];
         for (int tier : tiers) {
-            var register = ExtraAdditionsCore.EXTRA_ADDITIONS_REGISTRATE
+            var register = ExtraAdditionsCore.ExtAddRegistrate
                     .machine(GTValues.VN[tier].toLowerCase(Locale.ROOT) + "_" + name,
                             holder -> factory.apply(holder, tier))
                     .tier(tier);

@@ -1,6 +1,6 @@
 package com.argxment.extraadditions;
 
-import com.argxment.extraadditions.machines.client.EAItems;
+import com.argxment.extraadditions.machines.client.EACircuits;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTCreativeModeTabs;
 import com.tterrag.registrate.util.entry.RegistryEntry;
@@ -34,26 +34,26 @@ public class ExtraAdditionsCore {
 
     public static final String MOD_ID = "extraadditions";
     public static final Logger LOGGER = LogManager.getLogger();
-    public static final GTRegistrate EXTRA_ADDITIONS_REGISTRATE = GTRegistrate.create(ExtraAdditionsCore.MOD_ID);
+    public static final GTRegistrate ExtAddRegistrate = GTRegistrate.create(ExtraAdditionsCore.MOD_ID);
 
     // Credits to Herr Jolo for making the creative tab!
-    public static RegistryEntry<CreativeModeTab> EA_MULTIS = EXTRA_ADDITIONS_REGISTRATE
+    public static RegistryEntry<CreativeModeTab> EA_TAB = ExtAddRegistrate
             .defaultCreativeTab(ExtraAdditionsCore.MOD_ID,
                     builder -> builder
                             .displayItems(
                                     new GTCreativeModeTabs.RegistrateDisplayItemsGenerator(ExtraAdditionsCore.MOD_ID,
-                                            EXTRA_ADDITIONS_REGISTRATE))
-                            .title(EXTRA_ADDITIONS_REGISTRATE.addLang("itemGroup", ExtraAdditionsCore.id("creative_tab"),
-                                    "GT:EA Multiblocks"))
+                                            ExtAddRegistrate))
+                            .title(ExtAddRegistrate.addLang("itemGroup", ExtraAdditionsCore.id("creative_tab"),
+                                    "Gregtech Extra Additions"))
                             .icon(GTBlocks.ANTIMATTER_HAZARD_SIGN_BLOCK::asStack)
                             .build())
             .register();
 
     public ExtraAdditionsCore() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        EAItems.register(modEventBus);
+        EACircuits.register(modEventBus);
 
-        EXTRA_ADDITIONS_REGISTRATE.registerRegistrate();
+        ExtAddRegistrate.registerRegistrate();
 
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::clientSetup);
