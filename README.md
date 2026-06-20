@@ -1,5 +1,5 @@
 # What does this addon offers?
-## New Multiblocks
+## New QoL Multiblocks
 | Abbreviation |         Machine           | Description                                                                                                                                                             |
 |:------------:|:-------------------------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |      RAM     | Robust Alloy Materializer | Alloy Blast Smelter that allows parallel hatches and laser hatches                                                                                                      |
