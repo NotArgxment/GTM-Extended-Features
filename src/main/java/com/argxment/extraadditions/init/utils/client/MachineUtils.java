@@ -9,7 +9,7 @@ import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockControllerMachine;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import com.gregtechceu.gtceu.api.registry.registrate.MachineBuilder;
 import com.gregtechceu.gtceu.api.registry.registrate.MultiblockMachineBuilder;
-import com.argxment.extraadditions.ExtraAdditionsCore;
+import com.argxment.extraadditions.ExtraAdditions;
 
 import java.util.Locale;
 import java.util.function.BiFunction;
@@ -20,7 +20,7 @@ public class MachineUtils {
                                                                      BiFunction<IMachineBlockEntity, Integer, MultiblockControllerMachine> factory,
                                                                      BiFunction<Integer, MultiblockMachineBuilder<?, ?>, MultiblockMachineDefinition> builder,
                                                                      int... tiers) {
-        return TieredMultis(ExtraAdditionsCore.EARegistry, name, factory, builder, tiers);
+        return TieredMultis(ExtraAdditions.EARegistry, name, factory, builder, tiers);
     }
 
     public static MultiblockMachineDefinition[] TieredMultis(GTRegistrate registrate, String name,
@@ -44,7 +44,7 @@ public class MachineUtils {
                                                              int... tiers) {
         MachineDefinition[] definitions = new MachineDefinition[GTValues.TIER_COUNT];
         for (int tier : tiers) {
-            var register = ExtraAdditionsCore.EARegistry
+            var register = ExtraAdditions.EARegistry
                     .machine(GTValues.VN[tier].toLowerCase(Locale.ROOT) + "_" + name,
                             holder -> factory.apply(holder, tier))
                     .tier(tier);

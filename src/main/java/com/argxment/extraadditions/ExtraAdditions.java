@@ -27,28 +27,28 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@Mod(ExtraAdditionsCore.MOD_ID)
+@Mod(ExtraAdditions.MOD_ID)
 @SuppressWarnings("removal")
-public class ExtraAdditionsCore {
+public class ExtraAdditions {
 
     public static final String MOD_ID = "extraadditions";
     public static final Logger LOGGER = LogManager.getLogger();
-    public static final GTRegistrate EARegistry = GTRegistrate.create(ExtraAdditionsCore.MOD_ID);
+    public static final GTRegistrate EARegistry = GTRegistrate.create(ExtraAdditions.MOD_ID);
 
     // Credits to Herr Jolo for making the creative tab!
     public static RegistryEntry<CreativeModeTab> EA_TAB = EARegistry
-            .defaultCreativeTab(ExtraAdditionsCore.MOD_ID,
+            .defaultCreativeTab(ExtraAdditions.MOD_ID,
                     builder -> builder
                             .displayItems(
-                                    new GTCreativeModeTabs.RegistrateDisplayItemsGenerator(ExtraAdditionsCore.MOD_ID,
+                                    new GTCreativeModeTabs.RegistrateDisplayItemsGenerator(ExtraAdditions.MOD_ID,
                                             EARegistry))
-                            .title(EARegistry.addLang("itemGroup", ExtraAdditionsCore.id("creative_tab"),
+                            .title(EARegistry.addLang("itemGroup", ExtraAdditions.id("creative_tab"),
                                     "Gregtech Extra Additions"))
                             .icon(GTBlocks.ANTIMATTER_HAZARD_SIGN_BLOCK::asStack)
                             .build())
             .register();
 
-    public ExtraAdditionsCore() {
+    public ExtraAdditions() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         Items.register(modEventBus);
 
@@ -79,7 +79,7 @@ public class ExtraAdditionsCore {
      * @return ResourceLocation with the namespace of your mod
      */
     public static ResourceLocation id(String path) {
-        return new ResourceLocation(ExtraAdditionsCore.MOD_ID, path);
+        return new ResourceLocation(ExtraAdditions.MOD_ID, path);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
@@ -101,7 +101,7 @@ public class ExtraAdditionsCore {
      * @param event
      */
     private void addMaterialRegistries(MaterialRegistryEvent event) {
-        GTCEuAPI.materialManager.createRegistry(ExtraAdditionsCore.MOD_ID);
+        GTCEuAPI.materialManager.createRegistry(ExtraAdditions.MOD_ID);
     }
 
     /**

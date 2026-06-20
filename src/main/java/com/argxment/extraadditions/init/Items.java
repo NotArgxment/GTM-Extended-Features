@@ -1,18 +1,18 @@
 package com.argxment.extraadditions.init;
 
-import com.argxment.extraadditions.ExtraAdditionsCore;
+import com.argxment.extraadditions.ExtraAdditions;
 
 import com.tterrag.registrate.util.entry.ItemEntry;
 
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 
-import static com.argxment.extraadditions.ExtraAdditionsCore.EARegistry;
+import static com.argxment.extraadditions.ExtraAdditions.EARegistry;
 
 public class Items {
 
     static {
-        EARegistry.creativeModeTab(() -> ExtraAdditionsCore.EA_TAB);
+        EARegistry.creativeModeTab(() -> ExtraAdditions.EA_TAB);
     }
 
     // Huge thanks to witherschat (monifactory contributor) for allowing me to use the universal circuit textures!!!

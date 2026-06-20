@@ -21,18 +21,18 @@ public class ExtraAdditionsGTAddon implements IGTAddon {
 
     @Override
     public GTRegistrate getRegistrate() {
-        return ExtraAdditionsCore.EARegistry;
+        return ExtraAdditions.EARegistry;
     }
 
     @Override
     public void initializeAddon() {
         Multiblocks.init();
-        ExtraAdditionsCore.EARegistry.addDataGenerator(ProviderType.LANG, LangHandler::init);
+        ExtraAdditions.EARegistry.addDataGenerator(ProviderType.LANG, LangHandler::init);
     }
 
     @Override
     public String addonModId() {
-        return ExtraAdditionsCore.MOD_ID;
+        return ExtraAdditions.MOD_ID;
     }
 
     @Override

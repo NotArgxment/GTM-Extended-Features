@@ -1,5 +1,6 @@
 package com.argxment.extraadditions.init;
 
+import com.argxment.extraadditions.ExtraAdditions;
 import com.argxment.extraadditions.init.utils.client.RecipeTypes;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
@@ -16,7 +17,6 @@ import com.gregtechceu.gtceu.common.machine.multiblock.electric.AssemblyLineMach
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.FusionReactorMachine;
 
 import com.gregtechceu.gtceu.utils.FormattingUtil;
-import com.argxment.extraadditions.ExtraAdditionsCore;
 import com.argxment.extraadditions.init.utils.CustomTooltipStyles;
 import com.argxment.extraadditions.init.utils.LaserCapability;
 import com.argxment.extraadditions.init.utils.RecipeModifiers;
@@ -39,7 +39,7 @@ import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.*;
 import static com.gregtechceu.gtceu.utils.FormattingUtil.*;
 
-import static com.argxment.extraadditions.ExtraAdditionsCore.EARegistry;
+import static com.argxment.extraadditions.ExtraAdditions.EARegistry;
 import static com.argxment.extraadditions.init.utils.client.RecipeTypes.*;
 import static com.argxment.extraadditions.init.utils.client.MachineUtils.TieredMultis;
 import static com.argxment.extraadditions.init.utils.RecipeModifiers.SIMPLE_PARALLEL;
@@ -49,7 +49,7 @@ public class Multiblocks {
     public static void init() {}
 
     static {
-        EARegistry.creativeModeTab(() -> ExtraAdditionsCore.EA_TAB);
+        EARegistry.creativeModeTab(() -> ExtraAdditions.EA_TAB);
     }
 
     public static MultiblockMachineDefinition ROBUST_ALLOY_MATERIALIZER = EARegistry
