@@ -88,6 +88,7 @@ public class Items {
             .lang("§2UIV §rUniversal Circuit")
             .model((ctx, prov) -> prov.generated(ctx, prov.modLoc("item/universal/uiv_universal_circuit")))
             .register();
+    
 /* future use
     public static final ItemEntry<Item> UXV_UNIVERSAL_CIRCUIT = ExtAddRegistrate
             .item("uxv_universal_circuit", Item::new)
