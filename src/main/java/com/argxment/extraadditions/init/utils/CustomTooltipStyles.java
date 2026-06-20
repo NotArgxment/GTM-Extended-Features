@@ -38,7 +38,7 @@ public class CustomTooltipStyles {
     /*
      * Side note:
      * Some of this gradients may already exist in GTCEu;
-     * See "com\gregtechceu\gtceu\client\util\TooltipHelper" for reference
+     * See "com.gregtechceu.gtceu.client.util.TooltipHelper" for reference
      * UV is "BLINKING_CYAN"
      * ZPM is "BLINKING_RED"
      * HV is "BLINKING_ORANGE"
