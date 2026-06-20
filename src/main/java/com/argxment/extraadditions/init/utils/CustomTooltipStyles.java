@@ -11,6 +11,8 @@ import java.util.function.UnaryOperator;
 
 public class CustomTooltipStyles {
 
+    private static final int WHITE = 0xFFFFFFFF;
+
     // Tier main colors
     private static final int LV  = 0xFFAAAAAA; // Gray
     private static final int MV  = 0xFF55FFFF; // Aqua
@@ -20,8 +22,12 @@ public class CustomTooltipStyles {
     private static final int LuV = 0xFFFF55FF; // Light Purple
     private static final int ZPM = 0xFFFF5555; // Red
     private static final int UV  = 0xFF00AAAA; // Dark Aqua
-
-    private static final int WHITE = 0xFFFFFFFF;
+    private static final int UHV = 0xFFAA0000; // Dark Red
+    private static final int UEV = 0xFF55FF55; // Dark Green
+    private static final int UIV = 0xFF00AA00; // Green
+    private static final int UXV = 0xFFFFFF55; // Yellow
+    private static final int OpV = IV; // OpV uses the same color as IV, but with Bold code
+    private static final int MAX = ZPM; // MAx uses the same color as ZPM, but with Bold Code
 
     // Speed modifiers
     private static final double SPEED_SLOW   = 0.1;
@@ -59,7 +65,7 @@ public class CustomTooltipStyles {
     public static final UnaryOperator<Style> IV_GRADIENT = style -> style
             .withColor(movingGradient(SPEED_SLOW, IV, WHITE));
 
-    public static final UnaryOperator<Style> LUV_GRADIENT = style -> style
+    public static final UnaryOperator<Style> LuV_GRADIENT = style -> style
             .withColor(movingGradient(SPEED_SLOW, LuV, WHITE));
 
     public static final UnaryOperator<Style> ZPM_GRADIENT = style -> style
@@ -68,16 +74,34 @@ public class CustomTooltipStyles {
     public static final UnaryOperator<Style> UV_GRADIENT = style -> style
             .withColor(movingGradient(SPEED_SLOW, UV, WHITE));
 
+    public static final UnaryOperator<Style> UHV_GRADIENT = style -> style
+            .withColor(movingGradient(SPEED_SLOW, UHV, WHITE));
+
+    public static final UnaryOperator<Style> UEV_GRADIENT = style -> style
+            .withColor(movingGradient(SPEED_SLOW, UEV, WHITE));
+
+    public static final UnaryOperator<Style> UIV_GRADIENT = style -> style
+            .withColor(movingGradient(SPEED_SLOW, UIV, WHITE));
+
+    public static final UnaryOperator<Style> UXV_GRADIENT = style -> style
+            .withColor(movingGradient(SPEED_SLOW, UXV, WHITE));
+
+    public static final UnaryOperator<Style> OpV_GRADIENT = style -> style
+            .withColor(movingGradient(SPEED_SLOW, OpV, WHITE));
+
+    public static final UnaryOperator<Style> MAX_GRADIENT = style -> style
+            .withColor(movingGradient(SPEED_SLOW, MAX, WHITE));
+
     // Tiered parallel tooltip, MUST be paired with Tiered multiblocks (Example: Advanced Fusion Reactors)
     public static final Map<Integer, UnaryOperator<Style>> TIER_GRADIENTS = Map.of(
-            GTValues.LuV, LUV_GRADIENT,
+            GTValues.LuV, LuV_GRADIENT,
             GTValues.ZPM, ZPM_GRADIENT,
             GTValues.UV, UV_GRADIENT
     );
 
     public static UnaryOperator<Style> forTier(int tier) {
         return TIER_GRADIENTS.getOrDefault(
-                tier, LUV_GRADIENT
+                tier, LuV_GRADIENT
         );
     }
 }
