@@ -1,5 +1,5 @@
 # What does this addon offers?
-## New QoL Multiblocks
+# New QoL Multiblocks
 | Abbreviation |         Machine           | Description                                                                                                                                                             |
 |:------------:|:-------------------------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |      RAM     | Robust Alloy Materializer | Alloy Blast Smelter that allows parallel hatches and laser hatches                                                                                                      |
@@ -13,8 +13,8 @@
 |      TGC     |    Tree Growing Chamber   | IV Version of the IGh, can use parallel hatches                                                                                                                         |
 |      DA      |       Dissasembler        | A multiblock designed to recycle machines, returninig all components used on it, instead of the materials (arc scrapping/macerating)                                    |
 
-## Utilities
-Special XOR logic for multiblock formation with laser hatches
+# Utilities
+**JAVA ONLY**: Custom formation logic for multiblocks that can use laser hatches, implemented for both Workable and CoilWorkable multiblock types
 
 | Laser | Energy Hatch | Multiblock Formation |
 |:-----:|:------------:|:--------------------:|
@@ -22,41 +22,64 @@ Special XOR logic for multiblock formation with laser hatches
 |   1   |       0      |           1          |
 |   0   |       1      |           1          |
 |   1   |       1      |           0          |
-
-### Custom parallel recipes modifiers:
-### Indepedent Parallels - Used by the Compact Assembly Line and Industrial Greenhouse
 ```java
-    private static final int MAX_SIMPLE_PARALLEL = 256;
+import com.argxment.extraadditions.init.utils.CoilMultiblockLaser;
+import com.argxment.extraadditions.init.utils.MultiblockLaserCapability;
 
-    public static final IntFunction<RecipeModifier> SIMPLE_PARALLEL = parallels -> {
-        if (parallels == 1) return RecipeModifier.NO_MODIFIER;
-
-        return (machine, recipe) -> {
-            int achievable = ParallelLogic.getParallelAmountWithoutEU(machine, recipe, parallels);
-            if (achievable <= 1) return ModifierFunction.IDENTITY;
-            return ModifierFunction.builder()
-                    .modifyAllContents(ContentModifier.multiplier(achievable))
-                    .durationMultiplier(2)
-                    .parallels(achievable)
-                    .build();
-        };
-    };
+public class Machines {
+    
+    public static MultiblockMachineDefinition TEST_MULTIBLOCK = REGISTER
+                .multiblock("coil_laser_multiblock", CoilMultiblockLaserCapability::new) 
+                // all the respective code below...
+    
+    public static MultiblockMachineDefinition TEST_MULTIBLOCK = REGISTER
+                .multiblock("regular_laser_multiblock", MultiblockLaserCapability::new) 
+                // all the respective code below...
 ```
-### Tiered Parallel - Used by the Advanced Fusion Reactors
+
+## Custom parallel recipes modifiers
+### Simple parallels:
+This recipe modifier allows the multiblock to run parallels without actually requiring a hatch, with an slightly different logic, EU/t remains the same, meanwhile the time is multiplied by 2
+### Java
 ```java
-    public static final RecipeModifier TIERED_PARALLEL = (machine, recipe) -> {
-        int tier = machine.self().getDefinition().getTier();
-        int parallels = switch (tier) {
-            case GTValues.LuV -> 4;
-            case GTValues.ZPM -> 8;
-            case GTValues.UV  -> 16;
-            default -> 1;
-        };
+// Addon as depedency
+import com.argxment.extraadditions.init.utils.RecipeModifiers;
+
+// Value its an int that goes from 0 to 256
+.recipeModifiers(SIMPLE_PARALLEL.apply(value))
 ```
+### KubeJS
+```javascript
+const RecipeModifiers = Java.loadClass('com.argxment.extraadditions.init.utils.RecipeModifiers')
+
+.recipeModifiers(RecipeModifiers.SIMPLE_PARALLEL.apply(value))
+```
+
+### Tiered Parallels:
+In this case, it's currently being used by the advanced fusion reactors;
+  - LuV > 4 Parallels
+  - ZPM > 8 Parallels
+  - UV  > 16 Parallels
+
+MUST be used with a tiered multiblock
+### Java
+```java
+import com.argxment.extraadditions.init.utils.RecipeModifiers;
+
+.recipeModifiers(TIERED_PARALLEL)
+```
+### KubeJS
+```javascript
+const RecipeModifiers = Java.loadClass('com.argxment.extraadditions.init.utils.RecipeModifiers')
+
+.recipeModifiers(RecipeModifiers.TIERED_PARALLEL)
+```
+
 
 ### LV to MAX color based gradients
 
 <img width="482" height="458" alt="Howeachlooks-ezgif com-video-to-gif-converter (1)" src="https://github.com/user-attachments/assets/f8a2ef73-22e1-43cf-aab7-d034d8df3da2" />
+
 
 ### Universal Circuits
 <img width="440" height="42" alt="image" src="https://github.com/user-attachments/assets/4e347367-ca26-4c73-9624-fb84a8e2e53f" />
