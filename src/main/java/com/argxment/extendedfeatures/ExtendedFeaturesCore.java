@@ -141,7 +141,6 @@ public class ExtendedFeaturesCore {
      */
     private void registerMachines(GTCEuAPI.RegisterEvent<ResourceLocation, MachineDefinition> event) {
         Multiblocks.init();
-        // ExtraParaHatches.init();
     }
 
     /**
