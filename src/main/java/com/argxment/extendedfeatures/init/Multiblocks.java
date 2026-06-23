@@ -353,6 +353,10 @@ public class Multiblocks {
                     .aisle("EDE", "RLR", "EHE")
                     .aisle("EDE", "RKR", "EHE")
                     .aisle("EDE", "RLR", "EHE")
+                    .aisle("EDE", "RKR", "EHE")
+                    .aisle("EDE", "RLR", "EHE")
+                    .aisle("EDE", "RKR", "EHE")
+                    .aisle("EDE", "RLR", "EHE")
                     .aisle("E@E", "EKE", "EHE")
                     .where('@', controller(blocks(definition.get())))
                     .where('E', blocks(CASING_STEEL_SOLID.get()))
@@ -421,7 +425,7 @@ public class Multiblocks {
     public static MultiblockMachineDefinition INDUSTRIAL_GREENHOUSE = ExtraFeaturesRegister
             .multiblock("industrial_greenhouse", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
-            .recipeType(DUMMY_RECIPES)
+            .recipeType(GREENHOUSE)
             .recipeModifiers(
                     SIMPLE_PARALLEL.apply(8),
                     OC_NON_PERFECT
@@ -468,7 +472,7 @@ public class Multiblocks {
                     Component.translatable("extendedfeatures.machine.industrial_greenhouse.tooltip.0",
                             Component.translatable("extendedfeatures.machine.industrial_greenhouse.tooltip.1"))
             )
-            .recipeType(DUMMY_RECIPES)
+            .recipeType(GREENHOUSE)
             .recipeModifiers(PARALLEL_HATCH, OC_NON_PERFECT)
             .appearanceBlock(CASING_TUNGSTENSTEEL_ROBUST)
             .pattern(definition -> FactoryBlockPattern.start()
