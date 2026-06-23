@@ -36,6 +36,7 @@ public class Machines {
                 .multiblock("regular_laser_multiblock", MultiblockLaserCapability::new) 
                 // all the respective code below...
 ```
+*You may ask **"Why there is not a kubejs example?"**, the reason is that from kubejs side works perfectly fine, its an issue for multiblocks made on Java*
 
 ## Custom parallel recipes modifiers
 ### Simple parallels:
