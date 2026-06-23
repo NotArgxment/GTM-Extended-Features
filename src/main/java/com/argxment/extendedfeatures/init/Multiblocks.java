@@ -49,7 +49,7 @@ public class Multiblocks {
     public static void init() {}
 
     static {
-        ExtraFeaturesRegister.creativeModeTab(() -> ExtendedFeaturesCore.EA_TAB);
+        ExtraFeaturesRegister.creativeModeTab(() -> ExtendedFeaturesCore.EF_TAB);
     }
 
     public static MultiblockMachineDefinition ROBUST_ALLOY_MATERIALIZER = ExtraFeaturesRegister
@@ -58,11 +58,11 @@ public class Multiblocks {
                     Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.1"),
                     Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.2"))
             .tooltipBuilder((stack, list) -> {
-                list.add(Component.translatable("extraadditions.fancytooltip.tooltip.0")
-                    .append(Component.translatable("extraadditions.fancytooltip.tooltip.1")
+                list.add(Component.translatable("extendedfeatures.fancytooltip.tooltip.0")
+                    .append(Component.translatable("extendedfeatures.fancytooltip.tooltip.1")
                             .withStyle(CustomTooltipStyles.ZPM_GRADIENT))
-                        .append(Component.translatable("extraadditions.fancytooltip.tooltip.2"))
-                            .append(Component.translatable("extraadditions.fancytooltip.tooltip.3")
+                        .append(Component.translatable("extendedfeatures.fancytooltip.tooltip.2"))
+                            .append(Component.translatable("extendedfeatures.fancytooltip.tooltip.3")
                                     .withStyle(TooltipHelper.RAINBOW_HSL_SLOW))
                 );
             })
@@ -119,8 +119,8 @@ public class Multiblocks {
                     Component.translatable("gtceu.machine.cracker.tooltip.1")
             )
             .tooltipBuilder((stack, list) -> {
-                list.add(Component.translatable("extraadditions.fancytooltip.tooltip.0")
-                        .append(Component.translatable("extraadditions.fancytooltip.tooltip.3")
+                list.add(Component.translatable("extendedfeatures.fancytooltip.tooltip.0")
+                        .append(Component.translatable("extendedfeatures.fancytooltip.tooltip.3")
                                 .withStyle(TooltipHelper.RAINBOW_HSL_SLOW))
                 );
             })
@@ -167,8 +167,8 @@ public class Multiblocks {
     public static MultiblockMachineDefinition ENLARGED_REACTION_CHAMBER = ExtraFeaturesRegister
             .multiblock("enlarged_reaction_chamber", WorkableElectricMultiblockMachine::new)
             .tooltipBuilder((stack, list) -> {
-                list.add(Component.translatable("extraadditions.fancytooltip.tooltip.0")
-                        .append(Component.translatable("extraadditions.fancytooltip.tooltip.3")
+                list.add(Component.translatable("extendedfeatures.fancytooltip.tooltip.0")
+                        .append(Component.translatable("extendedfeatures.fancytooltip.tooltip.3")
                                 .withStyle(TooltipHelper.RAINBOW_HSL_SLOW))
                 );
             })
@@ -212,8 +212,8 @@ public class Multiblocks {
             .tooltips(Component.translatable("gtceu.machine.pyrolyse_oven.tooltip"),
                     Component.translatable("gtceu.machine.pyrolyse_oven.tooltip.1"))
             .tooltipBuilder((stack, list) -> {
-                list.add(Component.translatable("extraadditions.fancytooltip.tooltip.0")
-                        .append(Component.translatable("extraadditions.fancytooltip.tooltip.3")
+                list.add(Component.translatable("extendedfeatures.fancytooltip.tooltip.0")
+                        .append(Component.translatable("extendedfeatures.fancytooltip.tooltip.3")
                                 .withStyle(TooltipHelper.RAINBOW_HSL_SLOW))
                 );
             })
@@ -275,10 +275,10 @@ public class Multiblocks {
                     )
 
                     .tooltipBuilder((stack, list) -> list.add(Component.translatable(
-                                    "extraadditions.multiblock.%s_advanced_fusion_reactor.tooltip.0"
+                                    "extendedfeatures.multiblock.%s_advanced_fusion_reactor.tooltip.0"
                                             .formatted(VN[tier].toLowerCase(Locale.ROOT)))
                             .append(Component.translatable(
-                                            "extraadditions.multiblock.%s_advanced_fusion_reactor.tooltip.1"
+                                            "extendedfeatures.multiblock.%s_advanced_fusion_reactor.tooltip.1"
                                                     .formatted(VN[tier].toLowerCase(Locale.ROOT)))
                                     .withStyle(CustomTooltipStyles.forTier(tier)))))
 
@@ -337,13 +337,14 @@ public class Multiblocks {
 
     public static MultiblockMachineDefinition COMPACT_ASSEMBLY_LINE = ExtraFeaturesRegister
             .multiblock("compact_assembly_line", WorkableElectricMultiblockMachine::new)
-            .tooltips(Component.translatable("extraadditions.machine.compact_assembly_line.tooltip.0"),
-                    Component.translatable("extraadditions.machine.compact_assembly_line.tooltip.1"))
+            .tooltips(Component.translatable("extendedfeatures.machine.compact_assembly_line.tooltip.0"),
+                    Component.translatable("extendedfeatures.machine.compact_assembly_line.tooltip.1"))
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(ASSEMBLY_LINE_RECIPES)
             .recipeModifiers(
                     SIMPLE_PARALLEL.apply(8),
-                    OC_NON_PERFECT)
+                    OC_NON_PERFECT
+            )
             .appearanceBlock(CASING_STEEL_SOLID)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("ENE", "EKE", "EHE")
@@ -374,8 +375,8 @@ public class Multiblocks {
     public static MultiblockMachineDefinition ROCK_PROCESSING_FACILITY = ExtraFeaturesRegister
             .multiblock("rock_processing_facility", WorkableElectricMultiblockMachine::new)
             .tooltips(
-                    Component.translatable("extraadditions.machine.rock_processing_facility.tooltip.0",
-                    Component.translatable("extraadditions.machine.rock_processing_facility.tooltip.1"))
+                    Component.translatable("extendedfeatures.machine.rock_processing_facility.tooltip.0",
+                    Component.translatable("extendedfeatures.machine.rock_processing_facility.tooltip.1"))
             )
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(ROCK_PROCESSING)
@@ -464,8 +465,8 @@ public class Multiblocks {
             .multiblock("tree_growing_chamber", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.NON_Y_AXIS)
             .tooltips(
-                    Component.translatable("extraadditions.machine.industrial_greenhouse.tooltip.0",
-                            Component.translatable("extraadditions.machine.industrial_greenhouse.tooltip.1"))
+                    Component.translatable("extendedfeatures.machine.industrial_greenhouse.tooltip.0",
+                            Component.translatable("extendedfeatures.machine.industrial_greenhouse.tooltip.1"))
             )
             .recipeType(DUMMY_RECIPES)
             .recipeModifiers(PARALLEL_HATCH, OC_NON_PERFECT)
