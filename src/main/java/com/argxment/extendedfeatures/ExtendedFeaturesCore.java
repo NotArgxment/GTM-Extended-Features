@@ -36,7 +36,7 @@ public class ExtendedFeaturesCore {
     public static final GTRegistrate ExtraFeaturesRegister = GTRegistrate.create(ExtendedFeaturesCore.MOD_ID);
 
     // Credits to Herr Jolo for making the creative tab!
-    public static RegistryEntry<CreativeModeTab> EA_TAB = ExtraFeaturesRegister
+    public static RegistryEntry<CreativeModeTab> EF_TAB = ExtraFeaturesRegister
             .defaultCreativeTab(ExtendedFeaturesCore.MOD_ID,
                     builder -> builder
                             .displayItems(
