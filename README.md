@@ -1,5 +1,8 @@
+# GTM Extended Features
+Addon for GTCEu Modern (Minecraft 1.20.1, Forge) that adds "QoL" multiblocks based on existing GTCEu machines, with extra benefits (parallels, laser hatches, compressed recipes) at the cost of more resources to build. Designed for Gregtech-style progression modpacks that want to ease bottlenecks without breaking the original balance
+
 # What does this addon offers?
-# New QoL Multiblocks
+## New QoL Multiblocks
 | Abbreviation |         Machine           | Description                                                                                                                                                             |
 |:------------:|:-------------------------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |      RAM     | Robust Alloy Materializer | Alloy Blast Smelter that allows parallel hatches and laser hatches                                                                                                      |
@@ -11,71 +14,76 @@
 |      RPP     |   Rock Processing Plant   | Allows the player to turn common types of rocks into the inputs get by its normal processing, in simple words: Macerator > Centrifuge > Electrolyzer all in one machine |
 |      IGh     |   Industrial Greenhouse   | Allows passive income of any type of wood                                                                                                                               |
 |      TGC     |    Tree Growing Chamber   | IV Version of the IGh, can use parallel hatches                                                                                                                         |
-|      DA      |       Dissasembler        | A multiblock designed to recycle machines, returninig all components used on it, instead of the materials (arc scrapping/macerating)                                    |
+|      DA      |       Disassembler        | A multiblock designed to recycle machines, returninig all components used on it, instead of the materials (arc scrapping/macerating)                                    |
 
-# Utilities
-**JAVA ONLY**: Custom formation logic for multiblocks that can use laser hatches, implemented for both Workable and CoilWorkable multiblock types
+## Developer utilities
 
-| Laser | Energy Hatch | Multiblock Formation |
-|:-----:|:------------:|:--------------------:|
-|   0   |       0      |           0          |
-|   1   |       0      |           1          |
-|   0   |       1      |           1          |
-|   1   |       1      |           0          |
+If you're building your own GTCEu addon and want to depend on this one, it exposes reusable utilities in both Java and KubeJS.
+
+### Laser Hatch-capable multiblocks (Java only)
+
+Custom formation logic for multiblocks that can accept either Laser Hatches or Energy Hatches, available for both `Workable` and `CoilWorkable` multiblock types:
+
+| Laser | Energy Hatch | Valid formation? |
+|:---:|:---:|:---:|
+| 0 | 0 | ❌ |
+| 1 | 0 | ✅ |
+| 0 | 1 | ✅ |
+| 1 | 1 | ❌ (both at once isn't allowed) |
+
 ```java
-import com.argxment.extraadditions.init.utils.CoilMultiblockLaser;
-import com.argxment.extraadditions.init.utils.MultiblockLaserCapability;
+import com.argxment.extendedfeatures.init.utils.WorkableMultiblockLaser;
+import com.argxment.extendedfeatures.init.utils.CoilWorkableMultiblockLaser;
 
 public class Machines {
-    
-    public static MultiblockMachineDefinition TEST_MULTIBLOCK = REGISTER
-                .multiblock("coil_laser_multiblock", CoilMultiblockLaserCapability::new) 
-                // all the respective code below...
-    
-    public static MultiblockMachineDefinition TEST_MULTIBLOCK = REGISTER
-                .multiblock("regular_laser_multiblock", MultiblockLaserCapability::new) 
-                // all the respective code below...
-```
-*You may ask **"Why there is not a kubejs example?"**, the reason is that from kubejs side works perfectly fine, its an issue for multiblocks made on Java*
 
-## Custom parallel recipes modifiers
-### Simple parallels:
-This recipe modifier allows the multiblock to run parallels without actually requiring a hatch, with an slightly different logic, EU/t remains the same, meanwhile the time is multiplied by 2
-### Java
+    public static MultiblockMachineDefinition TEST_MULTIBLOCK = REGISTER
+            .multiblock("coil_laser_multiblock", CoilWorkableMultiblockLaser::new)
+            // rest of the definition...
+
+    public static MultiblockMachineDefinition TEST_MULTIBLOCK_2 = REGISTER
+            .multiblock("regular_laser_multiblock", WorkableMultiblockLaser::new)
+            // rest of the definition...
+}
+```
+
+> There's no KubeJS example for this because on the KubeJS side it already works fine — the formation issue only shows up for multiblocks defined in Java.
+
+### Recipe Modifiers
+
+#### Simple Parallel
+Lets a multiblock run in parallel **without needing a physical parallel hatch**. EU/t stays the same, but duration is multiplied ×2 for each parallel level achieved.
+
 ```java
-// Addon as depedency
-import com.argxment.extraadditions.init.utils.RecipeModifiers;
+// Addon as a dependency
+import com.argxment.extendedfeatures.init.utils.RecipeModifiers;
 
-// Value its an int that goes from 0 to 256
-.recipeModifiers(SIMPLE_PARALLEL.apply(value))
+// value: int between 0 and 256
+.recipeModifiers(RecipeModifiers.SIMPLE_PARALLEL.apply(value))
 ```
-### KubeJS
 ```javascript
-const RecipeModifiers = Java.loadClass('com.argxment.extraadditions.init.utils.RecipeModifiers')
+const RecipeModifiers = Java.loadClass('com.argxment.extendedfeatures.init.utils.RecipeModifiers')
 
 .recipeModifiers(RecipeModifiers.SIMPLE_PARALLEL.apply(value))
 ```
 
-### Tiered Parallels:
-In this case, it's currently being used by the advanced fusion reactors;
-- LuV > 4 Parallels
-- ZPM > 8 Parallels
-- UV  > 16 Parallels
+#### Tiered Parallel
+Automatic parallels based on the machine's tier (currently used by the Advanced Fusion Reactors). **Must** be used on a tiered multiblock (`TieredMultiblockMachineDefinition` or similar):
 
-MUST be used with a tiered multiblock
-### Java
+- LuV → 4 parallels
+- ZPM → 8 parallels
+- UV → 16 parallels
+
 ```java
-import com.argxment.extraadditions.init.utils.RecipeModifiers;
-
-.recipeModifiers(TIERED_PARALLEL)
-```
-### KubeJS
-```javascript
-const RecipeModifiers = Java.loadClass('com.argxment.extraadditions.init.utils.RecipeModifiers')
+import com.argxment.extendedfeatures.init.utils.RecipeModifiers;
 
 .recipeModifiers(RecipeModifiers.TIERED_PARALLEL)
 ```
+```javascript
+const RecipeModifiers = Java.loadClass('com.argxment.extendedfeatures.init.utils.RecipeModifiers')
 
+.recipeModifiers(RecipeModifiers.TIERED_PARALLEL)
+```
 
 ### LV to MAX color based gradients
 
@@ -88,7 +96,6 @@ Textures made by Witherstar (Monifactory Contributor)
 
 ## Future additions:
 ### Features
-- Wireless Optical/Computation Components (Covers format)
 - Chemical skips for the ERC regarding specific lines required for progression
 - Configuration integration for easier customization in modpacks
 
