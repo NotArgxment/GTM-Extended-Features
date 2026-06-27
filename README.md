@@ -14,7 +14,7 @@ Addon for GTCEu Modern (Minecraft 1.20.1, Forge) that adds "QoL" multiblocks bas
 |      RPP     |   Rock Processing Plant   | Allows the player to turn common types of rocks into the inputs get by its normal processing, in simple words: Macerator > Centrifuge > Electrolyzer all in one machine |
 |      IGh     |   Industrial Greenhouse   | Allows passive income of any type of wood                                                                                                                               |
 |      TGC     |    Tree Growing Chamber   | IV Version of the IGh, can use parallel hatches                                                                                                                         |
-|      DA      |       Dissasembler        | A multiblock designed to recycle machines, returninig all components used on it, instead of the materials (arc scrapping/macerating)                                    |
+|      DA      |       Disassembler        | A multiblock designed to recycle machines, returninig all components used on it, instead of the materials (arc scrapping/macerating)                                    |
 
 ## Developer utilities
 
