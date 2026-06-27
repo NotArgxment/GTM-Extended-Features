@@ -2,8 +2,8 @@ package com.argxment.extendedfeatures.init;
 
 import com.argxment.extendedfeatures.ExtendedFeaturesCore;
 import com.argxment.extendedfeatures.init.utils.CoilWorkableMultiblockLaser;
-import com.argxment.extendedfeatures.init.utils.client.RecipeTypes;
-import com.argxment.extendedfeatures.init.utils.client.diassembler.DisassemblyMachine;
+import com.argxment.extendedfeatures.client.RecipeTypes;
+import com.argxment.extendedfeatures.client.disassembler.DisassemblyMachine;
 import com.argxment.extendedfeatures.init.utils.CustomTooltipStyles;
 import com.argxment.extendedfeatures.init.utils.RecipeModifiers;
 
@@ -40,8 +40,8 @@ import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.*;
 import static com.gregtechceu.gtceu.utils.FormattingUtil.*;
 
 import static com.argxment.extendedfeatures.ExtendedFeaturesCore.ExtraFeaturesRegister;
-import static com.argxment.extendedfeatures.init.utils.client.RecipeTypes.*;
-import static com.argxment.extendedfeatures.init.utils.client.MachineUtils.TieredMultis;
+import static com.argxment.extendedfeatures.client.RecipeTypes.*;
+import static com.argxment.extendedfeatures.client.MachineUtils.TieredMultis;
 import static com.argxment.extendedfeatures.init.utils.RecipeModifiers.SIMPLE_PARALLEL;
 
 public class Multiblocks {
@@ -368,7 +368,8 @@ public class Multiblocks {
                             .or(Predicates.abilities(PartAbility.IMPORT_ITEMS))
                             .or(Predicates.abilities(PartAbility.IMPORT_FLUIDS))
                             .or(Predicates.abilities(PartAbility.INPUT_ENERGY).setMaxGlobalLimited(1))
-                            .or(dataHatchPredicate(blocks(CASING_STEEL_SOLID.get()))))
+                            .or(dataHatchPredicate(blocks(CASING_STEEL_SOLID.get())))
+                    )
                     .where('N', Predicates.abilities(PartAbility.EXPORT_ITEMS))
                     .build())
             .workableCasingModel(
