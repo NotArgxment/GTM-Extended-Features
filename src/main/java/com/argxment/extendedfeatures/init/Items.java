@@ -80,7 +80,7 @@ public class Items {
             .model((ctx, prov) -> prov.generated(ctx, prov.modLoc("item/universal/uv_universal_circuit")))
             .tag(CustomTags.UV_CIRCUITS)
             .register();
-
+/* future use
     public static final ItemEntry<Item> UHV_UNIVERSAL_CIRCUIT = ExtraFeaturesRegister
             .item("uhv_universal_circuit", Item::new)
             .lang("§4UHV §rUniversal Circuit")
@@ -102,7 +102,6 @@ public class Items {
             .tag(CustomTags.UIV_CIRCUITS)
             .register();
 
-/* future use
     public static final ItemEntry<Item> UXV_UNIVERSAL_CIRCUIT = ExtraFeaturesRegister
             .item("uxv_universal_circuit", Item::new)
             .lang("§eUXV §rUniversal Circuit")

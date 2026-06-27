@@ -21,10 +21,12 @@ import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.MULTIBLOCK;
 public class RecipeTypes {
 
     public static GTRecipeType ROCK_PROCESSING;
-    public static GTRecipeType CHEMICAL_REDUCTION;
-    public static GTRecipeType AIR_REPROCESSING;
     public static GTRecipeType DISASSEMBLER;
     public static GTRecipeType GREENHOUSE;
+
+    // Not in use for now
+    // public static GTRecipeType CHEMICAL_REDUCTION;
+    // public static GTRecipeType AIR_REPROCESSING;
 
     public static void init() {
 
@@ -33,7 +35,7 @@ public class RecipeTypes {
                 .setMaxIOSize(1, 6, 1, 3)
                 .setProgressBar(GuiTextures.PROGRESS_BAR_MACERATE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
                 .setSound(GTSoundEntries.MACERATOR);
-
+/*
         CHEMICAL_REDUCTION = register("chemical_skipping", MULTIBLOCK)
                 .setEUIO(IO.IN)
                 .setMaxIOSize(6, 6, 6, 6)
@@ -45,6 +47,7 @@ public class RecipeTypes {
                 .setMaxIOSize(0, 9, 1, 0)
                 .setProgressBar(GuiTextures.PROGRESS_BAR_MIXER, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
                 .setSound(GTSoundEntries.BATH);
+ */
 
         GREENHOUSE = register("greenhouse_machine", MULTIBLOCK)
                 .setEUIO(IO.IN)

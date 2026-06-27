@@ -7,11 +7,11 @@ import static com.gregtechceu.gtceu.data.lang.LangHandler.replace;
 public class LangHandler {
 
     public static void init(RegistrateLangProvider provider) {
-        initControllerNames(provider);
-        initControllerTooltips(provider);
+        Names(provider);
+        Tooltips(provider);
     }
 
-    private static void initControllerNames(RegistrateLangProvider provider) {
+    private static void Names(RegistrateLangProvider provider) {
         replace(provider, "block.extendedfeatures.robust_alloy_materializer", "Robust Alloy Materializer [RAM]");
         replace(provider, "block.extendedfeatures.advanced_cracking_unit", "Advanced Cracking Unit [ACU]");
         replace(provider, "block.extendedfeatures.enlarged_reaction_chamber", "Enlarged Reaction Chamber [ERC]");
@@ -23,9 +23,12 @@ public class LangHandler {
         replace(provider, "block.extendedfeatures.luv_advanced_fusion_reactor", "§dLuV §rAdvanced Fusion Reactor");
         replace(provider, "block.extendedfeatures.zpm_advanced_fusion_reactor", "§cZPM §rAdvanced Fusion Reactor");
         replace(provider, "block.extendedfeatures.uv_advanced_fusion_reactor", "§3UV §rAdvanced Fusion Reactor");
+        replace(provider, "extendedfeatures.greenhouse_machine", "Greenhouse");
+        replace(provider, "extendedfeatures.disassembler", "Disassembly");
+        replace(provider, "extendedfeatures.rock_processing_facility", "Rock Processing");
     }
 
-    private static void initControllerTooltips(RegistrateLangProvider provider) {
+    private static void Tooltips(RegistrateLangProvider provider) {
         provider.add("extendedfeatures.machine.compact_assembly_line.tooltip.0", "§7This machine is able to perform the work of a regular Assembly Line without requiring §9Ordered Inputs");
         provider.add("extendedfeatures.machine.compact_assembly_line.tooltip.1", "§fOnly allows §bone §fenergy hatch and performs §b8 Recipes §fin parallel");
 
