@@ -90,7 +90,6 @@ Textures made by Witherstar (Monifactory Contributor)
 
 ## Future additions:
 ### Features
-- Wireless Optical/Computation Components (Covers format)
 - Chemical skips for the ERC regarding specific lines required for progression
 - Configuration integration for easier customization in modpacks
 
