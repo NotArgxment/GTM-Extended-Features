@@ -1,5 +1,6 @@
 # GTM Extended Features
 Addon for GTCEu Modern (Minecraft 1.20.1, Forge) that adds "QoL" multiblocks based on existing GTCEu machines, with extra benefits (parallels, laser hatches, compressed recipes) at the cost of more resources to build. Designed for Gregtech-style progression modpacks that want to ease bottlenecks without breaking the original balance.
+
 [Join on the official discord server!](https://discord.gg/9NgjMnhxk)
 
 # What does this addon offers?
