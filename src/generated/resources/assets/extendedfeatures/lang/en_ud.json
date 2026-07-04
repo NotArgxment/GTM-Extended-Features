@@ -11,7 +11,7 @@
   "block.extendedfeatures.tree_growing_chamber": "]ɥƆ⅁⟘[ ɹǝqɯɐɥƆ buıʍoɹ⅁ ǝǝɹ⟘",
   "block.extendedfeatures.uv_advanced_fusion_reactor": "ɹoʇɔɐǝᴚ uoısnℲ pǝɔuɐʌpⱯɹ§ Λ∩Ɛ§",
   "block.extendedfeatures.zpm_advanced_fusion_reactor": "ɹoʇɔɐǝᴚ uoısnℲ pǝɔuɐʌpⱯɹ§ WԀZɔ§",
-  "extendedfeatures.disassembler": "ʎןqɯǝssɐsıᗡ",
+  "extendedfeatures.disassembler_machine": "ʎןqɯǝssɐsıᗡ",
   "extendedfeatures.fancytooltip.tooltip.0": "sʍoןןⱯɟ§",
   "extendedfeatures.fancytooltip.tooltip.1": " sǝɥɔʇɐH ɹǝsɐꞀ ",
   "extendedfeatures.fancytooltip.tooltip.2": "puɐɟ§",
@@ -40,8 +40,13 @@
   "item.extendedfeatures.luv_universal_circuit": "ʇınɔɹıƆ ןɐsɹǝʌıu∩ɹ§ ΛnꞀp§",
   "item.extendedfeatures.lv_universal_circuit": "ʇınɔɹıƆ ןɐsɹǝʌıu∩ɹ§ ΛꞀㄥ§",
   "item.extendedfeatures.mv_universal_circuit": "ʇınɔɹıƆ ןɐsɹǝʌıu∩ɹ§ ΛWq§",
+  "item.extendedfeatures.opv_universal_circuit": "ʇınɔɹıƆ ןɐsɹǝʌıu∩ɹ§ ΛdO6§ן§",
+  "item.extendedfeatures.uev_universal_circuit": "ʇınɔɹıƆ ןɐsɹǝʌıu∩ɹ§ ΛƎ∩ᄅ§",
+  "item.extendedfeatures.uhv_universal_circuit": "ʇınɔɹıƆ ןɐsɹǝʌıu∩ɹ§ ΛH∩ㄣ§",
+  "item.extendedfeatures.uiv_universal_circuit": "ʇınɔɹıƆ ןɐsɹǝʌıu∩ɹ§ ΛI∩ɐ§",
   "item.extendedfeatures.ulv_universal_circuit": "ʇınɔɹıƆ ןɐsɹǝʌıu∩ɹ§ ΛꞀ∩8§",
   "item.extendedfeatures.uv_universal_circuit": "ʇınɔɹıƆ ןɐsɹǝʌıu∩ɹ§ Λ∩Ɛ§",
+  "item.extendedfeatures.uxv_universal_circuit": "ʇınɔɹıƆ ןɐsɹǝʌıu∩ɹ§ ΛX∩ǝ§",
   "item.extendedfeatures.zpm_universal_circuit": "ʇınɔɹıƆ ןɐsɹǝʌıu∩ɹ§ WԀZɔ§",
   "itemGroup.extendedfeatures.creative_tab": "sǝɹnʇɐǝℲ pǝpuǝʇxƎ nƎƆ⟘⅁"
 }
