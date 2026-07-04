@@ -2,6 +2,7 @@ package com.argxment.extendedfeatures.init.utils;
 
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiPart;
+import com.gregtechceu.gtceu.api.machine.multiblock.CoilWorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import net.minecraft.MethodsReturnNonnullByDefault;
@@ -10,7 +11,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class CoilWorkableMultiblockLaser extends WorkableElectricMultiblockMachine {
+public class CoilWorkableMultiblockLaser extends CoilWorkableElectricMultiblockMachine {
 
     public CoilWorkableMultiblockLaser(IMachineBlockEntity holder) {
         super(holder);
