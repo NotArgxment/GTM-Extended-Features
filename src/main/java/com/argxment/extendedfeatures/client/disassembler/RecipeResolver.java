@@ -46,7 +46,6 @@ public class RecipeResolver {
             map.put(CustomTags.UIV_CIRCUITS, Items.UIV_UNIVERSAL_CIRCUIT.asStack());
             map.put(CustomTags.UXV_CIRCUITS, Items.UXV_UNIVERSAL_CIRCUIT.asStack());
             map.put(CustomTags.OpV_CIRCUITS, Items.OpV_UNIVERSAL_CIRCUIT.asStack());
-            map.put(CustomTags.MAX_CIRCUITS, Items.MAX_UNIVERSAL_CIRCUIT.asStack());
         }
 
         return Map.copyOf(map);
