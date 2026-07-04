@@ -24,7 +24,7 @@ public class LangHandler {
         replace(provider, "block.extendedfeatures.zpm_advanced_fusion_reactor", "§cZPM §rAdvanced Fusion Reactor");
         replace(provider, "block.extendedfeatures.uv_advanced_fusion_reactor", "§3UV §rAdvanced Fusion Reactor");
         replace(provider, "extendedfeatures.greenhouse_machine", "Greenhouse");
-        replace(provider, "extendedfeatures.disassembler", "Disassembly");
+        replace(provider, "extendedfeatures.disassembler_machine", "Disassembly");
         replace(provider, "extendedfeatures.rock_processing_facility", "Rock Processing");
     }
 
