@@ -19,6 +19,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -57,6 +58,7 @@ public class ExtendedFeaturesCore {
 
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::clientSetup);
+        modEventBus.addListener(this::onBuildCreativeTab);
 
         modEventBus.addListener(this::addMaterialRegistries);
         modEventBus.addListener(this::addMaterials);
@@ -73,6 +75,15 @@ public class ExtendedFeaturesCore {
 
     public static ResourceLocation id(String path) {
         return new ResourceLocation(ExtendedFeaturesCore.MOD_ID, path);
+    }
+
+    private void onBuildCreativeTab(BuildCreativeModeTabContentsEvent event) {
+        if (GTCEuAPI.isHighTier()) return;
+        if (!event.getTabKey().location().getNamespace().equals(ExtendedFeaturesCore.MOD_ID)) return;
+
+        Items.getHighTierCircuits().forEach(entry ->
+                event.getEntries().remove(entry.asStack())
+        );
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
