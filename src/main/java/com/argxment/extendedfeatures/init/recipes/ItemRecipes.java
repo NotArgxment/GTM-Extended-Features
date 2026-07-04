@@ -87,6 +87,7 @@ public class ItemRecipes {
                 .circuitMeta(10)
                 .save(provider);
 
+        if (GTCEuAPI.isHighTier()) {
             ASSEMBLER_RECIPES.recipeBuilder("uhv_universal_circuit")
                     .inputItems(CustomTags.UHV_CIRCUITS)
                     .outputItems(UHV_UNIVERSAL_CIRCUIT)
@@ -95,7 +96,6 @@ public class ItemRecipes {
                     .circuitMeta(10)
                     .save(provider);
 
-        if (GTCEuAPI.isHighTier()) {
             ASSEMBLER_RECIPES.recipeBuilder("uev_universal_circuit")
                     .inputItems(CustomTags.UEV_CIRCUITS)
                     .outputItems(UEV_UNIVERSAL_CIRCUIT)
@@ -128,13 +128,6 @@ public class ItemRecipes {
                     .circuitMeta(10)
                     .save(provider);
 
-            ASSEMBLER_RECIPES.recipeBuilder("max_universal_circuit")
-                    .inputItems(CustomTags.MAX_CIRCUITS)
-                    .outputItems(MAX_UNIVERSAL_CIRCUIT)
-                    .duration(20)
-                    .EUt(GTValues.VA[GTValues.LV])
-                    .circuitMeta(10)
-                    .save(provider);
         }
     }
 }
