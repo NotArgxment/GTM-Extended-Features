@@ -2,11 +2,11 @@ package com.argxment.extendedfeatures.init;
 
 import com.argxment.extendedfeatures.ExtendedFeaturesCore;
 
-import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 import com.tterrag.registrate.util.entry.ItemEntry;
 
 import net.minecraft.world.item.Item;
+import java.util.List;
 import net.minecraftforge.eventbus.api.IEventBus;
 
 import static com.argxment.extendedfeatures.ExtendedFeaturesCore.ExtraFeaturesRegister;
@@ -82,47 +82,51 @@ public class Items {
             .tag(CustomTags.UV_CIRCUITS)
             .register();
 
-    public static final ItemEntry<Item> UHV_UNIVERSAL_CIRCUIT = GTCEuAPI.isHighTier() ? ExtraFeaturesRegister
+    public static final ItemEntry<Item> UHV_UNIVERSAL_CIRCUIT = ExtraFeaturesRegister
             .item("uhv_universal_circuit", Item::new)
             .lang("§4UHV §rUniversal Circuit")
             .model((ctx, prov) -> prov.generated(ctx, prov.modLoc("item/universal/uhv_universal_circuit")))
             .tag(CustomTags.UHV_CIRCUITS)
-            .register() : null;
+            .register();
 
-    public static final ItemEntry<Item> UEV_UNIVERSAL_CIRCUIT = GTCEuAPI.isHighTier() ? ExtraFeaturesRegister
+    public static final ItemEntry<Item> UEV_UNIVERSAL_CIRCUIT = ExtraFeaturesRegister
             .item("uev_universal_circuit", Item::new)
             .lang("§2UEV §rUniversal Circuit")
             .model((ctx, prov) -> prov.generated(ctx, prov.modLoc("item/universal/uev_universal_circuit")))
             .tag(CustomTags.UEV_CIRCUITS)
-            .register() : null;
+            .register();
 
-    public static final ItemEntry<Item> UIV_UNIVERSAL_CIRCUIT = GTCEuAPI.isHighTier() ? ExtraFeaturesRegister
+    public static final ItemEntry<Item> UIV_UNIVERSAL_CIRCUIT = ExtraFeaturesRegister
             .item("uiv_universal_circuit", Item::new)
             .lang("§aUIV §rUniversal Circuit")
             .model((ctx, prov) -> prov.generated(ctx, prov.modLoc("item/universal/uiv_universal_circuit")))
             .tag(CustomTags.UIV_CIRCUITS)
-            .register() : null;
+            .register();
 
-    public static final ItemEntry<Item> UXV_UNIVERSAL_CIRCUIT = GTCEuAPI.isHighTier() ? ExtraFeaturesRegister
+    public static final ItemEntry<Item> UXV_UNIVERSAL_CIRCUIT = ExtraFeaturesRegister
             .item("uxv_universal_circuit", Item::new)
             .lang("§eUXV §rUniversal Circuit")
             .model((ctx, prov) -> prov.generated(ctx, prov.modLoc("item/universal/uxv_universal_circuit")))
             .tag(CustomTags.UXV_CIRCUITS)
-            .register() : null;
+            .register();
 
-    public static final ItemEntry<Item> OpV_UNIVERSAL_CIRCUIT = GTCEuAPI.isHighTier() ? ExtraFeaturesRegister
+    public static final ItemEntry<Item> OpV_UNIVERSAL_CIRCUIT = ExtraFeaturesRegister
             .item("opv_universal_circuit", Item::new)
             .lang("§l§9OpV §rUniversal Circuit")
             .model((ctx, prov) -> prov.generated(ctx, prov.modLoc("item/universal/opv_universal_circuit")))
             .tag(CustomTags.OpV_CIRCUITS)
-            .register() : null;
+            .register();
 
-    public static final ItemEntry<Item> MAX_UNIVERSAL_CIRCUIT = GTCEuAPI.isHighTier() ? ExtraFeaturesRegister
-            .item("max_universal_circuit", Item::new)
-            .lang("§l§cMAX §rUniversal Circuit")
-            .model((ctx, prov) -> prov.generated(ctx, prov.modLoc("item/universal/max_universal_circuit")))
-            .tag(CustomTags.MAX_CIRCUITS)
-            .register() : null;
+    // Addon "isHighTier" filter
+    public static List<ItemEntry<Item>> getHighTierCircuits() {
+        return List.of(
+                UHV_UNIVERSAL_CIRCUIT,
+                UEV_UNIVERSAL_CIRCUIT,
+                UIV_UNIVERSAL_CIRCUIT,
+                UXV_UNIVERSAL_CIRCUIT,
+                OpV_UNIVERSAL_CIRCUIT
+        );
+    }
 
     public static void register(IEventBus eventBus) {}
 }
