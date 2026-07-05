@@ -1,5 +1,6 @@
 package com.argxment.extendedfeatures;
 
+import com.argxment.extendedfeatures.config.EFModulesConfig;
 import com.argxment.extendedfeatures.init.Multiblocks;
 import com.argxment.extendedfeatures.init.Items;
 import com.argxment.extendedfeatures.client.RecipeTypes;
@@ -51,6 +52,8 @@ public class ExtendedFeaturesCore {
             .register();
 
     public ExtendedFeaturesCore() {
+        EFModulesConfig.init();
+
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         Items.register(modEventBus);
 
