@@ -12,6 +12,8 @@ public class LangHandler {
     }
 
     private static void Names(RegistrateLangProvider provider) {
+
+        // Regular physical item/block lang
         replace(provider, "block.extendedfeatures.robust_alloy_materializer", "Robust Alloy Materializer [RAM]");
         replace(provider, "block.extendedfeatures.advanced_cracking_unit", "Advanced Cracking Unit [ACU]");
         replace(provider, "block.extendedfeatures.enlarged_reaction_chamber", "Enlarged Reaction Chamber [ERC]");
@@ -23,9 +25,25 @@ public class LangHandler {
         replace(provider, "block.extendedfeatures.luv_advanced_fusion_reactor", "§dLuV §rAdvanced Fusion Reactor");
         replace(provider, "block.extendedfeatures.zpm_advanced_fusion_reactor", "§cZPM §rAdvanced Fusion Reactor");
         replace(provider, "block.extendedfeatures.uv_advanced_fusion_reactor", "§3UV §rAdvanced Fusion Reactor");
+
+        // Recipe types lang
         replace(provider, "extendedfeatures.greenhouse_machine", "Greenhouse");
         replace(provider, "extendedfeatures.disassembler_machine", "Disassembly");
         replace(provider, "extendedfeatures.rock_processing_facility", "Rock Processing");
+
+        // Configuration lang
+        replace(provider, "config.extendedfeatures.option.features", "§fAddon Modules");
+        replace(provider, "config.extendedfeatures.option.RamEnabled", "§fEnable Robust Alloy Materializer (Requires restart)");
+        replace(provider, "config.extendedfeatures.option.AcuEnabled", "§fEnable Advanced Cracking Unit (Requires restart)");
+        replace(provider, "config.extendedfeatures.option.ErcEnabled", "§fEnable Enlarged Reaction Chamber (Requires restart)");
+        replace(provider, "config.extendedfeatures.option.LpuEnabled", "§fEnable Large Pyrolysis Unit (Requires restart)");
+        replace(provider, "config.extendedfeatures.option.AfrEnabled", "§fEnable Advanced Fusion Reactor (Requires restart)");
+        replace(provider, "config.extendedfeatures.option.CalEnabled", "§fEnable Compact Assembly Line (Requires restart)");
+        replace(provider, "config.extendedfeatures.option.RpfEnabled", "§fEnable Rock Processing Facility (Requires restart)");
+        replace(provider, "config.extendedfeatures.option.IghEnabled", "§fEnable Industrial Greenhouse (Requires restart)");
+        replace(provider, "config.extendedfeatures.option.TgcEnabled", "§fEnable Tree Growing Chamber (Requires restart)");
+        replace(provider, "config.extendedfeatures.option.DaEnabled", "§fEnable Disassembler (Requires restart)");
+        replace(provider, "config.extendedfeatures.option.universalCircuits", "§fEnable Universal Circuits (Requires restart)");
     }
 
     private static void Tooltips(RegistrateLangProvider provider) {
