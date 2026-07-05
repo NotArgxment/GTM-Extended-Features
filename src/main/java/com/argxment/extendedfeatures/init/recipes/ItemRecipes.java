@@ -6,7 +6,10 @@ import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.GTValues;
 
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
+import com.tterrag.registrate.util.entry.ItemEntry;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 
 import java.util.function.Consumer;
 
@@ -16,118 +19,36 @@ public class ItemRecipes {
 
     public static void init(Consumer<FinishedRecipe> provider) {
 
-        ASSEMBLER_RECIPES.recipeBuilder("ulv_universal_circuit")
-                .inputItems(CustomTags.ULV_CIRCUITS)
-                .outputItems(Items.UNIVERSAL_CIRCUITS[GTValues.ULV])
-                .duration(20)
-                .EUt(GTValues.VA[GTValues.LV])
-                .circuitMeta(10)
-                .save(provider);
-
-        ASSEMBLER_RECIPES.recipeBuilder("lv_universal_circuit")
-                .inputItems(CustomTags.LV_CIRCUITS)
-                .outputItems(Items.UNIVERSAL_CIRCUITS[GTValues.LV])
-                .duration(20)
-                .EUt(GTValues.VA[GTValues.LV])
-                .circuitMeta(10)
-                .save(provider);
-
-        ASSEMBLER_RECIPES.recipeBuilder("mv_universal_circuit")
-                .inputItems(CustomTags.MV_CIRCUITS)
-                .outputItems(Items.UNIVERSAL_CIRCUITS[GTValues.MV])
-                .duration(20)
-                .EUt(GTValues.VA[GTValues.LV])
-                .circuitMeta(10)
-                .save(provider);
-
-        ASSEMBLER_RECIPES.recipeBuilder("hv_universal_circuit")
-                .inputItems(CustomTags.HV_CIRCUITS)
-                .outputItems(Items.UNIVERSAL_CIRCUITS[GTValues.HV])
-                .duration(20)
-                .EUt(GTValues.VA[GTValues.LV])
-                .circuitMeta(10)
-                .save(provider);
-
-        ASSEMBLER_RECIPES.recipeBuilder("ev_universal_circuit")
-                .inputItems(CustomTags.EV_CIRCUITS)
-                .outputItems(Items.UNIVERSAL_CIRCUITS[GTValues.EV])
-                .duration(20)
-                .EUt(GTValues.VA[GTValues.LV])
-                .circuitMeta(10)
-                .save(provider);
-
-        ASSEMBLER_RECIPES.recipeBuilder("iv_universal_circuit")
-                .inputItems(CustomTags.IV_CIRCUITS)
-                .outputItems(Items.UNIVERSAL_CIRCUITS[GTValues.IV])
-                .duration(20)
-                .EUt(GTValues.VA[GTValues.LV])
-                .circuitMeta(10)
-                .save(provider);
-
-        ASSEMBLER_RECIPES.recipeBuilder("luv_universal_circuit")
-                .inputItems(CustomTags.LuV_CIRCUITS)
-                .outputItems(Items.UNIVERSAL_CIRCUITS[GTValues.LuV])
-                .duration(20)
-                .EUt(GTValues.VA[GTValues.LV])
-                .circuitMeta(10)
-                .save(provider);
-
-        ASSEMBLER_RECIPES.recipeBuilder("zpm_universal_circuit")
-                .inputItems(CustomTags.ZPM_CIRCUITS)
-                .outputItems(Items.UNIVERSAL_CIRCUITS[GTValues.ZPM])
-                .duration(20)
-                .EUt(GTValues.VA[GTValues.LV])
-                .circuitMeta(10)
-                .save(provider);
-
-        ASSEMBLER_RECIPES.recipeBuilder("uv_universal_circuit")
-                .inputItems(CustomTags.UV_CIRCUITS)
-                .outputItems(Items.UNIVERSAL_CIRCUITS[GTValues.UV])
-                .duration(20)
-                .EUt(GTValues.VA[GTValues.LV])
-                .circuitMeta(10)
-                .save(provider);
+        buildCircuitRecipe(provider, "ulv_universal_circuit", CustomTags.ULV_CIRCUITS, GTValues.ULV);
+        buildCircuitRecipe(provider, "lv_universal_circuit", CustomTags.LV_CIRCUITS, GTValues.LV);
+        buildCircuitRecipe(provider, "mv_universal_circuit", CustomTags.MV_CIRCUITS, GTValues.MV);
+        buildCircuitRecipe(provider, "hv_universal_circuit", CustomTags.HV_CIRCUITS, GTValues.HV);
+        buildCircuitRecipe(provider, "ev_universal_circuit", CustomTags.EV_CIRCUITS, GTValues.EV);
+        buildCircuitRecipe(provider, "iv_universal_circuit", CustomTags.IV_CIRCUITS, GTValues.IV);
+        buildCircuitRecipe(provider, "luv_universal_circuit", CustomTags.LuV_CIRCUITS, GTValues.LuV);
+        buildCircuitRecipe(provider, "zpm_universal_circuit", CustomTags.ZPM_CIRCUITS, GTValues.ZPM);
+        buildCircuitRecipe(provider, "uv_universal_circuit", CustomTags.UV_CIRCUITS, GTValues.UV);
 
         if (GTCEuAPI.isHighTier()) {
-            ASSEMBLER_RECIPES.recipeBuilder("uhv_universal_circuit")
-                    .inputItems(CustomTags.UHV_CIRCUITS)
-                    .outputItems(Items.UNIVERSAL_CIRCUITS[GTValues.UHV])
-                    .duration(20)
-                    .EUt(GTValues.VA[GTValues.LV])
-                    .circuitMeta(10)
-                    .save(provider);
-
-            ASSEMBLER_RECIPES.recipeBuilder("uev_universal_circuit")
-                    .inputItems(CustomTags.UEV_CIRCUITS)
-                    .outputItems(Items.UNIVERSAL_CIRCUITS[GTValues.UEV])
-                    .duration(20)
-                    .EUt(GTValues.VA[GTValues.LV])
-                    .circuitMeta(10)
-                    .save(provider);
-
-            ASSEMBLER_RECIPES.recipeBuilder("uiv_universal_circuit")
-                    .inputItems(CustomTags.UIV_CIRCUITS)
-                    .outputItems(Items.UNIVERSAL_CIRCUITS[GTValues.UIV])
-                    .duration(20)
-                    .EUt(GTValues.VA[GTValues.LV])
-                    .circuitMeta(10)
-                    .save(provider);
-
-            ASSEMBLER_RECIPES.recipeBuilder("uxv_universal_circuit")
-                    .inputItems(CustomTags.UXV_CIRCUITS)
-                    .outputItems(Items.UNIVERSAL_CIRCUITS[GTValues.UXV])
-                    .duration(20)
-                    .EUt(GTValues.VA[GTValues.LV])
-                    .circuitMeta(10)
-                    .save(provider);
-
-            ASSEMBLER_RECIPES.recipeBuilder("opv_universal_circuit")
-                    .inputItems(CustomTags.OpV_CIRCUITS)
-                    .outputItems(Items.UNIVERSAL_CIRCUITS[GTValues.OpV])
-                    .duration(20)
-                    .EUt(GTValues.VA[GTValues.LV])
-                    .circuitMeta(10)
-                    .save(provider);
+            buildCircuitRecipe(provider, "uhv_universal_circuit", CustomTags.UHV_CIRCUITS, GTValues.UHV);
+            buildCircuitRecipe(provider, "uev_universal_circuit", CustomTags.UEV_CIRCUITS, GTValues.UEV);
+            buildCircuitRecipe(provider, "uiv_universal_circuit", CustomTags.UIV_CIRCUITS, GTValues.UIV);
+            buildCircuitRecipe(provider, "uxv_universal_circuit", CustomTags.UXV_CIRCUITS, GTValues.UXV);
+            buildCircuitRecipe(provider, "opv_universal_circuit", CustomTags.OpV_CIRCUITS, GTValues.OpV);
         }
+    }
+
+    private static void buildCircuitRecipe(Consumer<FinishedRecipe> provider, String recipeName,
+                                           TagKey<Item> inputTag, int tier) {
+        ItemEntry<Item> output = Items.UNIVERSAL_CIRCUITS[tier];
+        if (output == null) return;
+
+        ASSEMBLER_RECIPES.recipeBuilder(recipeName)
+                .inputItems(inputTag)
+                .outputItems(output)
+                .duration(20)
+                .EUt(GTValues.VA[GTValues.LV])
+                .circuitMeta(10)
+                .save(provider);
     }
 }
