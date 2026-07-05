@@ -1,14 +1,18 @@
 package com.argxment.extendedfeatures.client.disassembler;
 
+import com.argxment.extendedfeatures.config.EFModulesConfig;
 import com.argxment.extendedfeatures.init.Items;
 
 import com.gregtechceu.gtceu.api.GTCEuAPI;
+import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.content.Content;
 import com.gregtechceu.gtceu.api.recipe.ingredient.SizedIngredient;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
+
+import com.tterrag.registrate.util.entry.ItemEntry;
 
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.TagKey;
@@ -30,25 +34,37 @@ public class RecipeResolver {
 
     private static Map<TagKey<Item>, ItemStack> buildCircuitTagMap() {
         Map<TagKey<Item>, ItemStack> map = new HashMap<>();
-        map.put(CustomTags.ULV_CIRCUITS, Items.ULV_UNIVERSAL_CIRCUIT.asStack());
-        map.put(CustomTags.LV_CIRCUITS,  Items.LV_UNIVERSAL_CIRCUIT.asStack());
-        map.put(CustomTags.MV_CIRCUITS,  Items.MV_UNIVERSAL_CIRCUIT.asStack());
-        map.put(CustomTags.HV_CIRCUITS,  Items.HV_UNIVERSAL_CIRCUIT.asStack());
-        map.put(CustomTags.EV_CIRCUITS,  Items.EV_UNIVERSAL_CIRCUIT.asStack());
-        map.put(CustomTags.IV_CIRCUITS,  Items.IV_UNIVERSAL_CIRCUIT.asStack());
-        map.put(CustomTags.LuV_CIRCUITS, Items.LuV_UNIVERSAL_CIRCUIT.asStack());
-        map.put(CustomTags.ZPM_CIRCUITS, Items.ZPM_UNIVERSAL_CIRCUIT.asStack());
-        map.put(CustomTags.UV_CIRCUITS,  Items.UV_UNIVERSAL_CIRCUIT.asStack());
+
+        if (!EFModulesConfig.INSTANCE.features.universalCircuits) {
+            return Map.of();
+        }
+
+        putIfPresent(map, CustomTags.ULV_CIRCUITS, GTValues.ULV);
+        putIfPresent(map, CustomTags.LV_CIRCUITS, GTValues.LV);
+        putIfPresent(map, CustomTags.MV_CIRCUITS, GTValues.MV);
+        putIfPresent(map, CustomTags.HV_CIRCUITS, GTValues.HV);
+        putIfPresent(map, CustomTags.EV_CIRCUITS, GTValues.EV);
+        putIfPresent(map, CustomTags.IV_CIRCUITS, GTValues.IV);
+        putIfPresent(map, CustomTags.LuV_CIRCUITS, GTValues.LuV);
+        putIfPresent(map, CustomTags.ZPM_CIRCUITS, GTValues.ZPM);
+        putIfPresent(map, CustomTags.UV_CIRCUITS, GTValues.UV);
 
         if (GTCEuAPI.isHighTier()) {
-            map.put(CustomTags.UHV_CIRCUITS, Items.UHV_UNIVERSAL_CIRCUIT.asStack());
-            map.put(CustomTags.UEV_CIRCUITS, Items.UEV_UNIVERSAL_CIRCUIT.asStack());
-            map.put(CustomTags.UIV_CIRCUITS, Items.UIV_UNIVERSAL_CIRCUIT.asStack());
-            map.put(CustomTags.UXV_CIRCUITS, Items.UXV_UNIVERSAL_CIRCUIT.asStack());
-            map.put(CustomTags.OpV_CIRCUITS, Items.OpV_UNIVERSAL_CIRCUIT.asStack());
+            putIfPresent(map, CustomTags.UHV_CIRCUITS, GTValues.UHV);
+            putIfPresent(map, CustomTags.UEV_CIRCUITS, GTValues.UEV);
+            putIfPresent(map, CustomTags.UIV_CIRCUITS, GTValues.UIV);
+            putIfPresent(map, CustomTags.UXV_CIRCUITS, GTValues.UXV);
+            putIfPresent(map, CustomTags.OpV_CIRCUITS, GTValues.OpV);
         }
 
         return Map.copyOf(map);
+    }
+
+    private static void putIfPresent(Map<TagKey<Item>, ItemStack> map, TagKey<Item> tag, int tier) {
+        ItemEntry<Item> entry = Items.UNIVERSAL_CIRCUITS[tier];
+        if (entry != null) {
+            map.put(tag, entry.asStack());
+        }
     }
 
     public static Optional<List<ItemStack>> resolveFromGTRecipeType(ServerLevel level, GTRecipeType recipeType, ItemStack targetStack) {
