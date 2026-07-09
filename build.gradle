@@ -32,10 +32,12 @@ repositories {
             includeGroup 'com.gregtechceu.gtceu'
         }
     }
+
     maven {
         name 'FirstDarkDev'
         url "https://maven.firstdark.dev/snapshots/"
     }
+
     maven { // Registrate
         url = "https://maven.tterrag.com/"
         content {
@@ -43,14 +45,17 @@ repositories {
             includeGroup("com.tterrag.registrate")
         }
     }
+
     maven {
         // Patchouli, JEI
         name = "BlameJared"
         url = "https://maven.blamejared.com/"
     }
+
     maven {
         url = "https://maven.theillusivec4.top/"
     }
+
     maven {
         // Curse Forge File
         url "https://cursemaven.com/"
@@ -58,15 +63,15 @@ repositories {
             includeGroup "curse.maven"
         }
     }
+
     maven {
-        // EMI
 		name = "TerraformersMC"
 		url = "https://maven.terraformersmc.com/"
 	}
+
     maven {
         url = "https://thedarkcolour.github.io/KotlinForForge/"
     }
-
 }
 
 version = mod_version
@@ -189,4 +194,12 @@ tasks.withType(JavaCompile).configureEach {
     options.encoding = "UTF-8"
     options.release.set(17)
     options.compilerArgs << "-Aquiet=true" // Suppress mixin notes
+}
+
+tasks.named('runClient') {
+    dependsOn 'runData'
+}
+
+tasks.named('runData') {
+    outputs.upToDateWhen { false }
 }

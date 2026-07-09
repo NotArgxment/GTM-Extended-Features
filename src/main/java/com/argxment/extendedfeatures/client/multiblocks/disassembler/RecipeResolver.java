@@ -46,7 +46,7 @@ public class RecipeResolver {
     private static Map<TagKey<Item>, ItemStack> buildCircuitTagMap() {
         Map<TagKey<Item>, ItemStack> map = new HashMap<>();
 
-        if (!EFConfig.INSTANCE.features.universalCircuits) {
+        if (!EFConfig.INSTANCE.Items.universalCircuits) {
             return Map.of();
         }
 

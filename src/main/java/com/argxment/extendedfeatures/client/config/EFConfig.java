@@ -19,9 +19,15 @@ public class EFConfig {
     }
 
     @Configurable
-    public FeatureConfigs features = new FeatureConfigs();
+    @Configurable.Comment("Configuration values for Multiblocks")
+    public MultiblocksToggles Multiblocks = new MultiblocksToggles();
 
-    public static class FeatureConfigs {
+    @Configurable
+    @Configurable.Comment("Configuration Values for Machines and Items")
+    public OtherToggles Items = new OtherToggles();
+
+    public static class MultiblocksToggles {
+
         @Configurable
         @Configurable.Comment({ "Whether the Robust Alloy Materializer is Enabled." })
             public boolean RamEnabled = true;
@@ -63,15 +69,17 @@ public class EFConfig {
             public boolean DaEnabled = true;
 
         @Configurable
-        @Configurable.Comment({ "Whether the Disassembler is Enabled." })
+        @Configurable.Comment({ "Whether the Expanded Data Bank is Enabled." })
+        public boolean EdaEnabled = true;
+    }
+
+    public static class OtherToggles {
+        @Configurable
+        @Configurable.Comment({ "Whether the Universal Circuits are Enabled." })
         public boolean universalCircuits = true;
 
         @Configurable
         @Configurable.Comment({ "Whether the Expanded Data Access Hatches are Enabled." })
         public boolean expandedDataAccessHatches = true;
-
-        @Configurable
-        @Configurable.Comment({ "Whether the Expanded Databank is Enabled." })
-        public boolean edEnabled = true;
     }
 }

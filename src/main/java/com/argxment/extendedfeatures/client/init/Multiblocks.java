@@ -68,7 +68,7 @@ public class Multiblocks {
     public static MultiblockMachineDefinition EXPANDED_DATABANK = null;
 
     static {
-        if (EFConfig.INSTANCE.features.RamEnabled || GTCEu.isDataGen()) {
+        if (EFConfig.INSTANCE.Multiblocks.RamEnabled || GTCEu.isDataGen()) {
             ROBUST_ALLOY_MATERIALIZER = ExtendedFeaturesRegister
                     .multiblock("robust_alloy_materializer", CoilWorkableMultiblockLaser::new)
                     .tooltips(
@@ -135,7 +135,7 @@ public class Multiblocks {
     }
 
     static {
-        if (EFConfig.INSTANCE.features.AcuEnabled || GTCEu.isDataGen()) {
+        if (EFConfig.INSTANCE.Multiblocks.AcuEnabled || GTCEu.isDataGen()) {
             ADVANCED_CRACKING_UNIT = ExtendedFeaturesRegister
                     .multiblock("advanced_cracking_unit", CoilWorkableElectricMultiblockMachine::new)
                     .tooltips(
@@ -191,7 +191,7 @@ public class Multiblocks {
     }
 
     static {
-        if (EFConfig.INSTANCE.features.ErcEnabled || GTCEu.isDataGen()) {
+        if (EFConfig.INSTANCE.Multiblocks.ErcEnabled || GTCEu.isDataGen()) {
             ENLARGED_REACTION_CHAMBER = ExtendedFeaturesRegister
                     .multiblock("enlarged_reaction_chamber", WorkableElectricMultiblockMachine::new)
                     .tooltips(
@@ -242,7 +242,7 @@ public class Multiblocks {
     }
 
     static {
-        if (EFConfig.INSTANCE.features.LpuEnabled || GTCEu.isDataGen()) {
+        if (EFConfig.INSTANCE.Multiblocks.LpuEnabled || GTCEu.isDataGen()) {
             LARGE_PYROLYSIS_UNIT = ExtendedFeaturesRegister
                     .multiblock("large_pyrolysis_unit", CoilWorkableElectricMultiblockMachine::new)
                     .tooltips(
@@ -304,7 +304,7 @@ public class Multiblocks {
     }
 
     static {
-        if (EFConfig.INSTANCE.features.AfrEnabled || GTCEu.isDataGen()) {
+        if (EFConfig.INSTANCE.Multiblocks.AfrEnabled || GTCEu.isDataGen()) {
             ADVANCED_FUSION_REACTOR = TieredMultis("advanced_fusion_reactor",
                     FusionReactorMachine::new, (tier, builder) -> builder
                             .rotationState(RotationState.ALL)
@@ -379,7 +379,7 @@ public class Multiblocks {
     }
 
     static {
-        if (EFConfig.INSTANCE.features.CalEnabled || GTCEu.isDataGen()) {
+        if (EFConfig.INSTANCE.Multiblocks.CalEnabled || GTCEu.isDataGen()) {
             COMPACT_ASSEMBLY_LINE = ExtendedFeaturesRegister
                     .multiblock("compact_assembly_line", WorkableElectricMultiblockMachine::new)
                     .tooltips(
@@ -427,7 +427,7 @@ public class Multiblocks {
     }
 
     static {
-        if (EFConfig.INSTANCE.features.RpfEnabled || GTCEu.isDataGen()) {
+        if (EFConfig.INSTANCE.Multiblocks.RpfEnabled || GTCEu.isDataGen()) {
             ROCK_PROCESSING_FACILITY = ExtendedFeaturesRegister
                     .multiblock("rock_processing_facility", WorkableElectricMultiblockMachine::new)
                     .tooltips(
@@ -479,7 +479,7 @@ public class Multiblocks {
     }
 
     static {
-        if (EFConfig.INSTANCE.features.IghEnabled || GTCEu.isDataGen()) {
+        if (EFConfig.INSTANCE.Multiblocks.IghEnabled || GTCEu.isDataGen()) {
             INDUSTRIAL_GREENHOUSE = ExtendedFeaturesRegister
                     .multiblock("industrial_greenhouse", WorkableElectricMultiblockMachine::new)
                     .tooltips(
@@ -533,7 +533,7 @@ public class Multiblocks {
     }
 
     static {
-        if (EFConfig.INSTANCE.features.TgcEnabled || GTCEu.isDataGen()) {
+        if (EFConfig.INSTANCE.Multiblocks.TgcEnabled || GTCEu.isDataGen()) {
             TREE_GROWING_CHAMBER = ExtendedFeaturesRegister
                     .multiblock("tree_growing_chamber", WorkableElectricMultiblockMachine::new)
                     .rotationState(RotationState.NON_Y_AXIS)
@@ -591,7 +591,7 @@ public class Multiblocks {
     }
 
     static {
-        if (EFConfig.INSTANCE.features.DaEnabled || GTCEu.isDataGen()) {
+        if (EFConfig.INSTANCE.Multiblocks.DaEnabled || GTCEu.isDataGen()) {
             DISASSEMBLER = ExtendedFeaturesRegister
                     .multiblock("disassembler", DisassemblyMachine::new)
                     .tooltips(
@@ -630,7 +630,7 @@ public class Multiblocks {
     }
 
     static {
-        if (EFConfig.INSTANCE.features.edEnabled || GTCEu.isDataGen()) {
+        if (EFConfig.INSTANCE.Multiblocks.EdaEnabled || GTCEu.isDataGen()) {
             EXPANDED_DATABANK = ExtendedFeaturesRegister
                     .multiblock("expanded_databank", DataBankMachine::new)
                     .rotationState(RotationState.NON_Y_AXIS)

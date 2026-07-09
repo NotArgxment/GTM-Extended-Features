@@ -1,17 +1,17 @@
 modLoader = "javafml"
 loaderVersion = "[47,)"
 license = "${mod_license}"
-issueTrackerURL="https://github.com/NotArgxment/Gregtech-Extra-Features/issues"
+issueTrackerURL = "https://github.com/NotArgxment/GTM-Extended-Features/issues
 
 [[mods]]
     modId = "${mod_id}"
     version = "${version}"
     displayName = "${mod_name}"
     displayURL = "${mod_url}"
-    # logoFile="icon.png"
-    credits="Thanks to Mojang for making this great game..."
-    authors="${mod_author}"
-    description = "Adds new multis based on already existing ones, but with benefits at the cost of more resources"
+    logoFile = "icon.png"
+    credits = "GTCEu Modern Devs, Phoenixvine (PTF Dev) and Herr Jolo (Chromatic Abberation Dev)"
+    authors = "${mod_author}"
+    description = "This mod providers additional content to enhance both packdev and end-user experience inside GTCEu Modern"
 
     [[dependencies.${mod_id}]]
         modId = "forge"

@@ -46,7 +46,7 @@ public class Items {
     };
 
     static {
-        if (EFConfig.INSTANCE.features.universalCircuits || GTCEu.isDataGen()) {
+        if (EFConfig.INSTANCE.Items.universalCircuits || GTCEu.isDataGen()) {
             for (Object[] data : CIRCUIT_DATA) {
                 int tier = (int) data[0];
                 String registryName = (String) data[1];

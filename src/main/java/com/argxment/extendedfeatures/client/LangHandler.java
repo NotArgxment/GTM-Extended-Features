@@ -36,20 +36,22 @@ public class LangHandler {
         replace(provider, "extendedfeatures.rock_processing_facility", "Rock Processing");
 
         // Configuration lang
-        replace(provider, "config.screen.extendedfeatures", "§7Client Configuration");
-        replace(provider, "config.extendedfeatures.option.features", "§7Modules");
-        replace(provider, "config.extendedfeatures.option.RamEnabled", "§7Enable the Robust Alloy Materializer §4(Requires restart)");
-        replace(provider, "config.extendedfeatures.option.AcuEnabled", "§7Enable the Advanced Cracking Unit §4(Requires restart)");
-        replace(provider, "config.extendedfeatures.option.ErcEnabled", "§7Enable the Enlarged Reaction Chamber §4(Requires restart)");
-        replace(provider, "config.extendedfeatures.option.LpuEnabled", "§7Enable the Large Pyrolysis Unit §4(Requires restart)");
-        replace(provider, "config.extendedfeatures.option.AfrEnabled", "§7Enable the Advanced Fusion Reactor §4(Requires restart)");
-        replace(provider, "config.extendedfeatures.option.CalEnabled", "§7Enable the Compact Assembly Line §4(Requires restart)");
-        replace(provider, "config.extendedfeatures.option.RpfEnabled", "§7Enable the Rock Processing Facility §4(Requires restart)");
-        replace(provider, "config.extendedfeatures.option.IghEnabled", "§7Enable the Industrial Greenhouse §4(Requires restart)");
-        replace(provider, "config.extendedfeatures.option.TgcEnabled", "§7Enable the Tree Growing Chamber §4(Requires restart)");
-        replace(provider, "config.extendedfeatures.option.DaEnabled", "§7Enable the Disassembler §4(Requires restart)");
-        replace(provider, "config.extendedfeatures.option.universalCircuits", "§7Enable Universal Circuits §4(Requires restart)");
-        replace(provider, "config.extendedfeatures.option.expandedDataAccessHatches", "§7Enable the Expanded Data Access Hatches §4(Requires restart)");
+        replace(provider, "config.screen.extendedfeatures", "§7Mod Configuration §4(Restart to Apply Changes)");
+        replace(provider, "config.extendedfeatures.option.Multiblocks", "§7Multiblocks Module");
+        replace(provider, "config.extendedfeatures.option.Items", "§7Miscellaneous Module");
+        replace(provider, "config.extendedfeatures.option.RamEnabled", "§7Robust Alloy Materializer");
+        replace(provider, "config.extendedfeatures.option.AcuEnabled", "§7Advanced Cracking Unit");
+        replace(provider, "config.extendedfeatures.option.ErcEnabled", "§7Enlarged Reaction Chamber");
+        replace(provider, "config.extendedfeatures.option.LpuEnabled", "§7Large Pyrolysis Unit");
+        replace(provider, "config.extendedfeatures.option.AfrEnabled", "§7Advanced Fusion Reactors");
+        replace(provider, "config.extendedfeatures.option.CalEnabled", "§7Compact Assembly Line");
+        replace(provider, "config.extendedfeatures.option.RpfEnabled", "§7Rock Processing Facility");
+        replace(provider, "config.extendedfeatures.option.IghEnabled", "§7Industrial Greenhouse");
+        replace(provider, "config.extendedfeatures.option.TgcEnabled", "§7Tree Growing Chamber");
+        replace(provider, "config.extendedfeatures.option.DaEnabled", "§7Disassembler");
+        replace(provider, "config.extendedfeatures.option.EdaEnabled", "§7Expanded Data Bank");
+        replace(provider, "config.extendedfeatures.option.universalCircuits", "§7Universal Circuits");
+        replace(provider, "config.extendedfeatures.option.expandedDataAccessHatches", "§7Expanded Data Access Hatches");
     }
 
     private static void Tooltips(RegistrateLangProvider provider) {

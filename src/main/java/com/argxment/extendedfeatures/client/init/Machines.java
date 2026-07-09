@@ -8,7 +8,6 @@ import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 
 import static com.argxment.extendedfeatures.ExtendedFeaturesCore.ExtendedFeaturesRegister;
 
@@ -24,7 +23,7 @@ public class Machines {
     public static MachineDefinition UHV_DATA_ACCESS_HATCH = null;
 
     static {
-        if (EFConfig.INSTANCE.features.expandedDataAccessHatches || GTCEu.isDataGen()) {
+        if (EFConfig.INSTANCE.Items.expandedDataAccessHatches || GTCEu.isDataGen()) {
             ZPM_DATA_ACCESS_HATCH = ExtendedFeaturesRegister
                     .machine("zpm_data_access_hatch", (holder) -> new DataHatch(holder, ZPM, false) {
 
