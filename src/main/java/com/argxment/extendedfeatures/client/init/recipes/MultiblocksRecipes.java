@@ -69,8 +69,4 @@ public class MultiblocksRecipes {
                 .EUt(GTValues.VA[GTValues.EV])
                 .save(provider);
     }
-
-    private static int getAmount() {
-        return 1000;
-    }
 }
