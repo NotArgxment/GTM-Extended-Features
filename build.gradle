@@ -101,18 +101,21 @@ legacyForge {
             // Please read: https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels
             logLevel = org.slf4j.event.Level.DEBUG
         }
+		
         client {
             client()
             sourceSet = sourceSets.main
             programArguments.addAll('--refresh-dependencies')
             systemProperty('forge.enabledGameTestNamespaces', project.mod_id)
         }
+		
         server {
             server()
             sourceSet = sourceSets.main
             systemProperty('forge.enabledGameTestNamespaces', project.mod_id)
             programArguments.addAll('--nogui', '--world', 'world-extra')
         }
+		
         data {
             data()
             sourceSet = sourceSets.main
@@ -132,6 +135,7 @@ legacyForge {
         }
     }
 }
+
 jar {
     manifest.attributes([
             "MixinConfigs": "extendedfeatures.mixin.json"
