@@ -1,7 +1,7 @@
 modLoader = "javafml"
 loaderVersion = "[47,)"
 license = "${mod_license}"
-issueTrackerURL = "https://github.com/NotArgxment/GTM-Extended-Features/issues
+issueTrackerURL = "https://github.com/NotArgxment/GTM-Extended-Features/issues"
 
 [[mods]]
     modId = "${mod_id}"
