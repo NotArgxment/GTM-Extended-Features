@@ -1,6 +1,6 @@
-package com.argxment.extendedfeatures.init.recipes;
+package com.argxment.extendedfeatures.client.init.recipes;
 
-import com.argxment.extendedfeatures.init.Items;
+import com.argxment.extendedfeatures.client.init.Items;
 
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.GTValues;

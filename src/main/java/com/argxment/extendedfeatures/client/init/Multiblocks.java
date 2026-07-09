@@ -1,12 +1,12 @@
-package com.argxment.extendedfeatures.init;
+package com.argxment.extendedfeatures.client.init;
 
 import com.argxment.extendedfeatures.ExtendedFeaturesCore;
-import com.argxment.extendedfeatures.config.EFModulesConfig;
-import com.argxment.extendedfeatures.init.utils.CoilWorkableMultiblockLaser;
+import com.argxment.extendedfeatures.client.config.EFConfig;
+import com.argxment.extendedfeatures.client.init.utils.CoilWorkableMultiblockLaser;
 import com.argxment.extendedfeatures.client.RecipeTypes;
-import com.argxment.extendedfeatures.client.disassembler.DisassemblyMachine;
-import com.argxment.extendedfeatures.init.utils.CustomTooltipStyles;
-import com.argxment.extendedfeatures.init.utils.RecipeModifiers;
+import com.argxment.extendedfeatures.client.multiblocks.disassembler.DisassemblyMachine;
+import com.argxment.extendedfeatures.client.init.utils.CustomTooltipStyles;
+import com.argxment.extendedfeatures.client.init.utils.RecipeModifiers;
 
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
@@ -20,6 +20,7 @@ import com.gregtechceu.gtceu.client.renderer.machine.DynamicRenderHelper;
 import com.gregtechceu.gtceu.client.util.TooltipHelper;
 import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.FusionReactorMachine;
+import com.gregtechceu.gtceu.common.machine.multiblock.electric.research.DataBankMachine;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 
 import net.minecraft.ChatFormatting;
@@ -40,10 +41,10 @@ import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.*;
 import static com.gregtechceu.gtceu.utils.FormattingUtil.*;
 
-import static com.argxment.extendedfeatures.ExtendedFeaturesCore.ExtraFeaturesRegister;
+import static com.argxment.extendedfeatures.ExtendedFeaturesCore.ExtendedFeaturesRegister;
 import static com.argxment.extendedfeatures.client.RecipeTypes.*;
 import static com.argxment.extendedfeatures.client.MachineUtils.TieredMultis;
-import static com.argxment.extendedfeatures.init.utils.RecipeModifiers.SIMPLE_PARALLEL;
+import static com.argxment.extendedfeatures.client.init.utils.RecipeModifiers.SIMPLE_PARALLEL;
 
 public class Multiblocks {
 
@@ -51,7 +52,7 @@ public class Multiblocks {
     }
 
     static {
-        ExtraFeaturesRegister.creativeModeTab(() -> ExtendedFeaturesCore.EF_TAB);
+        ExtendedFeaturesRegister.creativeModeTab(() -> ExtendedFeaturesCore.EF_TAB);
     }
 
     public static MultiblockMachineDefinition ROBUST_ALLOY_MATERIALIZER = null;
@@ -64,14 +65,17 @@ public class Multiblocks {
     public static MultiblockMachineDefinition INDUSTRIAL_GREENHOUSE = null;
     public static MultiblockMachineDefinition TREE_GROWING_CHAMBER = null;
     public static MultiblockMachineDefinition DISASSEMBLER = null;
+    public static MultiblockMachineDefinition EXPANDED_DATABANK = null;
 
     static {
-        if (EFModulesConfig.INSTANCE.features.RamEnabled || GTCEu.isDataGen()) {
-            ROBUST_ALLOY_MATERIALIZER = ExtraFeaturesRegister
+        if (EFConfig.INSTANCE.features.RamEnabled || GTCEu.isDataGen()) {
+            ROBUST_ALLOY_MATERIALIZER = ExtendedFeaturesRegister
                     .multiblock("robust_alloy_materializer", CoilWorkableMultiblockLaser::new)
-                    .tooltips(Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.0"),
+                    .tooltips(
+                            Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.0"),
                             Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.1"),
-                            Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.2"))
+                            Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.2")
+                    )
                     .tooltipBuilder((stack, list) -> {
                         list.add(Component.translatable("extendedfeatures.fancytooltip.tooltip.0")
                                 .append(Component.translatable("extendedfeatures.fancytooltip.tooltip.1")
@@ -131,10 +135,11 @@ public class Multiblocks {
     }
 
     static {
-        if (EFModulesConfig.INSTANCE.features.AcuEnabled || GTCEu.isDataGen()) {
-            ADVANCED_CRACKING_UNIT = ExtraFeaturesRegister
+        if (EFConfig.INSTANCE.features.AcuEnabled || GTCEu.isDataGen()) {
+            ADVANCED_CRACKING_UNIT = ExtendedFeaturesRegister
                     .multiblock("advanced_cracking_unit", CoilWorkableElectricMultiblockMachine::new)
-                    .tooltips(Component.translatable("gtceu.machine.cracker.tooltip"),
+                    .tooltips(
+                            Component.translatable("gtceu.machine.cracker.tooltip"),
                             Component.translatable("gtceu.machine.cracker.tooltip.1")
                     )
                     .tooltipBuilder((stack, list) -> {
@@ -186,9 +191,13 @@ public class Multiblocks {
     }
 
     static {
-        if (EFModulesConfig.INSTANCE.features.ErcEnabled || GTCEu.isDataGen()) {
-            ENLARGED_REACTION_CHAMBER = ExtraFeaturesRegister
+        if (EFConfig.INSTANCE.features.ErcEnabled || GTCEu.isDataGen()) {
+            ENLARGED_REACTION_CHAMBER = ExtendedFeaturesRegister
                     .multiblock("enlarged_reaction_chamber", WorkableElectricMultiblockMachine::new)
+                    .tooltips(
+                            Component.translatable("extendedfeatures.enlarged_reaction_chamber.tooltip.0"),
+                            Component.translatable("extendedfeatures.enlarged_reaction_chamber.tooltip.1")
+                    )
                     .tooltipBuilder((stack, list) -> {
                         list.add(Component.translatable("extendedfeatures.fancytooltip.tooltip.0")
                                 .append(Component.translatable("extendedfeatures.fancytooltip.tooltip.3")
@@ -198,7 +207,7 @@ public class Multiblocks {
                     .rotationState(RotationState.NON_Y_AXIS)
                     .recipeType(LARGE_CHEMICAL_RECIPES)
                     .recipeModifiers(
-                            GTRecipeModifiers.PARALLEL_HATCH,
+                            SIMPLE_PARALLEL.apply(16),
                             GTRecipeModifiers.OC_PERFECT
                     )
                     .appearanceBlock(CASING_PTFE_INERT)
@@ -233,11 +242,13 @@ public class Multiblocks {
     }
 
     static {
-        if (EFModulesConfig.INSTANCE.features.LpuEnabled || GTCEu.isDataGen()) {
-            LARGE_PYROLYSIS_UNIT = ExtraFeaturesRegister
+        if (EFConfig.INSTANCE.features.LpuEnabled || GTCEu.isDataGen()) {
+            LARGE_PYROLYSIS_UNIT = ExtendedFeaturesRegister
                     .multiblock("large_pyrolysis_unit", CoilWorkableElectricMultiblockMachine::new)
-                    .tooltips(Component.translatable("gtceu.machine.pyrolyse_oven.tooltip"),
-                            Component.translatable("gtceu.machine.pyrolyse_oven.tooltip.1"))
+                    .tooltips(
+                            Component.translatable("gtceu.machine.pyrolyse_oven.tooltip"),
+                            Component.translatable("gtceu.machine.pyrolyse_oven.tooltip.1")
+                    )
                     .tooltipBuilder((stack, list) -> {
                         list.add(Component.translatable("extendedfeatures.fancytooltip.tooltip.0")
                                 .append(Component.translatable("extendedfeatures.fancytooltip.tooltip.3")
@@ -293,7 +304,7 @@ public class Multiblocks {
     }
 
     static {
-        if (EFModulesConfig.INSTANCE.features.AfrEnabled || GTCEu.isDataGen()) {
+        if (EFConfig.INSTANCE.features.AfrEnabled || GTCEu.isDataGen()) {
             ADVANCED_FUSION_REACTOR = TieredMultis("advanced_fusion_reactor",
                     FusionReactorMachine::new, (tier, builder) -> builder
                             .rotationState(RotationState.ALL)
@@ -304,12 +315,11 @@ public class Multiblocks {
                                             FusionReactorMachine.calculateEnergyStorageFactor(tier, 16) / 1000000L),
                                     Component.translatable("gtceu.machine.fusion_reactor.overclocking")
                             )
-
                             .tooltipBuilder((stack, list) -> list.add(Component.translatable(
-                                            "extendedfeatures.multiblock.%s_advanced_fusion_reactor.tooltip.0"
+                                            "extendedfeatures.%s_advanced_fusion_reactor.tooltip.0"
                                                     .formatted(VN[tier].toLowerCase(Locale.ROOT)))
                                     .append(Component.translatable(
-                                                    "extendedfeatures.multiblock.%s_advanced_fusion_reactor.tooltip.1"
+                                                    "extendedfeatures.%s_advanced_fusion_reactor.tooltip.1"
                                                             .formatted(VN[tier].toLowerCase(Locale.ROOT)))
                                             .withStyle(CustomTooltipStyles.forTier(tier)))))
 
@@ -369,11 +379,13 @@ public class Multiblocks {
     }
 
     static {
-        if (EFModulesConfig.INSTANCE.features.CalEnabled || GTCEu.isDataGen()) {
-            COMPACT_ASSEMBLY_LINE = ExtraFeaturesRegister
+        if (EFConfig.INSTANCE.features.CalEnabled || GTCEu.isDataGen()) {
+            COMPACT_ASSEMBLY_LINE = ExtendedFeaturesRegister
                     .multiblock("compact_assembly_line", WorkableElectricMultiblockMachine::new)
-                    .tooltips(Component.translatable("extendedfeatures.machine.compact_assembly_line.tooltip.0"),
-                            Component.translatable("extendedfeatures.machine.compact_assembly_line.tooltip.1"))
+                    .tooltips(
+                            Component.translatable("extendedfeatures.compact_assembly_line.tooltip.0"),
+                            Component.translatable("extendedfeatures.compact_assembly_line.tooltip.1")
+                    )
                     .rotationState(RotationState.NON_Y_AXIS)
                     .recipeType(ASSEMBLY_LINE_RECIPES)
                     .recipeModifiers(
@@ -415,16 +427,18 @@ public class Multiblocks {
     }
 
     static {
-        if (EFModulesConfig.INSTANCE.features.RpfEnabled || GTCEu.isDataGen()) {
-            ROCK_PROCESSING_FACILITY = ExtraFeaturesRegister
+        if (EFConfig.INSTANCE.features.RpfEnabled || GTCEu.isDataGen()) {
+            ROCK_PROCESSING_FACILITY = ExtendedFeaturesRegister
                     .multiblock("rock_processing_facility", WorkableElectricMultiblockMachine::new)
                     .tooltips(
-                            Component.translatable("extendedfeatures.machine.rock_processing_facility.tooltip.0",
-                                    Component.translatable("extendedfeatures.machine.rock_processing_facility.tooltip.1"))
+                            Component.translatable("extendedfeatures.rock_processing_facility.tooltip.0"),
+                            Component.translatable("extendedfeatures.rock_processing_facility.tooltip.1")
                     )
                     .rotationState(RotationState.NON_Y_AXIS)
                     .recipeType(ROCK_PROCESSING)
-                    .recipeModifiers(OC_NON_PERFECT)
+                    .recipeModifiers(
+                            OC_NON_PERFECT
+                    )
                     .appearanceBlock(CASING_SECURE_MACERATION)
                     .pattern(definition -> FactoryBlockPattern.start()
                             .aisle("JJJJJJJ", "JGJGJGJ", "JGJGJGJ", "JJJJJJJ", "       ")
@@ -465,11 +479,18 @@ public class Multiblocks {
     }
 
     static {
-        if (EFModulesConfig.INSTANCE.features.IghEnabled || GTCEu.isDataGen()) {
-            INDUSTRIAL_GREENHOUSE = ExtraFeaturesRegister
+        if (EFConfig.INSTANCE.features.IghEnabled || GTCEu.isDataGen()) {
+            INDUSTRIAL_GREENHOUSE = ExtendedFeaturesRegister
                     .multiblock("industrial_greenhouse", WorkableElectricMultiblockMachine::new)
+                    .tooltips(
+                            Component.translatable("extendedfeatures.greenhouse.tooltip.0"),
+                            Component.translatable("extendedfeatures.greenhouse.tooltip.1")
+                    )
                     .rotationState(RotationState.NON_Y_AXIS)
-                    .recipeType(GREENHOUSE)
+                    .recipeTypes(
+                            GREENHOUSE_CROPS,
+                            GREENHOUSE_WOOD
+                    )
                     .recipeModifiers(
                             SIMPLE_PARALLEL.apply(8),
                             OC_NON_PERFECT
@@ -512,15 +533,23 @@ public class Multiblocks {
     }
 
     static {
-        if (EFModulesConfig.INSTANCE.features.TgcEnabled || GTCEu.isDataGen()) {
-            TREE_GROWING_CHAMBER = ExtraFeaturesRegister
+        if (EFConfig.INSTANCE.features.TgcEnabled || GTCEu.isDataGen()) {
+            TREE_GROWING_CHAMBER = ExtendedFeaturesRegister
                     .multiblock("tree_growing_chamber", WorkableElectricMultiblockMachine::new)
                     .rotationState(RotationState.NON_Y_AXIS)
                     .tooltips(
-                            Component.translatable("extendedfeatures.machine.industrial_greenhouse.tooltip.0",
-                                    Component.translatable("extendedfeatures.machine.industrial_greenhouse.tooltip.1"))
+                            Component.translatable("extendedfeatures.greenhouse.tooltip.0")
                     )
-                    .recipeType(GREENHOUSE)
+                    .tooltipBuilder((stack, list) -> {
+                        list.add(Component.translatable("extendedfeatures.fancytooltip.tooltip.0")
+                                .append(Component.translatable("extendedfeatures.fancytooltip.tooltip.3")
+                                        .withStyle(TooltipHelper.RAINBOW_HSL_SLOW))
+                        );
+                    })
+                    .recipeTypes(
+                            GREENHOUSE_CROPS,
+                            GREENHOUSE_WOOD
+                    )
                     .recipeModifiers(PARALLEL_HATCH, OC_NON_PERFECT)
                     .appearanceBlock(CASING_TUNGSTENSTEEL_ROBUST)
                     .pattern(definition -> FactoryBlockPattern.start()
@@ -562,12 +591,19 @@ public class Multiblocks {
     }
 
     static {
-        if (EFModulesConfig.INSTANCE.features.DaEnabled || GTCEu.isDataGen()) {
-            DISASSEMBLER = ExtraFeaturesRegister
+        if (EFConfig.INSTANCE.features.DaEnabled || GTCEu.isDataGen()) {
+            DISASSEMBLER = ExtendedFeaturesRegister
                     .multiblock("disassembler", DisassemblyMachine::new)
+                    .tooltips(
+                            Component.translatable("extendedfeatures.disassembler.tooltip.0"),
+                            Component.translatable("extendedfeatures.disassembler.tooltip.1")
+                    )
                     .rotationState(RotationState.NON_Y_AXIS)
                     .recipeType(RecipeTypes.DISASSEMBLER)
-                    .recipeModifiers(PARALLEL_HATCH, OC_NON_PERFECT)
+                    .recipeModifiers(
+                            PARALLEL_HATCH,
+                            OC_NON_PERFECT
+                    )
                     .appearanceBlock(CASING_LARGE_SCALE_ASSEMBLING)
                     .pattern(definition -> FactoryBlockPattern.start()
                             .aisle("OOOOOOO", "OOOOOOO", "OOOOOOO")
@@ -589,6 +625,38 @@ public class Multiblocks {
                     .workableCasingModel(
                             GTCEu.id("block/casings/gcym/large_scale_assembling_casing"),
                             GTCEu.id("block/multiblock/gcym/large_assembler"))
+                    .register();
+        }
+    }
+
+    static {
+        if (EFConfig.INSTANCE.features.edEnabled || GTCEu.isDataGen()) {
+            EXPANDED_DATABANK = ExtendedFeaturesRegister
+                    .multiblock("expanded_databank", DataBankMachine::new)
+                    .rotationState(RotationState.NON_Y_AXIS)
+                    .recipeType(DUMMY_RECIPES)
+                    .appearanceBlock(ADVANCED_COMPUTER_CASING) // what block the texture should connect to
+                    .pattern(definition -> FactoryBlockPattern.start()
+                            .aisle("   BBBBB   ", "   B   B   ", "   B   B   ", "   B   B   ", "   B   B   ", "   BBBBB   ")
+                            .aisle(" BBBDBDBBB ", "           ", "           ", "           ", "           ", " BBBDBDBBB ")
+                            .aisle("BBDDDBDDDBB", "B         B", "B         B", "B         B", "B         B", "BBDDDBDDDBB")
+                            .aisle("BDBBBBBBBDB", "  E E E E  ", "  E E E E  ", "  E E E E  ", "  E E E E  ", "BDBBBBBBBDB")
+                            .aisle("BBDDDBDDDBB", "B         B", "B         B", "B         B", "B         B", "BBDDDBDDDBB")
+                            .aisle(" BBBDBDBBB ", "           ", "           ", "           ", "           ", " BBBDBDBBB ")
+                            .aisle("   BB@BB   ", "   B   B   ", "   B   B   ", "   B   B   ", "   B   B   ", "   BBBBB   ")
+                            .where('@', controller(blocks(definition.get())))
+                            .where(' ', any())
+                            .where('D', blocks(COMPUTER_CASING.get()))
+                            .where('B', blocks(ADVANCED_COMPUTER_CASING.get())
+                                    .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1))
+                                    .or(abilities(PartAbility.INPUT_ENERGY).setMaxGlobalLimited(2))
+                                    .or(abilities(PartAbility.DATA_ACCESS).setMinGlobalLimited(1).setMaxGlobalLimited(6)))
+                            .where('E', abilities(PartAbility.OPTICAL_DATA_TRANSMISSION).setMaxGlobalLimited(16))
+                            .build())
+                    .workableCasingModel(
+                            GTCEu.id("block/casings/hpca/advanced_computer_casing/top"),
+                            GTCEu.id("block/multiblock/data_bank")
+                            )
                     .register();
         }
     }

@@ -1,8 +1,9 @@
 package com.argxment.extendedfeatures;
 
-import com.argxment.extendedfeatures.config.EFModulesConfig;
-import com.argxment.extendedfeatures.init.Multiblocks;
-import com.argxment.extendedfeatures.init.Items;
+import com.argxment.extendedfeatures.client.config.EFConfig;
+import com.argxment.extendedfeatures.client.init.Machines;
+import com.argxment.extendedfeatures.client.init.Multiblocks;
+import com.argxment.extendedfeatures.client.init.Items;
 import com.argxment.extendedfeatures.client.RecipeTypes;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
@@ -36,28 +37,28 @@ public class ExtendedFeaturesCore {
 
     public static final String MOD_ID = "extendedfeatures";
     public static final Logger LOGGER = LogManager.getLogger();
-    public static final GTRegistrate ExtraFeaturesRegister = GTRegistrate.create(ExtendedFeaturesCore.MOD_ID);
+    public static final GTRegistrate ExtendedFeaturesRegister = GTRegistrate.create(ExtendedFeaturesCore.MOD_ID);
 
     // Credits to Herr Jolo for making the creative tab!
-    public static RegistryEntry<CreativeModeTab> EF_TAB = ExtraFeaturesRegister
+    public static RegistryEntry<CreativeModeTab> EF_TAB = ExtendedFeaturesRegister
             .defaultCreativeTab(ExtendedFeaturesCore.MOD_ID,
                     builder -> builder
                             .displayItems(
                                     new GTCreativeModeTabs.RegistrateDisplayItemsGenerator(ExtendedFeaturesCore.MOD_ID,
-                                            ExtraFeaturesRegister))
-                            .title(ExtraFeaturesRegister.addLang("itemGroup", ExtendedFeaturesCore.id("creative_tab"),
+                                            ExtendedFeaturesRegister))
+                            .title(ExtendedFeaturesRegister.addLang("itemGroup", ExtendedFeaturesCore.id("creative_tab"),
                                     "GTCEu Extended Features"))
                             .icon(GTBlocks.ANTIMATTER_HAZARD_SIGN_BLOCK::asStack)
                             .build())
             .register();
 
     public ExtendedFeaturesCore() {
-        EFModulesConfig.init();
+        EFConfig.init();
 
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         Items.register(modEventBus);
 
-        ExtraFeaturesRegister.registerRegistrate();
+        ExtendedFeaturesRegister.registerRegistrate();
 
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::clientSetup);
@@ -119,6 +120,7 @@ public class ExtendedFeaturesCore {
 
     private void registerMachines(GTCEuAPI.RegisterEvent<ResourceLocation, MachineDefinition> event) {
         Multiblocks.init();
+        Machines.init();
     }
 
     public void registerSounds(GTCEuAPI.RegisterEvent<ResourceLocation, SoundEntry> event) {

@@ -1,4 +1,4 @@
-package com.argxment.extendedfeatures.client.disassembler;
+package com.argxment.extendedfeatures.client.multiblocks.disassembler;
 
 import com.gregtechceu.gtceu.api.item.MetaMachineItem;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;

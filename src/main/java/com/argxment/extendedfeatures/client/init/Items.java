@@ -1,7 +1,7 @@
-package com.argxment.extendedfeatures.init;
+package com.argxment.extendedfeatures.client.init;
 
 import com.argxment.extendedfeatures.ExtendedFeaturesCore;
-import com.argxment.extendedfeatures.config.EFModulesConfig;
+import com.argxment.extendedfeatures.client.config.EFConfig;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
@@ -15,12 +15,12 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.argxment.extendedfeatures.ExtendedFeaturesCore.ExtraFeaturesRegister;
+import static com.argxment.extendedfeatures.ExtendedFeaturesCore.ExtendedFeaturesRegister;
 
 public class Items {
 
     static {
-        ExtraFeaturesRegister.creativeModeTab(() -> ExtendedFeaturesCore.EF_TAB);
+        ExtendedFeaturesRegister.creativeModeTab(() -> ExtendedFeaturesCore.EF_TAB);
     }
 
     // Huge thanks to witherschat (monifactory contributor) for allowing me to use the universal circuit textures
@@ -42,11 +42,11 @@ public class Items {
             { GTValues.UEV, "uev_universal_circuit", "§2UEV §rUniversal Circuit",   CustomTags.UEV_CIRCUITS },
             { GTValues.UIV, "uiv_universal_circuit", "§aUIV §rUniversal Circuit",   CustomTags.UIV_CIRCUITS },
             { GTValues.UXV, "uxv_universal_circuit", "§eUXV §rUniversal Circuit",   CustomTags.UXV_CIRCUITS },
-            { GTValues.OpV, "opv_universal_circuit", "§9OpV §rUniversal Circuit", CustomTags.OpV_CIRCUITS },
+            { GTValues.OpV, "opv_universal_circuit", "§9OpV §rUniversal Circuit",   CustomTags.OpV_CIRCUITS },
     };
 
     static {
-        if (EFModulesConfig.INSTANCE.features.universalCircuits || GTCEu.isDataGen()) {
+        if (EFConfig.INSTANCE.features.universalCircuits || GTCEu.isDataGen()) {
             for (Object[] data : CIRCUIT_DATA) {
                 int tier = (int) data[0];
                 String registryName = (String) data[1];
@@ -54,7 +54,7 @@ public class Items {
                 @SuppressWarnings("unchecked")
                 TagKey<Item> tag = (TagKey<Item>) data[3];
 
-                UNIVERSAL_CIRCUITS[tier] = ExtraFeaturesRegister
+                UNIVERSAL_CIRCUITS[tier] = ExtendedFeaturesRegister
                         .item(registryName, Item::new)
                         .lang(displayName)
                         .model((ctx, prov) -> prov.generated(ctx, prov.modLoc("item/universal/" + registryName)))

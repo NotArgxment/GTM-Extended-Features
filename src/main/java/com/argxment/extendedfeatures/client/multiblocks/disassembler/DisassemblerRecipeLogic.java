@@ -1,4 +1,4 @@
-package com.argxment.extendedfeatures.client.disassembler;
+package com.argxment.extendedfeatures.client.multiblocks.disassembler;
 
 import com.argxment.extendedfeatures.client.RecipeTypes;
 import com.gregtechceu.gtceu.api.GTValues;

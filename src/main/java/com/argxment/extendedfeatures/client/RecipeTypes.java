@@ -1,7 +1,7 @@
 package com.argxment.extendedfeatures.client;
 
 import com.argxment.extendedfeatures.ExtendedFeaturesCore;
-import com.argxment.extendedfeatures.client.disassembler.DisassemblerRecipeLogic;
+import com.argxment.extendedfeatures.client.multiblocks.disassembler.DisassemblerRecipeLogic;
 
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
@@ -22,7 +22,8 @@ public class RecipeTypes {
 
     public static GTRecipeType ROCK_PROCESSING;
     public static GTRecipeType DISASSEMBLER;
-    public static GTRecipeType GREENHOUSE;
+    public static GTRecipeType GREENHOUSE_WOOD;
+    public static GTRecipeType GREENHOUSE_CROPS;
 
     // Not in use for now
     // public static GTRecipeType CHEMICAL_REDUCTION;
@@ -49,9 +50,15 @@ public class RecipeTypes {
                 .setSound(GTSoundEntries.BATH);
  */
 
-        GREENHOUSE = register("greenhouse_machine", MULTIBLOCK)
+        GREENHOUSE_WOOD = register("greenhouse_wood_recipes", MULTIBLOCK)
                 .setEUIO(IO.IN)
-                .setMaxIOSize(3, 6, 2, 2)
+                .setMaxIOSize(3, 3, 1, 0)
+                .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+                .setSound(GTSoundEntries.MIXER);
+
+        GREENHOUSE_CROPS = register("greenhouse_crop_recipes", MULTIBLOCK)
+                .setEUIO(IO.IN)
+                .setMaxIOSize(3, 3, 1, 0)
                 .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
                 .setSound(GTSoundEntries.MIXER);
 

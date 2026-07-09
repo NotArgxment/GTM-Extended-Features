@@ -1,7 +1,7 @@
-package com.argxment.extendedfeatures.client.disassembler;
+package com.argxment.extendedfeatures.client.multiblocks.disassembler;
 
-import com.argxment.extendedfeatures.config.EFModulesConfig;
-import com.argxment.extendedfeatures.init.Items;
+import com.argxment.extendedfeatures.client.config.EFConfig;
+import com.argxment.extendedfeatures.client.init.Items;
 
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.GTValues;
@@ -28,6 +28,17 @@ import java.util.Optional;
 
 public class RecipeResolver {
 
+    // Tools tags exceptions since it should never be returned in a normal disassembler recipe
+    public static final java.util.Set<TagKey<Item>> TOOL_TAGS = java.util.Set.of(
+            CustomTags.CRAFTING_WRENCHES,
+            CustomTags.CRAFTING_HAMMERS,
+            CustomTags.CRAFTING_FILES,
+            CustomTags.CRAFTING_SCREWDRIVERS,
+            CustomTags.CRAFTING_CROWBARS,
+            CustomTags.CRAFTING_SAWS,
+            CustomTags.CRAFTING_MALLETS
+    );
+
     // This piece of code will try to match any circuit tag in the recipe to convert them into Universal circuits
     // So avoids giving a bad/good circuit, instead gives all of them in just 1
     public static final Map<TagKey<Item>, ItemStack> CIRCUIT_TAG_TO_UNIVERSAL = buildCircuitTagMap();
@@ -35,7 +46,7 @@ public class RecipeResolver {
     private static Map<TagKey<Item>, ItemStack> buildCircuitTagMap() {
         Map<TagKey<Item>, ItemStack> map = new HashMap<>();
 
-        if (!EFModulesConfig.INSTANCE.features.universalCircuits) {
+        if (!EFConfig.INSTANCE.features.universalCircuits) {
             return Map.of();
         }
 
@@ -71,9 +82,28 @@ public class RecipeResolver {
         for (GTRecipe recipe : level.getRecipeManager().getAllRecipesFor(recipeType)) {
             if (!recipeProducesItem(recipe, targetStack)) continue;
 
+            if (recipeRequiresTool(recipe)) continue;
+
             return Optional.of(extractItemInputs(recipe));
         }
         return Optional.empty();
+    }
+
+    private static boolean recipeRequiresTool(GTRecipe recipe) {
+        for (Content content : recipe.getInputContents(ItemRecipeCapability.CAP)) {
+            if (!(content.content instanceof Ingredient ingredient)) continue;
+            if (requiresTool(ingredient)) return true;
+        }
+        return false;
+    }
+
+    public static boolean requiresTool(Ingredient ingredient) {
+        for (ItemStack stack : ingredient.getItems()) {
+            for (TagKey<Item> tag : TOOL_TAGS) {
+                if (stack.is(tag)) return true;
+            }
+        }
+        return false;
     }
 
     private static boolean recipeProducesItem(GTRecipe recipe, ItemStack targetStack) {

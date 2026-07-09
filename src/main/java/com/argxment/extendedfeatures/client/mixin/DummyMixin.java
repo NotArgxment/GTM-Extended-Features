@@ -1,4 +1,4 @@
-package com.argxment.extendedfeatures.mixin;
+package com.argxment.extendedfeatures.client.mixin;
 
 import net.minecraft.world.level.levelgen.WorldgenRandom;
 

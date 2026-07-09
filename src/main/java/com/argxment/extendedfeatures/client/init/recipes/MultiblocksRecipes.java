@@ -1,12 +1,10 @@
-package com.argxment.extendedfeatures.init.recipes;
+package com.argxment.extendedfeatures.client.init.recipes;
 
 import com.gregtechceu.gtceu.api.GTValues;
 
 import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.fluids.FluidStack;
 
 import java.util.function.Consumer;
 

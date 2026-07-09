@@ -1,4 +1,4 @@
-package com.argxment.extendedfeatures.client.disassembler;
+package com.argxment.extendedfeatures.client.multiblocks.disassembler;
 
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 
@@ -92,8 +92,16 @@ public class ComponentResolver {
             if (result.isEmpty() || !ItemStack.isSameItem(result, targetStack)) continue;
 
             List<ItemStack> components = new ArrayList<>();
+            boolean requiresTool = false;
             for (Ingredient ingredient : recipe.getIngredients()) {
                 if (ingredient.isEmpty()) continue;
+
+                // Skip recipes that require a tool (wrench, hammer, file, screwdriver, crowbar) as an
+                // ingredient. Tools aren't real components and shouldn't be produced/required by disassembly.
+                if (RecipeResolver.requiresTool(ingredient)) {
+                    requiresTool = true;
+                    break;
+                }
 
                 Optional<ItemStack> circuitReplacement = RecipeResolver.findUniversalCircuitReplacement(ingredient);
                 if (circuitReplacement.isPresent()) {
@@ -106,6 +114,9 @@ public class ComponentResolver {
                     components.add(matches[0].copy());
                 }
             }
+
+            if (requiresTool) continue;
+
             return Optional.of(components);
         }
         return Optional.empty();

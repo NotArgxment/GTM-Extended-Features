@@ -1,4 +1,4 @@
-package com.argxment.extendedfeatures.config;
+package com.argxment.extendedfeatures.client.config;
 
 import com.argxment.extendedfeatures.ExtendedFeaturesCore;
 import dev.toma.configuration.Configuration;
@@ -8,13 +8,13 @@ import dev.toma.configuration.config.Configurable;
 import dev.toma.configuration.config.format.ConfigFormats;
 
 @Config(id = ExtendedFeaturesCore.MOD_ID)
-public class EFModulesConfig {
+public class EFConfig {
 
-    public static EFModulesConfig INSTANCE;
-    public static ConfigHolder<EFModulesConfig> CONFIG_HOLDER;
+    public static EFConfig INSTANCE;
+    public static ConfigHolder<EFConfig> CONFIG_HOLDER;
 
     public static void init() {
-        CONFIG_HOLDER = Configuration.registerConfig(EFModulesConfig.class, ConfigFormats.yaml());
+        CONFIG_HOLDER = Configuration.registerConfig(EFConfig.class, ConfigFormats.yaml());
         INSTANCE = CONFIG_HOLDER.getConfigInstance();
     }
 
@@ -65,5 +65,13 @@ public class EFModulesConfig {
         @Configurable
         @Configurable.Comment({ "Whether the Disassembler is Enabled." })
         public boolean universalCircuits = true;
+
+        @Configurable
+        @Configurable.Comment({ "Whether the Expanded Data Access Hatches are Enabled." })
+        public boolean expandedDataAccessHatches = true;
+
+        @Configurable
+        @Configurable.Comment({ "Whether the Expanded Databank is Enabled." })
+        public boolean edEnabled = true;
     }
 }
