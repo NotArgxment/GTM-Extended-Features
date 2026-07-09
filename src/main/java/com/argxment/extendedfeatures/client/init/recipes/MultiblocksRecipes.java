@@ -17,11 +17,18 @@ import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 public class MultiblocksRecipes {
 
     /**
-     * Actual controller recipes are supposed to be made by modpack developers
-     * This file will contain only recipes for the custom recipes types
+     * Actual controller recipes are supposed to be made by modpack developers.
+     * This file contains the recipes for custom recipe types
      */
 
     public static void init(Consumer<FinishedRecipe> provider) {
+
+        // ---------------------------------------------------------
+        // Rock Processing Facility Recipes
+        // ---------------------------------------------------------
+
+        final int rpfTime = 2000;
+        final var rpfEnergy = GTValues.VA[GTValues.EV];
 
         ROCK_PROCESSING.recipeBuilder("deepslate_processing")
                 .inputItems(new ItemStack(Blocks.DEEPSLATE), 1)
@@ -32,8 +39,8 @@ public class MultiblocksRecipes {
                 .outputItems(dust, Silicon, 1)
                 .outputFluids(Fluorine.getFluid(L * 2))
                 .outputFluids(Oxygen.getFluid(L * 4))
-                .duration(2500)
-                .EUt(GTValues.VA[GTValues.EV])
+                .duration(rpfTime)
+                .EUt(rpfEnergy)
                 .save(provider);
 
         ROCK_PROCESSING.recipeBuilder("andesite_processing")
@@ -43,8 +50,8 @@ public class MultiblocksRecipes {
                 .outputItems(dust, Silicon, 1)
                 .outputFluids(Hydrogen.getFluid(L * 2))
                 .outputFluids(Oxygen.getFluid(L * 4))
-                .duration(2500)
-                .EUt(GTValues.VA[GTValues.EV])
+                .duration(rpfTime)
+                .EUt(rpfEnergy)
                 .save(provider);
 
         ROCK_PROCESSING.recipeBuilder("diorite_processing")
@@ -54,8 +61,40 @@ public class MultiblocksRecipes {
                 .outputItems(dust, Sulfur, 1)
                 .outputFluids(Water.getFluid(L * 4))
                 .outputFluids(Oxygen.getFluid(L * 2))
-                .duration(2500)
-                .EUt(GTValues.VA[GTValues.EV])
+                .duration(rpfTime)
+                .EUt(rpfEnergy)
+                .save(provider);
+
+        ROCK_PROCESSING.recipeBuilder("granite_processing")
+                .inputItems(new ItemStack(Blocks.GRANITE), 1)
+                .inputFluids(Lubricant.getFluid(L * 4))
+                .outputItems(dust, SiliconDioxide, 1)
+                .outputItems(dust, Calcite, 1)
+                .outputItems(dust, Flint, 1)
+                .duration(rpfTime)
+                .EUt(rpfEnergy)
+                .save(provider);
+
+        ROCK_PROCESSING.recipeBuilder("end_stone_processing")
+                .inputItems(new ItemStack(Blocks.END_STONE), 1)
+                .inputFluids(Lubricant.getFluid(L * 4))
+                .chancedOutput(new ItemStack(Blocks.SAND), 8000, 5)
+                .chancedOutput(dust, Tungstate, 1, 5000, 5)
+                .chancedOutput(dust, Platinum, 1, 2500, 5)
+                .outputFluids(Helium.getFluid(L))
+                .duration(rpfTime)
+                .EUt(rpfEnergy)
+                .save(provider);
+
+        ROCK_PROCESSING.recipeBuilder("netherrack_processing")
+                .inputItems(new ItemStack(Blocks.NETHERRACK), 1)
+                .inputFluids(Lubricant.getFluid(L * 4))
+                .chancedOutput(dust, Coal, 1, 6500, 25)
+                .chancedOutput(dust, Sulfur, 1, 8000, 50)
+                .chancedOutput(dust, Redstone, 1, 5000, 50)
+                .chancedOutput(dust, Gold, 1, 2000, 10)
+                .duration(rpfTime)
+                .EUt(rpfEnergy)
                 .save(provider);
 
         ROCK_PROCESSING.recipeBuilder("obsidian_processing")
@@ -65,8 +104,8 @@ public class MultiblocksRecipes {
                 .outputItems(dust, Iron, 1)
                 .outputItems(dust, Silicon, 1)
                 .outputFluids(Oxygen.getFluid(L * 3))
-                .duration(2500)
-                .EUt(GTValues.VA[GTValues.EV])
+                .duration(rpfTime)
+                .EUt(rpfEnergy)
                 .save(provider);
     }
 }
