@@ -42,3 +42,8 @@ Textures made by Witherstar (Monifactory Contributor)
 - Oil Refinery: Skip the regular petrochem lines to get direct outputs
 - Large Air Reprocessor: 1-Step air processing (Normal air, Nether air and Ender Air)
 - Parallel Gas Collector: Avoid spamming singleblock gas collectors
+
+# Developer Utilities can be found here:
+[General Documentation](https://github.com/NotArgxment/GTM-Extended-Features/blob/main/src/main/java/com/argxment/extendedfeatures/client/init/Documentation.md)
+
+[KubeJS Examples](https://github.com/NotArgxment/GTM-Extended-Features/blob/main/src/main/java/com/argxment/extendedfeatures/client/init/KubeJSExamples.md)
