@@ -3,6 +3,8 @@
 1. Circuits go from 1 to 32
 2. TIER = LV, MV, HV, EV, IV, LuV, ZPM, UV, UHV, UEV, UIV, UXV, OpV, MAX
 3. Duration must be in ticks, 1t = 50ms
+4. Most multiblocks inside the mod re-use the same recipe types as GTCEu, so any recipe added for those GTCEu multiblocks are mirrored into the main multiblocks!
+5. Be careful when making recipes for the disassembler
 
 ### Wood Recipes (Greenhouse)
 ```javascript
