@@ -108,3 +108,14 @@ const RecipeModifiers = Java.loadClass('com.argxment.extendedfeatures.client.ini
         );
     }
 ```
+```java
+    // Less complex example
+    .tooltipBuilder((stack, list) -> {
+        list.add(
+            Component.translatable("extendedfeatures.fancytooltip.tooltip.0")
+                .append(
+                    Component.translatable("extendedfeatures.fancytooltip.tooltip.3")
+                        .withStyle(CustomTooltipStyles.HV_GRADIENT))
+        );
+    })
+```
