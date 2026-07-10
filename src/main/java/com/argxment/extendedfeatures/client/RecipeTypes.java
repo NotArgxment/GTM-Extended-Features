@@ -1,7 +1,7 @@
 package com.argxment.extendedfeatures.client;
 
 import com.argxment.extendedfeatures.ExtendedFeaturesCore;
-import com.argxment.extendedfeatures.client.multiblocks.disassembler.DisassemblerRecipeLogic;
+import com.argxment.extendedfeatures.client.init.disassembler_logic.DisassemblerRecipeLogic;
 
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;

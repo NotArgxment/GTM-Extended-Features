@@ -1,8 +1,8 @@
 package com.argxment.extendedfeatures;
 
-import com.argxment.extendedfeatures.client.multiblocks.greenhouse.CropRecipes;
+import com.argxment.extendedfeatures.client.init.recipes.multiblocks.greenhouse.CropRecipes;
 import com.argxment.extendedfeatures.client.init.recipes.ItemRecipes;
-import com.argxment.extendedfeatures.client.multiblocks.greenhouse.WoodRecipes;
+import com.argxment.extendedfeatures.client.init.recipes.multiblocks.greenhouse.WoodRecipes;
 import com.gregtechceu.gtceu.api.addon.GTAddon;
 import com.gregtechceu.gtceu.api.addon.IGTAddon;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;

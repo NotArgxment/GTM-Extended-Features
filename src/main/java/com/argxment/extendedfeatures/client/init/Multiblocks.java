@@ -4,7 +4,7 @@ import com.argxment.extendedfeatures.ExtendedFeaturesCore;
 import com.argxment.extendedfeatures.client.config.EFConfig;
 import com.argxment.extendedfeatures.client.init.utils.CoilWorkableMultiblockLaser;
 import com.argxment.extendedfeatures.client.RecipeTypes;
-import com.argxment.extendedfeatures.client.multiblocks.disassembler.DisassemblyMachine;
+import com.argxment.extendedfeatures.client.init.disassembler_logic.DisassemblyMachine;
 import com.argxment.extendedfeatures.client.init.utils.CustomTooltipStyles;
 import com.argxment.extendedfeatures.client.init.utils.RecipeModifiers;
 
@@ -47,9 +47,6 @@ import static com.argxment.extendedfeatures.client.MachineUtils.TieredMultis;
 import static com.argxment.extendedfeatures.client.init.utils.RecipeModifiers.SIMPLE_PARALLEL;
 
 public class Multiblocks {
-
-    public static void init() {
-    }
 
     static {
         ExtendedFeaturesRegister.creativeModeTab(() -> ExtendedFeaturesCore.EF_TAB);
@@ -660,4 +657,6 @@ public class Multiblocks {
                     .register();
         }
     }
+
+    public static void init() {}
 }

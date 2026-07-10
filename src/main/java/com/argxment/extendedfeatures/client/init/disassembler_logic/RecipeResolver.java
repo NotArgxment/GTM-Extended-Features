@@ -1,4 +1,4 @@
-package com.argxment.extendedfeatures.client.multiblocks.disassembler;
+package com.argxment.extendedfeatures.client.init.disassembler_logic;
 
 import com.argxment.extendedfeatures.client.config.EFConfig;
 import com.argxment.extendedfeatures.client.init.Items;
