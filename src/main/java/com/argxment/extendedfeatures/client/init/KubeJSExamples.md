@@ -49,7 +49,7 @@ ServerEvents.recipes(event => {
 ServerEvents.recipes(event => {
     event.recipes.extendedfeatures.rock_processing_facility('...')
         .itemInputs('...')
-	.inputFluids('...')
+		.inputFluids('...')
         .itemOutputs('...')
         .duration(t)
         .EUt(GTValues.VA[GTValues.TIER])
