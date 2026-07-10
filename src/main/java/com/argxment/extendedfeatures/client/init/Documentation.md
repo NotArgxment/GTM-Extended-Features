@@ -78,3 +78,33 @@ const RecipeModifiers = Java.loadClass('com.argxment.extendedfeatures.client.ini
 ### Gradients based on the GTCEu Energy Tiers (LV -> MAX)
 
 <img width="482" height="458" alt="Howeachlooks-ezgif com-video-to-gif-converter (1)" src="https://github.com/user-attachments/assets/f8a2ef73-22e1-43cf-aab7-d034d8df3da2" />
+
+### How to use
+`TooltipHelper.RAINBOW_HSL_SLOW` can be replaced with `CustomTooltipStyles.(TIER)_GRADIENT`
+> Check [CustomTooltipStyles.java](https://github.com/NotArgxment/GTM-Extended-Features/blob/main/src/main/java/com/argxment/extendedfeatures/client/init/utils/CustomTooltipStyles.java) for the tier you want to use as tooltip
+
+### Examples
+```java
+    // Advanced Fusion Reactors tooltipBuilder example
+    .tooltipBuilder((stack, list) -> list.add(
+        Component.translatable("extendedfeatures.%s_advanced_fusion_reactor.tooltip.0"
+            .formatted(VN[tier].toLowerCase(Locale.ROOT)))
+        .append(
+            Component.translatable("extendedfeatures.%s_advanced_fusion_reactor.tooltip.1"
+                .formatted(VN[tier].toLowerCase(Locale.ROOT)))
+                    .withStyle(CustomTooltipStyles.forTier(tier)))))
+```
+```java
+    // Logic behind the "tiered tooltip" 
+    public static final Map<Integer, UnaryOperator<Style>> TIER_GRADIENTS = Map.of(
+            GTValues.LuV, LuV_GRADIENT,
+            GTValues.ZPM, ZPM_GRADIENT,
+            GTValues.UV, UV_GRADIENT
+    );
+
+    public static UnaryOperator<Style> forTier(int tier) {
+        return TIER_GRADIENTS.getOrDefault(
+                tier, LuV_GRADIENT
+        );
+    }
+```
