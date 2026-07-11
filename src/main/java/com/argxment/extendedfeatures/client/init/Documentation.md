@@ -1,7 +1,4 @@
-## Developer utilities
-
-If you're building your own GTCEu addon and want to depend on this one, it exposes reusable utilities in both Java and KubeJS.
-
+# Developer utilities
 ### Laser Hatch-capable multiblocks (Java only)
 
 Custom formation logic for multiblocks that can accept either Laser Hatches or Energy Hatches, available for both `Workable` and `CoilWorkable` multiblock types:
