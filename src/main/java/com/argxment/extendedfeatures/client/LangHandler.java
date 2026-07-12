@@ -52,48 +52,34 @@ public class LangHandler {
         replace(provider, "config.extendedfeatures.option.EdaEnabled", "§7Expanded Data Bank");
         replace(provider, "config.extendedfeatures.option.universalCircuits", "§7Universal Circuits");
         replace(provider, "config.extendedfeatures.option.expandedDataAccessHatches", "§7Expanded Data Access Hatches");
-        replace(provider, "config.extendedfeatures.option.wirelessUtils",
-                "§7Wireless Optical T/R & Cloud Transmission Database");
+        replace(provider, "config.extendedfeatures.option.wirelessUtils", "§7Wireless Optical T/R & Cloud Transmission Database");
 
         // Optical
-        replace(provider, "extendedfeatures.machine.wireless_optical_hatch.tooltip.range",
-                "Scan range: §f%s blocks§7 (right-click with an empty hand)");
-        replace(provider, "extendedfeatures.machine.wireless_optical_hatch.tooltip.connections",
-                "Max linked receivers: §f%s");
-        replace(provider, "extendedfeatures.machine.wireless_optical_hatch.tooltip.scan",
-                "Links to nearby unlinked receivers of the same tier, and to any physical Data Access Hatch in range");
-        replace(provider, "extendedfeatures.machine.wireless_optical_hatch.tooltip.receiver",
-                "Gets linked automatically when scanned by a Wireless Transmission Hatch of the same tier");
-        replace(provider, "extendedfeatures.machine.wireless_optical_hatch.not_formed",
-                "This multiblock is not formed - form the structure before scanning");
-        replace(provider, "extendedfeatures.machine.wireless_optical_hatch.linked_summary",
-                "Linked %s new receiver(s) and %s new data hatch(es)");
-        replace(provider, "extendedfeatures.machine.wireless_optical_hatch.no_receivers_found",
-                "No new compatible receivers or data hatches found in range");
+        replace(provider, "extendedfeatures.machine.wireless_optical_hatch.tooltip.range", "Scan range: §f%s blocks§7 (right-click with an empty hand)");
+        replace(provider, "extendedfeatures.machine.wireless_optical_hatch.tooltip.connections", "Max linked receivers: §f%s");
+        replace(provider, "extendedfeatures.machine.wireless_optical_hatch.tooltip.scan", "Links to nearby unlinked receivers of the same tier, and to any physical Data Access Hatch in range");
+        replace(provider, "extendedfeatures.machine.wireless_optical_hatch.tooltip.receiver", "Gets linked automatically when scanned by a Wireless Transmission Hatch of the same tier");
+        replace(provider, "extendedfeatures.machine.wireless_optical_hatch.not_formed", "This multiblock is not formed - form the structure before scanning");
+        replace(provider, "extendedfeatures.machine.wireless_optical_hatch.linked_summary", "Linked %s new receiver(s) and %s new data hatch(es)");
+        replace(provider, "extendedfeatures.machine.wireless_optical_hatch.no_receivers_found", "No new compatible receivers or data hatches found in range");
     }
 
     private static void Tooltips(RegistrateLangProvider provider) {
-        provider.add("extendedfeatures.compact_assembly_line.tooltip.0",
-                "§7This machine performs the work of the Assembly Line without §9Ordered Inputs");
-        provider.add("extendedfeatures.compact_assembly_line.tooltip.1",
-                "§fOnly allows §bone §fenergy hatch and performs §b8 Recipes §fin parallel");
+        provider.add("extendedfeatures.compact_assembly_line.tooltip.0", "§7This machine performs the work of the Assembly Line without §9Ordered Inputs");
+        provider.add("extendedfeatures.compact_assembly_line.tooltip.1", "§fOnly allows §bone §fenergy hatch and performs §b8 Recipes §fin parallel");
 
         provider.add("extendedfeatures.enlarged_reaction_chamber.tooltip.0", "§fEven larger Black Box Reactor");
-        provider.add("extendedfeatures.enlarged_reaction_chamber.tooltip.1",
-                "§7This machine is an improved version of the Large Chemical reactor");
+        provider.add("extendedfeatures.enlarged_reaction_chamber.tooltip.1", "§7This machine is an improved version of the Large Chemical reactor");
         provider.add("extendedfeatures.enlarged_reaction_chamber_tooltip.2", "§7Runs §a16 recipes §7in parallel");
 
-        provider.add("extendedfeatures.rock_processing_facility.tooltip.0",
-                "§7An all in one processing facility, turns the rocks you normally get from the rock breaker into their direct processed outputs");
+        provider.add("extendedfeatures.rock_processing_facility.tooltip.0", "§7An all in one processing facility, turns the rocks you normally get from the rock breaker into their direct processed outputs");
         provider.add("extendedfeatures.rock_processing_facility.tooltip.1", "§fAll recipes have §6Ranged Outputs");
 
         provider.add("extendedfeatures.greenhouse.tooltip.0", "§7Designed to make wood generation easier");
         provider.add("extendedfeatures.greenhouse.tooltip.1", "§fRuns §g8 Recipes §fin parallel");
 
-        provider.add("extendedfeatures.disassembler.tooltip.0",
-                "§7Allows any type of §emachine/controller §7to be recycled, returning what was used for that recipe");
-        provider.add("extendedfeatures.disassembler.tooltip.1",
-                "§7Each tier of machine has to be processed using its own energy hatch");
+        provider.add("extendedfeatures.disassembler.tooltip.0", "§7Allows any type of §emachine/controller §7to be recycled, returning what was used for that recipe");
+        provider.add("extendedfeatures.disassembler.tooltip.1", "§7Each tier of machine has to be processed using its own energy hatch");
 
         provider.add("extendedfeatures.luv_advanced_fusion_reactor.tooltip.0", "§fRuns");
         provider.add("extendedfeatures.luv_advanced_fusion_reactor.tooltip.1", " 4 Parallels");

@@ -90,24 +90,15 @@ public class Multiblocks {
                             GTRecipeModifiers::ebfOverclock)
                     .appearanceBlock(CASING_STRESS_PROOF)
                     .pattern(definition -> FactoryBlockPattern.start()
-                            .aisle("   CCC   ", "   XXX   ", "   XXX   ", "   EEE   ", "   XXX   ", "   XXX   ",
-                                    "   CCC   ")
-                            .aisle(" BBBCBBB ", " XXTTTXX ", " XXTTTXX ", " EETFTEE ", " XXTTTXX ", " XXTTTXX ",
-                                    " BBBCBBB ")
-                            .aisle(" BBBCBBB ", " XETTTEX ", " XETTTEX ", " EETFTEE ", " XETTTEX ", " XETTTEX ",
-                                    " BEECEEB ")
-                            .aisle("CBBCCCBBC", "XTTTTTTTX", "XTTTTTTTX", "ETTTFTTTE", "XTTTTTTTX", "XTTTTTTTX",
-                                    "CBECCCEBC")
-                            .aisle("CCCCECCCC", "XTTTFTTTX", "XTTTFTTTX", "EFFFFFFFE", "XTTTFTTTX", "XTTTFTTTX",
-                                    "CCCCLCCCC")
-                            .aisle("CBBCCCBBC", "XTTTTTTTX", "XTTTTTTTX", "ETTTFTTTE", "XTTTTTTTX", "XTTTTTTTX",
-                                    "CBECCCEBC")
-                            .aisle(" BBBCBBB ", " XETTTEX ", " XETTTEX ", " EETFTEE ", " XETTTEX ", " XETTTEX ",
-                                    " BEECEEB ")
-                            .aisle(" BBBCBBB ", " XXTTTXX ", " XXTTTXX ", " EETFTEE ", " XXTTTXX ", " XXTTTXX ",
-                                    " BBBCBBB ")
-                            .aisle("   C@C   ", "   XXX   ", "   XXX   ", "   EEE   ", "   XXX   ", "   XXX   ",
-                                    "   CCC   ")
+                            .aisle("   CCC   ", "   XXX   ", "   XXX   ", "   EEE   ", "   XXX   ", "   XXX   ", "   CCC   ")
+                            .aisle(" BBBCBBB ", " XXTTTXX ", " XXTTTXX ", " EETFTEE ", " XXTTTXX ", " XXTTTXX ", " BBBCBBB ")
+                            .aisle(" BBBCBBB ", " XETTTEX ", " XETTTEX ", " EETFTEE ", " XETTTEX ", " XETTTEX ", " BEECEEB ")
+                            .aisle("CBBCCCBBC", "XTTTTTTTX", "XTTTTTTTX", "ETTTFTTTE", "XTTTTTTTX", "XTTTTTTTX", "CBECCCEBC")
+                            .aisle("CCCCECCCC", "XTTTFTTTX", "XTTTFTTTX", "EFFFFFFFE", "XTTTFTTTX", "XTTTFTTTX", "CCCCLCCCC")
+                            .aisle("CBBCCCBBC", "XTTTTTTTX", "XTTTTTTTX", "ETTTFTTTE", "XTTTTTTTX", "XTTTTTTTX", "CBECCCEBC")
+                            .aisle(" BBBCBBB ", " XETTTEX ", " XETTTEX ", " EETFTEE ", " XETTTEX ", " XETTTEX ", " BEECEEB ")
+                            .aisle(" BBBCBBB ", " XXTTTXX ", " XXTTTXX ", " EETFTEE ", " XXTTTXX ", " XXTTTXX ", " BBBCBBB ")
+                            .aisle("   C@C   ", "   XXX   ", "   XXX   ", "   EEE   ", "   XXX   ", "   XXX   ", "   CCC   ")
                             .where('@', controller(blocks(definition.get())))
                             .where('C', blocks(CASING_STRESS_PROOF.get())
                                     .or(Predicates.abilities(PartAbility.IMPORT_ITEMS, PartAbility.IMPORT_FLUIDS,
@@ -498,39 +489,17 @@ public class Multiblocks {
                             OC_NON_PERFECT)
                     .appearanceBlock(CASING_STEEL_SOLID)
                     .pattern(definition -> FactoryBlockPattern.start()
-                            .aisle("    BBB    ", "    DDD    ", "    EDE    ", "    EDE    ", "    EDE    ",
-                                    "    EDE    ", "    EDE    ", "    EDE    ", "    EDE    ", "           ",
-                                    "           ", "           ")
-                            .aisle("  BBDDDBB  ", "  DDCCCDD  ", "  DE###ED  ", "  DE###ED  ", "  DE###ED  ",
-                                    "  DE###ED  ", "  DE###ED  ", "  DE###ED  ", "  DE###ED  ", "    EDE    ",
-                                    "    EDE    ", "           ")
-                            .aisle(" BDDDDDDDB ", " DCCCCCCCD ", " DF#####FD ", " DF#####FD ", " DF#####FD ",
-                                    " DF#####FD ", " DF#####FD ", " DF#####FD ", " DF#####FD ", "  DE###ED  ",
-                                    "  DEE EED  ", "     D     ")
-                            .aisle(" BDDDDDDDB ", " DCCGGGCCD ", " E#######E ", " E#######E ", " E#######E ",
-                                    " E#######E ", " E##HHH##E ", " E##HHH##E ", " E##HHH##E ", "  E#####E  ",
-                                    "  E#####E  ", "   DEDED   ")
-                            .aisle("BDDDDDDDDDB", "DCCGGGGGCCD", "E###III###E", "E####I####E", "E#########E",
-                                    "E####H####E", "E##HHHHH##E", "E##HHHHH##E", "E##HHHHH##E", " E###H###E ",
-                                    " EE#####EE ", "   EDDDE   ")
-                            .aisle("BDDDDDDDDDB", "DCCGGGGGCCD", "D###III###D", "D###III###D", "D####I####D",
-                                    "D###HIH###D", "D##HHIHH##D", "D##HHIHH##D", "D##HHIHH##D", " D##HHH##D ",
-                                    " D#######D ", "  DDDDDDD  ")
-                            .aisle("BDDDDDDDDDB", "DCCGGGGGCCD", "E###III###E", "E####I####E", "E#########E",
-                                    "E####H####E", "E##HHHHH##E", "E##HHHHH##E", "E##HHHHH##E", " E###H###E ",
-                                    " EE#####EE ", "   EDDDE   ")
-                            .aisle(" BDDDDDDDB ", " DCCGGGCCD ", " E#######E ", " E#######E ", " E#######E ",
-                                    " E#######E ", " E##HHH##E ", " E##HHH##E ", " E##HHH##E ", "  E#####E  ",
-                                    "  E#####E  ", "   DEDED   ")
-                            .aisle(" BDDDDDDDB ", " DCCCCCCCD ", " DF#####FD ", " DF#####FD ", " DF#####FD ",
-                                    " DF#####FD ", " DF#####FD ", " DF#####FD ", " DF#####FD ", "  DE###ED  ",
-                                    "  DEE EED  ", "     D     ")
-                            .aisle("  BBDDDBB  ", "  DDCCCDD  ", "  DE###ED  ", "  DE###ED  ", "  DE###ED  ",
-                                    "  DE###ED  ", "  DE###ED  ", "  DE###ED  ", "  DE###ED  ", "    EDE    ",
-                                    "    EDE    ", "           ")
-                            .aisle("    BBB    ", "    D@D    ", "    EDE    ", "    EDE    ", "    EDE    ",
-                                    "    EDE    ", "    EDE    ", "    EDE    ", "    EDE    ", "           ",
-                                    "           ", "           ")
+                            .aisle("    BBB    ", "    DDD    ", "    EDE    ", "    EDE    ", "    EDE    ", "    EDE    ", "    EDE    ", "    EDE    ", "    EDE    ", "           ", "           ", "           ")
+                            .aisle("  BBDDDBB  ", "  DDCCCDD  ", "  DE###ED  ", "  DE###ED  ", "  DE###ED  ", "  DE###ED  ", "  DE###ED  ", "  DE###ED  ", "  DE###ED  ", "    EDE    ", "    EDE    ", "           ")
+                            .aisle(" BDDDDDDDB ", " DCCCCCCCD ", " DF#####FD ", " DF#####FD ", " DF#####FD ", " DF#####FD ", " DF#####FD ", " DF#####FD ", " DF#####FD ", "  DE###ED  ", "  DEE#EED  ", "     D     ")
+                            .aisle(" BDDDDDDDB ", " DCCGGGCCD ", " E#######E ", " E#######E ", " E#######E ", " E#######E ", " E##HHH##E ", " E##HHH##E ", " E##HHH##E ", "  E#####E  ", "  E#####E  ", "   DEDED   ")
+                            .aisle("BDDDDDDDDDB", "DCCGGGGGCCD", "E###III###E", "E####I####E", "E#########E", "E####H####E", "E##HHHHH##E", "E##HHHHH##E", "E##HHHHH##E", " E###H###E ", " EE#####EE ", "   EDDDE   ")
+                            .aisle("BDDDDDDDDDB", "DCCGGGGGCCD", "D###III###D", "D###III###D", "D####I####D", "D###HIH###D", "D##HHIHH##D", "D##HHIHH##D", "D##HHIHH##D", " D##HHH##D ", " D#######D ", "  DDDDDDD  ")
+                            .aisle("BDDDDDDDDDB", "DCCGGGGGCCD", "E###III###E", "E####I####E", "E#########E", "E####H####E", "E##HHHHH##E", "E##HHHHH##E", "E##HHHHH##E", " E###H###E ", " EE#####EE ", "   EDDDE   ")
+                            .aisle(" BDDDDDDDB ", " DCCGGGCCD ", " E#######E ", " E#######E ", " E#######E ", " E#######E ", " E##HHH##E ", " E##HHH##E ", " E##HHH##E ", "  E#####E  ", "  E#####E  ", "   DEDED   ")
+                            .aisle(" BDDDDDDDB ", " DCCCCCCCD ", " DF#####FD ", " DF#####FD ", " DF#####FD ", " DF#####FD ", " DF#####FD ", " DF#####FD ", " DF#####FD ", "  DE###ED  ", "  DEE#EED  ", "     D     ")
+                            .aisle("  BBDDDBB  ", "  DDCCCDD  ", "  DE###ED  ", "  DE###ED  ", "  DE###ED  ", "  DE###ED  ", "  DE###ED  ", "  DE###ED  ", "  DE###ED  ", "    EDE    ", "    EDE    ", "           ")
+                            .aisle("    BBB    ", "    D@D    ", "    EDE    ", "    EDE    ", "    EDE    ", "    EDE    ", "    EDE    ", "    EDE    ", "    EDE    ", "           ", "           ", "           ")
                             .where('@', controller(blocks(definition.get())))
                             .where(' ', any())
                             .where('#', air())
@@ -573,39 +542,17 @@ public class Multiblocks {
                     .recipeModifiers(PARALLEL_HATCH, OC_NON_PERFECT)
                     .appearanceBlock(CASING_TUNGSTENSTEEL_ROBUST)
                     .pattern(definition -> FactoryBlockPattern.start()
-                            .aisle("    BBB    ", "    DDD    ", "    EDE    ", "    EDE    ", "    EKE    ",
-                                    "    EKE    ", "    EKE    ", "    EDE    ", "    EDE    ", "           ",
-                                    "           ", "           ")
-                            .aisle("  BBDDDBB  ", "  DDCCCDD  ", "  DE###ED  ", "  DE###ED  ", "  DE###ED  ",
-                                    "  DE###ED  ", "  DE###ED  ", "  DE###ED  ", "  DE###ED  ", "    EDE    ",
-                                    "    EDE    ", "           ")
-                            .aisle(" BDDDDDDDB ", " DCCCCCCCD ", " DF#####FD ", " DF#####FD ", " DF#####FD ",
-                                    " DF#####FD ", " DF#####FD ", " DF#####FD ", " DF#####FD ", "  DE###ED  ",
-                                    "  DEE EED  ", "     D     ")
-                            .aisle(" BDDDDDDDB ", " DCCGGGCCD ", " E#######E ", " E#######E ", " E#######E ",
-                                    " E#######E ", " E##HHH##E ", " E##HHH##E ", " E##HHH##E ", "  E#####E  ",
-                                    "  E#####E  ", "   DEDED   ")
-                            .aisle("BDDDDDDDDDB", "DCCGGGGGCCD", "E###III###E", "E####I####E", "E#########E",
-                                    "E####H####E", "E##HHHHH##E", "E##HHHHH##E", "E##HHHHH##E", " E###H###E ",
-                                    " EE#####EE ", "   EDDDE   ")
-                            .aisle("BDDDDDDDDDB", "DCCGGGGGCCD", "D###III###D", "D###III###D", "K####I####K",
-                                    "K###HIH###K", "K##HHIHH##K", "D##HHIHH##D", "D##HHIHH##D", " D##HHH##D ",
-                                    " D#######D ", "  DDDDDDD  ")
-                            .aisle("BDDDDDDDDDB", "DCCGGGGGCCD", "E###III###E", "E####I####E", "E#########E",
-                                    "E####H####E", "E##HHHHH##E", "E##HHHHH##E", "E##HHHHH##E", " E###H###E ",
-                                    " EE#####EE ", "   EDDDE   ")
-                            .aisle(" BDDDDDDDB ", " DCCGGGCCD ", " E#######E ", " E#######E ", " E#######E ",
-                                    " E#######E ", " E##HHH##E ", " E##HHH##E ", " E##HHH##E ", "  E#####E  ",
-                                    "  E#####E  ", "   DEDED   ")
-                            .aisle(" BDDDDDDDB ", " DCCCCCCCD ", " DF#####FD ", " DF#####FD ", " DF#####FD ",
-                                    " DF#####FD ", " DF#####FD ", " DF#####FD ", " DF#####FD ", "  DE###ED  ",
-                                    "  DEE EED  ", "     D     ")
-                            .aisle("  BBDDDBB  ", "  DDCCCDD  ", "  DE###ED  ", "  DE###ED  ", "  DE###ED  ",
-                                    "  DE###ED  ", "  DE###ED  ", "  DE###ED  ", "  DE###ED  ", "    EDE    ",
-                                    "    EDE    ", "           ")
-                            .aisle("    BBB    ", "    D@D    ", "    EDE    ", "    EDE    ", "    EKE    ",
-                                    "    EKE    ", "    EKE    ", "    EDE    ", "    EDE    ", "           ",
-                                    "           ", "           ")
+                            .aisle("    BBB    ", "    DDD    ", "    EDE    ", "    EDE    ", "    EKE    ", "    EKE    ", "    EKE    ", "    EDE    ", "    EDE    ", "           ", "           ", "           ")
+                            .aisle("  BBDDDBB  ", "  DDCCCDD  ", "  DE###ED  ", "  DE###ED  ", "  DE###ED  ", "  DE###ED  ", "  DE###ED  ", "  DE###ED  ", "  DE###ED  ", "    EDE    ", "    EDE    ", "           ")
+                            .aisle(" BDDDDDDDB ", " DCCCCCCCD ", " DF#####FD ", " DF#####FD ", " DF#####FD ", " DF#####FD ", " DF#####FD ", " DF#####FD ", " DF#####FD ", "  DE###ED  ", "  DEE#EED  ", "     D     ")
+                            .aisle(" BDDDDDDDB ", " DCCGGGCCD ", " E#######E ", " E#######E ", " E#######E ", " E#######E ", " E##HHH##E ", " E##HHH##E ", " E##HHH##E ", "  E#####E  ", "  E#####E  ", "   DEDED   ")
+                            .aisle("BDDDDDDDDDB", "DCCGGGGGCCD", "E###III###E", "E####I####E", "E#########E", "E####H####E", "E##HHHHH##E", "E##HHHHH##E", "E##HHHHH##E", " E###H###E ", " EE#####EE ", "   EDDDE   ")
+                            .aisle("BDDDDDDDDDB", "DCCGGGGGCCD", "D###III###D", "D###III###D", "K####I####K", "K###HIH###K", "K##HHIHH##K", "D##HHIHH##D", "D##HHIHH##D", " D##HHH##D ", " D#######D ", "  DDDDDDD  ")
+                            .aisle("BDDDDDDDDDB", "DCCGGGGGCCD", "E###III###E", "E####I####E", "E#########E", "E####H####E", "E##HHHHH##E", "E##HHHHH##E", "E##HHHHH##E", " E###H###E ", " EE#####EE ", "   EDDDE   ")
+                            .aisle(" BDDDDDDDB ", " DCCGGGCCD ", " E#######E ", " E#######E ", " E#######E ", " E#######E ", " E##HHH##E ", " E##HHH##E ", " E##HHH##E ", "  E#####E  ", "  E#####E  ", "   DEDED   ")
+                            .aisle(" BDDDDDDDB ", " DCCCCCCCD ", " DF#####FD ", " DF#####FD ", " DF#####FD ", " DF#####FD ", " DF#####FD ", " DF#####FD ", " DF#####FD ", "  DE###ED  ", "  DEE#EED  ", "     D     ")
+                            .aisle("  BBDDDBB  ", "  DDCCCDD  ", "  DE###ED  ", "  DE###ED  ", "  DE###ED  ", "  DE###ED  ", "  DE###ED  ", "  DE###ED  ", "  DE###ED  ", "    EDE    ", "    EDE    ", "           ")
+                            .aisle("    BBB    ", "    D@D    ", "    EDE    ", "    EDE    ", "    EKE    ", "    EKE    ", "    EKE    ", "    EDE    ", "    EDE    ", "           ", "           ", "           ")
                             .where('@', controller(blocks(definition.get())))
                             .where(' ', any())
                             .where('#', air())
@@ -647,7 +594,7 @@ public class Multiblocks {
                     .appearanceBlock(CASING_LARGE_SCALE_ASSEMBLING)
                     .pattern(definition -> FactoryBlockPattern.start()
                             .aisle("OOOOOOO", "OOOOOOO", "OOOOOOO")
-                            .aisle("OCOOOOO", "OKKKKKO", "OOOEEEO")
+                            .aisle("OEOOOOO", "OKKKKKO", "OCOEEEO")
                             .aisle("OOOOOOO", "O@OEEEO", "OOOEEEO")
                             .where('@', controller(blocks(definition.get())))
                             .where('#', air())
@@ -677,20 +624,13 @@ public class Multiblocks {
                     .recipeType(DUMMY_RECIPES)
                     .appearanceBlock(ADVANCED_COMPUTER_CASING)
                     .pattern(definition -> FactoryBlockPattern.start()
-                            .aisle("   BBBBB   ", "   B   B   ", "   B   B   ", "   B   B   ", "   B   B   ",
-                                    "   BBBBB   ")
-                            .aisle(" BBBDBDBBB ", "           ", "           ", "           ", "           ",
-                                    " BBBDBDBBB ")
-                            .aisle("BBDDDBDDDBB", "B         B", "B         B", "B         B", "B         B",
-                                    "BBDDDBDDDBB")
-                            .aisle("BDBBBBBBBDB", "  E E E E  ", "  E E E E  ", "  E E E E  ", "  E E E E  ",
-                                    "BDBBBBBBBDB")
-                            .aisle("BBDDDBDDDBB", "B         B", "B         B", "B         B", "B         B",
-                                    "BBDDDBDDDBB")
-                            .aisle(" BBBDBDBBB ", "           ", "           ", "           ", "           ",
-                                    " BBBDBDBBB ")
-                            .aisle("   BB@BB   ", "   B   B   ", "   B   B   ", "   B   B   ", "   B   B   ",
-                                    "   BBBBB   ")
+                            .aisle("   BBBBB   ", "   B   B   ", "   B   B   ", "   B   B   ", "   B   B   ", "   BBBBB   ")
+                            .aisle(" BBBDBDBBB ", "           ", "           ", "           ", "           ", " BBBDBDBBB ")
+                            .aisle("BBDDDBDDDBB", "B         B", "B         B", "B         B", "B         B", "BBDDDBDDDBB")
+                            .aisle("BDBBBBBBBDB", "  E E E E  ", "  E E E E  ", "  E E E E  ", "  E E E E  ", "BDBBBBBBBDB")
+                            .aisle("BBDDDBDDDBB", "B         B", "B         B", "B         B", "B         B", "BBDDDBDDDBB")
+                            .aisle(" BBBDBDBBB ", "           ", "           ", "           ", "           ", " BBBDBDBBB ")
+                            .aisle("   BB@BB   ", "   B   B   ", "   B   B   ", "   B   B   ", "   B   B   ", "   BBBBB   ")
                             .where('@', controller(blocks(definition.get())))
                             .where(' ', any())
                             .where('D', blocks(COMPUTER_CASING.get()))
