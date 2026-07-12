@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "extendedfeatures:block/machine/zpm_wireless_data_receiver",
+      "x": 90
+    },
+    "facing=east": {
+      "model": "extendedfeatures:block/machine/zpm_wireless_data_receiver",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "extendedfeatures:block/machine/zpm_wireless_data_receiver"
+    },
+    "facing=south": {
+      "model": "extendedfeatures:block/machine/zpm_wireless_data_receiver",
+      "y": 180
+    },
+    "facing=up": {
+      "gtceu:z": 180,
+      "model": "extendedfeatures:block/machine/zpm_wireless_data_receiver",
+      "x": 270
+    },
+    "facing=west": {
+      "model": "extendedfeatures:block/machine/zpm_wireless_data_receiver",
+      "y": 270
+    }
+  }
+}

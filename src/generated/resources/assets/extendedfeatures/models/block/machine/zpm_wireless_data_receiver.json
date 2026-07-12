@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:block/block",
+  "loader": "gtceu:machine",
+  "machine": "extendedfeatures:zpm_wireless_data_receiver",
+  "replaceable_textures": [
+    "bottom",
+    "top",
+    "side"
+  ],
+  "variants": {
+    "is_formed=false": {
+      "model": {
+        "parent": "extendedfeatures:block/machine/part/wireless_optical_reception",
+        "textures": {
+          "bottom": "gtceu:block/casings/voltage/zpm/bottom",
+          "side": "gtceu:block/casings/voltage/zpm/side",
+          "top": "gtceu:block/casings/voltage/zpm/top"
+        }
+      }
+    },
+    "is_formed=true": {
+      "model": {
+        "parent": "extendedfeatures:block/machine/part/wireless_optical_reception",
+        "textures": {
+          "bottom": "gtceu:block/casings/voltage/zpm/bottom",
+          "side": "gtceu:block/casings/voltage/zpm/side",
+          "top": "gtceu:block/casings/voltage/zpm/top"
+        }
+      }
+    }
+  }
+}
