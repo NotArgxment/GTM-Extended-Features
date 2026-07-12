@@ -1,7 +1,6 @@
-package com.argxment.extendedfeatures.client.init.disassembler_logic;
+package com.argxment.extendedfeatures.client.init.utils.disassembler;
 
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
-
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
@@ -9,12 +8,7 @@ import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeType;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public class ComponentResolver {
 
