@@ -24,7 +24,11 @@ public class EFConfig {
 
     @Configurable
     @Configurable.Comment("Configuration Values for Machines and Items")
-    public OtherToggles Items = new OtherToggles();
+    public OtherToggles Miscellaneous = new OtherToggles();
+
+    @Configurable
+    @Configurable.Comment("Special section for Wireless Machines")
+    public WirelessToggle Wireless = new WirelessToggle();
 
     public static class MultiblocksToggles {
 
@@ -71,6 +75,10 @@ public class EFConfig {
         @Configurable
         @Configurable.Comment({ "Whether the Expanded Data Bank is Enabled." })
         public boolean EdaEnabled = true;
+
+        @Configurable
+        @Configurable.Comment({ "Whether the Cloud Transmission Database is Enabled." })
+        public boolean CtdEnabled = true;
     }
 
     public static class OtherToggles {
@@ -81,5 +89,12 @@ public class EFConfig {
         @Configurable
         @Configurable.Comment({ "Whether the Expanded Data Access Hatches are Enabled." })
         public boolean expandedDataAccessHatches = true;
+
+    }
+
+    public static class WirelessToggle {
+        @Configurable
+        @Configurable.Comment({ "Whether the Wireless Optical Hatches & Cloud Transmission Database are Enabled." })
+        public boolean wirelessUtils = true;
     }
 }
