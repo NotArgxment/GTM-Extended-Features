@@ -1,4 +1,4 @@
-package com.argxment.extendedfeatures.client.init.recipes.multiblocks.greenhouse;
+package com.argxment.extendedfeatures.client.init.utils.recipes.multiblocks.greenhouse;
 
 import com.argxment.extendedfeatures.client.RecipeTypes;
 
