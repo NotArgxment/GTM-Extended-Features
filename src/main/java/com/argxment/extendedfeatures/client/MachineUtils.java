@@ -1,5 +1,6 @@
 package com.argxment.extendedfeatures.client;
 
+import com.argxment.extendedfeatures.ExtendedFeaturesCore;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
@@ -9,7 +10,6 @@ import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockControllerMachine;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import com.gregtechceu.gtceu.api.registry.registrate.MachineBuilder;
 import com.gregtechceu.gtceu.api.registry.registrate.MultiblockMachineBuilder;
-import com.argxment.extendedfeatures.ExtendedFeaturesCore;
 
 import java.util.Locale;
 import java.util.function.BiFunction;

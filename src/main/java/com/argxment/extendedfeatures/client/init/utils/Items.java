@@ -1,13 +1,11 @@
-package com.argxment.extendedfeatures.client.init;
+package com.argxment.extendedfeatures.client.init.utils;
 
 import com.argxment.extendedfeatures.ExtendedFeaturesCore;
 import com.argxment.extendedfeatures.client.config.EFConfig;
-
+import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
-import com.gregtechceu.gtceu.GTCEu;
 import com.tterrag.registrate.util.entry.ItemEntry;
-
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -17,13 +15,14 @@ import java.util.List;
 
 import static com.argxment.extendedfeatures.ExtendedFeaturesCore.ExtendedFeaturesRegister;
 
+@SuppressWarnings("unchecked")
 public class Items {
 
     static {
         ExtendedFeaturesRegister.creativeModeTab(() -> ExtendedFeaturesCore.EF_TAB);
     }
 
-    // Huge thanks to witherschat (monifactory contributor) for allowing me to use the universal circuit textures
+    // Credits to witherschat for allowing me to use the universal circuits textures
 
     @SuppressWarnings("unchecked")
     public static final ItemEntry<Item>[] UNIVERSAL_CIRCUITS = new ItemEntry[GTValues.TIER_COUNT];
@@ -46,12 +45,11 @@ public class Items {
     };
 
     static {
-        if (EFConfig.INSTANCE.Items.universalCircuits || GTCEu.isDataGen()) {
+        if (EFConfig.INSTANCE.Miscellaneous.universalCircuits || GTCEu.isDataGen()) {
             for (Object[] data : CIRCUIT_DATA) {
                 int tier = (int) data[0];
                 String registryName = (String) data[1];
                 String displayName = (String) data[2];
-                @SuppressWarnings("unchecked")
                 TagKey<Item> tag = (TagKey<Item>) data[3];
 
                 UNIVERSAL_CIRCUITS[tier] = ExtendedFeaturesRegister
@@ -64,7 +62,7 @@ public class Items {
         }
     }
 
-    // Addon "isHighTier" filter
+    // "isHighTier" filter
     public static List<ItemEntry<Item>> getHighTierCircuits() {
         int[] highTiers = { GTValues.UHV, GTValues.UEV, GTValues.UIV, GTValues.UXV, GTValues.OpV };
         List<ItemEntry<Item>> result = new ArrayList<>();

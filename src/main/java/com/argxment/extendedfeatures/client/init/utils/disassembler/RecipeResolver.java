@@ -1,8 +1,7 @@
-package com.argxment.extendedfeatures.client.init.disassembler_logic;
+package com.argxment.extendedfeatures.client.init.utils.disassembler;
 
 import com.argxment.extendedfeatures.client.config.EFConfig;
-import com.argxment.extendedfeatures.client.init.Items;
-
+import com.argxment.extendedfeatures.client.init.utils.Items;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
@@ -11,20 +10,14 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.content.Content;
 import com.gregtechceu.gtceu.api.recipe.ingredient.SizedIngredient;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
-
 import com.tterrag.registrate.util.entry.ItemEntry;
-
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public class RecipeResolver {
 
@@ -46,7 +39,7 @@ public class RecipeResolver {
     private static Map<TagKey<Item>, ItemStack> buildCircuitTagMap() {
         Map<TagKey<Item>, ItemStack> map = new HashMap<>();
 
-        if (!EFConfig.INSTANCE.Items.universalCircuits) {
+        if (!EFConfig.INSTANCE.Miscellaneous.universalCircuits) {
             return Map.of();
         }
 

@@ -1,4 +1,4 @@
-package com.argxment.extendedfeatures.client.init.recipes;
+package com.argxment.extendedfeatures.client.init.utils.recipes;
 
 import com.gregtechceu.gtceu.api.GTValues;
 
@@ -14,7 +14,7 @@ import static com.gregtechceu.gtceu.api.GTValues.L;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.dust;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 
-public class MultiblocksRecipes {
+public class MultiblockRecipes {
 
     /**
      * Actual controller recipes are supposed to be made by modpack developers.

@@ -7,11 +7,11 @@ import static com.gregtechceu.gtceu.data.lang.LangHandler.replace;
 public class LangHandler {
 
     public static void init(RegistrateLangProvider provider) {
-        Names(provider);
+        Common(provider);
         Tooltips(provider);
     }
 
-    private static void Names(RegistrateLangProvider provider) {
+    private static void Common(RegistrateLangProvider provider) {
 
         // Regular item/block lang
         replace(provider, "block.extendedfeatures.robust_alloy_materializer", "Robust Alloy Materializer [RAM]");
@@ -38,7 +38,8 @@ public class LangHandler {
         // Configuration lang
         replace(provider, "config.screen.extendedfeatures", "§7Mod Configuration §4(Restart to Apply Changes)");
         replace(provider, "config.extendedfeatures.option.Multiblocks", "§7Multiblocks Module");
-        replace(provider, "config.extendedfeatures.option.Items", "§7Miscellaneous Module");
+        replace(provider, "config.extendedfeatures.option.Miscellaneous", "§7Miscellaneous Module");
+        replace(provider, "config.extendedfeatures.option.Wireless", "§7Wireless Module");
         replace(provider, "config.extendedfeatures.option.RamEnabled", "§7Robust Alloy Materializer");
         replace(provider, "config.extendedfeatures.option.AcuEnabled", "§7Advanced Cracking Unit");
         replace(provider, "config.extendedfeatures.option.ErcEnabled", "§7Enlarged Reaction Chamber");
@@ -52,6 +53,17 @@ public class LangHandler {
         replace(provider, "config.extendedfeatures.option.EdaEnabled", "§7Expanded Data Bank");
         replace(provider, "config.extendedfeatures.option.universalCircuits", "§7Universal Circuits");
         replace(provider, "config.extendedfeatures.option.expandedDataAccessHatches", "§7Expanded Data Access Hatches");
+        replace(provider, "config.extendedfeatures.option.wirelessUtils", "§7Wireless Optical T/R & Cloud Transmission Database");
+
+        // Optical
+        replace(provider, "extendedfeatures.machine.wireless_optical_hatch.tooltip.range", "Scan range: §f%s blocks§7 (right-click with an empty hand)");
+        replace(provider, "extendedfeatures.machine.wireless_optical_hatch.tooltip.connections", "Max linked receivers: §f%s");
+        replace(provider, "extendedfeatures.machine.wireless_optical_hatch.tooltip.scan", "Links to nearby unlinked receivers of the same tier, and to any physical Data Access Hatch in range");
+        replace(provider, "extendedfeatures.machine.wireless_optical_hatch.tooltip.receiver", "Gets linked automatically when scanned by a Wireless Transmission Hatch of the same tier");
+        replace(provider, "extendedfeatures.machine.wireless_optical_hatch.not_formed", "This multiblock is not formed - form the structure before scanning");
+        replace(provider, "extendedfeatures.machine.wireless_optical_hatch.linked_summary", "Linked %s new receiver(s) and %s new data hatch(es)");
+        replace(provider, "extendedfeatures.machine.wireless_optical_hatch.no_receivers_found", "No new compatible receivers or data hatches found in range");
+
     }
 
     private static void Tooltips(RegistrateLangProvider provider) {
