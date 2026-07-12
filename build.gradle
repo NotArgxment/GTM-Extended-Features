@@ -16,6 +16,8 @@ plugins {
     id 'com.diffplug.spotless' version '7.0.2'
 }
 
+apply from: "$rootDir/gradle/scripts/spotless.gradle"
+
 sourceSets {
     main.resources {
         srcDir 'src/generated/resources'

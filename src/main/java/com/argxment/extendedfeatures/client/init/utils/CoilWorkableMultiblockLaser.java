@@ -4,8 +4,10 @@ import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.feature.multiblock.IMultiPart;
 import com.gregtechceu.gtceu.api.machine.multiblock.CoilWorkableElectricMultiblockMachine;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
+
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.world.level.block.Block;
+
 import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
@@ -21,7 +23,7 @@ public class CoilWorkableMultiblockLaser extends CoilWorkableElectricMultiblockM
      * allows exclusively 1 laser hatch OR exclusively 1-2 energy hatches,
      * so there is no way to put both on the same structure,
      * for now only its being used only on the Robust Alloy Materializer
-    */
+     */
 
     @Override
     public void onStructureFormed() {

@@ -1,6 +1,5 @@
 package com.argxment.extendedfeatures.client.init.utils.disassembler;
 
-import com.argxment.extendedfeatures.client.RecipeTypes;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.capability.recipe.IRecipeCapabilityHolder;
@@ -16,6 +15,7 @@ import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
 
+import com.argxment.extendedfeatures.client.RecipeTypes;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -51,7 +51,6 @@ public enum DisassemblerRecipeLogic implements GTRecipeType.ICustomRecipeLogic {
 
     private @Nullable GTRecipe tryBuildRecipe(ServerLevel serverLevel, GTRecipeType recipeType,
                                               ItemStack inputStack) {
-
         Integer tier = MachineUtil.getMachineTier(inputStack).orElse(null);
         if (tier == null) return null;
 
@@ -83,7 +82,6 @@ public enum DisassemblerRecipeLogic implements GTRecipeType.ICustomRecipeLogic {
 
     @Override
     public void buildRepresentativeRecipes() {
-
         GTRecipeType recipeType = RecipeTypes.DISASSEMBLER;
 
         ServerLevel serverLevel = getRepresentativeServerLevel();
@@ -112,11 +110,8 @@ public enum DisassemblerRecipeLogic implements GTRecipeType.ICustomRecipeLogic {
         boolean isEnergyHatch = path.contains("energy_input_hatch") || path.contains("energy_output_hatch");
         if (isEnergyHatch) return false;
 
-        return path.contains("transformer")
-                || path.contains("energy_converter")
-                || path.contains("_bus")
-                || path.contains("hatch")
-                || path.contains("diode");
+        return path.contains("transformer") || path.contains("energy_converter") || path.contains("_bus") ||
+                path.contains("hatch") || path.contains("diode");
     }
 
     private @Nullable ServerLevel getRepresentativeServerLevel() {

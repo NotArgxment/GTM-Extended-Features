@@ -1,8 +1,5 @@
 package com.argxment.extendedfeatures.client;
 
-import com.argxment.extendedfeatures.ExtendedFeaturesCore;
-import com.argxment.extendedfeatures.client.init.utils.disassembler.DisassemblerRecipeLogic;
-
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeSerializer;
@@ -15,6 +12,9 @@ import com.lowdragmc.lowdraglib.gui.texture.ProgressTexture;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeType;
+
+import com.argxment.extendedfeatures.ExtendedFeaturesCore;
+import com.argxment.extendedfeatures.client.init.utils.disassembler.DisassemblerRecipeLogic;
 
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.MULTIBLOCK;
 
@@ -31,7 +31,6 @@ public class RecipeTypes {
     // public static GTRecipeType OIL_REFINERY;
 
     public static void init() {
-
         ROCK_PROCESSING = register("rock_processing_facility", MULTIBLOCK)
                 .setEUIO(IO.IN)
                 .setMaxIOSize(1, 6, 1, 3)
@@ -58,24 +57,24 @@ public class RecipeTypes {
                 .addCustomRecipeLogic(DisassemblerRecipeLogic.INSTANCE);
 
         /*
-        CHEMICAL_REDUCTION = register("chemical_skips", MULTIBLOCK)
-                .setEUIO(IO.IN)
-                .setMaxIOSize(6, 6, 6, 6)
-                .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
-                .setSound(GTSoundEntries.CHEMICAL);
-
-        AIR_REPROCESSING = register("air_reprocessor", MULTIBLOCK)
-                .setEUIO(IO.IN)
-                .setMaxIOSize(0, 9, 1, 0)
-                .setProgressBar(GuiTextures.PROGRESS_BAR_MIXER, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
-                .setSound(GTSoundEntries.BATH);
-
-        OIL_REFINERY = register("oil_refinery_skips", MULTIBLOCK)
-                .setEUIO(IO.IN)
-                .setMaxIOSize(0, 6, 6, 6)
-                .setProgressBar(GuiTextures.PROGRESS_BAR_MIXER, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
-                .setSound(GTSoundEntries.CHEMICAL);
-        */
+         * CHEMICAL_REDUCTION = register("chemical_skips", MULTIBLOCK)
+         * .setEUIO(IO.IN)
+         * .setMaxIOSize(6, 6, 6, 6)
+         * .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+         * .setSound(GTSoundEntries.CHEMICAL);
+         * 
+         * AIR_REPROCESSING = register("air_reprocessor", MULTIBLOCK)
+         * .setEUIO(IO.IN)
+         * .setMaxIOSize(0, 9, 1, 0)
+         * .setProgressBar(GuiTextures.PROGRESS_BAR_MIXER, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+         * .setSound(GTSoundEntries.BATH);
+         * 
+         * OIL_REFINERY = register("oil_refinery_skips", MULTIBLOCK)
+         * .setEUIO(IO.IN)
+         * .setMaxIOSize(0, 6, 6, 6)
+         * .setProgressBar(GuiTextures.PROGRESS_BAR_MIXER, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+         * .setSound(GTSoundEntries.CHEMICAL);
+         */
     }
 
     public static GTRecipeType register(String name, String group, RecipeType<?>... proxyRecipes) {

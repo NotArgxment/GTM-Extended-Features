@@ -34,43 +34,43 @@ public class EFConfig {
 
         @Configurable
         @Configurable.Comment({ "Whether the Robust Alloy Materializer is Enabled." })
-            public boolean RamEnabled = true;
+        public boolean RamEnabled = true;
 
         @Configurable
         @Configurable.Comment({ "Whether the Advanced Cracking Unit is Enabled." })
-            public boolean AcuEnabled = true;
+        public boolean AcuEnabled = true;
 
         @Configurable
         @Configurable.Comment({ "Whether the Enlarged Reaction Chamber is Enabled." })
-            public boolean ErcEnabled = true;
+        public boolean ErcEnabled = true;
 
         @Configurable
         @Configurable.Comment({ "Whether the Large Pyrolysis Unit is Enabled." })
-            public boolean LpuEnabled = true;
+        public boolean LpuEnabled = true;
 
         @Configurable
         @Configurable.Comment({ "Whether the Advanced Fusion Reactors are Enabled." })
-            public boolean AfrEnabled = true;
+        public boolean AfrEnabled = true;
 
         @Configurable
         @Configurable.Comment({ "Whether the Compact Assembly Line is Enabled." })
-            public boolean CalEnabled = true;
+        public boolean CalEnabled = true;
 
         @Configurable
         @Configurable.Comment({ "Whether the Rock Processing Facility is Enabled." })
-            public boolean RpfEnabled = true;
+        public boolean RpfEnabled = true;
 
         @Configurable
         @Configurable.Comment({ "Whether the Industrial Greenhouse is Enabled." })
-            public boolean IghEnabled = true;
+        public boolean IghEnabled = true;
 
         @Configurable
         @Configurable.Comment({ "Whether the Tree Growing Chamber is Enabled." })
-            public boolean TgcEnabled = true;
+        public boolean TgcEnabled = true;
 
         @Configurable
         @Configurable.Comment({ "Whether the Disassembler is Enabled." })
-            public boolean DaEnabled = true;
+        public boolean DaEnabled = true;
 
         @Configurable
         @Configurable.Comment({ "Whether the Expanded Data Bank is Enabled." })
@@ -82,6 +82,7 @@ public class EFConfig {
     }
 
     public static class OtherToggles {
+
         @Configurable
         @Configurable.Comment({ "Whether the Universal Circuits are Enabled." })
         public boolean universalCircuits = true;
@@ -89,10 +90,10 @@ public class EFConfig {
         @Configurable
         @Configurable.Comment({ "Whether the Expanded Data Access Hatches are Enabled." })
         public boolean expandedDataAccessHatches = true;
-
     }
 
     public static class WirelessToggle {
+
         @Configurable
         @Configurable.Comment({ "Whether the Wireless Optical Hatches & Cloud Transmission Database are Enabled." })
         public boolean wirelessUtils = true;

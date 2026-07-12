@@ -1,15 +1,17 @@
 package com.argxment.extendedfeatures;
 
+import com.gregtechceu.gtceu.api.addon.GTAddon;
+import com.gregtechceu.gtceu.api.addon.IGTAddon;
+import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
+
+import net.minecraft.data.recipes.FinishedRecipe;
+
 import com.argxment.extendedfeatures.client.LangHandler;
 import com.argxment.extendedfeatures.client.init.utils.recipes.ItemRecipes;
 import com.argxment.extendedfeatures.client.init.utils.recipes.MultiblockRecipes;
 import com.argxment.extendedfeatures.client.init.utils.recipes.multiblocks.greenhouse.CropRecipes;
 import com.argxment.extendedfeatures.client.init.utils.recipes.multiblocks.greenhouse.WoodRecipes;
-import com.gregtechceu.gtceu.api.addon.GTAddon;
-import com.gregtechceu.gtceu.api.addon.IGTAddon;
-import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import com.tterrag.registrate.providers.ProviderType;
-import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
 

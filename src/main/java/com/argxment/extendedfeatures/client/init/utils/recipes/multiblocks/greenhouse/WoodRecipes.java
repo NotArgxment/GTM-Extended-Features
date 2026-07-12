@@ -1,7 +1,5 @@
 package com.argxment.extendedfeatures.client.init.utils.recipes.multiblocks.greenhouse;
 
-import com.argxment.extendedfeatures.client.RecipeTypes;
-
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTItems;
@@ -11,12 +9,13 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
+import com.argxment.extendedfeatures.client.RecipeTypes;
+
 import java.util.function.Consumer;
 
 public class WoodRecipes {
 
     public static void init(Consumer<FinishedRecipe> provider) {
-
         addTreeRecipe(provider, "rubber_sapling", false,
                 GTBlocks.RUBBER_SAPLING.asStack(),
                 GTBlocks.RUBBER_LOG.asStack(32),
@@ -108,10 +107,10 @@ public class WoodRecipes {
     }
 
     private static void addTreeRecipe(
-            Consumer<FinishedRecipe> provider,
-            String id, boolean boosted,
-            ItemStack sapling,
-            ItemStack... outputs) {
+                                      Consumer<FinishedRecipe> provider,
+                                      String id, boolean boosted,
+                                      ItemStack sapling,
+                                      ItemStack... outputs) {
         var builder = RecipeTypes.GREENHOUSE_WOOD.recipeBuilder(id)
                 .circuitMeta(boosted ? 2 : 1) // If boosted, use 2, else 1
                 .notConsumable(sapling)

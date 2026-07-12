@@ -9,7 +9,6 @@ import net.minecraft.world.level.block.Blocks;
 import java.util.function.Consumer;
 
 import static com.argxment.extendedfeatures.client.RecipeTypes.ROCK_PROCESSING;
-
 import static com.gregtechceu.gtceu.api.GTValues.L;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.dust;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
@@ -22,7 +21,6 @@ public class MultiblockRecipes {
      */
 
     public static void init(Consumer<FinishedRecipe> provider) {
-
         // ---------------------------------------------------------
         // Rock Processing Facility Recipes
         // ---------------------------------------------------------

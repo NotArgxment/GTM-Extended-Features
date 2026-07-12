@@ -1,16 +1,16 @@
 package com.argxment.extendedfeatures.client.init.utils;
 
-import com.argxment.extendedfeatures.client.DataHatch;
-import com.argxment.extendedfeatures.client.config.EFConfig;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
-
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
+
 import net.minecraft.network.chat.Component;
 
-import static com.argxment.extendedfeatures.ExtendedFeaturesCore.ExtendedFeaturesRegister;
+import com.argxment.extendedfeatures.client.DataHatch;
+import com.argxment.extendedfeatures.client.config.EFConfig;
 
+import static com.argxment.extendedfeatures.ExtendedFeaturesCore.ExtendedFeaturesRegister;
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties.IS_FORMED;
 
@@ -31,7 +31,6 @@ public class Machines {
                         protected int getInventorySize() {
                             return 36;
                         }
-
                     })
                     .tier(ZPM)
                     .rotationState(RotationState.ALL)
@@ -50,7 +49,6 @@ public class Machines {
                         protected int getInventorySize() {
                             return 49;
                         }
-
                     })
                     .tier(UV)
                     .rotationState(RotationState.ALL)
@@ -69,7 +67,6 @@ public class Machines {
                         protected int getInventorySize() {
                             return 64;
                         }
-
                     })
                     .tier(UHV)
                     .rotationState(RotationState.ALL)

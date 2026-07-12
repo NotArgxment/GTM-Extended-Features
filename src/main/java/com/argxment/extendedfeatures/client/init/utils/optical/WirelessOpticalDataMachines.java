@@ -1,11 +1,13 @@
 package com.argxment.extendedfeatures.client.init.utils.optical;
 
-import com.argxment.extendedfeatures.client.config.EFConfig;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.registry.registrate.MachineBuilder;
+
 import net.minecraft.network.chat.Component;
+
+import com.argxment.extendedfeatures.client.config.EFConfig;
 
 import static com.argxment.extendedfeatures.ExtendedFeaturesCore.ExtendedFeaturesRegister;
 import static com.gregtechceu.gtceu.api.GTValues.*;
@@ -28,7 +30,8 @@ public class WirelessOpticalDataMachines {
                     LuV, true)
                     .tooltips(
                             Component.translatable("extendedfeatures.machine.wireless_optical_hatch.tooltip.range", 16),
-                            Component.translatable("extendedfeatures.machine.wireless_optical_hatch.tooltip.connections", 4),
+                            Component.translatable(
+                                    "extendedfeatures.machine.wireless_optical_hatch.tooltip.connections", 4),
                             Component.translatable("extendedfeatures.machine.wireless_optical_hatch.tooltip.scan"),
                             Component.translatable("gtceu.part_sharing.disabled"))
                     .register();
@@ -46,7 +49,8 @@ public class WirelessOpticalDataMachines {
                     ZPM, true)
                     .tooltips(
                             Component.translatable("extendedfeatures.machine.wireless_optical_hatch.tooltip.range", 24),
-                            Component.translatable("extendedfeatures.machine.wireless_optical_hatch.tooltip.connections", 8),
+                            Component.translatable(
+                                    "extendedfeatures.machine.wireless_optical_hatch.tooltip.connections", 8),
                             Component.translatable("extendedfeatures.machine.wireless_optical_hatch.tooltip.scan"),
                             Component.translatable("gtceu.part_sharing.disabled"))
                     .register();
@@ -64,7 +68,8 @@ public class WirelessOpticalDataMachines {
                     UV, true)
                     .tooltips(
                             Component.translatable("extendedfeatures.machine.wireless_optical_hatch.tooltip.range", 32),
-                            Component.translatable("extendedfeatures.machine.wireless_optical_hatch.tooltip.connections", 16),
+                            Component.translatable(
+                                    "extendedfeatures.machine.wireless_optical_hatch.tooltip.connections", 16),
                             Component.translatable("extendedfeatures.machine.wireless_optical_hatch.tooltip.scan"),
                             Component.translatable("gtceu.part_sharing.disabled"))
                     .register();
@@ -81,23 +86,19 @@ public class WirelessOpticalDataMachines {
 
     private static MachineBuilder<MachineDefinition, ?> registerHatch(String name, String displayName, int tier,
                                                                       boolean isTransmitter) {
-        return ExtendedFeaturesRegister.machine(name, (holder) -> new WirelessOpticalDataHatchMachine(holder, isTransmitter, tier))
+        return ExtendedFeaturesRegister
+                .machine(name, (holder) -> new WirelessOpticalDataHatchMachine(holder, isTransmitter, tier))
                 .langValue(displayName)
                 .tier(tier)
                 .rotationState(RotationState.ALL)
                 /*
-                if -> IsTransmitter = true: Register a WIRELESS_OPTICAL_TRASMITTER
-                Or else, IsTransmitter = false -> Register a WIRELESS_OPTICAL_RECEIVER
+                 * if -> IsTransmitter = true: Register a WIRELESS_OPTICAL_TRASMITTER
+                 * Or else, IsTransmitter = false -> Register a WIRELESS_OPTICAL_RECEIVER
                  */
-                .abilities(isTransmitter
-                        ? WirelessAbilities.WIRELESS_OPTICAL_TRANSMITTER
-                        : WirelessAbilities.WIRELESS_OPTICAL_RECEIVER)
-                .overlayTieredHullModel(isTransmitter
-                        ? "wireless_optical_transmission"
-                        : "wireless_optical_reception");
+                .abilities(isTransmitter ? WirelessAbilities.WIRELESS_OPTICAL_TRANSMITTER :
+                        WirelessAbilities.WIRELESS_OPTICAL_RECEIVER)
+                .overlayTieredHullModel(isTransmitter ? "wireless_optical_transmission" : "wireless_optical_reception");
     }
 
-    public static void init() {
-    }
-
+    public static void init() {}
 }

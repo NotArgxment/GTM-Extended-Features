@@ -1,6 +1,7 @@
 package com.argxment.extendedfeatures.client.init.utils.disassembler;
 
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
+
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
@@ -60,6 +61,7 @@ public class ComponentResolver {
     }
 
     private record StackKey(net.minecraft.world.item.Item item, net.minecraft.nbt.CompoundTag tag) {
+
         StackKey(ItemStack stack) {
             this(stack.getItem(), stack.getTag());
         }

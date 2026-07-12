@@ -1,7 +1,5 @@
 package com.argxment.extendedfeatures.client.init.utils.disassembler;
 
-import com.argxment.extendedfeatures.client.config.EFConfig;
-import com.argxment.extendedfeatures.client.init.utils.Items;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
@@ -10,12 +8,16 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.recipe.content.Content;
 import com.gregtechceu.gtceu.api.recipe.ingredient.SizedIngredient;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
-import com.tterrag.registrate.util.entry.ItemEntry;
+
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+
+import com.argxment.extendedfeatures.client.config.EFConfig;
+import com.argxment.extendedfeatures.client.init.utils.Items;
+import com.tterrag.registrate.util.entry.ItemEntry;
 
 import java.util.*;
 
@@ -29,8 +31,7 @@ public class RecipeResolver {
             CustomTags.CRAFTING_SCREWDRIVERS,
             CustomTags.CRAFTING_CROWBARS,
             CustomTags.CRAFTING_SAWS,
-            CustomTags.CRAFTING_MALLETS
-    );
+            CustomTags.CRAFTING_MALLETS);
 
     // This piece of code will try to match any circuit tag in the recipe to convert them into Universal circuits
     // So avoids giving a bad/good circuit, instead gives all of them in just 1
@@ -71,7 +72,8 @@ public class RecipeResolver {
         }
     }
 
-    public static Optional<List<ItemStack>> resolveFromGTRecipeType(ServerLevel level, GTRecipeType recipeType, ItemStack targetStack) {
+    public static Optional<List<ItemStack>> resolveFromGTRecipeType(ServerLevel level, GTRecipeType recipeType,
+                                                                    ItemStack targetStack) {
         for (GTRecipe recipe : level.getRecipeManager().getAllRecipesFor(recipeType)) {
             if (!recipeProducesItem(recipe, targetStack)) continue;
 

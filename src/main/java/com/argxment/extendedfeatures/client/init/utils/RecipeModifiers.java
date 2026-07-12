@@ -31,7 +31,7 @@ public class RecipeModifiers {
         int parallels = switch (tier) {
             case GTValues.LuV -> 4;
             case GTValues.ZPM -> 8;
-            case GTValues.UV  -> 16;
+            case GTValues.UV -> 16;
             default -> 1;
         };
 

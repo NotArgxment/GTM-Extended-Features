@@ -11,8 +11,10 @@ import com.gregtechceu.gtceu.api.machine.multiblock.part.MultiblockPartMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.DataAccessHatchMachine;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.OpticalDataHatchMachine;
+
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
+
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
@@ -29,15 +31,17 @@ import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 
-import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
-public class WirelessOpticalDataHatchMachine extends OpticalDataHatchMachine implements IMachineLife, IInteractedMachine {
+public class WirelessOpticalDataHatchMachine extends OpticalDataHatchMachine
+                                             implements IMachineLife, IInteractedMachine {
 
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
             WirelessOpticalDataHatchMachine.class, MultiblockPartMachine.MANAGED_FIELD_HOLDER);
@@ -46,6 +50,7 @@ public class WirelessOpticalDataHatchMachine extends OpticalDataHatchMachine imp
     private static final int LINK_PARTICLE_INTERVAL_TICKS = 4;
 
     public enum WirelessTier {
+
         LuV(GTValues.LuV, 16, 4),
         ZPM(GTValues.ZPM, 24, 8),
         UV(GTValues.UV, 32, 16);
@@ -80,7 +85,7 @@ public class WirelessOpticalDataHatchMachine extends OpticalDataHatchMachine imp
 
     /**
      * Transmitter-only: bookkeeping of who is currently listening (bounded by {@link WirelessTier#maxConnections})
-     * */
+     */
     @Persisted
     private final List<BlockPos> linkedReceiverPositions = new ArrayList<>();
 
@@ -103,9 +108,8 @@ public class WirelessOpticalDataHatchMachine extends OpticalDataHatchMachine imp
     }
 
     public boolean isLinked() {
-        return isTransmitter()
-                ? !linkedReceiverPositions.isEmpty() || !linkedDataHatchPositions.isEmpty()
-                : linkedTransmitterPos != null;
+        return isTransmitter() ? !linkedReceiverPositions.isEmpty() || !linkedDataHatchPositions.isEmpty() :
+                linkedTransmitterPos != null;
     }
 
     @Override
@@ -131,9 +135,10 @@ public class WirelessOpticalDataHatchMachine extends OpticalDataHatchMachine imp
                 }
             }
         } else if (level != null && linkedTransmitterPos != null &&
-                MetaMachine.getMachine(level, linkedTransmitterPos) instanceof WirelessOpticalDataHatchMachine transmitter) {
-            transmitter.linkedReceiverPositions.remove(getPos());
-        }
+                MetaMachine.getMachine(level,
+                        linkedTransmitterPos) instanceof WirelessOpticalDataHatchMachine transmitter) {
+                            transmitter.linkedReceiverPositions.remove(getPos());
+                        }
     }
 
     // Recipe Logic
@@ -148,7 +153,8 @@ public class WirelessOpticalDataHatchMachine extends OpticalDataHatchMachine imp
 
             for (BlockPos dataHatchPos : linkedDataHatchPositions) {
                 if (!level.isLoaded(dataHatchPos)) continue;
-                if (!(MetaMachine.getMachine(level, dataHatchPos) instanceof DataAccessHatchMachine dataHatch)) continue;
+                if (!(MetaMachine.getMachine(level, dataHatchPos) instanceof DataAccessHatchMachine dataHatch))
+                    continue;
                 if (seen.contains(dataHatch)) continue;
 
                 if (dataHatch.isRecipeAvailable(recipe, seen)) {
@@ -189,13 +195,14 @@ public class WirelessOpticalDataHatchMachine extends OpticalDataHatchMachine imp
     /**
      * Scans a cubic area of {@code wirelessTier.range} blocks around this transmitter for:
      * <ul>
-     *     <li>compatible, unlinked receiver hatches (bounded by the connection limit, closest first);</li>
-     *     <li>physical {@link DataAccessHatchMachine}s not yet linked (unbounded).</li>
+     * <li>compatible, unlinked receiver hatches (bounded by the connection limit, closest first);</li>
+     * <li>physical {@link DataAccessHatchMachine}s not yet linked (unbounded).</li>
      * </ul>
      */
     private void scanAndLink(Player player) {
         if (!isFormed()) {
-            player.sendSystemMessage(Component.translatable("extendedfeatures.machine.wireless_optical_hatch.not_formed"));
+            player.sendSystemMessage(
+                    Component.translatable("extendedfeatures.machine.wireless_optical_hatch.not_formed"));
             return;
         }
 

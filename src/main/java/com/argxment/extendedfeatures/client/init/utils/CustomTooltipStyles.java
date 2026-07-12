@@ -14,14 +14,14 @@ public class CustomTooltipStyles {
     private static final int WHITE = 0xFFFFFFFF;
 
     // Tier main colors
-    private static final int LV  = 0xFFAAAAAA; // Gray
-    private static final int MV  = 0xFF55FFFF; // Aqua
-    private static final int HV  = 0xFFFFAA00; // Gold
-    private static final int EV  = 0xFFAA00AA; // Dark Purple
-    private static final int IV  = 0xFF5555FF; // Blue
+    private static final int LV = 0xFFAAAAAA; // Gray
+    private static final int MV = 0xFF55FFFF; // Aqua
+    private static final int HV = 0xFFFFAA00; // Gold
+    private static final int EV = 0xFFAA00AA; // Dark Purple
+    private static final int IV = 0xFF5555FF; // Blue
     private static final int LuV = 0xFFFF55FF; // Light Purple
     private static final int ZPM = 0xFFFF5555; // Red
-    private static final int UV  = 0xFF00AAAA; // Dark Aqua
+    private static final int UV = 0xFF00AAAA; // Dark Aqua
     private static final int UHV = 0xFFAA0000; // Dark Red
     private static final int UEV = 0xFF55FF55; // Dark Green
     private static final int UIV = 0xFF00AA00; // Green
@@ -30,9 +30,9 @@ public class CustomTooltipStyles {
     private static final int MAX = ZPM; // MAx uses the same color as ZPM, but with Bold Code
 
     // Speed modifiers
-    private static final double SPEED_SLOW   = 0.1;
+    private static final double SPEED_SLOW = 0.1;
     private static final double SPEED_MEDIUM = 0.2;
-    private static final double SPEED_FAST   = 0.3;
+    private static final double SPEED_FAST = 0.3;
 
     // Tries to replicate GTCEu Tooltip Helper
     public static TextColor movingGradient(double speed, int colorA, int colorB) {
@@ -96,12 +96,10 @@ public class CustomTooltipStyles {
     public static final Map<Integer, UnaryOperator<Style>> TIER_GRADIENTS = Map.of(
             GTValues.LuV, LuV_GRADIENT,
             GTValues.ZPM, ZPM_GRADIENT,
-            GTValues.UV, UV_GRADIENT
-    );
+            GTValues.UV, UV_GRADIENT);
 
     public static UnaryOperator<Style> forTier(int tier) {
         return TIER_GRADIENTS.getOrDefault(
-                tier, LuV_GRADIENT
-        );
+                tier, LuV_GRADIENT);
     }
 }

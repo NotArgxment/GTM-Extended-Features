@@ -1,14 +1,16 @@
 package com.argxment.extendedfeatures.client.init.utils;
 
-import com.argxment.extendedfeatures.ExtendedFeaturesCore;
-import com.argxment.extendedfeatures.client.config.EFConfig;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
-import com.tterrag.registrate.util.entry.ItemEntry;
+
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
+
+import com.argxment.extendedfeatures.ExtendedFeaturesCore;
+import com.argxment.extendedfeatures.client.config.EFConfig;
+import com.tterrag.registrate.util.entry.ItemEntry;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,20 +30,20 @@ public class Items {
     public static final ItemEntry<Item>[] UNIVERSAL_CIRCUITS = new ItemEntry[GTValues.TIER_COUNT];
 
     private static final Object[][] CIRCUIT_DATA = {
-            { GTValues.ULV, "ulv_universal_circuit", "§8ULV §rUniversal Circuit",   CustomTags.ULV_CIRCUITS },
-            { GTValues.LV,  "lv_universal_circuit",  "§7LV §rUniversal Circuit",    CustomTags.LV_CIRCUITS },
-            { GTValues.MV,  "mv_universal_circuit",  "§bMV §rUniversal Circuit",    CustomTags.MV_CIRCUITS },
-            { GTValues.HV,  "hv_universal_circuit",  "§6HV §rUniversal Circuit",    CustomTags.HV_CIRCUITS },
-            { GTValues.EV,  "ev_universal_circuit",  "§5EV §rUniversal Circuit",    CustomTags.EV_CIRCUITS },
-            { GTValues.IV,  "iv_universal_circuit",  "§9IV §rUniversal Circuit",    CustomTags.IV_CIRCUITS },
-            { GTValues.LuV, "luv_universal_circuit", "§dLuV §rUniversal Circuit",   CustomTags.LuV_CIRCUITS },
-            { GTValues.ZPM, "zpm_universal_circuit", "§cZPM §rUniversal Circuit",   CustomTags.ZPM_CIRCUITS },
-            { GTValues.UV,  "uv_universal_circuit",  "§3UV §rUniversal Circuit",    CustomTags.UV_CIRCUITS },
-            { GTValues.UHV, "uhv_universal_circuit", "§4UHV §rUniversal Circuit",   CustomTags.UHV_CIRCUITS },
-            { GTValues.UEV, "uev_universal_circuit", "§2UEV §rUniversal Circuit",   CustomTags.UEV_CIRCUITS },
-            { GTValues.UIV, "uiv_universal_circuit", "§aUIV §rUniversal Circuit",   CustomTags.UIV_CIRCUITS },
-            { GTValues.UXV, "uxv_universal_circuit", "§eUXV §rUniversal Circuit",   CustomTags.UXV_CIRCUITS },
-            { GTValues.OpV, "opv_universal_circuit", "§9OpV §rUniversal Circuit",   CustomTags.OpV_CIRCUITS },
+            { GTValues.ULV, "ulv_universal_circuit", "§8ULV §rUniversal Circuit", CustomTags.ULV_CIRCUITS },
+            { GTValues.LV, "lv_universal_circuit", "§7LV §rUniversal Circuit", CustomTags.LV_CIRCUITS },
+            { GTValues.MV, "mv_universal_circuit", "§bMV §rUniversal Circuit", CustomTags.MV_CIRCUITS },
+            { GTValues.HV, "hv_universal_circuit", "§6HV §rUniversal Circuit", CustomTags.HV_CIRCUITS },
+            { GTValues.EV, "ev_universal_circuit", "§5EV §rUniversal Circuit", CustomTags.EV_CIRCUITS },
+            { GTValues.IV, "iv_universal_circuit", "§9IV §rUniversal Circuit", CustomTags.IV_CIRCUITS },
+            { GTValues.LuV, "luv_universal_circuit", "§dLuV §rUniversal Circuit", CustomTags.LuV_CIRCUITS },
+            { GTValues.ZPM, "zpm_universal_circuit", "§cZPM §rUniversal Circuit", CustomTags.ZPM_CIRCUITS },
+            { GTValues.UV, "uv_universal_circuit", "§3UV §rUniversal Circuit", CustomTags.UV_CIRCUITS },
+            { GTValues.UHV, "uhv_universal_circuit", "§4UHV §rUniversal Circuit", CustomTags.UHV_CIRCUITS },
+            { GTValues.UEV, "uev_universal_circuit", "§2UEV §rUniversal Circuit", CustomTags.UEV_CIRCUITS },
+            { GTValues.UIV, "uiv_universal_circuit", "§aUIV §rUniversal Circuit", CustomTags.UIV_CIRCUITS },
+            { GTValues.UXV, "uxv_universal_circuit", "§eUXV §rUniversal Circuit", CustomTags.UXV_CIRCUITS },
+            { GTValues.OpV, "opv_universal_circuit", "§9OpV §rUniversal Circuit", CustomTags.OpV_CIRCUITS },
     };
 
     static {

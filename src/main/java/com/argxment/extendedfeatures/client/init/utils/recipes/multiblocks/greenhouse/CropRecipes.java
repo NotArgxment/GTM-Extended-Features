@@ -1,7 +1,5 @@
 package com.argxment.extendedfeatures.client.init.utils.recipes.multiblocks.greenhouse;
 
-import com.argxment.extendedfeatures.client.RecipeTypes;
-
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.common.data.GTItems;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
@@ -10,12 +8,13 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
+import com.argxment.extendedfeatures.client.RecipeTypes;
+
 import java.util.function.Consumer;
 
 public class CropRecipes {
 
     public static void init(Consumer<FinishedRecipe> provider) {
-
         // =====================================================
         addCropRecipe(provider, "sugar_cane", false,
                 new ItemStack(Items.SUGAR_CANE), 1000,
@@ -94,7 +93,7 @@ public class CropRecipes {
                 new ItemStack(Items.PUMPKIN, 16));
 
         addCropRecipe(provider, "pumpkin_boosted", true,
-                new ItemStack(Items.PUMPKIN_SEEDS),  1000,
+                new ItemStack(Items.PUMPKIN_SEEDS), 1000,
                 new ItemStack(Items.PUMPKIN, 32));
         // =====================================================
         addCropRecipe(provider, "nether_wart", false,
@@ -110,8 +109,8 @@ public class CropRecipes {
                 new ItemStack(Items.RED_MUSHROOM, 16));
 
         addCropRecipe(provider, "red_mushroom_boosted", true,
-                new ItemStack(Items.RED_MUSHROOM),   1000,
-                new ItemStack(Items.RED_MUSHROOM,  32));
+                new ItemStack(Items.RED_MUSHROOM), 1000,
+                new ItemStack(Items.RED_MUSHROOM, 32));
         // =====================================================
         addCropRecipe(provider, "brown_mushroom", false,
                 new ItemStack(Items.BROWN_MUSHROOM), 1000,
@@ -123,10 +122,10 @@ public class CropRecipes {
     }
 
     private static void addCropRecipe(
-            Consumer<FinishedRecipe> provider,
-            String id, boolean boosted,
-            ItemStack input, int waterMb,
-            ItemStack output) {
+                                      Consumer<FinishedRecipe> provider,
+                                      String id, boolean boosted,
+                                      ItemStack input, int waterMb,
+                                      ItemStack output) {
         var builder = RecipeTypes.GREENHOUSE_CROPS.recipeBuilder(id)
                 .circuitMeta(boosted ? 2 : 1)
                 .notConsumable(input)

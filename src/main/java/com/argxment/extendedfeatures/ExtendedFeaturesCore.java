@@ -1,11 +1,5 @@
 package com.argxment.extendedfeatures;
 
-import com.argxment.extendedfeatures.client.RecipeTypes;
-import com.argxment.extendedfeatures.client.config.EFConfig;
-import com.argxment.extendedfeatures.client.init.utils.Items;
-import com.argxment.extendedfeatures.client.init.utils.Machines;
-import com.argxment.extendedfeatures.client.init.utils.Multiblocks;
-import com.argxment.extendedfeatures.client.init.utils.optical.WirelessOpticalDataMachines;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialEvent;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialRegistryEvent;
@@ -16,7 +10,7 @@ import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import com.gregtechceu.gtceu.api.sound.SoundEntry;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTCreativeModeTabs;
-import com.tterrag.registrate.util.entry.RegistryEntry;
+
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraftforge.common.MinecraftForge;
@@ -26,6 +20,14 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+
+import com.argxment.extendedfeatures.client.RecipeTypes;
+import com.argxment.extendedfeatures.client.config.EFConfig;
+import com.argxment.extendedfeatures.client.init.utils.Items;
+import com.argxment.extendedfeatures.client.init.utils.Machines;
+import com.argxment.extendedfeatures.client.init.utils.Multiblocks;
+import com.argxment.extendedfeatures.client.init.utils.optical.WirelessOpticalDataMachines;
+import com.tterrag.registrate.util.entry.RegistryEntry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -44,7 +46,8 @@ public class ExtendedFeaturesCore {
                             .displayItems(
                                     new GTCreativeModeTabs.RegistrateDisplayItemsGenerator(ExtendedFeaturesCore.MOD_ID,
                                             ExtendedFeaturesRegister))
-                            .title(ExtendedFeaturesRegister.addLang("itemGroup", ExtendedFeaturesCore.id("creative_tab"),
+                            .title(ExtendedFeaturesRegister.addLang("itemGroup",
+                                    ExtendedFeaturesCore.id("creative_tab"),
                                     "GTCEu Extended Features"))
                             .icon(GTBlocks.ANTIMATTER_HAZARD_SIGN_BLOCK::asStack)
                             .build())
@@ -71,9 +74,7 @@ public class ExtendedFeaturesCore {
         modEventBus.addGenericListener(SoundEntry.class, this::registerSounds);
 
         MinecraftForge.EVENT_BUS.register(this);
-
     }
-
 
     public static ResourceLocation id(String path) {
         return new ResourceLocation(ExtendedFeaturesCore.MOD_ID, path);
@@ -83,9 +84,7 @@ public class ExtendedFeaturesCore {
         if (GTCEuAPI.isHighTier()) return;
         if (!event.getTabKey().location().getNamespace().equals(ExtendedFeaturesCore.MOD_ID)) return;
 
-        Items.getHighTierCircuits().forEach(entry ->
-                event.getEntries().remove(entry.asStack())
-        );
+        Items.getHighTierCircuits().forEach(entry -> event.getEntries().remove(entry.asStack()));
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
@@ -98,7 +97,6 @@ public class ExtendedFeaturesCore {
     private void clientSetup(final FMLClientSetupEvent event) {
         LOGGER.info("i hate java!!!!!!");
     }
-
 
     private void addMaterialRegistries(MaterialRegistryEvent event) {
         GTCEuAPI.materialManager.createRegistry(ExtendedFeaturesCore.MOD_ID);
