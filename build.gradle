@@ -16,8 +16,6 @@ plugins {
     id 'com.diffplug.spotless' version '7.0.2'
 }
 
-apply from: "$rootDir/gradle/scripts/spotless.gradle"
-
 sourceSets {
     main.resources {
         srcDir 'src/generated/resources'
@@ -74,6 +72,9 @@ repositories {
     maven {
         url = "https://thedarkcolour.github.io/KotlinForForge/"
     }
+
+    maven {
+        url = "https://api.modrinth.com/maven" }
 }
 
 version = mod_version
@@ -153,7 +154,10 @@ dependencies {
     // TMRV, EMI, Jade
     modCompileOnly("curse.maven:tmrv-1194921:7983491")
     modRuntimeOnly("curse.maven:tmrv-1194921:7983491")
+
     modRuntimeOnly("curse.maven:emi-580555:8081375")
+
+    modCompileOnly("curse.maven:jade-324717:6855440")
     modRuntimeOnly("curse.maven:jade-324717:6855440")
 
     // GregTech and dependencies
@@ -183,6 +187,7 @@ tasks.named('processResources', ProcessResources).configure {
             "forge_version": forge_version.split("\\.")[0], // only specify major version of forge
             "minecraft_version": minecraft_version,
             "gtceu_version": gtceu_version,
+            "jade_version": jade_version
     ]
     inputs.properties(properties)
 
