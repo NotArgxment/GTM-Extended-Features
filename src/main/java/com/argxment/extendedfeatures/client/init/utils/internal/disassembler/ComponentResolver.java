@@ -1,4 +1,4 @@
-package com.argxment.extendedfeatures.client.init.utils.disassembler;
+package com.argxment.extendedfeatures.client.init.utils.internal.disassembler;
 
 import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 
