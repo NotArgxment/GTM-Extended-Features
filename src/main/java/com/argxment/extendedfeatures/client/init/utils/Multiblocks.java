@@ -77,11 +77,11 @@ public class Multiblocks {
                             Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.1"),
                             Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.2"))
                     .tooltipBuilder((stack, list) -> {
-                        list.add(Component.translatable("extendedfeatures.regular_tooltip.1")
-                                .append(Component.translatable("extendedfeatures.styled_tooltip.1")
+                        list.add(Component.translatable("extendedfeatures.regular.tooltip.1")
+                                .append(Component.translatable("extendedfeatures.styled.tooltip.1")
                                         .withStyle(TooltipHelper.RAINBOW_HSL_SLOW))
-                                .append(Component.translatable("extendedfeatures.regular_tooltip.2"))
-                                .append(Component.translatable("extendedfeatures.styled_tooltip.2")
+                                .append(Component.translatable("extendedfeatures.regular.tooltip.2"))
+                                .append(Component.translatable("extendedfeatures.styled.tooltip.2")
                                         .withStyle(TooltipHelper.RAINBOW_HSL_SLOW)));
                     })
                     .rotationState(RotationState.NON_Y_AXIS)
@@ -145,8 +145,8 @@ public class Multiblocks {
                             Component.translatable("gtceu.machine.cracker.tooltip"),
                             Component.translatable("gtceu.machine.cracker.tooltip.1"))
                     .tooltipBuilder((stack, list) -> {
-                        list.add(Component.translatable("extendedfeatures.regular_tooltip.1")
-                                .append(Component.translatable("extendedfeatures.styled_tooltip.2")
+                        list.add(Component.translatable("extendedfeatures.regular.tooltip.1")
+                                .append(Component.translatable("extendedfeatures.styled.tooltip.2")
                                         .withStyle(TooltipHelper.RAINBOW_HSL_SLOW)));
                     })
                     .rotationState(RotationState.NON_Y_AXIS)
@@ -199,8 +199,8 @@ public class Multiblocks {
                             Component.translatable("extendedfeatures.enlarged_reaction_chamber.tooltip.0"),
                             Component.translatable("extendedfeatures.enlarged_reaction_chamber.tooltip.1"))
                     .tooltipBuilder((stack, list) -> {
-                        list.add(Component.translatable("extendedfeatures.regular_tooltip.1")
-                                .append(Component.translatable("extendedfeatures.styled_tooltip.2")
+                        list.add(Component.translatable("extendedfeatures.regular.tooltip.1")
+                                .append(Component.translatable("extendedfeatures.styled.tooltip.2")
                                         .withStyle(TooltipHelper.RAINBOW_HSL_SLOW)));
                     })
                     .rotationState(RotationState.NON_Y_AXIS)
@@ -247,8 +247,8 @@ public class Multiblocks {
                             Component.translatable("gtceu.machine.pyrolyse_oven.tooltip"),
                             Component.translatable("gtceu.machine.pyrolyse_oven.tooltip.1"))
                     .tooltipBuilder((stack, list) -> {
-                        list.add(Component.translatable("extendedfeatures.regular_tooltip.1")
-                                .append(Component.translatable("extendedfeatures.styled_tooltip.2")
+                        list.add(Component.translatable("extendedfeatures.regular.tooltip.1")
+                                .append(Component.translatable("extendedfeatures.styled.tooltip.2")
                                         .withStyle(TooltipHelper.RAINBOW_HSL_SLOW)));
                     })
                     .rotationState(RotationState.NON_Y_AXIS)
@@ -389,7 +389,7 @@ public class Multiblocks {
                     )
                     .tooltipBuilder((stack, list) -> {
                         list.add(Component.translatable("extendedfeatures.compact_assembly_line.tooltip.3")
-                                .append(Component.translatable("extendedfeatures.styled_tooltip.3")
+                                .append(Component.translatable("extendedfeatures.styled.tooltip.3")
                                         .withStyle(TooltipHelper.RAINBOW_HSL_FAST)));
                     })
                     .rotationState(RotationState.NON_Y_AXIS)
@@ -537,8 +537,8 @@ public class Multiblocks {
                     .tooltips(
                             Component.translatable("extendedfeatures.greenhouse.tooltip.0"))
                     .tooltipBuilder((stack, list) -> {
-                        list.add(Component.translatable("extendedfeatures.regular_tooltip.1")
-                                .append(Component.translatable("extendedfeatures.styled_tooltip.2")
+                        list.add(Component.translatable("extendedfeatures.regular.tooltip.1")
+                                .append(Component.translatable("extendedfeatures.styled.tooltip.2")
                                         .withStyle(TooltipHelper.RAINBOW_HSL_SLOW)));
                     })
                     .recipeTypes(
@@ -630,8 +630,9 @@ public class Multiblocks {
                             Component.translatable("gtceu.machine.data_bank.tooltip.1")
                     )
                     .tooltipBuilder((stack, list) -> {
-                        list.add(Component.translatable("extendedfeatures.regular_tooltip.1")
-                                .append(Component.translatable("extendedfeatures.styled_tooltip.4")
+                        list.add(
+                                Component.translatable("extendedfeatures.expanded_databank_tootip.1")
+                                .append(Component.translatable("extendedfeatures.styled.tooltip.4")
                                         .withStyle(CustomTooltipStyles.IV_GRADIENT)));
                     })
                     .rotationState(RotationState.NON_Y_AXIS)
@@ -666,6 +667,16 @@ public class Multiblocks {
         if (EFConfig.INSTANCE.Wireless.wirelessUtils || GTCEu.isDataGen()) {
             CLOUD_TRANSMISSION_DATABASE = ExtendedFeaturesRegister
                     .multiblock("cloud_transmission_database", DataBankMachine::new)
+                    .tooltips(
+                            Component.translatable("extendedfeatures.cloud_transmission_database.tooltip.1"),
+                            Component.translatable("extendedfeatures.cloud_transmission_database.tooltip.2"),
+                            Component.translatable("extendedfeatures.cloud_transmission_database.tooltip.3")
+                    )
+                    .tooltipBuilder((stack, list) -> {
+                        list.add(Component.translatable("extendedfeatures.cloud_transmission_database.tooltip.4")
+                                .append(Component.translatable("extendedfeatures.styled.tooltip.5")
+                                        .withStyle(TooltipHelper.RAINBOW_HSL_SLOW)));
+                    })
                     .rotationState(RotationState.NON_Y_AXIS)
                     .recipeType(DUMMY_RECIPES)
                     .appearanceBlock(HIGH_POWER_CASING)

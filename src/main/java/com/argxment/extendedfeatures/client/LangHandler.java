@@ -62,14 +62,14 @@ public class LangHandler {
         replace(provider, "extendedfeatures.machine.wireless_optical_hatch.not_formed", "This multiblock is not formed - form the structure before scanning");
         replace(provider, "extendedfeatures.machine.wireless_optical_hatch.linked_summary", "Linked %s new receiver(s) and %s new data hatch(es)");
         replace(provider, "extendedfeatures.machine.wireless_optical_hatch.no_receivers_found", "No new compatible receivers or data hatches found in range");
-        replace(provider, "extendedfeatures.machine.wireless_optical_hatch.range_shown", "Showing current range: %s blocks in every axis");
+        replace(provider, "extendedfeatures.machine.wireless_optical_hatch.range_shown", "Displaying current range of connections: %s blocks in X/Z");
 
         // Jade integration
         replace(provider, "config.jade.plugin_extendedfeatures.wireless_optical_hatch", "Wireless Optical Info");
         replace(provider, "extendedfeatures.jade.wireless_optical_hatch.linked_data_hatches", "Linked Data Access Hatches: %s");
         replace(provider, "extendedfeatures.jade.wireless_optical_hatch.linked_receivers_header", "Linked Wireless Optical Receivers:");
         replace(provider, "extendedfeatures.jade.wireless_optical_hatch.receiver_entry", "   - Receiver %s: %s");
-        replace(provider, "extendedfeatures.jade.wireless_optical_hatch.no_receivers", "   - None linked");
+        replace(provider, "extendedfeatures.jade.wireless_optical_hatch.no_receivers", "   - Not linked");
     }
 
     private static void Tooltips(RegistrateLangProvider provider) {
@@ -92,6 +92,11 @@ public class LangHandler {
 
         provider.add("extendedfeatures.expanded_databank_tootip.1", "§fAllows 16");
 
+        provider.add("extendedfeatures.cloud_transmission_database.tooltip.1", "§fYour personal Data Center");
+        provider.add("extendedfeatures.cloud_transmission_database.tooltip.2", "§fThis machine is a variant of the regular Data Bank capable of transmitting data using");
+        provider.add("extendedfeatures.cloud_transmission_database.tooltip.3", "§fNeeds exactly 1 Data Access Hatch to form");
+        provider.add("extendedfeatures.cloud_transmission_database.tooltip.4", "§fOnly allows");
+
         provider.add("extendedfeatures.luv_advanced_fusion_reactor.tooltip.0", "§fRuns");
         provider.add("extendedfeatures.luv_advanced_fusion_reactor.tooltip.1", " 4 Parallels");
 
@@ -101,11 +106,12 @@ public class LangHandler {
         provider.add("extendedfeatures.uv_advanced_fusion_reactor.tooltip.0", "§fRuns");
         provider.add("extendedfeatures.uv_advanced_fusion_reactor.tooltip.1", " 16 Parallels");
 
-        provider.add("extendedfeatures.regular_tooltip.1", "§fAllows");
-        provider.add("extendedfeatures.regular_tooltip.2", "§fand");
-        provider.add("extendedfeatures.styled_toooltip.1", " Laser Hatches");
-        provider.add("extendedfeatures.styled_toooltip.2", " Parallel Hatches");
-        provider.add("extendedfeatures.styled_toooltip.3", " Wireless Optical Reception Hatches");
-        provider.add("extendedfeatures.styled_toooltip.4", " Optical Transmission Hatches");
+        provider.add("extendedfeatures.regular.tooltip.1", "§fAllows");
+        provider.add("extendedfeatures.regular.tooltip.2", "§fand");
+        provider.add("extendedfeatures.styled.tooltip.1", " Laser Hatches");
+        provider.add("extendedfeatures.styled.tooltip.2", " Parallel Hatches");
+        provider.add("extendedfeatures.styled.tooltip.3", " Wireless Optical Reception Hatches");
+        provider.add("extendedfeatures.styled.tooltip.4", " Wireless Optical Transmission Hatches");
+        provider.add("extendedfeatures.styled.tooltip.5", " Optical Transmission Hatches");
     }
 }
