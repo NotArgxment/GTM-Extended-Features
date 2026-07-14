@@ -32,7 +32,7 @@ Essentially allowing to store every Data Stick, Data Orb and Data Module (and pr
 
 ![img.png](img.png)
 
-Textures made by Witherstar (Monifactory Contributor)
+Textures made by WithersChat (Current Monifactory Owner)
 
 ## Future additions:
 ### Features
