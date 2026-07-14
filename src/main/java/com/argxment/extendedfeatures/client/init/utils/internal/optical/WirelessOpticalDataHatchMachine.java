@@ -307,6 +307,13 @@ public class WirelessOpticalDataHatchMachine extends OpticalDataHatchMachine imp
         void visit(BlockPos pos, BlockEntity blockEntity);
     }
 
+    // Draws a Cube following each transmitter max distance and search's for receivers, replacing the Sphere searching method
+    private boolean isWithinCubeRange(BlockPos candidate, BlockPos center, int range) {
+        return Math.abs(candidate.getX() - center.getX()) <= range &&
+                Math.abs(candidate.getY() - center.getY()) <= range &&
+                Math.abs(candidate.getZ() - center.getZ()) <= range;
+    }
+
     private void forEachBlockEntityInRange(ServerLevel level, BlockPos center, int range, BlockEntityVisitor visitor) {
         int chunkMinX = (center.getX() - range) >> 4;
         int chunkMaxX = (center.getX() + range) >> 4;
@@ -320,7 +327,7 @@ public class WirelessOpticalDataHatchMachine extends OpticalDataHatchMachine imp
 
                 for (BlockEntity blockEntity : chunk.getBlockEntities().values()) {
                     BlockPos candidatePos = blockEntity.getBlockPos();
-                    if (candidatePos.distSqr(center) > (double) range * range) continue;
+                    if (!isWithinCubeRange(candidatePos, center, range)) continue;
                     if (candidatePos.equals(center)) continue;
 
                     visitor.visit(candidatePos, blockEntity);
@@ -332,8 +339,8 @@ public class WirelessOpticalDataHatchMachine extends OpticalDataHatchMachine imp
     // Feedback
     private void spawnLinkBeam(ServerLevel level, BlockPos from, BlockPos to,
                                net.minecraft.core.particles.ParticleOptions particle) {
-        Vec3 start = Vec3.atCenterOf(from);
-        Vec3 end = Vec3.atCenterOf(to);
+        Vec3 start = ParticleBeamRenderer.faceCenterTowards(from, to);
+        Vec3 end = ParticleBeamRenderer.faceCenterTowards(to, from);
         LinkedParticleAnimator animator = new LinkedParticleAnimator(LINK_PARTICLE_DURATION_TICKS,
                 LINK_PARTICLE_INTERVAL_TICKS, () -> ParticleBeamRenderer.emitLine(level, start, end, particle));
         particleAnimators.add(animator);
