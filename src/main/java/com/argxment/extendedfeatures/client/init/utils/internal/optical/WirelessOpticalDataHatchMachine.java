@@ -1,10 +1,12 @@
-package com.argxment.extendedfeatures.client.init.utils.optical;
+package com.argxment.extendedfeatures.client.init.utils.internal.optical;
+
+import com.argxment.extendedfeatures.client.init.utils.internal.render.LinkedParticleAnimator;
+import com.argxment.extendedfeatures.client.init.utils.internal.render.ParticleBeamRenderer;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.IDataAccessHatch;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
-import com.gregtechceu.gtceu.api.machine.TickableSubscription;
 import com.gregtechceu.gtceu.api.machine.feature.IInteractedMachine;
 import com.gregtechceu.gtceu.api.machine.feature.IMachineLife;
 import com.gregtechceu.gtceu.api.machine.multiblock.part.MultiblockPartMachine;
@@ -17,7 +19,6 @@ import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -31,26 +32,23 @@ import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
 
-import javax.annotation.ParametersAreNonnullByDefault;
-
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
-public class WirelessOpticalDataHatchMachine extends OpticalDataHatchMachine
-                                             implements IMachineLife, IInteractedMachine {
+public class WirelessOpticalDataHatchMachine extends OpticalDataHatchMachine implements IMachineLife, IInteractedMachine {
 
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
             WirelessOpticalDataHatchMachine.class, MultiblockPartMachine.MANAGED_FIELD_HOLDER);
 
-    private static final int LINK_PARTICLE_DURATION_TICKS = 100; // 5 seconds
+    private static final int LINK_PARTICLE_DURATION_TICKS = 200; // 10 seconds
     private static final int LINK_PARTICLE_INTERVAL_TICKS = 4;
 
     public enum WirelessTier {
-
         LuV(GTValues.LuV, 16, 4),
         ZPM(GTValues.ZPM, 24, 8),
         UV(GTValues.UV, 32, 16);
@@ -77,15 +75,9 @@ public class WirelessOpticalDataHatchMachine extends OpticalDataHatchMachine
 
     private final WirelessTier wirelessTier;
 
-    /**
-     * Receiver-only: the single transmitter this hatch is currently linked to, or {@code null}
-     */
     @Persisted
     private BlockPos linkedTransmitterPos;
 
-    /**
-     * Transmitter-only: bookkeeping of who is currently listening (bounded by {@link WirelessTier#maxConnections})
-     */
     @Persisted
     private final List<BlockPos> linkedReceiverPositions = new ArrayList<>();
 
@@ -96,7 +88,7 @@ public class WirelessOpticalDataHatchMachine extends OpticalDataHatchMachine
     @Persisted
     private final List<BlockPos> linkedDataHatchPositions = new ArrayList<>();
 
-    private final List<TickableSubscription> particleSubscriptions = new ArrayList<>();
+    private final List<LinkedParticleAnimator> particleAnimators = new ArrayList<>();
 
     public WirelessOpticalDataHatchMachine(IMachineBlockEntity holder, boolean isTransmitter, int gtTier) {
         super(holder, isTransmitter);
@@ -107,9 +99,20 @@ public class WirelessOpticalDataHatchMachine extends OpticalDataHatchMachine
         return wirelessTier;
     }
 
+    /** Transmitter-only: read-only view of currently linked receiver positions. */
+    public List<BlockPos> getLinkedReceiverPositions() {
+        return List.copyOf(linkedReceiverPositions);
+    }
+
+    /** Transmitter-only: read-only view of currently linked physical Data Access Hatch positions. */
+    public List<BlockPos> getLinkedDataHatchPositions() {
+        return List.copyOf(linkedDataHatchPositions);
+    }
+
     public boolean isLinked() {
-        return isTransmitter() ? !linkedReceiverPositions.isEmpty() || !linkedDataHatchPositions.isEmpty() :
-                linkedTransmitterPos != null;
+        return isTransmitter()
+                ? !linkedReceiverPositions.isEmpty() || !linkedDataHatchPositions.isEmpty()
+                : linkedTransmitterPos != null;
     }
 
     @Override
@@ -120,10 +123,10 @@ public class WirelessOpticalDataHatchMachine extends OpticalDataHatchMachine
     // Lifecycle
     @Override
     public void onMachineRemoved() {
-        for (TickableSubscription subscription : particleSubscriptions) {
-            subscription.unsubscribe();
+        for (LinkedParticleAnimator animator : particleAnimators) {
+            animator.stop();
         }
-        particleSubscriptions.clear();
+        particleAnimators.clear();
 
         // Clean up bidirectional bookkeeping so stale links don't linger
         Level level = getLevel();
@@ -135,10 +138,9 @@ public class WirelessOpticalDataHatchMachine extends OpticalDataHatchMachine
                 }
             }
         } else if (level != null && linkedTransmitterPos != null &&
-                MetaMachine.getMachine(level,
-                        linkedTransmitterPos) instanceof WirelessOpticalDataHatchMachine transmitter) {
-                            transmitter.linkedReceiverPositions.remove(getPos());
-                        }
+                MetaMachine.getMachine(level, linkedTransmitterPos) instanceof WirelessOpticalDataHatchMachine transmitter) {
+            transmitter.linkedReceiverPositions.remove(getPos());
+        }
     }
 
     // Recipe Logic
@@ -153,8 +155,7 @@ public class WirelessOpticalDataHatchMachine extends OpticalDataHatchMachine
 
             for (BlockPos dataHatchPos : linkedDataHatchPositions) {
                 if (!level.isLoaded(dataHatchPos)) continue;
-                if (!(MetaMachine.getMachine(level, dataHatchPos) instanceof DataAccessHatchMachine dataHatch))
-                    continue;
+                if (!(MetaMachine.getMachine(level, dataHatchPos) instanceof DataAccessHatchMachine dataHatch)) continue;
                 if (seen.contains(dataHatch)) continue;
 
                 if (dataHatch.isRecipeAvailable(recipe, seen)) {
@@ -180,7 +181,7 @@ public class WirelessOpticalDataHatchMachine extends OpticalDataHatchMachine
         return partner.isRecipeAvailable(recipe, seen);
     }
 
-    // Scan and Link
+    // Scan & Link
     @Override
     public InteractionResult onUse(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand,
                                    BlockHitResult hit) {
@@ -188,21 +189,36 @@ public class WirelessOpticalDataHatchMachine extends OpticalDataHatchMachine
         if (!isTransmitter()) return InteractionResult.PASS;
         if (world.isClientSide) return InteractionResult.SUCCESS;
 
-        scanAndLink(player);
+        if (player.isShiftKeyDown()) {
+            showRangeCube(player);
+        } else {
+            scanAndLink(player);
+        }
         return InteractionResult.SUCCESS;
+    }
+
+    private void showRangeCube(Player player) {
+        if (!isFormed()) {
+            player.sendSystemMessage(Component.translatable("extendedfeatures.machine.wireless_optical_hatch.not_formed"));
+            return;
+        }
+        if (!(getLevel() instanceof ServerLevel serverLevel)) return;
+
+        spawnRangeCubeBeam(serverLevel, getPos(), wirelessTier.range);
+        player.sendSystemMessage(
+                Component.translatable("extendedfeatures.machine.wireless_optical_hatch.range_shown", wirelessTier.range));
     }
 
     /**
      * Scans a cubic area of {@code wirelessTier.range} blocks around this transmitter for:
      * <ul>
-     * <li>compatible, unlinked receiver hatches (bounded by the connection limit, closest first);</li>
-     * <li>physical {@link DataAccessHatchMachine}s not yet linked (unbounded).</li>
+     *     <li>compatible, unlinked receiver hatches (bounded by the connection limit, closest first);</li>
+     *     <li>physical {@link DataAccessHatchMachine}s not yet linked (unbounded).</li>
      * </ul>
      */
     private void scanAndLink(Player player) {
         if (!isFormed()) {
-            player.sendSystemMessage(
-                    Component.translatable("extendedfeatures.machine.wireless_optical_hatch.not_formed"));
+            player.sendSystemMessage(Component.translatable("extendedfeatures.machine.wireless_optical_hatch.not_formed"));
             return;
         }
 
@@ -314,34 +330,23 @@ public class WirelessOpticalDataHatchMachine extends OpticalDataHatchMachine
     }
 
     // Feedback
-    private void spawnLinkBeam(ServerLevel level, BlockPos from, BlockPos to, ParticleOptions particle) {
-        int[] ticksElapsed = { 0 };
-        TickableSubscription[] subscriptionHolder = new TickableSubscription[1];
-        subscriptionHolder[0] = subscribeServerTick(() -> {
-            if (ticksElapsed[0] >= LINK_PARTICLE_DURATION_TICKS || level.getServer() == null) {
-                subscriptionHolder[0].unsubscribe();
-                particleSubscriptions.remove(subscriptionHolder[0]);
-                return;
-            }
-            if (ticksElapsed[0] % LINK_PARTICLE_INTERVAL_TICKS == 0) {
-                emitParticleLine(level, from, to, particle);
-            }
-            ticksElapsed[0]++;
-        });
-        particleSubscriptions.add(subscriptionHolder[0]);
-    }
-
-    private void emitParticleLine(ServerLevel level, BlockPos from, BlockPos to, ParticleOptions particle) {
+    private void spawnLinkBeam(ServerLevel level, BlockPos from, BlockPos to,
+                               net.minecraft.core.particles.ParticleOptions particle) {
         Vec3 start = Vec3.atCenterOf(from);
         Vec3 end = Vec3.atCenterOf(to);
-        double distance = start.distanceTo(end);
-        int steps = Math.max(1, (int) (distance * 2));
+        LinkedParticleAnimator animator = new LinkedParticleAnimator(LINK_PARTICLE_DURATION_TICKS,
+                LINK_PARTICLE_INTERVAL_TICKS, () -> ParticleBeamRenderer.emitLine(level, start, end, particle));
+        particleAnimators.add(animator);
+        animator.start(this::subscribeServerTick, () -> particleAnimators.remove(animator));
+    }
 
-        for (int i = 0; i <= steps; i++) {
-            double t = (double) i / steps;
-            Vec3 point = start.lerp(end, t);
-            level.sendParticles(particle, point.x, point.y, point.z, 1, 0, 0, 0, 0);
-        }
+    private void spawnRangeCubeBeam(ServerLevel level, BlockPos center, int range) {
+        Vec3 centerVec = Vec3.atCenterOf(center);
+        LinkedParticleAnimator animator = new LinkedParticleAnimator(LINK_PARTICLE_DURATION_TICKS,
+                LINK_PARTICLE_INTERVAL_TICKS, () -> ParticleBeamRenderer.emitSquareOutline(level, centerVec, range,
+                ParticleTypes.SOUL_FIRE_FLAME));
+        particleAnimators.add(animator);
+        animator.start(this::subscribeServerTick, () -> particleAnimators.remove(animator));
     }
 
     public String getWirelessTierName() {

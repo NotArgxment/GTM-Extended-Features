@@ -31,3 +31,9 @@ issueTrackerURL = "https://github.com/NotArgxment/GTM-Extended-Features/issues"
         versionRange = "[${gtceu_version},)"
         ordering = "AFTER"
         side = "BOTH"
+    [[dependencies.${mod_id}]]
+        modId = "jade"
+        mandatory = false
+        versionRange = "[${jade_version},)"
+        ordering = "NONE"
+        side = "BOTH"

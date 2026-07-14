@@ -1,11 +1,11 @@
-package com.argxment.extendedfeatures.client;
+package com.argxment.extendedfeatures.client.init.utils.internal.optical;
 
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.DataAccessHatchMachine;
 
-public class DataHatch extends DataAccessHatchMachine {
+public class ExpandedDataHatchLogic extends DataAccessHatchMachine {
 
-    public DataHatch(IMachineBlockEntity holder, int tier, boolean isCreative) {
+    public ExpandedDataHatchLogic(IMachineBlockEntity holder, int tier, boolean isCreative) {
         super(holder, tier, isCreative);
     }
 

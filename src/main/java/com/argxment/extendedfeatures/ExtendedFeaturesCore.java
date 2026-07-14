@@ -22,11 +22,10 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import com.argxment.extendedfeatures.client.RecipeTypes;
-import com.argxment.extendedfeatures.client.config.EFConfig;
-import com.argxment.extendedfeatures.client.init.utils.Items;
-import com.argxment.extendedfeatures.client.init.utils.Machines;
+import com.argxment.extendedfeatures.client.integrations.Configuration.EFConfig;
+import com.argxment.extendedfeatures.client.init.utils.UniversalCircuits;
+import com.argxment.extendedfeatures.client.init.utils.ExpandedDataHatches;
 import com.argxment.extendedfeatures.client.init.utils.Multiblocks;
-import com.argxment.extendedfeatures.client.init.utils.optical.WirelessOpticalDataMachines;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -57,7 +56,7 @@ public class ExtendedFeaturesCore {
         EFConfig.init();
 
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        Items.register(modEventBus);
+        UniversalCircuits.register(modEventBus);
 
         ExtendedFeaturesRegister.registerRegistrate();
 
@@ -84,7 +83,7 @@ public class ExtendedFeaturesCore {
         if (GTCEuAPI.isHighTier()) return;
         if (!event.getTabKey().location().getNamespace().equals(ExtendedFeaturesCore.MOD_ID)) return;
 
-        Items.getHighTierCircuits().forEach(entry -> event.getEntries().remove(entry.asStack()));
+        UniversalCircuits.getHighTierCircuits().forEach(entry -> event.getEntries().remove(entry.asStack()));
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
@@ -116,8 +115,7 @@ public class ExtendedFeaturesCore {
 
     private void registerMachines(GTCEuAPI.RegisterEvent<ResourceLocation, MachineDefinition> event) {
         Multiblocks.init();
-        Machines.init();
-        WirelessOpticalDataMachines.init();
+        ExpandedDataHatches.init();
     }
 
     public void registerSounds(GTCEuAPI.RegisterEvent<ResourceLocation, SoundEntry> event) {

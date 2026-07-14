@@ -1,4 +1,4 @@
-package com.argxment.extendedfeatures.client.config;
+package com.argxment.extendedfeatures.client.integrations.Configuration;
 
 import com.argxment.extendedfeatures.ExtendedFeaturesCore;
 import dev.toma.configuration.Configuration;

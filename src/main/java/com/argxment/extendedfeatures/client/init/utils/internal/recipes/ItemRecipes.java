@@ -1,4 +1,4 @@
-package com.argxment.extendedfeatures.client.init.utils.recipes;
+package com.argxment.extendedfeatures.client.init.utils.internal.recipes;
 
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.GTValues;
@@ -8,7 +8,7 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 
-import com.argxment.extendedfeatures.client.init.utils.Items;
+import com.argxment.extendedfeatures.client.init.utils.UniversalCircuits;
 import com.tterrag.registrate.util.entry.ItemEntry;
 
 import java.util.function.Consumer;
@@ -39,7 +39,7 @@ public class ItemRecipes {
 
     private static void buildCircuitRecipe(Consumer<FinishedRecipe> provider, String recipeName,
                                            TagKey<Item> inputTag, int tier) {
-        ItemEntry<Item> output = Items.UNIVERSAL_CIRCUITS[tier];
+        ItemEntry<Item> output = UniversalCircuits.UNIVERSAL_CIRCUITS[tier];
         if (output == null) return;
 
         ASSEMBLER_RECIPES.recipeBuilder(recipeName)

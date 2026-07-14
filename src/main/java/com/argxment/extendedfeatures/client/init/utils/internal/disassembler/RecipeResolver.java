@@ -1,4 +1,4 @@
-package com.argxment.extendedfeatures.client.init.utils.disassembler;
+package com.argxment.extendedfeatures.client.init.utils.internal.disassembler;
 
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.GTValues;
@@ -15,8 +15,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 
-import com.argxment.extendedfeatures.client.config.EFConfig;
-import com.argxment.extendedfeatures.client.init.utils.Items;
+import com.argxment.extendedfeatures.client.integrations.Configuration.EFConfig;
+import com.argxment.extendedfeatures.client.init.utils.UniversalCircuits;
 import com.tterrag.registrate.util.entry.ItemEntry;
 
 import java.util.*;
@@ -66,7 +66,7 @@ public class RecipeResolver {
     }
 
     private static void putIfPresent(Map<TagKey<Item>, ItemStack> map, TagKey<Item> tag, int tier) {
-        ItemEntry<Item> entry = Items.UNIVERSAL_CIRCUITS[tier];
+        ItemEntry<Item> entry = UniversalCircuits.UNIVERSAL_CIRCUITS[tier];
         if (entry != null) {
             map.put(tag, entry.asStack());
         }

@@ -9,7 +9,7 @@ import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 
 import com.argxment.extendedfeatures.ExtendedFeaturesCore;
-import com.argxment.extendedfeatures.client.config.EFConfig;
+import com.argxment.extendedfeatures.client.integrations.Configuration.EFConfig;
 import com.tterrag.registrate.util.entry.ItemEntry;
 
 import java.util.ArrayList;
@@ -18,15 +18,13 @@ import java.util.List;
 import static com.argxment.extendedfeatures.ExtendedFeaturesCore.ExtendedFeaturesRegister;
 
 @SuppressWarnings("unchecked")
-public class Items {
+public class UniversalCircuits {
 
     static {
         ExtendedFeaturesRegister.creativeModeTab(() -> ExtendedFeaturesCore.EF_TAB);
     }
 
     // Credits to witherschat for allowing me to use the universal circuits textures
-
-    @SuppressWarnings("unchecked")
     public static final ItemEntry<Item>[] UNIVERSAL_CIRCUITS = new ItemEntry[GTValues.TIER_COUNT];
 
     private static final Object[][] CIRCUIT_DATA = {

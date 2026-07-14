@@ -1,4 +1,4 @@
-package com.argxment.extendedfeatures.client.init.utils.recipes;
+package com.argxment.extendedfeatures.client.init.utils.internal.recipes;
 
 import com.gregtechceu.gtceu.api.GTValues;
 
@@ -8,7 +8,7 @@ import net.minecraft.world.level.block.Blocks;
 
 import java.util.function.Consumer;
 
-import static com.argxment.extendedfeatures.client.RecipeTypes.ROCK_PROCESSING;
+import static com.argxment.extendedfeatures.client.RecipeTypes.ROCK_PROCESSING_RECIPES;
 import static com.gregtechceu.gtceu.api.GTValues.L;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.dust;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
@@ -28,7 +28,7 @@ public class MultiblockRecipes {
         final int rpfTime = 2000;
         final var rpfEnergy = GTValues.VA[GTValues.EV];
 
-        ROCK_PROCESSING.recipeBuilder("deepslate_processing")
+        ROCK_PROCESSING_RECIPES.recipeBuilder("deepslate_processing")
                 .inputItems(new ItemStack(Blocks.DEEPSLATE), 1)
                 .inputFluids(Lubricant.getFluid(L * 4))
                 .outputItems(dust, Potassium, 1)
@@ -41,7 +41,7 @@ public class MultiblockRecipes {
                 .EUt(rpfEnergy)
                 .save(provider);
 
-        ROCK_PROCESSING.recipeBuilder("andesite_processing")
+        ROCK_PROCESSING_RECIPES.recipeBuilder("andesite_processing")
                 .inputItems(new ItemStack(Blocks.ANDESITE), 1)
                 .inputFluids(Lubricant.getFluid(L * 4))
                 .outputItems(dust, Magnesium, 1)
@@ -52,7 +52,7 @@ public class MultiblockRecipes {
                 .EUt(rpfEnergy)
                 .save(provider);
 
-        ROCK_PROCESSING.recipeBuilder("diorite_processing")
+        ROCK_PROCESSING_RECIPES.recipeBuilder("diorite_processing")
                 .inputItems(new ItemStack(Blocks.DIORITE), 1)
                 .inputFluids(Lubricant.getFluid(L * 4))
                 .outputItems(dust, Sodium, 1)
@@ -63,7 +63,7 @@ public class MultiblockRecipes {
                 .EUt(rpfEnergy)
                 .save(provider);
 
-        ROCK_PROCESSING.recipeBuilder("granite_processing")
+        ROCK_PROCESSING_RECIPES.recipeBuilder("granite_processing")
                 .inputItems(new ItemStack(Blocks.GRANITE), 1)
                 .inputFluids(Lubricant.getFluid(L * 4))
                 .outputItems(dust, SiliconDioxide, 1)
@@ -73,7 +73,7 @@ public class MultiblockRecipes {
                 .EUt(rpfEnergy)
                 .save(provider);
 
-        ROCK_PROCESSING.recipeBuilder("end_stone_processing")
+        ROCK_PROCESSING_RECIPES.recipeBuilder("end_stone_processing")
                 .inputItems(new ItemStack(Blocks.END_STONE), 1)
                 .inputFluids(Lubricant.getFluid(L * 4))
                 .chancedOutput(new ItemStack(Blocks.SAND), 8000, 5)
@@ -84,7 +84,7 @@ public class MultiblockRecipes {
                 .EUt(rpfEnergy)
                 .save(provider);
 
-        ROCK_PROCESSING.recipeBuilder("netherrack_processing")
+        ROCK_PROCESSING_RECIPES.recipeBuilder("netherrack_processing")
                 .inputItems(new ItemStack(Blocks.NETHERRACK), 1)
                 .inputFluids(Lubricant.getFluid(L * 4))
                 .chancedOutput(dust, Coal, 1, 6500, 25)
@@ -95,7 +95,7 @@ public class MultiblockRecipes {
                 .EUt(rpfEnergy)
                 .save(provider);
 
-        ROCK_PROCESSING.recipeBuilder("obsidian_processing")
+        ROCK_PROCESSING_RECIPES.recipeBuilder("obsidian_processing")
                 .inputItems(new ItemStack(Blocks.OBSIDIAN), 1)
                 .inputFluids(Lubricant.getFluid(L * 4))
                 .outputItems(dust, Magnesium, 1)

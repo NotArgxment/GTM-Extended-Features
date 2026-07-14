@@ -28,9 +28,9 @@ import net.minecraft.world.level.block.Blocks;
 
 import com.argxment.extendedfeatures.ExtendedFeaturesCore;
 import com.argxment.extendedfeatures.client.RecipeTypes;
-import com.argxment.extendedfeatures.client.config.EFConfig;
-import com.argxment.extendedfeatures.client.init.utils.disassembler.DisassemblyMachine;
-import com.argxment.extendedfeatures.client.init.utils.optical.WirelessAbilities;
+import com.argxment.extendedfeatures.client.integrations.Configuration.EFConfig;
+import com.argxment.extendedfeatures.client.init.utils.internal.optical.WirelessAbilities;
+import com.argxment.extendedfeatures.client.init.utils.internal.disassembler.DisassemblerMachine;
 
 import java.util.Locale;
 
@@ -38,6 +38,7 @@ import static com.argxment.extendedfeatures.ExtendedFeaturesCore.ExtendedFeature
 import static com.argxment.extendedfeatures.client.MachineUtils.TieredMultis;
 import static com.argxment.extendedfeatures.client.RecipeTypes.*;
 import static com.argxment.extendedfeatures.client.init.utils.RecipeModifiers.SIMPLE_PARALLEL;
+
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.pattern.Predicates.*;
 import static com.gregtechceu.gtceu.common.data.GCYMBlocks.*;
@@ -76,11 +77,11 @@ public class Multiblocks {
                             Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.1"),
                             Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.2"))
                     .tooltipBuilder((stack, list) -> {
-                        list.add(Component.translatable("extendedfeatures.fancytooltip.tooltip.0")
-                                .append(Component.translatable("extendedfeatures.fancytooltip.tooltip.1")
+                        list.add(Component.translatable("extendedfeatures.regular_tooltip.1")
+                                .append(Component.translatable("extendedfeatures.styled_tooltip.1")
                                         .withStyle(TooltipHelper.RAINBOW_HSL_SLOW))
-                                .append(Component.translatable("extendedfeatures.fancytooltip.tooltip.2"))
-                                .append(Component.translatable("extendedfeatures.fancytooltip.tooltip.3")
+                                .append(Component.translatable("extendedfeatures.regular_tooltip.2"))
+                                .append(Component.translatable("extendedfeatures.styled_tooltip.2")
                                         .withStyle(TooltipHelper.RAINBOW_HSL_SLOW)));
                     })
                     .rotationState(RotationState.NON_Y_AXIS)
@@ -144,8 +145,8 @@ public class Multiblocks {
                             Component.translatable("gtceu.machine.cracker.tooltip"),
                             Component.translatable("gtceu.machine.cracker.tooltip.1"))
                     .tooltipBuilder((stack, list) -> {
-                        list.add(Component.translatable("extendedfeatures.fancytooltip.tooltip.0")
-                                .append(Component.translatable("extendedfeatures.fancytooltip.tooltip.3")
+                        list.add(Component.translatable("extendedfeatures.regular_tooltip.1")
+                                .append(Component.translatable("extendedfeatures.styled_tooltip.2")
                                         .withStyle(TooltipHelper.RAINBOW_HSL_SLOW)));
                     })
                     .rotationState(RotationState.NON_Y_AXIS)
@@ -198,8 +199,8 @@ public class Multiblocks {
                             Component.translatable("extendedfeatures.enlarged_reaction_chamber.tooltip.0"),
                             Component.translatable("extendedfeatures.enlarged_reaction_chamber.tooltip.1"))
                     .tooltipBuilder((stack, list) -> {
-                        list.add(Component.translatable("extendedfeatures.fancytooltip.tooltip.0")
-                                .append(Component.translatable("extendedfeatures.fancytooltip.tooltip.3")
+                        list.add(Component.translatable("extendedfeatures.regular_tooltip.1")
+                                .append(Component.translatable("extendedfeatures.styled_tooltip.2")
                                         .withStyle(TooltipHelper.RAINBOW_HSL_SLOW)));
                     })
                     .rotationState(RotationState.NON_Y_AXIS)
@@ -246,8 +247,8 @@ public class Multiblocks {
                             Component.translatable("gtceu.machine.pyrolyse_oven.tooltip"),
                             Component.translatable("gtceu.machine.pyrolyse_oven.tooltip.1"))
                     .tooltipBuilder((stack, list) -> {
-                        list.add(Component.translatable("extendedfeatures.fancytooltip.tooltip.0")
-                                .append(Component.translatable("extendedfeatures.fancytooltip.tooltip.3")
+                        list.add(Component.translatable("extendedfeatures.regular_tooltip.1")
+                                .append(Component.translatable("extendedfeatures.styled_tooltip.2")
                                         .withStyle(TooltipHelper.RAINBOW_HSL_SLOW)));
                     })
                     .rotationState(RotationState.NON_Y_AXIS)
@@ -383,7 +384,14 @@ public class Multiblocks {
                     .multiblock("compact_assembly_line", WorkableElectricMultiblockMachine::new)
                     .tooltips(
                             Component.translatable("extendedfeatures.compact_assembly_line.tooltip.0"),
-                            Component.translatable("extendedfeatures.compact_assembly_line.tooltip.1"))
+                            Component.translatable("extendedfeatures.compact_assembly_line.tooltip.1"),
+                            Component.translatable("extendedfeatures.compact_assembly_line.tooltip.2")
+                    )
+                    .tooltipBuilder((stack, list) -> {
+                        list.add(Component.translatable("extendedfeatures.compact_assembly_line.tooltip.3")
+                                .append(Component.translatable("extendedfeatures.styled_tooltip.3")
+                                        .withStyle(TooltipHelper.RAINBOW_HSL_FAST)));
+                    })
                     .rotationState(RotationState.NON_Y_AXIS)
                     .recipeType(ASSEMBLY_LINE_RECIPES)
                     .recipeModifiers(
@@ -427,13 +435,10 @@ public class Multiblocks {
         if (EFConfig.INSTANCE.Multiblocks.RpfEnabled || GTCEu.isDataGen()) {
             ROCK_PROCESSING_FACILITY = ExtendedFeaturesRegister
                     .multiblock("rock_processing_facility", WorkableElectricMultiblockMachine::new)
-                    .tooltips(
-                            Component.translatable("extendedfeatures.rock_processing_facility.tooltip.0"),
-                            Component.translatable("extendedfeatures.rock_processing_facility.tooltip.1"))
+                    .tooltips(Component.translatable("extendedfeatures.rock_processing_facility"))
                     .rotationState(RotationState.NON_Y_AXIS)
-                    .recipeType(ROCK_PROCESSING)
-                    .recipeModifiers(
-                            OC_NON_PERFECT)
+                    .recipeTypes(ROCK_PROCESSING_RECIPES)
+                    .recipeModifiers(OC_NON_PERFECT)
                     .appearanceBlock(CASING_SECURE_MACERATION)
                     .pattern(definition -> FactoryBlockPattern.start()
                             .aisle("JJJJJJJ", "JGJGJGJ", "JGJGJGJ", "JJJJJJJ", "       ")
@@ -532,8 +537,8 @@ public class Multiblocks {
                     .tooltips(
                             Component.translatable("extendedfeatures.greenhouse.tooltip.0"))
                     .tooltipBuilder((stack, list) -> {
-                        list.add(Component.translatable("extendedfeatures.fancytooltip.tooltip.0")
-                                .append(Component.translatable("extendedfeatures.fancytooltip.tooltip.3")
+                        list.add(Component.translatable("extendedfeatures.regular_tooltip.1")
+                                .append(Component.translatable("extendedfeatures.styled_tooltip.2")
                                         .withStyle(TooltipHelper.RAINBOW_HSL_SLOW)));
                     })
                     .recipeTypes(
@@ -582,7 +587,7 @@ public class Multiblocks {
     static {
         if (EFConfig.INSTANCE.Multiblocks.DaEnabled || GTCEu.isDataGen()) {
             DISASSEMBLER = ExtendedFeaturesRegister
-                    .multiblock("disassembler", DisassemblyMachine::new)
+                    .multiblock("disassembler", DisassemblerMachine::new)
                     .tooltips(
                             Component.translatable("extendedfeatures.disassembler.tooltip.0"),
                             Component.translatable("extendedfeatures.disassembler.tooltip.1"))
@@ -620,6 +625,15 @@ public class Multiblocks {
         if (EFConfig.INSTANCE.Multiblocks.EdaEnabled || GTCEu.isDataGen()) {
             EXPANDED_DATABANK = ExtendedFeaturesRegister
                     .multiblock("expanded_databank", DataBankMachine::new)
+                    .tooltips(
+                            Component.translatable("gtceu.machine.data_bank.tooltip.0"),
+                            Component.translatable("gtceu.machine.data_bank.tooltip.1")
+                    )
+                    .tooltipBuilder((stack, list) -> {
+                        list.add(Component.translatable("extendedfeatures.regular_tooltip.1")
+                                .append(Component.translatable("extendedfeatures.styled_tooltip.4")
+                                        .withStyle(CustomTooltipStyles.IV_GRADIENT)));
+                    })
                     .rotationState(RotationState.NON_Y_AXIS)
                     .recipeType(DUMMY_RECIPES)
                     .appearanceBlock(ADVANCED_COMPUTER_CASING)
