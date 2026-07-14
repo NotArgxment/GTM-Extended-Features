@@ -8,7 +8,6 @@ import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import com.gregtechceu.gtceu.api.sound.SoundEntry;
-import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.GTCreativeModeTabs;
 
 import net.minecraft.resources.ResourceLocation;
@@ -47,8 +46,8 @@ public class ExtendedFeaturesCore {
                                             ExtendedFeaturesRegister))
                             .title(ExtendedFeaturesRegister.addLang("itemGroup",
                                     ExtendedFeaturesCore.id("creative_tab"),
-                                    "GTCEu Extended Features"))
-                            .icon(GTBlocks.ANTIMATTER_HAZARD_SIGN_BLOCK::asStack)
+                                    "GTM Extended Features"))
+                            .icon(ExpandedDataHatches.UV_DATA_ACCESS_HATCH::asStack)
                             .build())
             .register();
 
@@ -94,7 +93,7 @@ public class ExtendedFeaturesCore {
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
-        LOGGER.info("i hate java!!!!!!");
+        LOGGER.info("AI THIS, AI THAT, GET THE FUCK OUT WITH AI EVERYWHERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
     }
 
     private void addMaterialRegistries(MaterialRegistryEvent event) {
