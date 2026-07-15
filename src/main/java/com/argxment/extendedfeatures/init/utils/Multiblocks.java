@@ -222,8 +222,7 @@ public class Multiblocks {
                                     .or(Predicates.abilities(PartAbility.IMPORT_FLUIDS))
                                     .or(Predicates.abilities(PartAbility.EXPORT_FLUIDS))
                                     .or(Predicates.abilities(PartAbility.INPUT_ENERGY).setMaxGlobalLimited(2))
-                                    .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1))
-                                    .or(Predicates.abilities(PartAbility.PARALLEL_HATCH).setMaxGlobalLimited(1)))
+                                    .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
                             .build())
                     .workableCasingModel(
                             GTCEu.id("block/casings/solid/machine_casing_inert_ptfe"),
