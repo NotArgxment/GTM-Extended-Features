@@ -30,7 +30,7 @@ Essentially allowing to store every Data Stick, Data Orb and Data Module (and pr
 
 ### Universal Circuits
 
-![img.png](img.png)
+<img width="607" height="363" alt="image" src="https://github.com/user-attachments/assets/a9cc4ad6-f98e-4688-8330-d674513504b8" />
 
 Textures made by WithersChat (Current Monifactory Owner)
 
