@@ -23,7 +23,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import com.argxment.extendedfeatures.client.RecipeTypes;
 import com.argxment.extendedfeatures.client.integrations.Configuration.EFConfig;
 import com.argxment.extendedfeatures.client.init.utils.UniversalCircuits;
-import com.argxment.extendedfeatures.client.init.utils.ExpandedDataHatches;
+import com.argxment.extendedfeatures.client.init.utils.OpticalMachines;
 import com.argxment.extendedfeatures.client.init.utils.Multiblocks;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import org.apache.logging.log4j.LogManager;
@@ -47,7 +47,7 @@ public class ExtendedFeaturesCore {
                             .title(ExtendedFeaturesRegister.addLang("itemGroup",
                                     ExtendedFeaturesCore.id("creative_tab"),
                                     "GTM Extended Features"))
-                            .icon(ExpandedDataHatches.UV_DATA_ACCESS_HATCH::asStack)
+                            .icon(OpticalMachines.UV_DATA_ACCESS_HATCH::asStack)
                             .build())
             .register();
 
@@ -114,7 +114,7 @@ public class ExtendedFeaturesCore {
 
     private void registerMachines(GTCEuAPI.RegisterEvent<ResourceLocation, MachineDefinition> event) {
         Multiblocks.init();
-        ExpandedDataHatches.init();
+        OpticalMachines.init();
     }
 
     public void registerSounds(GTCEuAPI.RegisterEvent<ResourceLocation, SoundEntry> event) {
