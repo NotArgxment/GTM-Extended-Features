@@ -612,7 +612,7 @@ public class Multiblocks {
                     .tooltipBuilder((stack, list) -> {
                         list.add(
                                 Component.translatable("extendedfeatures.expanded_databank_tootip.1")
-                                .append(Component.translatable("extendedfeatures.styled.tooltip.4")
+                                .append(Component.translatable("extendedfeatures.styled.tooltip.5")
                                         .withStyle(CustomTooltipStyles.IV_GRADIENT)));
                     })
                     .rotationState(RotationState.NON_Y_AXIS)
@@ -654,7 +654,7 @@ public class Multiblocks {
                     )
                     .tooltipBuilder((stack, list) -> {
                         list.add(Component.translatable("extendedfeatures.cloud_transmission_database.tooltip.4")
-                                .append(Component.translatable("extendedfeatures.styled.tooltip.5")
+                                .append(Component.translatable("extendedfeatures.styled.tooltip.4")
                                         .withStyle(TooltipHelper.RAINBOW_HSL_SLOW)));
                     })
                     .rotationState(RotationState.NON_Y_AXIS)
