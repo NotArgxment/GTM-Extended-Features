@@ -10,7 +10,7 @@
   "variants": {
     "is_formed=false": {
       "model": {
-        "parent": "extendedfeatures:block/machine/part/wireless_optical_reception",
+        "parent": "extendedfeatures:block/machine/part/wireless_receiver",
         "textures": {
           "bottom": "gtceu:block/casings/voltage/luv/bottom",
           "side": "gtceu:block/casings/voltage/luv/side",
@@ -20,7 +20,7 @@
     },
     "is_formed=true": {
       "model": {
-        "parent": "extendedfeatures:block/machine/part/wireless_optical_reception",
+        "parent": "extendedfeatures:block/machine/part/wireless_receiver",
         "textures": {
           "bottom": "gtceu:block/casings/voltage/luv/bottom",
           "side": "gtceu:block/casings/voltage/luv/side",
