@@ -37,7 +37,7 @@ import java.util.Locale;
 import static com.argxment.extendedfeatures.ExtendedFeaturesCore.ExtendedFeaturesRegister;
 import static com.argxment.extendedfeatures.client.MachineUtils.TieredMultis;
 import static com.argxment.extendedfeatures.client.RecipeTypes.*;
-import static com.argxment.extendedfeatures.init.utils.RecipeModifiers.SIMPLE_PARALLEL;
+import static com.argxment.extendedfeatures.init.utils.RecipeModifiers.CUSTOM_PARALLEL;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.pattern.Predicates.*;
@@ -200,7 +200,7 @@ public class Multiblocks {
                     })
                     .rotationState(RotationState.NON_Y_AXIS)
                     .recipeTypes(LARGE_CHEMICAL_RECIPES, CHEMICAL_REDUCTION)
-                    .recipeModifiers(SIMPLE_PARALLEL.apply(16), GTRecipeModifiers.OC_PERFECT)
+                    .recipeModifiers(CUSTOM_PARALLEL.apply(16), GTRecipeModifiers.OC_PERFECT)
                     .appearanceBlock(CASING_PTFE_INERT)
                     .pattern(definition -> FactoryBlockPattern.start()
                             .aisle(" FDDDF ", " FDDDF ", " FDDDF ")
@@ -380,7 +380,7 @@ public class Multiblocks {
                     })
                     .rotationState(RotationState.NON_Y_AXIS)
                     .recipeType(ASSEMBLY_LINE_RECIPES)
-                    .recipeModifiers(SIMPLE_PARALLEL.apply(4), OC_NON_PERFECT)
+                    .recipeModifiers(CUSTOM_PARALLEL.apply(4), OC_NON_PERFECT)
                     .appearanceBlock(CASING_STEEL_SOLID)
                     .pattern(definition -> FactoryBlockPattern.start()
                             .aisle("ENE", "EKE", "EHE")
@@ -474,7 +474,7 @@ public class Multiblocks {
                             GREENHOUSE_CROPS,
                             GREENHOUSE_WOOD)
                     .recipeModifiers(
-                            SIMPLE_PARALLEL.apply(8),
+                            CUSTOM_PARALLEL.apply(8),
                             OC_NON_PERFECT)
                     .appearanceBlock(CASING_STEEL_SOLID)
                     .pattern(definition -> FactoryBlockPattern.start()
