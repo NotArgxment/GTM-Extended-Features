@@ -10,9 +10,9 @@ import java.util.function.IntFunction;
 
 public class RecipeModifiers {
 
-    private static final int MAX_SIMPLE_PARALLEL = 256;
+    private static final int MAX_CUSTOM_PARALLEL = 2147483647;
 
-    public static final IntFunction<RecipeModifier> SIMPLE_PARALLEL = parallels -> {
+    public static final IntFunction<RecipeModifier> CUSTOM_PARALLEL = parallels -> {
         if (parallels == 1) return RecipeModifier.NO_MODIFIER;
 
         return (machine, recipe) -> {
@@ -42,7 +42,7 @@ public class RecipeModifiers {
 
         return ModifierFunction.builder()
                 .modifyAllContents(ContentModifier.multiplier(achievable))
-                .durationMultiplier(2)
+                .durationMultiplier(1)
                 .parallels(achievable)
                 .build();
     };
