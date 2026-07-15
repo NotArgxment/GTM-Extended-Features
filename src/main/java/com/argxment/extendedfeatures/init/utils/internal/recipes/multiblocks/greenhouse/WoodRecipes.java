@@ -1,4 +1,4 @@
-package com.argxment.extendedfeatures.client.init.utils.internal.recipes.multiblocks.greenhouse;
+package com.argxment.extendedfeatures.init.utils.internal.recipes.multiblocks.greenhouse;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.common.data.GTBlocks;

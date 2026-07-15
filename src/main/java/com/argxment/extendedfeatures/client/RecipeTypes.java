@@ -14,7 +14,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeType;
 
 import com.argxment.extendedfeatures.ExtendedFeaturesCore;
-import com.argxment.extendedfeatures.client.init.utils.internal.disassembler.DisassemblerRecipeLogic;
+import com.argxment.extendedfeatures.init.utils.internal.disassembler.DisassemblerRecipeLogic;
 
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.MULTIBLOCK;
 
@@ -31,7 +31,7 @@ public class RecipeTypes {
     // public static GTRecipeType OIL_REFINERY;
 
     public static void init() {
-        ROCK_PROCESSING_RECIPES = register("rock_processing_facility", MULTIBLOCK)
+        ROCK_PROCESSING_RECIPES = register("rock_processing_plant", MULTIBLOCK)
                 .setEUIO(IO.IN)
                 .setMaxIOSize(1, 6, 1, 3)
                 .setProgressBar(GuiTextures.PROGRESS_BAR_MACERATE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)

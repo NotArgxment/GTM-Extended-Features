@@ -82,7 +82,7 @@ public class LangHandler {
         provider.add("extendedfeatures.enlarged_reaction_chamber.tooltip.1", "§7This machine is an improved version of the Large Chemical reactor");
         provider.add("extendedfeatures.enlarged_reaction_chamber_tooltip.2", "§fRuns §b16 recipes §fin parallel");
 
-        provider.add("extendedfeatures.rock_processing_facility", "§7An all in one processing line, turns the rocks you normally get from the rock breaker into their direct processed outputs");
+        provider.add("extendedfeatures.rock_processing_plant.tooltip.0", "§7An all in one processing line, turns the rocks you normally get from the rock breaker into their direct processed outputs");
 
         provider.add("extendedfeatures.greenhouse.tooltip.0", "§7Designed to make wood generation easier");
         provider.add("extendedfeatures.greenhouse.tooltip.1", "§fRuns §b8 Recipes §fin parallel");
@@ -108,10 +108,10 @@ public class LangHandler {
 
         provider.add("extendedfeatures.regular.tooltip.1", "§fAllows");
         provider.add("extendedfeatures.regular.tooltip.2", "§fand");
-        provider.add("extendedfeatures.styled.tooltip.1", " Laser Hatches");
-        provider.add("extendedfeatures.styled.tooltip.2", " Parallel Hatches");
-        provider.add("extendedfeatures.styled.tooltip.3", " Wireless Optical Reception Hatches");
-        provider.add("extendedfeatures.styled.tooltip.4", " Wireless Optical Transmission Hatches");
-        provider.add("extendedfeatures.styled.tooltip.5", " Optical Transmission Hatches");
+        provider.add("extendedfeatures.styled.tooltip.1", " Laser Hatches ");
+        provider.add("extendedfeatures.styled.tooltip.2", " Parallel Hatches ");
+        provider.add("extendedfeatures.styled.tooltip.3", " Wireless Optical Reception Hatches ");
+        provider.add("extendedfeatures.styled.tooltip.4", " Wireless Optical Transmission Hatches ");
+        provider.add("extendedfeatures.styled.tooltip.5", " Optical Transmission Hatches ");
     }
 }

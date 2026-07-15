@@ -7,10 +7,10 @@ import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import net.minecraft.data.recipes.FinishedRecipe;
 
 import com.argxment.extendedfeatures.client.LangHandler;
-import com.argxment.extendedfeatures.client.init.utils.internal.recipes.ItemRecipes;
-import com.argxment.extendedfeatures.client.init.utils.internal.recipes.MultiblockRecipes;
-import com.argxment.extendedfeatures.client.init.utils.internal.recipes.multiblocks.greenhouse.CropRecipes;
-import com.argxment.extendedfeatures.client.init.utils.internal.recipes.multiblocks.greenhouse.WoodRecipes;
+import com.argxment.extendedfeatures.init.utils.internal.recipes.ItemRecipes;
+import com.argxment.extendedfeatures.init.utils.internal.recipes.MultiblockRecipes;
+import com.argxment.extendedfeatures.init.utils.internal.recipes.multiblocks.greenhouse.CropRecipes;
+import com.argxment.extendedfeatures.init.utils.internal.recipes.multiblocks.greenhouse.WoodRecipes;
 import com.tterrag.registrate.providers.ProviderType;
 
 import java.util.function.Consumer;

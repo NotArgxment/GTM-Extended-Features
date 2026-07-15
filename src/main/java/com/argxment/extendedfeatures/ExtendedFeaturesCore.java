@@ -22,9 +22,9 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import com.argxment.extendedfeatures.client.RecipeTypes;
 import com.argxment.extendedfeatures.client.integrations.Configuration.EFConfig;
-import com.argxment.extendedfeatures.client.init.utils.UniversalCircuits;
-import com.argxment.extendedfeatures.client.init.utils.OpticalMachines;
-import com.argxment.extendedfeatures.client.init.utils.Multiblocks;
+import com.argxment.extendedfeatures.init.utils.UniversalCircuits;
+import com.argxment.extendedfeatures.init.utils.OpticalMachines;
+import com.argxment.extendedfeatures.init.utils.Multiblocks;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

@@ -1,4 +1,4 @@
-package com.argxment.extendedfeatures.client.init.utils.internal.render;
+package com.argxment.extendedfeatures.init.utils.internal.render;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;

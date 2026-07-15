@@ -1,8 +1,8 @@
-package com.argxment.extendedfeatures.client.init.utils;
+package com.argxment.extendedfeatures.init.utils;
 
-import com.argxment.extendedfeatures.client.init.utils.internal.optical.ExpandedDataHatchLogic;
-import com.argxment.extendedfeatures.client.init.utils.internal.optical.WirelessAbilities;
-import com.argxment.extendedfeatures.client.init.utils.internal.optical.WirelessOpticalDataHatchMachine;
+import com.argxment.extendedfeatures.init.utils.internal.optical.ExpandedDataHatchLogic;
+import com.argxment.extendedfeatures.init.utils.internal.optical.WirelessAbilities;
+import com.argxment.extendedfeatures.init.utils.internal.optical.WirelessOpticalDataHatchMachine;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;

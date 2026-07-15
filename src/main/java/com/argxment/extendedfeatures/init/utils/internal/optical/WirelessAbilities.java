@@ -1,4 +1,4 @@
-package com.argxment.extendedfeatures.client.init.utils.internal.optical;
+package com.argxment.extendedfeatures.init.utils.internal.optical;
 
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 

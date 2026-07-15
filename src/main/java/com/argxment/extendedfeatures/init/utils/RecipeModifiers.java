@@ -1,4 +1,4 @@
-package com.argxment.extendedfeatures.client.init.utils;
+package com.argxment.extendedfeatures.init.utils;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.recipe.content.ContentModifier;

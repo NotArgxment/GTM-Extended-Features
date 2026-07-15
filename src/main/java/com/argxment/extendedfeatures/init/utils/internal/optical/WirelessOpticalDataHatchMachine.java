@@ -1,7 +1,7 @@
-package com.argxment.extendedfeatures.client.init.utils.internal.optical;
+package com.argxment.extendedfeatures.init.utils.internal.optical;
 
-import com.argxment.extendedfeatures.client.init.utils.internal.render.LinkedParticleAnimator;
-import com.argxment.extendedfeatures.client.init.utils.internal.render.ParticleBeamRenderer;
+import com.argxment.extendedfeatures.init.utils.internal.render.LinkedParticleAnimator;
+import com.argxment.extendedfeatures.init.utils.internal.render.ParticleBeamRenderer;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.IDataAccessHatch;

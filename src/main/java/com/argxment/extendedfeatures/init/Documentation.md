@@ -11,8 +11,8 @@ Custom formation logic for multiblocks that can accept either Laser Hatches or E
 | 1 | 1 | ❌ (both at once isn't allowed) |
 
 ```java
-import com.argxment.extendedfeatures.client.init.utils.WorkableMultiblockLaser;
-import com.argxment.extendedfeatures.client.init.utils.CoilWorkableMultiblockLaser;
+import com.argxment.extendedfeatures.init.utils.WorkableMultiblockLaser;
+import com.argxment.extendedfeatures.init.utils.CoilWorkableMultiblockLaser;
 
 public class Machines {
 
@@ -35,15 +35,14 @@ Allows any multiblock to run parallels **without a parallel hatch part in its st
 
 ```java
 // Addon as a dependency
-import com.argxment.extendedfeatures.client.init.utils.RecipeModifiers;
 
 // value: int between 0 and 256
 .recipeModifiers(
-    SIMPLE_PARALLEL.apply(value)
+        SIMPLE_PARALLEL.apply(value)
 )
 ```
 ```javascript
-const ExtendedModifier = Java.loadClass('com.argxment.extendedfeatures.client.init.utils.RecipeModifiers')
+const ExtendedModifier = Java.loadClass('com.argxment.extendedfeatures.init.utils.RecipeModifiers')
 
 .recipeModifiers(
       ExtendedModifier.SIMPLE_PARALLEL.apply(value)
@@ -58,14 +57,14 @@ Automatic parallels based on the machine's tier (currently used by the Advanced 
 - UV → 16 parallels
 
 ```java
-import com.argxment.extendedfeatures.client.init.utils.RecipeModifiers;
+import com.argxment.extendedfeatures.init.utils.RecipeModifiers;
 
 .recipeModifiers(
-    RecipeModifiers.TIERED_PARALLEL
-)
+        RecipeModifiers.TIERED_PARALLEL
+        )
 ```
 ```javascript
-const RecipeModifiers = Java.loadClass('com.argxment.extendedfeatures.client.init.utils.RecipeModifiers')
+const RecipeModifiers = Java.loadClass('com.argxment.extendedfeatures.init.utils.RecipeModifiers')
 
 .recipeModifiers(
       RecipeModifiers.TIERED_PARALLEL

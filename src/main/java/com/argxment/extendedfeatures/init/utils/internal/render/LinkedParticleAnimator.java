@@ -1,4 +1,4 @@
-package com.argxment.extendedfeatures.client.init.utils.internal.render;
+package com.argxment.extendedfeatures.init.utils.internal.render;
 
 import com.gregtechceu.gtceu.api.machine.TickableSubscription;
 

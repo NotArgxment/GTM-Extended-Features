@@ -1,4 +1,4 @@
-package com.argxment.extendedfeatures.client.init.utils;
+package com.argxment.extendedfeatures.init.utils;
 
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
@@ -29,15 +29,15 @@ import net.minecraft.world.level.block.Blocks;
 import com.argxment.extendedfeatures.ExtendedFeaturesCore;
 import com.argxment.extendedfeatures.client.RecipeTypes;
 import com.argxment.extendedfeatures.client.integrations.Configuration.EFConfig;
-import com.argxment.extendedfeatures.client.init.utils.internal.optical.WirelessAbilities;
-import com.argxment.extendedfeatures.client.init.utils.internal.disassembler.DisassemblerMachine;
+import com.argxment.extendedfeatures.init.utils.internal.optical.WirelessAbilities;
+import com.argxment.extendedfeatures.init.utils.internal.disassembler.DisassemblerMachine;
 
 import java.util.Locale;
 
 import static com.argxment.extendedfeatures.ExtendedFeaturesCore.ExtendedFeaturesRegister;
 import static com.argxment.extendedfeatures.client.MachineUtils.TieredMultis;
 import static com.argxment.extendedfeatures.client.RecipeTypes.*;
-import static com.argxment.extendedfeatures.client.init.utils.RecipeModifiers.SIMPLE_PARALLEL;
+import static com.argxment.extendedfeatures.init.utils.RecipeModifiers.SIMPLE_PARALLEL;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.pattern.Predicates.*;
@@ -59,14 +59,14 @@ public class Multiblocks {
     public static MultiblockMachineDefinition ADVANCED_CRACKING_UNIT = null;
     public static MultiblockMachineDefinition ENLARGED_REACTION_CHAMBER = null;
     public static MultiblockMachineDefinition LARGE_PYROLYSIS_UNIT = null;
-    public static MultiblockMachineDefinition[] ADVANCED_FUSION_REACTOR = null;
     public static MultiblockMachineDefinition COMPACT_ASSEMBLY_LINE = null;
-    public static MultiblockMachineDefinition ROCK_PROCESSING_FACILITY = null;
+    public static MultiblockMachineDefinition ROCK_PROCESSING_PLANT = null;
     public static MultiblockMachineDefinition INDUSTRIAL_GREENHOUSE = null;
     public static MultiblockMachineDefinition TREE_GROWING_CHAMBER = null;
     public static MultiblockMachineDefinition DISASSEMBLER = null;
     public static MultiblockMachineDefinition EXPANDED_DATABANK = null;
     public static MultiblockMachineDefinition CLOUD_TRANSMISSION_DATABASE = null;
+    public static MultiblockMachineDefinition[] ADVANCED_FUSION_REACTOR = null;
 
     static {
         if (EFConfig.INSTANCE.Multiblocks.RamEnabled || GTCEu.isDataGen()) {
@@ -80,15 +80,13 @@ public class Multiblocks {
                         list.add(Component.translatable("extendedfeatures.regular.tooltip.1")
                                 .append(Component.translatable("extendedfeatures.styled.tooltip.1")
                                         .withStyle(TooltipHelper.RAINBOW_HSL_SLOW))
-                                .append(Component.translatable("extendedfeatures.regular.tooltip.2"))
-                                .append(Component.translatable("extendedfeatures.styled.tooltip.2")
-                                        .withStyle(TooltipHelper.RAINBOW_HSL_SLOW)));
+                                .append(Component.translatable("extendedfeatures.regular.tooltip.2")
+                                    .append(Component.translatable("extendedfeatures.styled.tooltip.2")
+                                        .withStyle(TooltipHelper.RAINBOW_HSL_SLOW))));
                     })
                     .rotationState(RotationState.NON_Y_AXIS)
                     .recipeType(ALLOY_BLAST_RECIPES)
-                    .recipeModifiers(
-                            PARALLEL_HATCH,
-                            GTRecipeModifiers::ebfOverclock)
+                    .recipeModifiers(PARALLEL_HATCH, GTRecipeModifiers::ebfOverclock)
                     .appearanceBlock(CASING_STRESS_PROOF)
                     .pattern(definition -> FactoryBlockPattern.start()
                             .aisle("   CCC   ", "   XXX   ", "   XXX   ", "   EEE   ", "   XXX   ", "   XXX   ", "   CCC   ")
@@ -151,10 +149,7 @@ public class Multiblocks {
                     })
                     .rotationState(RotationState.NON_Y_AXIS)
                     .recipeType(CRACKING_RECIPES)
-                    .recipeModifiers(
-                            PARALLEL_HATCH,
-                            OC_NON_PERFECT,
-                            GTRecipeModifiers::crackerOverclock)
+                    .recipeModifiers(PARALLEL_HATCH, OC_NON_PERFECT, GTRecipeModifiers::crackerOverclock)
                     .appearanceBlock(CASING_STAINLESS_CLEAN)
                     .pattern(definition -> FactoryBlockPattern.start()
                             .aisle("FIIFIIF", "FIIFIIF", "FFFYFFF", "FIIFIIF", "FIIFIIF")
@@ -205,9 +200,7 @@ public class Multiblocks {
                     })
                     .rotationState(RotationState.NON_Y_AXIS)
                     .recipeType(LARGE_CHEMICAL_RECIPES)
-                    .recipeModifiers(
-                            SIMPLE_PARALLEL.apply(16),
-                            GTRecipeModifiers.OC_PERFECT)
+                    .recipeModifiers(SIMPLE_PARALLEL.apply(16), GTRecipeModifiers.OC_PERFECT)
                     .appearanceBlock(CASING_PTFE_INERT)
                     .pattern(definition -> FactoryBlockPattern.start()
                             .aisle(" FDDDF ", " FDDDF ", " FDDDF ")
@@ -253,10 +246,7 @@ public class Multiblocks {
                     })
                     .rotationState(RotationState.NON_Y_AXIS)
                     .recipeType(PYROLYSE_RECIPES)
-                    .recipeModifiers(
-                            PARALLEL_HATCH,
-                            OC_PERFECT,
-                            GTRecipeModifiers::pyrolyseOvenOverclock)
+                    .recipeModifiers(PARALLEL_HATCH, OC_PERFECT, GTRecipeModifiers::pyrolyseOvenOverclock)
                     .appearanceBlock(MACHINE_CASING_ULV)
                     .pattern(definition -> FactoryBlockPattern.start()
                             .aisle("  EEE  ", "  HHH  ", "  HHH  ", "  HHH  ", "  EEE  ")
@@ -320,11 +310,7 @@ public class Multiblocks {
                                                             .withStyle(CustomTooltipStyles.forTier(tier)))))
 
                             .recipeType(GTRecipeTypes.FUSION_RECIPES)
-                            .recipeModifiers(
-                                    FusionReactorMachine::recipeModifier,
-                                    RecipeModifiers.TIERED_PARALLEL // each reactor has its own parallel modifier, LuV
-                                                                    // -> 4, ZPM -> 8, UV -> 16
-                            )
+                            .recipeModifiers(FusionReactorMachine::recipeModifier, RecipeModifiers.TIERED_PARALLEL)
                             .appearanceBlock(() -> FusionReactorMachine.getCasingState(tier))
                             .pattern((definition) -> {
 
@@ -394,9 +380,7 @@ public class Multiblocks {
                     })
                     .rotationState(RotationState.NON_Y_AXIS)
                     .recipeType(ASSEMBLY_LINE_RECIPES)
-                    .recipeModifiers(
-                            SIMPLE_PARALLEL.apply(8),
-                            OC_NON_PERFECT)
+                    .recipeModifiers(SIMPLE_PARALLEL.apply(8), OC_NON_PERFECT)
                     .appearanceBlock(CASING_STEEL_SOLID)
                     .pattern(definition -> FactoryBlockPattern.start()
                             .aisle("ENE", "EKE", "EHE")
@@ -433,9 +417,9 @@ public class Multiblocks {
 
     static {
         if (EFConfig.INSTANCE.Multiblocks.RpfEnabled || GTCEu.isDataGen()) {
-            ROCK_PROCESSING_FACILITY = ExtendedFeaturesRegister
-                    .multiblock("rock_processing_facility", WorkableElectricMultiblockMachine::new)
-                    .tooltips(Component.translatable("extendedfeatures.rock_processing_facility"))
+            ROCK_PROCESSING_PLANT = ExtendedFeaturesRegister
+                    .multiblock("rock_processing_plant", WorkableElectricMultiblockMachine::new)
+                    .tooltips(Component.translatable("extendedfeatures.rock_processing_plant.tooltip.0"))
                     .rotationState(RotationState.NON_Y_AXIS)
                     .recipeTypes(ROCK_PROCESSING_RECIPES)
                     .recipeModifiers(OC_NON_PERFECT)
@@ -541,9 +525,7 @@ public class Multiblocks {
                                 .append(Component.translatable("extendedfeatures.styled.tooltip.2")
                                         .withStyle(TooltipHelper.RAINBOW_HSL_SLOW)));
                     })
-                    .recipeTypes(
-                            GREENHOUSE_CROPS,
-                            GREENHOUSE_WOOD)
+                    .recipeTypes(GREENHOUSE_CROPS, GREENHOUSE_WOOD)
                     .recipeModifiers(PARALLEL_HATCH, OC_NON_PERFECT)
                     .appearanceBlock(CASING_TUNGSTENSTEEL_ROBUST)
                     .pattern(definition -> FactoryBlockPattern.start()
@@ -593,9 +575,7 @@ public class Multiblocks {
                             Component.translatable("extendedfeatures.disassembler.tooltip.1"))
                     .rotationState(RotationState.NON_Y_AXIS)
                     .recipeType(RecipeTypes.DISASSEMBLER)
-                    .recipeModifiers(
-                            PARALLEL_HATCH,
-                            OC_NON_PERFECT)
+                    .recipeModifiers(PARALLEL_HATCH, OC_NON_PERFECT)
                     .appearanceBlock(CASING_LARGE_SCALE_ASSEMBLING)
                     .pattern(definition -> FactoryBlockPattern.start()
                             .aisle("OOOOOOO", "OOOOOOO", "OOOOOOO")

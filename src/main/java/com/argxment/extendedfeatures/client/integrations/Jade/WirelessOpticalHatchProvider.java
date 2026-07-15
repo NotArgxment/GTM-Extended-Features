@@ -1,6 +1,6 @@
 package com.argxment.extendedfeatures.client.integrations.Jade;
 
-import com.argxment.extendedfeatures.client.init.utils.internal.optical.WirelessOpticalDataHatchMachine;
+import com.argxment.extendedfeatures.init.utils.internal.optical.WirelessOpticalDataHatchMachine;
 
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
