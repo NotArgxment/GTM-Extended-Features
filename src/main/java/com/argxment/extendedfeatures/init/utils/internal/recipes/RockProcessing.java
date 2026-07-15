@@ -10,20 +10,12 @@ import java.util.function.Consumer;
 
 import static com.argxment.extendedfeatures.client.RecipeTypes.ROCK_PROCESSING_RECIPES;
 import static com.gregtechceu.gtceu.api.GTValues.L;
-import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.dust;
+import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 
-public class MultiblockRecipes {
-
-    /**
-     * Actual controller recipes are supposed to be made by modpack developers.
-     * This file contains the recipes for custom recipe types
-     */
+public class RockProcessing {
 
     public static void init(Consumer<FinishedRecipe> provider) {
-        // ---------------------------------------------------------
-        // Rock Processing Facility Recipes
-        // ---------------------------------------------------------
 
         final int rpfTime = 2000;
         final var rpfEnergy = GTValues.VA[GTValues.EV];

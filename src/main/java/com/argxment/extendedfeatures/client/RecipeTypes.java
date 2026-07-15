@@ -24,9 +24,9 @@ public class RecipeTypes {
     public static GTRecipeType DISASSEMBLER;
     public static GTRecipeType GREENHOUSE_WOOD;
     public static GTRecipeType GREENHOUSE_CROPS;
+    public static GTRecipeType CHEMICAL_REDUCTION;
 
     // Future additions
-    // public static GTRecipeType CHEMICAL_REDUCTION;
     // public static GTRecipeType AIR_REPROCESSING;
     // public static GTRecipeType OIL_REFINERY;
 
@@ -56,13 +56,13 @@ public class RecipeTypes {
                 .setSound(GTSoundEntries.ASSEMBLER)
                 .addCustomRecipeLogic(DisassemblerRecipeLogic.INSTANCE);
 
+        CHEMICAL_REDUCTION = register("chemical_skips", MULTIBLOCK)
+                 .setEUIO(IO.IN)
+                 .setMaxIOSize(6, 6, 6, 6)
+                 .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+                 .setSound(GTSoundEntries.CHEMICAL);
+
         /*
-         * CHEMICAL_REDUCTION = register("chemical_skips", MULTIBLOCK)
-         * .setEUIO(IO.IN)
-         * .setMaxIOSize(6, 6, 6, 6)
-         * .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
-         * .setSound(GTSoundEntries.CHEMICAL);
-         * 
          * AIR_REPROCESSING = register("air_reprocessor", MULTIBLOCK)
          * .setEUIO(IO.IN)
          * .setMaxIOSize(0, 9, 1, 0)

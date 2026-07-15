@@ -1,4 +1,4 @@
-package com.argxment.extendedfeatures.init.utils.internal.recipes.multiblocks.greenhouse;
+package com.argxment.extendedfeatures.init.utils.internal.recipes;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.common.data.GTItems;
@@ -12,7 +12,7 @@ import com.argxment.extendedfeatures.client.RecipeTypes;
 
 import java.util.function.Consumer;
 
-public class CropRecipes {
+public class Crops {
 
     public static void init(Consumer<FinishedRecipe> provider) {
         // =====================================================

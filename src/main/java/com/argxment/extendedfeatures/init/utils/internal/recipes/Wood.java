@@ -1,4 +1,4 @@
-package com.argxment.extendedfeatures.init.utils.internal.recipes.multiblocks.greenhouse;
+package com.argxment.extendedfeatures.init.utils.internal.recipes;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.common.data.GTBlocks;
@@ -13,7 +13,7 @@ import com.argxment.extendedfeatures.client.RecipeTypes;
 
 import java.util.function.Consumer;
 
-public class WoodRecipes {
+public class Wood {
 
     public static void init(Consumer<FinishedRecipe> provider) {
         addTreeRecipe(provider, "rubber_sapling", false,

@@ -8,14 +8,13 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 
-import com.argxment.extendedfeatures.init.utils.UniversalCircuits;
 import com.tterrag.registrate.util.entry.ItemEntry;
 
 import java.util.function.Consumer;
 
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.ASSEMBLER_RECIPES;
 
-public class ItemRecipes {
+public class UniversalCircuits {
 
     public static void init(Consumer<FinishedRecipe> provider) {
         buildCircuitRecipe(provider, "ulv_universal_circuit", CustomTags.ULV_CIRCUITS, GTValues.ULV);
@@ -39,13 +38,13 @@ public class ItemRecipes {
 
     private static void buildCircuitRecipe(Consumer<FinishedRecipe> provider, String recipeName,
                                            TagKey<Item> inputTag, int tier) {
-        ItemEntry<Item> output = UniversalCircuits.UNIVERSAL_CIRCUITS[tier];
+        ItemEntry<Item> output = com.argxment.extendedfeatures.init.utils.UniversalCircuits.UNIVERSAL_CIRCUITS[tier];
         if (output == null) return;
 
         ASSEMBLER_RECIPES.recipeBuilder(recipeName)
                 .inputItems(inputTag)
                 .outputItems(output)
-                .duration(20)
+                .duration(10)
                 .EUt(GTValues.VA[GTValues.LV])
                 .circuitMeta(10)
                 .save(provider);

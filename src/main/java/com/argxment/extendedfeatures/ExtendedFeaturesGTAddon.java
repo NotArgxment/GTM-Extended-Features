@@ -1,5 +1,6 @@
 package com.argxment.extendedfeatures;
 
+import com.argxment.extendedfeatures.init.utils.internal.recipes.*;
 import com.gregtechceu.gtceu.api.addon.GTAddon;
 import com.gregtechceu.gtceu.api.addon.IGTAddon;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
@@ -7,10 +8,6 @@ import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import net.minecraft.data.recipes.FinishedRecipe;
 
 import com.argxment.extendedfeatures.client.LangHandler;
-import com.argxment.extendedfeatures.init.utils.internal.recipes.ItemRecipes;
-import com.argxment.extendedfeatures.init.utils.internal.recipes.MultiblockRecipes;
-import com.argxment.extendedfeatures.init.utils.internal.recipes.multiblocks.greenhouse.CropRecipes;
-import com.argxment.extendedfeatures.init.utils.internal.recipes.multiblocks.greenhouse.WoodRecipes;
 import com.tterrag.registrate.providers.ProviderType;
 
 import java.util.function.Consumer;
@@ -41,10 +38,11 @@ public class ExtendedFeaturesGTAddon implements IGTAddon {
 
     @Override
     public void addRecipes(Consumer<FinishedRecipe> provider) {
-        MultiblockRecipes.init(provider);
-        ItemRecipes.init(provider);
-        WoodRecipes.init(provider);
-        CropRecipes.init(provider);
+        RockProcessing.init(provider);
+        UniversalCircuits.init(provider);
+        Wood.init(provider);
+        Crops.init(provider);
+        Skips.init(provider);
     }
 
     @Override

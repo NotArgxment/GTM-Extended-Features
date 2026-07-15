@@ -199,7 +199,7 @@ public class Multiblocks {
                                         .withStyle(TooltipHelper.RAINBOW_HSL_SLOW)));
                     })
                     .rotationState(RotationState.NON_Y_AXIS)
-                    .recipeType(LARGE_CHEMICAL_RECIPES)
+                    .recipeTypes(LARGE_CHEMICAL_RECIPES, CHEMICAL_REDUCTION)
                     .recipeModifiers(SIMPLE_PARALLEL.apply(16), GTRecipeModifiers.OC_PERFECT)
                     .appearanceBlock(CASING_PTFE_INERT)
                     .pattern(definition -> FactoryBlockPattern.start()

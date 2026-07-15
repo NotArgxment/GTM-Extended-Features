@@ -32,7 +32,8 @@ public class LangHandler {
         replace(provider, "extendedfeatures.greenhouse_wood_recipes", "Tree Growing");
         replace(provider, "extendedfeatures.greenhouse_crop_recipes", "Crop Growing ");
         replace(provider, "extendedfeatures.disassembler_machine", "Disassembly");
-        replace(provider, "extendedfeatures.rock_processing_recipes", "Rock Processing");
+        replace(provider, "extendedfeatures.rock_processing_plant", "Rock Processing");
+        replace(provider, "extendedfeatures.chemical_skips", "Chemical Reduction");
 
         // Configuration lang
         replace(provider, "config.screen.extendedfeatures", "§7Mod Configuration §4(Restart to Apply Changes)");
