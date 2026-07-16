@@ -1,5 +1,6 @@
 package com.argxment.extendedfeatures.init.utils;
 
+import com.argxment.extendedfeatures.init.utils.internal.CoilShapeInfo;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.RotationState;
@@ -34,10 +35,10 @@ import com.argxment.extendedfeatures.init.utils.internal.disassembler.Disassembl
 
 import java.util.Locale;
 
-import static com.argxment.extendedfeatures.ExtendedFeaturesCore.ExtendedFeaturesRegister;
-import static com.argxment.extendedfeatures.client.MachineUtils.TieredMultis;
+import static com.argxment.extendedfeatures.ExtendedFeaturesCore.*;
+import static com.argxment.extendedfeatures.client.MachineUtils.*;
 import static com.argxment.extendedfeatures.client.RecipeTypes.*;
-import static com.argxment.extendedfeatures.init.utils.RecipeModifiers.CUSTOM_PARALLEL;
+import static com.argxment.extendedfeatures.init.utils.RecipeModifiers.*;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.pattern.Predicates.*;
@@ -46,8 +47,8 @@ import static com.gregtechceu.gtceu.common.data.GCYMRecipeTypes.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeModifiers.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
-import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.createWorkableCasingMachineModel;
-import static com.gregtechceu.gtceu.utils.FormattingUtil.toRomanNumeral;
+import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.*;
+import static com.gregtechceu.gtceu.utils.FormattingUtil.*;
 
 public class Multiblocks {
 
@@ -58,7 +59,7 @@ public class Multiblocks {
     public static MultiblockMachineDefinition ROBUST_ALLOY_MATERIALIZER = null;
     public static MultiblockMachineDefinition ADVANCED_CRACKING_UNIT = null;
     public static MultiblockMachineDefinition ENLARGED_REACTION_CHAMBER = null;
-    public static MultiblockMachineDefinition LARGE_PYROLYSIS_UNIT = null;
+    public static MultiblockMachineDefinition LARGE_PYROLYSE_OVEN = null;
     public static MultiblockMachineDefinition COMPACT_ASSEMBLY_LINE = null;
     public static MultiblockMachineDefinition ROCK_PROCESSING_PLANT = null;
     public static MultiblockMachineDefinition INDUSTRIAL_GREENHOUSE = null;
@@ -131,6 +132,7 @@ public class Multiblocks {
                                             .setStyle(Style.EMPTY.withColor(ChatFormatting.RED))));
                         }
                     })
+                    .shapeInfos(CoilShapeInfo::RobustAlloyMaterializer)
                     .register();
         }
     }
@@ -182,6 +184,7 @@ public class Multiblocks {
                                     100 - 10 * coilMachine.getCoilTier()));
                         }
                     })
+                    .shapeInfos(CoilShapeInfo::AdvancedCrackingUnit)
                     .register();
         }
     }
@@ -200,7 +203,7 @@ public class Multiblocks {
                     })
                     .rotationState(RotationState.NON_Y_AXIS)
                     .recipeTypes(LARGE_CHEMICAL_RECIPES, CHEMICAL_REDUCTION)
-                    .recipeModifiers(CUSTOM_PARALLEL.apply(16), GTRecipeModifiers.OC_PERFECT)
+                    .recipeModifiers(CUSTOM_PARALLEL.apply(16), OC_PERFECT)
                     .appearanceBlock(CASING_PTFE_INERT)
                     .pattern(definition -> FactoryBlockPattern.start()
                             .aisle(" FDDDF ", " FDDDF ", " FDDDF ")
@@ -233,7 +236,7 @@ public class Multiblocks {
 
     static {
         if (EFConfig.INSTANCE.Multiblocks.LpuEnabled || GTCEu.isDataGen()) {
-            LARGE_PYROLYSIS_UNIT = ExtendedFeaturesRegister
+            LARGE_PYROLYSE_OVEN = ExtendedFeaturesRegister
                     .multiblock("large_pyrolysis_unit", CoilWorkableElectricMultiblockMachine::new)
                     .tooltips(
                             Component.translatable("gtceu.machine.pyrolyse_oven.tooltip"),
@@ -284,6 +287,7 @@ public class Multiblocks {
                                     coilMachine.getCoilTier() == 0 ? 75 : 50 * (coilMachine.getCoilTier() + 1)));
                         }
                     })
+                    .shapeInfos(CoilShapeInfo::LargePyrolysisUnit)
                     .register();
         }
     }
