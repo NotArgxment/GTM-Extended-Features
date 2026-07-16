@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/block",
   "loader": "gtceu:machine",
-  "machine": "extendedfeatures:large_pyrolysis_unit",
+  "machine": "extendedfeatures:large_pyrolysis_oven",
   "texture_overrides": {
     "all": "gtceu:block/casings/voltage/ulv/side"
   },
