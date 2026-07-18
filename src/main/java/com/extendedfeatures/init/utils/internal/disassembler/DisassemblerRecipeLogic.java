@@ -1,4 +1,4 @@
-package com.argxment.extendedfeatures.init.utils.internal.disassembler;
+package com.extendedfeatures.init.utils.internal.disassembler;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
@@ -15,11 +15,13 @@ import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
 
-import com.argxment.extendedfeatures.client.RecipeTypes;
+import com.extendedfeatures.client.RecipeTypes;
 import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.ParametersAreNullableByDefault;
 import java.util.List;
 
+@ParametersAreNullableByDefault
 public enum DisassemblerRecipeLogic implements GTRecipeType.ICustomRecipeLogic {
 
     INSTANCE;
@@ -28,7 +30,7 @@ public enum DisassemblerRecipeLogic implements GTRecipeType.ICustomRecipeLogic {
     private static final int TICKS_PER_TIER = 50;
 
     @Override
-    public @Nullable GTRecipe createCustomRecipe(IRecipeCapabilityHolder holder) {
+    public GTRecipe createCustomRecipe(IRecipeCapabilityHolder holder) {
         ServerLevel serverLevel = getServerLevel(holder);
         if (serverLevel == null) return null;
 
@@ -49,7 +51,7 @@ public enum DisassemblerRecipeLogic implements GTRecipeType.ICustomRecipeLogic {
         return null;
     }
 
-    private @Nullable GTRecipe tryBuildRecipe(ServerLevel serverLevel, GTRecipeType recipeType,
+    private GTRecipe tryBuildRecipe(ServerLevel serverLevel, GTRecipeType recipeType,
                                               ItemStack inputStack) {
         Integer tier = MachineUtil.getMachineTier(inputStack).orElse(null);
         if (tier == null) return null;
@@ -114,7 +116,7 @@ public enum DisassemblerRecipeLogic implements GTRecipeType.ICustomRecipeLogic {
                 path.contains("hatch") || path.contains("diode");
     }
 
-    private @Nullable ServerLevel getRepresentativeServerLevel() {
+    private ServerLevel getRepresentativeServerLevel() {
         var server = com.gregtechceu.gtceu.GTCEu.getMinecraftServer();
         return server == null ? null : server.overworld();
     }
