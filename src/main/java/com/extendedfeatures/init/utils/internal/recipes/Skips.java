@@ -1,11 +1,11 @@
-package com.argxment.extendedfeatures.init.utils.internal.recipes;
+package com.extendedfeatures.init.utils.internal.recipes;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
 
-import static com.argxment.extendedfeatures.client.RecipeTypes.CHEMICAL_REDUCTION;
+import static com.extendedfeatures.client.RecipeTypes.CHEMICAL_REDUCTION;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 
