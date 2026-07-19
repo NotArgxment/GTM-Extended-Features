@@ -1,15 +1,13 @@
 package com.extendedfeatures.init.utils.internal.recipes;
 
+import com.extendedfeatures.client.RecipeTypes;
+
 import com.gregtechceu.gtceu.api.GTValues;
-import com.gregtechceu.gtceu.common.data.GTBlocks;
-import com.gregtechceu.gtceu.common.data.GTItems;
-import com.gregtechceu.gtceu.common.data.GTMaterials;
+import com.gregtechceu.gtceu.common.data.*;
 
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-
-import com.extendedfeatures.client.RecipeTypes;
 
 import java.util.function.Consumer;
 

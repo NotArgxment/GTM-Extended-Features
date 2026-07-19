@@ -1,5 +1,8 @@
 package com.extendedfeatures.client;
 
+import com.extendedfeatures.ExtendedFeaturesCore;
+import com.extendedfeatures.init.utils.internal.disassembler.DisassemblerRecipeLogic;
+
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeSerializer;
@@ -12,9 +15,6 @@ import com.lowdragmc.lowdraglib.gui.texture.ProgressTexture;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeType;
-
-import com.extendedfeatures.ExtendedFeaturesCore;
-import com.extendedfeatures.init.utils.internal.disassembler.DisassemblerRecipeLogic;
 
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.MULTIBLOCK;
 

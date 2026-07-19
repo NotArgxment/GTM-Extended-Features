@@ -1,25 +1,18 @@
 package com.extendedfeatures.client.integrations.Jade;
 
+import com.extendedfeatures.ExtendedFeaturesCore;
 import com.extendedfeatures.init.utils.internal.optical.WirelessOpticalDataHatchMachine;
 
-import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
-import com.gregtechceu.gtceu.api.machine.MetaMachine;
+import com.gregtechceu.gtceu.api.machine.*;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.IntArrayTag;
-import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.*;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
-import snownee.jade.api.BlockAccessor;
-import snownee.jade.api.IBlockComponentProvider;
-import snownee.jade.api.IServerDataProvider;
-import snownee.jade.api.ITooltip;
+import snownee.jade.api.*;
 import snownee.jade.api.config.IPluginConfig;
-
-import com.extendedfeatures.ExtendedFeaturesCore;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -2,9 +2,9 @@ package com.extendedfeatures.init.utils.internal;
 
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
-
 import com.gregtechceu.gtceu.api.pattern.MultiblockShapeInfo;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.FusionReactorMachine;
+
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Blocks;
@@ -31,8 +31,7 @@ public class CustomShapeInfos {
                 .aisle("CBBCCCBBC", "XTTTTTTTX", "XTTTTTTTX", "ETTTFTTTE", "XTTTTTTTX", "XTTTTTTTX", "CBECCCEBC")
                 .aisle(" BBBCBBB ", " XETTTEX ", " XETTTEX ", " EETFTEE ", " XETTTEX ", " XETTTEX ", " BEECEEB ")
                 .aisle(" BBBCBBB ", " XXTTTXX ", " XXTTTXX ", " EETFTEE ", " XXTTTXX ", " XXTTTXX ", " BBBCBBB ")
-                .aisle("   33C   ", "   XXX   ", "   XXX   ", "   EEE   ", "   XXX   ", "   XXX   ", "   CCC   ")
-
+                .aisle("   3CC   ", "   XXX   ", "   XXX   ", "   EEE   ", "   XXX   ", "   XXX   ", "   CCC   ")
                 .where('@', definition, Direction.NORTH)
                 .where('1', PARALLEL_HATCH[IV], Direction.NORTH)
                 .where('2', MAINTENANCE_HATCH, Direction.NORTH)
@@ -42,7 +41,7 @@ public class CustomShapeInfos {
                 .where('6', FLUID_EXPORT_HATCH[LV], Direction.NORTH)
                 .where('L', MUFFLER_HATCH[LV], Direction.UP)
                 .where('T', Blocks.AIR.defaultBlockState())
-                .where('C', CASING_STRESS_PROOF.getDefaultState())
+                .where('C', CASING_TUNGSTENSTEEL_ROBUST.getDefaultState())
                 .where('B', CASING_HIGH_TEMPERATURE_SMELTING.getDefaultState())
                 .where('F', CASING_TUNGSTENSTEEL_PIPE.getDefaultState())
                 .where('E', HEAT_VENT.getDefaultState());
@@ -92,11 +91,11 @@ public class CustomShapeInfos {
         List<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
         var builder = MultiblockShapeInfo.builder()
                 .aisle("  1@2  ", "  HHH  ", "  HHH  ", "  HHH  ", "  4E5  ")
-                .aisle(" FGGGF ", " GKKKG ", " GKKKG ", " GKKKG ", " GGGGG ")
+                .aisle(" FGGGF ", " GKKKG ", " GKKKG ", " GKKKG ", " FGGGF ")
                 .aisle("EGEEEGE", "HK###KH", "HK###KH", "HK###KH", "EGEEEGE")
                 .aisle("EGEEEGE", "HK#O#KH", "HK#O#KH", "HK#O#KH", "EGEYEGE")
                 .aisle("EGEEEGE", "HK###KH", "HK###KH", "HK###KH", "EGEEEGE")
-                .aisle(" FGGGF ", " GKKKG ", " GKKKG ", " GKKKG ", " GGGGG ")
+                .aisle(" FGGGF ", " GKKKG ", " GKKKG ", " GKKKG ", " FGGGF ")
                 .aisle("  33E  ", "  HHH  ", "  HHH  ", "  HHH  ", "  6E7  ")
 
                 .where('@', definition, Direction.NORTH)

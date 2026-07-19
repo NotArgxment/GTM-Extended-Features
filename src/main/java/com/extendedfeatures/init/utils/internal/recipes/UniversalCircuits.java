@@ -3,12 +3,10 @@ package com.extendedfeatures.init.utils.internal.recipes;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
-
+import com.tterrag.registrate.util.entry.ItemEntry;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
-
-import com.tterrag.registrate.util.entry.ItemEntry;
 
 import java.util.function.Consumer;
 

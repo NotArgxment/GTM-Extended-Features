@@ -1,13 +1,14 @@
 package com.extendedfeatures;
 
+import com.extendedfeatures.client.LangHandler;
 import com.extendedfeatures.init.utils.internal.recipes.*;
+
 import com.gregtechceu.gtceu.api.addon.*;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 
-import net.minecraft.data.recipes.FinishedRecipe;
-
-import com.extendedfeatures.client.LangHandler;
 import com.tterrag.registrate.providers.ProviderType;
+
+import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
 

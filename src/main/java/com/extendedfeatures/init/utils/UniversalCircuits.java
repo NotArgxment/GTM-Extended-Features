@@ -1,19 +1,19 @@
 package com.extendedfeatures.init.utils;
 
+import com.extendedfeatures.CreativeTabs;
+import com.extendedfeatures.client.integrations.Configuration.EFConfig;
+
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
+
+import com.tterrag.registrate.util.entry.ItemEntry;
 
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 
-import com.extendedfeatures.ExtendedFeaturesCore;
-import com.extendedfeatures.client.integrations.Configuration.EFConfig;
-import com.tterrag.registrate.util.entry.ItemEntry;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import static com.extendedfeatures.ExtendedFeaturesCore.ExtendedFeaturesRegister;
 
@@ -21,7 +21,7 @@ import static com.extendedfeatures.ExtendedFeaturesCore.ExtendedFeaturesRegister
 public class UniversalCircuits {
 
     static {
-        ExtendedFeaturesRegister.creativeModeTab(() -> ExtendedFeaturesCore.EF_TAB);
+        ExtendedFeaturesRegister.creativeModeTab(() -> CreativeTabs.CIRCUITS_TAB);
     }
 
     // Credits to witherschat for allowing me to use the universal circuits textures
@@ -45,7 +45,7 @@ public class UniversalCircuits {
     };
 
     static {
-        if (EFConfig.INSTANCE.Miscellaneous.universalCircuits || GTCEu.isDataGen()) {
+        if (EFConfig.INSTANCE.UniversalCircuits || GTCEu.isDataGen()) {
             for (Object[] data : CIRCUIT_DATA) {
                 int tier = (int) data[0];
                 String registryName = (String) data[1];

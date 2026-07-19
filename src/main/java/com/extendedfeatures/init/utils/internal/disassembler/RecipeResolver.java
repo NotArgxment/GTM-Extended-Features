@@ -1,23 +1,21 @@
 package com.extendedfeatures.init.utils.internal.disassembler;
 
-import com.gregtechceu.gtceu.api.GTCEuAPI;
-import com.gregtechceu.gtceu.api.GTValues;
+import com.extendedfeatures.client.integrations.Configuration.EFConfig;
+import com.extendedfeatures.init.utils.UniversalCircuits;
+
+import com.gregtechceu.gtceu.api.*;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
-import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
+import com.gregtechceu.gtceu.api.recipe.*;
 import com.gregtechceu.gtceu.api.recipe.content.Content;
 import com.gregtechceu.gtceu.api.recipe.ingredient.SizedIngredient;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 
+import com.tterrag.registrate.util.entry.ItemEntry;
+
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
-
-import com.extendedfeatures.client.integrations.Configuration.EFConfig;
-import com.extendedfeatures.init.utils.UniversalCircuits;
-import com.tterrag.registrate.util.entry.ItemEntry;
 
 import java.util.*;
 
@@ -40,7 +38,7 @@ public class RecipeResolver {
     private static Map<TagKey<Item>, ItemStack> buildCircuitTagMap() {
         Map<TagKey<Item>, ItemStack> map = new HashMap<>();
 
-        if (!EFConfig.INSTANCE.Miscellaneous.universalCircuits) {
+        if (!EFConfig.INSTANCE.UniversalCircuits) {
             return Map.of();
         }
 

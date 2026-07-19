@@ -1,37 +1,38 @@
 package com.extendedfeatures.init.utils;
 
+import com.extendedfeatures.CreativeTabs;
+import com.extendedfeatures.client.RecipeTypes;
+import com.extendedfeatures.client.integrations.Configuration.EFConfig;
 import com.extendedfeatures.init.utils.internal.CustomShapeInfos;
+import com.extendedfeatures.init.utils.internal.disassembler.DisassemblerMachine;
+import com.extendedfeatures.init.utils.internal.optical.WirelessAbilities;
 
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.RotationState;
+import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
 import com.gregtechceu.gtceu.api.machine.multiblock.*;
 import com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
-import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
-import com.gregtechceu.gtceu.api.pattern.Predicates;
+import com.gregtechceu.gtceu.api.pattern.*;
 import com.gregtechceu.gtceu.client.renderer.machine.DynamicRenderHelper;
 import com.gregtechceu.gtceu.client.util.TooltipHelper;
 import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.common.machine.multiblock.electric.FusionReactorMachine;
-import com.gregtechceu.gtceu.common.machine.multiblock.electric.research.DataBankMachine;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 
 import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.*;
-import net.minecraft.world.level.block.*;
-
-import com.extendedfeatures.ExtendedFeaturesCore;
-import com.extendedfeatures.client.RecipeTypes;
-import com.extendedfeatures.client.integrations.Configuration.EFConfig;
-import com.extendedfeatures.init.utils.internal.optical.WirelessAbilities;
-import com.extendedfeatures.init.utils.internal.disassembler.DisassemblerMachine;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 
 import java.util.Locale;
 
-import static com.extendedfeatures.ExtendedFeaturesCore.*;
-import static com.extendedfeatures.client.MachineUtils.*;
+import static com.extendedfeatures.ExtendedFeaturesCore.ExtendedFeaturesRegister;
+import static com.extendedfeatures.client.MachineUtils.TieredMultis;
 import static com.extendedfeatures.client.RecipeTypes.*;
 import static com.extendedfeatures.init.utils.RecipeModifiers.*;
 
@@ -42,50 +43,51 @@ import static com.gregtechceu.gtceu.common.data.GCYMRecipeTypes.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeModifiers.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
-import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.*;
-import static com.gregtechceu.gtceu.utils.FormattingUtil.*;
+import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.createWorkableCasingMachineModel;
+import static com.gregtechceu.gtceu.utils.FormattingUtil.toRomanNumeral;
 
 public class Multiblocks {
 
     static {
-        ExtendedFeaturesRegister.creativeModeTab(() -> ExtendedFeaturesCore.EF_TAB);
+        ExtendedFeaturesRegister.creativeModeTab(() -> CreativeTabs.MULTIBLOCKS_TAB);
     }
 
     public static MultiblockMachineDefinition ROBUST_ALLOY_MATERIALIZER = null;
     public static MultiblockMachineDefinition LARGE_CRACKING_MACHINE = null;
-    public static MultiblockMachineDefinition ENLARGED_REACTION_CHAMBER = null;
+    public static MultiblockMachineDefinition SYNTHESIS_VESSEL = null;
     public static MultiblockMachineDefinition LARGE_PYROLYSE_OVEN = null;
     public static MultiblockMachineDefinition COMPACT_ASSEMBLY_LINE = null;
     public static MultiblockMachineDefinition ROCK_PROCESSING_PLANT = null;
     public static MultiblockMachineDefinition INDUSTRIAL_GREENHOUSE = null;
     public static MultiblockMachineDefinition TREE_GROWING_CHAMBER = null;
     public static MultiblockMachineDefinition DISASSEMBLER = null;
-    public static MultiblockMachineDefinition EXPANDED_DATABANK = null;
-    public static MultiblockMachineDefinition CLOUD_TRANSMISSION_DATABASE = null;
     public static MultiblockMachineDefinition[] ADVANCED_FUSION_REACTORS = null;
 
     static {
-        if (EFConfig.INSTANCE.Multiblocks.RamEnabled || GTCEu.isDataGen()) {
+        if (EFConfig.INSTANCE.Multiblocks.RobustAlloyMaterializer || GTCEu.isDataGen()) {
             ROBUST_ALLOY_MATERIALIZER = ExtendedFeaturesRegister
                     .multiblock("robust_alloy_materializer", CoilWorkableMultiblockLaser::new)
                     .tooltips(
                             Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.0"),
                             Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.1"),
-                            Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.2"))
+                            Component.translatable("gtceu.machine.electric_blast_furnace.tooltip.2")
+                    )
                     .tooltipBuilder((stack, list) -> list.add(
                             Component.translatable("extendedfeatures.regular.tooltip.1")
                             .append(Component.translatable("extendedfeatures.styled.tooltip.1")
                                     .withStyle(TooltipHelper.RAINBOW_HSL_SLOW))
                             .append(Component.translatable("extendedfeatures.regular.tooltip.2")
                                 .append(Component.translatable("extendedfeatures.styled.tooltip.2")
-                                    .withStyle(TooltipHelper.RAINBOW_HSL_SLOW)))))
+                                    .withStyle(TooltipHelper.RAINBOW_HSL_SLOW))))
+                    )
                     .rotationState(RotationState.NON_Y_AXIS)
                     .recipeType(ALLOY_BLAST_RECIPES)
                     .recipeModifiers(
                             PARALLEL_HATCH,
                             OC_NON_PERFECT,
                             BATCH_MODE,
-                            GTRecipeModifiers::ebfOverclock)
+                            GTRecipeModifiers::ebfOverclock
+                    )
                     .appearanceBlock(CASING_TUNGSTENSTEEL_ROBUST)
                     .pattern(definition -> FactoryBlockPattern.start()
                             .aisle("   CCC   ", "   XXX   ", "   XXX   ", "   EEE   ", "   XXX   ", "   XXX   ", "   CCC   ")
@@ -102,12 +104,11 @@ public class Multiblocks {
                             .where('T', air())
                             .where(' ', any())
                             .where('C', blocks(CASING_TUNGSTENSTEEL_ROBUST.get())
-                                    .or(Predicates.abilities(PartAbility.IMPORT_ITEMS, PartAbility.IMPORT_FLUIDS,
-                                            PartAbility.EXPORT_FLUIDS))
-                                    .or(Predicates.abilities(PartAbility.INPUT_ENERGY).setMaxGlobalLimited(2)
-                                            .setPreviewCount(2))
-                                    .or(Predicates.abilities(PartAbility.INPUT_LASER).setMaxGlobalLimited(1)
-                                            .setPreviewCount(1))
+                                    .or(Predicates.abilities(PartAbility.IMPORT_ITEMS))
+                                    .or(Predicates.abilities(PartAbility.IMPORT_FLUIDS))
+                                    .or(Predicates.abilities(PartAbility.EXPORT_FLUIDS))
+                                    .or(Predicates.abilities(PartAbility.INPUT_ENERGY).setMaxGlobalLimited(1).setPreviewCount(1)
+                                            .or(Predicates.abilities(PartAbility.INPUT_LASER).setMaxGlobalLimited(1).setPreviewCount(1)))
                                     .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1))
                                     .or(Predicates.abilities(PartAbility.PARALLEL_HATCH).setMaxGlobalLimited(1)))
                             .where('B', Predicates.blocks(CASING_HIGH_TEMPERATURE_SMELTING.get()))
@@ -115,17 +116,20 @@ public class Multiblocks {
                             .where('E', Predicates.blocks(HEAT_VENT.get()))
                             .where('L', ability(PartAbility.MUFFLER).setExactLimit(1))
                             .build())
+                    .recoveryItems(() -> new ItemLike[] {
+                            GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.dustTiny, GTMaterials.Ash)
+                    })
                     .workableCasingModel(
                             GTCEu.id("block/casings/solid/machine_casing_robust_tungstensteel"),
-                            GTCEu.id("block/multiblock/gcym/blast_alloy_smelter"))
+                            GTCEu.id("block/multiblock/gcym/blast_alloy_smelter")
+                    )
                     .additionalDisplay((controller, components) -> {
-                        if (controller instanceof CoilWorkableElectricMultiblockMachine coilMachine &&
-                                controller.isFormed()) {
-                            components.add(Component.translatable("gtceu.multiblock.blast_furnace.max_temperature",
+                        if (controller instanceof CoilWorkableElectricMultiblockMachine coilMachine && controller.isFormed()) {
+                            components.add(
+                                    Component.translatable("gtceu.multiblock.blast_furnace.max_temperature",
                                     Component.translatable(
                                             FormattingUtil
-                                                    .formatNumbers(
-                                                            coilMachine.getCoilType().getCoilTemperature() + 100L * Math.max(0, coilMachine.getTier() - GTValues.MV)) + "K")
+                                                    .formatNumbers(coilMachine.getCoilType().getCoilTemperature() + 100L * Math.max(0, coilMachine.getTier() - GTValues.MV)) + "K")
                                             .setStyle(Style.EMPTY.withColor(ChatFormatting.RED))));
                         }
                     })
@@ -135,12 +139,13 @@ public class Multiblocks {
     }
 
     static {
-        if (EFConfig.INSTANCE.Multiblocks.LcmEnabled || GTCEu.isDataGen()) {
+        if (EFConfig.INSTANCE.Multiblocks.LargeCrackingMachine || GTCEu.isDataGen()) {
             LARGE_CRACKING_MACHINE = ExtendedFeaturesRegister
                     .multiblock("large_cracking_machine", CoilWorkableElectricMultiblockMachine::new)
                     .tooltips(
                             Component.translatable("gtceu.machine.cracker.tooltip"),
-                            Component.translatable("gtceu.machine.cracker.tooltip.1"))
+                            Component.translatable("gtceu.machine.cracker.tooltip.1")
+                    )
                     .tooltipBuilder((stack, list) -> list.add(
                             Component.translatable("extendedfeatures.regular.tooltip.1")
                             .append(Component.translatable("extendedfeatures.styled.tooltip.2")
@@ -174,12 +179,15 @@ public class Multiblocks {
                                     .or(Predicates.abilities(PartAbility.PARALLEL_HATCH).setMaxGlobalLimited(1)))
                             .where('Y', ability(PartAbility.MUFFLER).setExactLimit(1))
                             .build())
+                    .recoveryItems(() -> new ItemLike[] {
+                            GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.dustTiny, GTMaterials.Ash)
+                    })
                     .workableCasingModel(
                             GTCEu.id("block/casings/solid/machine_casing_robust_tungstensteel"),
-                            GTCEu.id("block/multiblock/cracking_unit"))
+                            GTCEu.id("block/multiblock/cracking_unit")
+                    )
                     .additionalDisplay((controller, components) -> {
-                        if (controller instanceof CoilWorkableElectricMultiblockMachine coilMachine &&
-                                controller.isFormed()) {
+                        if (controller instanceof CoilWorkableElectricMultiblockMachine coilMachine && controller.isFormed()) {
                             components.add(Component.translatable("gtceu.multiblock.cracking_unit.energy",
                                     100 - 10 * coilMachine.getCoilTier()));
                         }
@@ -190,9 +198,9 @@ public class Multiblocks {
     }
 
     static {
-        if (EFConfig.INSTANCE.Multiblocks.ErcEnabled || GTCEu.isDataGen()) {
-            ENLARGED_REACTION_CHAMBER = ExtendedFeaturesRegister
-                    .multiblock("enlarged_reaction_chamber", WorkableElectricMultiblockMachine::new)
+        if (EFConfig.INSTANCE.Multiblocks.SynthesisVessel || GTCEu.isDataGen()) {
+            SYNTHESIS_VESSEL = ExtendedFeaturesRegister
+                    .multiblock("synthesis_vessel", WorkableElectricMultiblockMachine::new)
                     .tooltips(
                             Component.translatable("extendedfeatures.enlarged_reaction_chamber.tooltip.0"),
                             Component.translatable("extendedfeatures.enlarged_reaction_chamber.tooltip.1"))
@@ -203,7 +211,7 @@ public class Multiblocks {
                     .rotationState(RotationState.NON_Y_AXIS)
                     .recipeTypes(LARGE_CHEMICAL_RECIPES, CHEMICAL_REDUCTION)
                     .recipeModifiers(
-                            CUSTOM_PARALLEL.apply(16),
+                            CUSTOM_PARALLEL.apply(8),
                             OC_PERFECT,
                             BATCH_MODE
                     )
@@ -238,7 +246,7 @@ public class Multiblocks {
     }
 
     static {
-        if (EFConfig.INSTANCE.Multiblocks.LpoEnabled || GTCEu.isDataGen()) {
+        if (EFConfig.INSTANCE.Multiblocks.LargePyrolysisOven || GTCEu.isDataGen()) {
             LARGE_PYROLYSE_OVEN = ExtendedFeaturesRegister
                     .multiblock("large_pyrolysis_oven", CoilWorkableElectricMultiblockMachine::new)
                     .tooltips(
@@ -281,12 +289,15 @@ public class Multiblocks {
                                     .or(Predicates.abilities(PartAbility.PARALLEL_HATCH).setMaxGlobalLimited(1)))
                             .where('Y', ability(PartAbility.MUFFLER).setExactLimit(1))
                             .build())
+                    .recoveryItems(() -> new ItemLike[] {
+                            GTMaterialItems.MATERIAL_ITEMS.get(TagPrefix.dustTiny, GTMaterials.Ash)
+                    })
                     .workableCasingModel(
                             GTCEu.id("block/casings/solid/machine_casing_robust_tungstensteel"),
-                            GTCEu.id("block/multiblock/pyrolyse_oven"))
+                            GTCEu.id("block/multiblock/pyrolyse_oven")
+                    )
                     .additionalDisplay((controller, components) -> {
-                        if (controller instanceof CoilWorkableElectricMultiblockMachine coilMachine &&
-                                controller.isFormed()) {
+                        if (controller instanceof CoilWorkableElectricMultiblockMachine coilMachine && controller.isFormed()) {
                             components.add(Component.translatable("gtceu.multiblock.pyrolyse_oven.speed",
                                     coilMachine.getCoilTier() == 0 ? 75 : 50 * (coilMachine.getCoilTier() + 1)));
                         }
@@ -297,7 +308,7 @@ public class Multiblocks {
     }
 
     static {
-        if (EFConfig.INSTANCE.Multiblocks.AfrEnabled || GTCEu.isDataGen()) {
+        if (EFConfig.INSTANCE.Multiblocks.AdvancedFusionReactors || GTCEu.isDataGen()) {
             ADVANCED_FUSION_REACTORS = TieredMultis("advanced_fusion_reactor",
                     FusionReactorMachine::new, (tier, builder) -> builder
                             .rotationState(RotationState.ALL)
@@ -368,7 +379,7 @@ public class Multiblocks {
     }
 
     static {
-        if (EFConfig.INSTANCE.Multiblocks.CalEnabled || GTCEu.isDataGen()) {
+        if (EFConfig.INSTANCE.Multiblocks.CompactAssemblyLine || GTCEu.isDataGen()) {
             COMPACT_ASSEMBLY_LINE = ExtendedFeaturesRegister
                     .multiblock("compact_assembly_line", WorkableElectricMultiblockMachine::new)
                     .tooltips(
@@ -384,8 +395,7 @@ public class Multiblocks {
                     .recipeType(ASSEMBLY_LINE_RECIPES)
                     .recipeModifiers(
                             CUSTOM_PARALLEL.apply(4),
-                            OC_NON_PERFECT,
-                            BATCH_MODE
+                            OC_NON_PERFECT
                     )
                     .appearanceBlock(CASING_STEEL_SOLID)
                     .pattern(definition -> FactoryBlockPattern.start()
@@ -408,10 +418,8 @@ public class Multiblocks {
                                     .or(Predicates.abilities(PartAbility.IMPORT_ITEMS))
                                     .or(Predicates.abilities(PartAbility.IMPORT_FLUIDS))
                                     .or(Predicates.abilities(PartAbility.INPUT_ENERGY).setMaxGlobalLimited(1))
-                                    .or(Predicates.abilities(WirelessAbilities.WIRELESS_OPTICAL_RECEIVER)
-                                            .setMaxGlobalLimited(1)
-                                            .or(Predicates.abilities(PartAbility.OPTICAL_DATA_RECEPTION))
-                                            .setMaxGlobalLimited(1)))
+                                    .or(Predicates.abilities(WirelessAbilities.WIRELESS_OPTICAL_RECEIVER).setMaxGlobalLimited(1))
+                            )
                             .where('N', Predicates.abilities(PartAbility.EXPORT_ITEMS))
                             .build())
                     .workableCasingModel(
@@ -422,7 +430,7 @@ public class Multiblocks {
     }
 
     static {
-        if (EFConfig.INSTANCE.Multiblocks.RpfEnabled || GTCEu.isDataGen()) {
+        if (EFConfig.INSTANCE.Multiblocks.RockProcessingPlant || GTCEu.isDataGen()) {
             ROCK_PROCESSING_PLANT = ExtendedFeaturesRegister
                     .multiblock("rock_processing_plant", WorkableElectricMultiblockMachine::new)
                     .tooltips(Component.translatable("extendedfeatures.rock_processing_plant.tooltip.0"))
@@ -469,7 +477,7 @@ public class Multiblocks {
     }
 
     static {
-        if (EFConfig.INSTANCE.Multiblocks.IghEnabled || GTCEu.isDataGen()) {
+        if (EFConfig.INSTANCE.Multiblocks.IndustrialGreenhouse || GTCEu.isDataGen()) {
             INDUSTRIAL_GREENHOUSE = ExtendedFeaturesRegister
                     .multiblock("industrial_greenhouse", WorkableElectricMultiblockMachine::new)
                     .tooltips(
@@ -522,15 +530,18 @@ public class Multiblocks {
     }
 
     static {
-        if (EFConfig.INSTANCE.Multiblocks.TgcEnabled || GTCEu.isDataGen()) {
+        if (EFConfig.INSTANCE.Multiblocks.TreeGrowingChamber || GTCEu.isDataGen()) {
             TREE_GROWING_CHAMBER = ExtendedFeaturesRegister
                     .multiblock("tree_growing_chamber", WorkableElectricMultiblockMachine::new)
                     .rotationState(RotationState.NON_Y_AXIS)
                     .tooltips(
-                            Component.translatable("extendedfeatures.greenhouse.tooltip.0"))
-                    .tooltipBuilder((stack, list) -> list.add(Component.translatable("extendedfeatures.regular.tooltip.1")
+                            Component.translatable("extendedfeatures.greenhouse.tooltip.0")
+                    )
+                    .tooltipBuilder((stack, list) -> list.add(
+                            Component.translatable("extendedfeatures.regular.tooltip.1")
                             .append(Component.translatable("extendedfeatures.styled.tooltip.2")
-                                    .withStyle(TooltipHelper.RAINBOW_HSL_SLOW))))
+                                    .withStyle(TooltipHelper.RAINBOW_HSL_SLOW)))
+                    )
                     .recipeTypes(GREENHOUSE_CROPS, GREENHOUSE_WOOD)
                     .recipeModifiers(
                             PARALLEL_HATCH,
@@ -577,7 +588,7 @@ public class Multiblocks {
     }
 
     static {
-        if (EFConfig.INSTANCE.Multiblocks.DaEnabled || GTCEu.isDataGen()) {
+        if (EFConfig.INSTANCE.Multiblocks.Disassembler || GTCEu.isDataGen()) {
             DISASSEMBLER = ExtendedFeaturesRegister
                     .multiblock("disassembler", DisassemblerMachine::new)
                     .tooltips(
@@ -588,8 +599,8 @@ public class Multiblocks {
                     .recipeModifiers(PARALLEL_HATCH, OC_NON_PERFECT)
                     .appearanceBlock(CASING_LARGE_SCALE_ASSEMBLING)
                     .pattern(definition -> FactoryBlockPattern.start()
-                            .aisle("OOOOOOO", "OOOOOOO", "OOOOOOO")
-                            .aisle("OEOOOOO", "OKKKKKO", "OCOEEEO")
+                            .aisle("OOOOOOO", "OOOEEEO", "OOOEEEO")
+                            .aisle("OOOOOOO", "OKKKKKO", "OCOEEEO")
                             .aisle("OOOOOOO", "O@OEEEO", "OOOEEEO")
                             .where('@', controller(blocks(definition.get())))
                             .where('#', air())
@@ -607,87 +618,6 @@ public class Multiblocks {
                     .workableCasingModel(
                             GTCEu.id("block/casings/gcym/large_scale_assembling_casing"),
                             GTCEu.id("block/multiblock/gcym/large_assembler"))
-                    .register();
-        }
-    }
-
-    static {
-        if (EFConfig.INSTANCE.Multiblocks.EdaEnabled || GTCEu.isDataGen()) {
-            EXPANDED_DATABANK = ExtendedFeaturesRegister
-                    .multiblock("expanded_databank", DataBankMachine::new)
-                    .tooltips(
-                            Component.translatable("gtceu.machine.data_bank.tooltip.0"),
-                            Component.translatable("gtceu.machine.data_bank.tooltip.1")
-                    )
-                    .tooltipBuilder((stack, list) -> list.add(
-                            Component.translatable("extendedfeatures.expanded_databank_tootip.1")
-                            .append(Component.translatable("extendedfeatures.styled.tooltip.5")
-                                    .withStyle(CustomTooltipStyles.IV_GRADIENT))))
-                    .rotationState(RotationState.NON_Y_AXIS)
-                    .recipeType(DUMMY_RECIPES)
-                    .appearanceBlock(ADVANCED_COMPUTER_CASING)
-                    .pattern(definition -> FactoryBlockPattern.start()
-                            .aisle("   BBBBB   ", "   B   B   ", "   B   B   ", "   B   B   ", "   B   B   ", "   BBBBB   ")
-                            .aisle(" BBBDBDBBB ", "           ", "           ", "           ", "           ", " BBBDBDBBB ")
-                            .aisle("BBDDDBDDDBB", "B         B", "B         B", "B         B", "B         B", "BBDDDBDDDBB")
-                            .aisle("BDBBBBBBBDB", "  E E E E  ", "  E E E E  ", "  E E E E  ", "  E E E E  ", "BDBBBBBBBDB")
-                            .aisle("BBDDDBDDDBB", "B         B", "B         B", "B         B", "B         B", "BBDDDBDDDBB")
-                            .aisle(" BBBDBDBBB ", "           ", "           ", "           ", "           ", " BBBDBDBBB ")
-                            .aisle("   BB@BB   ", "   B   B   ", "   B   B   ", "   B   B   ", "   B   B   ", "   BBBBB   ")
-                            .where('@', controller(blocks(definition.get())))
-                            .where(' ', any())
-                            .where('D', blocks(COMPUTER_CASING.get()))
-                            .where('B', blocks(ADVANCED_COMPUTER_CASING.get())
-                                    .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1))
-                                    .or(abilities(PartAbility.INPUT_ENERGY).setMaxGlobalLimited(2))
-                                    .or(abilities(PartAbility.DATA_ACCESS).setMinGlobalLimited(1)
-                                            .setMaxGlobalLimited(6)))
-                            .where('E', abilities(PartAbility.OPTICAL_DATA_TRANSMISSION).setMaxGlobalLimited(16))
-                            .build())
-                    .workableCasingModel(
-                            GTCEu.id("block/casings/hpca/advanced_computer_casing/top"),
-                            GTCEu.id("block/multiblock/data_bank"))
-                    .register();
-        }
-    }
-
-    static {
-        if (EFConfig.INSTANCE.Wireless.wirelessUtils || GTCEu.isDataGen()) {
-            CLOUD_TRANSMISSION_DATABASE = ExtendedFeaturesRegister
-                    .multiblock("cloud_transmission_database", DataBankMachine::new)
-                    .tooltips(
-                            Component.translatable("extendedfeatures.cloud_transmission_database.tooltip.1"),
-                            Component.translatable("extendedfeatures.cloud_transmission_database.tooltip.2"),
-                            Component.translatable("extendedfeatures.cloud_transmission_database.tooltip.3")
-                    )
-                    .tooltipBuilder((stack, list) -> list.add(Component.translatable("extendedfeatures.cloud_transmission_database.tooltip.4")
-                            .append(Component.translatable("extendedfeatures.styled.tooltip.4")
-                                    .withStyle(TooltipHelper.RAINBOW_HSL_SLOW))))
-                    .rotationState(RotationState.NON_Y_AXIS)
-                    .recipeType(DUMMY_RECIPES)
-                    .appearanceBlock(HIGH_POWER_CASING)
-                    .pattern(definition -> FactoryBlockPattern.start()
-                            .aisle(" CCCCC ", " C   C ", " C   C ", " C   C ", " CCCCC ")
-                            .aisle("CCDEDCC", "CC E CC", "CC E CC", "CC E CC", "CCDEDCC")
-                            .aisle("CDDEDDC", "       ", "       ", "       ", "CDDEDDC")
-                            .aisle("CEEEEEC", " E E E ", " E H E ", " E E E ", "CEEEEEC")
-                            .aisle("CDDEDDC", "       ", "       ", "       ", "CDDEDDC")
-                            .aisle("CCDEDCC", "CC E CC", "CC @ CC", "CC E CC", "CCDEDCC")
-                            .aisle(" CCCCC ", " C   C ", " C   C ", " C   C ", " CCCCC ")
-                            .where('@', controller(blocks(definition.get())))
-                            .where(' ', any())
-                            .where('#', air())
-                            .where('D', blocks(ADVANCED_COMPUTER_CASING.get()))
-                            .where('C', blocks(COMPUTER_CASING.get()))
-                            .where('E', blocks(HIGH_POWER_CASING.get())
-                                    .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1))
-                                    .or(abilities(PartAbility.INPUT_ENERGY).setMaxGlobalLimited(2))
-                                    .or(abilities(PartAbility.DATA_ACCESS).setExactLimit(1)))
-                            .where('H', abilities(WirelessAbilities.WIRELESS_OPTICAL_TRANSMITTER).setExactLimit(1))
-                            .build())
-                    .workableCasingModel(
-                            GTCEu.id("block/casings/hpca/high_power_casing"),
-                            GTCEu.id("block/multiblock/fusion_reactor"))
                     .register();
         }
     }
