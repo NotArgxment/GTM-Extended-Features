@@ -1,15 +1,17 @@
 package com.extendedfeatures;
 
+import com.extendedfeatures.client.RecipeTypes;
+import com.extendedfeatures.client.integrations.Configuration.EFConfig;
+import com.extendedfeatures.init.utils.*;
+
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.*;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import com.gregtechceu.gtceu.api.sound.SoundEntry;
-import com.gregtechceu.gtceu.common.data.GTCreativeModeTabs;
 
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -17,12 +19,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-
-import com.extendedfeatures.client.RecipeTypes;
-import com.extendedfeatures.client.integrations.Configuration.EFConfig;
-import com.extendedfeatures.init.utils.*;
-
-import com.tterrag.registrate.util.entry.RegistryEntry;
 
 import org.apache.logging.log4j.*;
 
@@ -33,20 +29,6 @@ public class ExtendedFeaturesCore {
     public static final String MOD_ID = "extendedfeatures";
     public static final Logger LOGGER = LogManager.getLogger();
     public static final GTRegistrate ExtendedFeaturesRegister = GTRegistrate.create(ExtendedFeaturesCore.MOD_ID);
-
-    // Credits to Herr Jolo for making the creative tab!
-    public static RegistryEntry<CreativeModeTab> EF_TAB = ExtendedFeaturesRegister
-            .defaultCreativeTab(ExtendedFeaturesCore.MOD_ID,
-                    builder -> builder
-                            .displayItems(
-                                    new GTCreativeModeTabs.RegistrateDisplayItemsGenerator(ExtendedFeaturesCore.MOD_ID,
-                                            ExtendedFeaturesRegister))
-                            .title(ExtendedFeaturesRegister.addLang("itemGroup",
-                                    ExtendedFeaturesCore.id("creative_tab"),
-                                    "GTM Extended Features"))
-                            .icon(OpticalMachines.UV_DATA_ACCESS_HATCH::asStack)
-                            .build())
-            .register();
 
     public ExtendedFeaturesCore() {
         EFConfig.init();
