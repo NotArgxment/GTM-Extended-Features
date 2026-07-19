@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/block",
   "loader": "gtceu:machine",
-  "machine": "extendedfeatures:cloud_transmission_database",
+  "machine": "extendedfeatures:optical_transmission_network",
   "texture_overrides": {
     "all": "gtceu:block/casings/hpca/high_power_casing"
   },

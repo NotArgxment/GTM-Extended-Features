@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/block",
   "loader": "gtceu:machine",
-  "machine": "extendedfeatures:enlarged_reaction_chamber",
+  "machine": "extendedfeatures:synthesis_vessel",
   "texture_overrides": {
     "all": "gtceu:block/casings/solid/machine_casing_inert_ptfe"
   },
