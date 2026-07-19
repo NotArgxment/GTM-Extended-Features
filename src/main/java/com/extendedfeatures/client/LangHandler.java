@@ -37,23 +37,24 @@ public class LangHandler {
 
         // Configuration lang
         replace(provider, "config.screen.extendedfeatures", "§7Mod Configuration §4(Restart to Apply Changes)");
-        replace(provider, "config.extendedfeatures.option.Multiblocks", "§7Multiblocks Module");
-        replace(provider, "config.extendedfeatures.option.Miscellaneous", "§7Miscellaneous Module");
-        replace(provider, "config.extendedfeatures.option.Wireless", "§7Wireless Module");
-        replace(provider, "config.extendedfeatures.option.RamEnabled", "§7Robust Alloy Materializer");
-        replace(provider, "config.extendedfeatures.option.LcmEnabled", "§7Large Cracking Machine");
-        replace(provider, "config.extendedfeatures.option.ErcEnabled", "§7Enlarged Reaction Chamber");
-        replace(provider, "config.extendedfeatures.option.LpoEnabled", "§7Large Pyrolysis Oven");
-        replace(provider, "config.extendedfeatures.option.AfrEnabled", "§7Advanced Fusion Reactors");
-        replace(provider, "config.extendedfeatures.option.CalEnabled", "§7Compact Assembly Line");
-        replace(provider, "config.extendedfeatures.option.RpfEnabled", "§7Rock Processing Facility");
-        replace(provider, "config.extendedfeatures.option.IghEnabled", "§7Industrial Greenhouse");
-        replace(provider, "config.extendedfeatures.option.TgcEnabled", "§7Tree Growing Chamber");
-        replace(provider, "config.extendedfeatures.option.DaEnabled", "§7Disassembler");
-        replace(provider, "config.extendedfeatures.option.EdaEnabled", "§7Expanded Data Bank");
-        replace(provider, "config.extendedfeatures.option.universalCircuits", "§7Universal Circuits");
-        replace(provider, "config.extendedfeatures.option.expandedDataAccessHatches", "§7Expanded Data Access Hatches");
-        replace(provider, "config.extendedfeatures.option.wirelessUtils", "§7Wireless Optical T/R & Cloud Transmission Database");
+        replace(provider, "config.extendedfeatures.option.Multiblocks", "§7Multiblocks");
+        replace(provider, "config.extendedfeatures.option.OpticalMachines", "§7Optical Features");
+        replace(provider, "config.extendedfeatures.option.UniversalCircuits", "§7Universal Circuits");
+        replace(provider, "config.extendedfeatures.option.RobustAlloyMaterializer", "§7Robust Alloy Materializer");
+        replace(provider, "config.extendedfeatures.option.LargeCrackingMachine", "§7Large Cracking Machine");
+        replace(provider, "config.extendedfeatures.option.SynthesisVessel", "§7Enlarged Reaction Chamber");
+        replace(provider, "config.extendedfeatures.option.LargePyrolysisOven", "§7Large Pyrolysis Oven");
+        replace(provider, "config.extendedfeatures.option.AdvancedFusionReactors", "§7Advanced Fusion Reactors");
+        replace(provider, "config.extendedfeatures.option.CompactAssemblyLine", "§7Compact Assembly Line");
+        replace(provider, "config.extendedfeatures.option.RockProcessingPlant", "§7Rock Processing Plant");
+        replace(provider, "config.extendedfeatures.option.IndustrialGreenhouse", "§7Industrial Greenhouse");
+        replace(provider, "config.extendedfeatures.option.TreeGrowingChamber", "§7Tree Growing Chamber");
+        replace(provider, "config.extendedfeatures.option.Disassembler", "§7Disassembler");
+        replace(provider, "config.extendedfeatures.option.ExpandedDatabank", "§7Expanded Data Bank");
+        replace(provider, "config.extendedfeatures.option.UniversalCircuits", "§7Universal Circuits");
+        replace(provider, "config.extendedfeatures.option.ExpandedDataAccessHatches", "§7Expanded Data Access Hatches");
+        replace(provider, "config.extendedfeatures.option.WirelessOptical", "§7Wireless Optical Tranmission/Reception Hatches");
+        replace(provider, "config.extendedfeatures.option.OpticalTransmissionNetwork", "§7Optical Transmission Network ");
 
         // Optical
         replace(provider, "extendedfeatures.machine.wireless_optical_hatch.tooltip.range", "Scan range: §f%s blocks§7 (right-click with an empty hand)");
