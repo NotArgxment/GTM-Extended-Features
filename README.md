@@ -6,11 +6,11 @@ Addon for GTCEu Modern (Minecraft 1.20.1, Forge) that adds "QoL" multiblocks bas
 
 **Modrinth:** https://modrinth.com/mod/gtm-extended-features
 
-- Latest Version: 2.1.0
+- Latest Version: 2.2.0
 
 **Curseforge:** https://www.curseforge.com/minecraft/mc-mods/gtm-extended-features
 
-- Latest Version: 2.1.0
+- Latest Version: 2.2.0
 
 ## Developer Utilities can be found here:
 
