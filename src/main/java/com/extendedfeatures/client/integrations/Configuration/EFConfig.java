@@ -100,7 +100,8 @@ public class EFConfig {
         @Configurable
         @Configurable.Comment({
                 "Whether the Disassembler is enabled",
-                "§cWarning: §rUniversal Circuits MUST be enabled, otherwise it could lead to some issues with recipes",
+                "§cWarning: §rUniversal Circuits MUST be enabled",
+                "otherwise it could lead to some issues with recipes",
                 "Default = True"
         })
         public boolean Disassembler = true;

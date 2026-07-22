@@ -23,16 +23,14 @@ import com.gregtechceu.gtceu.common.machine.multiblock.electric.FusionReactorMac
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 
 import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Style;
-import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.network.chat.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
 
 import java.util.Locale;
 
-import static com.extendedfeatures.ExtendedFeaturesCore.ExtendedFeaturesRegister;
-import static com.extendedfeatures.client.MachineUtils.TieredMultis;
+import static com.extendedfeatures.ExtendedFeaturesCore.*;
+import static com.extendedfeatures.client.MachineUtils.*;
 import static com.extendedfeatures.client.RecipeTypes.*;
 import static com.extendedfeatures.init.utils.RecipeModifiers.*;
 
@@ -43,7 +41,7 @@ import static com.gregtechceu.gtceu.common.data.GCYMRecipeTypes.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeModifiers.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
-import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.createWorkableCasingMachineModel;
+import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.*;
 import static com.gregtechceu.gtceu.utils.FormattingUtil.toRomanNumeral;
 
 public class Multiblocks {

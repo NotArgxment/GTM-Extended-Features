@@ -32,11 +32,6 @@ public class ExtendedFeaturesGTAddon implements IGTAddon {
     }
 
     @Override
-    public void registerTagPrefixes() {
-        // CustomTagPrefixes.init();
-    }
-
-    @Override
     public void addRecipes(Consumer<FinishedRecipe> provider) {
         RockProcessing.init(provider);
         UniversalCircuits.init(provider);
@@ -45,8 +40,4 @@ public class ExtendedFeaturesGTAddon implements IGTAddon {
         Skips.init(provider);
     }
 
-    @Override
-    public void registerElements() {
-        // CustomElements.init();
-    }
 }

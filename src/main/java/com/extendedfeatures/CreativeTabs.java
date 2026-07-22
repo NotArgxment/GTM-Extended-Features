@@ -1,11 +1,12 @@
 package com.extendedfeatures;
 
-import com.extendedfeatures.init.utils.Multiblocks;
-import com.extendedfeatures.init.utils.OpticalMachines;
+import com.extendedfeatures.init.utils.*;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.common.data.GTCreativeModeTabs;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.world.item.CreativeModeTab;
+
+import java.util.*;
 
 import static com.extendedfeatures.ExtendedFeaturesCore.ExtendedFeaturesRegister;
 import static com.extendedfeatures.init.utils.UniversalCircuits.UNIVERSAL_CIRCUITS;
