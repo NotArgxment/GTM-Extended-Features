@@ -111,6 +111,7 @@ public class OpticalMachines {
                             Component.translatable("extendedfeatures.machine.wireless_optical_hatch.tooltip.connections", 4),
                             Component.translatable("extendedfeatures.machine.wireless_optical_hatch.tooltip.scan"),
                             Component.translatable("gtceu.part_sharing.disabled"))
+                    .overlayTieredHullModel("luv_transmissor")
                     .register();
 
             LUV_WIRELESS_RECEIVER = registerHatch("luv_wireless_data_receiver",
@@ -118,6 +119,7 @@ public class OpticalMachines {
                     .tooltips(
                             Component.translatable("extendedfeatures.machine.wireless_optical_hatch.tooltip.receiver"),
                             Component.translatable("gtceu.part_sharing.disabled"))
+                    .overlayTieredHullModel("luv_receiver")
                     .register();
 
             ZPM_WIRELESS_TRANSMITTER = registerHatch("zpm_wireless_data_transmitter",
@@ -127,6 +129,7 @@ public class OpticalMachines {
                             Component.translatable("extendedfeatures.machine.wireless_optical_hatch.tooltip.connections", 8),
                             Component.translatable("extendedfeatures.machine.wireless_optical_hatch.tooltip.scan"),
                             Component.translatable("gtceu.part_sharing.disabled"))
+                    .overlayTieredHullModel("zpm_transmissor")
                     .register();
 
             ZPM_WIRELESS_RECEIVER = registerHatch("zpm_wireless_data_receiver",
@@ -134,6 +137,7 @@ public class OpticalMachines {
                     .tooltips(
                             Component.translatable("extendedfeatures.machine.wireless_optical_hatch.tooltip.receiver"),
                             Component.translatable("gtceu.part_sharing.disabled"))
+                    .overlayTieredHullModel("zpm_receiver")
                     .register();
 
             UV_WIRELESS_TRANSMITTER = registerHatch("uv_wireless_data_transmitter",
@@ -143,6 +147,7 @@ public class OpticalMachines {
                             Component.translatable("extendedfeatures.machine.wireless_optical_hatch.tooltip.connections", 16),
                             Component.translatable("extendedfeatures.machine.wireless_optical_hatch.tooltip.scan"),
                             Component.translatable("gtceu.part_sharing.disabled"))
+                    .overlayTieredHullModel("uv_transmissor")
                     .register();
 
             UV_WIRELESS_RECEIVER = registerHatch("uv_wireless_data_receiver",
@@ -150,6 +155,7 @@ public class OpticalMachines {
                     .tooltips(
                             Component.translatable("extendedfeatures.machine.wireless_optical_hatch.tooltip.receiver"),
                             Component.translatable("gtceu.part_sharing.disabled"))
+                    .overlayTieredHullModel("uv_receiver")
                     .register();
         }
     }
@@ -166,11 +172,7 @@ public class OpticalMachines {
                  */
                 .abilities(isTransmitter
                         ? WirelessAbilities.WIRELESS_OPTICAL_TRANSMITTER
-                        : WirelessAbilities.WIRELESS_OPTICAL_RECEIVER)
-                .overlayTieredHullModel(isTransmitter
-                        ? "wireless_transmitter"
-                        : "wireless_receiver"
-                );
+                        : WirelessAbilities.WIRELESS_OPTICAL_RECEIVER);
     }
 
     // Related Multiblocks

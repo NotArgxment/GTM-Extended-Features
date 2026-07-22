@@ -10,7 +10,7 @@
   "variants": {
     "is_formed=false": {
       "model": {
-        "parent": "extendedfeatures:block/machine/part/wireless_receiver",
+        "parent": "extendedfeatures:block/machine/part/zpm_receiver",
         "textures": {
           "bottom": "gtceu:block/casings/voltage/zpm/bottom",
           "side": "gtceu:block/casings/voltage/zpm/side",
@@ -20,7 +20,7 @@
     },
     "is_formed=true": {
       "model": {
-        "parent": "extendedfeatures:block/machine/part/wireless_receiver",
+        "parent": "extendedfeatures:block/machine/part/zpm_receiver",
         "textures": {
           "bottom": "gtceu:block/casings/voltage/zpm/bottom",
           "side": "gtceu:block/casings/voltage/zpm/side",

@@ -1,6 +1,7 @@
 package com.extendedfeatures.init.utils;
 
 import com.extendedfeatures.CreativeTabs;
+import com.extendedfeatures.ExtendedFeaturesCore;
 import com.extendedfeatures.client.RecipeTypes;
 import com.extendedfeatures.client.integrations.Configuration.EFConfig;
 import com.extendedfeatures.init.utils.internal.CustomShapeInfos;
@@ -24,6 +25,7 @@ import com.gregtechceu.gtceu.utils.FormattingUtil;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.*;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 
@@ -292,7 +294,7 @@ public class Multiblocks {
                     })
                     .workableCasingModel(
                             GTCEu.id("block/casings/solid/machine_casing_robust_tungstensteel"),
-                            GTCEu.id("block/multiblock/pyrolyse_oven")
+                            ExtendedFeaturesCore.id("block/multiblock/pyrolyse_oven")
                     )
                     .additionalDisplay((controller, components) -> {
                         if (controller instanceof CoilWorkableElectricMultiblockMachine coilMachine && controller.isFormed()) {
