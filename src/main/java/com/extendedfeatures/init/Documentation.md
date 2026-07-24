@@ -34,12 +34,7 @@ public class Machines {
 Allows any multiblock to run parallels **without a parallel hatch part in its structure**. EU/t stays the same, but duration is multiplied ×2 for each parallel level achieved.
 
 ```java
-// Addon as a dependency
-
-// value: int between 0 and 256
-.recipeModifiers(
-        SIMPLE_PARALLEL.apply(value)
-)
+.recipeModifiers(SIMPLE_PARALLEL.apply(value))
 ```
 ```javascript
 const ExtendedModifier = Java.loadClass('com.extendedfeatures.init.utils.RecipeModifiers')
@@ -59,16 +54,12 @@ Automatic parallels based on the machine's tier (currently used by the Advanced 
 ```java
 import com.extendedfeatures.init.utils.RecipeModifiers;
 
-.recipeModifiers(
-        RecipeModifiers.TIERED_PARALLEL
-        )
+.recipeModifiers(TIERED_PARALLEL)
 ```
 ```javascript
-const RecipeModifiers = Java.loadClass('com.extendedfeatures.init.utils.RecipeModifiers')
+const CustomRecipeModifiers = Java.loadClass('com.extendedfeatures.init.utils.RecipeModifiers')
 
-.recipeModifiers(
-      RecipeModifiers.TIERED_PARALLEL
-)
+.recipeModifiers(CustomRecipeModifiers.TIERED_PARALLEL)
 ```
 
 ### Gradients based on the GTCEu Energy Tiers (LV -> MAX)
