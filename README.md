@@ -14,6 +14,6 @@ Addon for GTCEu Modern 1.20.1 designed to provide quality of life changes for th
 
 ## Developer Utilities
 
-[Tools for Modpacks/Addons](https://github.com/NotArgxment/GTM-Extended-Features/blob/main/src/main/java/com/argxment/extendedfeatures/client/init/Documentation.md)
+[Tools for Modpacks/Addons](https://github.com/NotArgxment/GTM-Extended-Features/blob/main/src/main/java/com/extendedfeatures/init/Documentation.md)
 
 [KubeJS Examples](https://github.com/NotArgxment/GTM-Extended-Features/blob/main/src/main/java/com/extendedfeatures/init/KubeJSExamples.md)
