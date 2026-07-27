@@ -4,13 +4,9 @@ Addon for GTCEu Modern 1.20.1 designed to provide quality of life changes for th
 
 ## Download links
 
-**Modrinth:** https://modrinth.com/mod/gtm-extended-features
+**Modrinth (2.3.0):** https://modrinth.com/mod/gtm-extended-features
 
-- Latest Version: 2.3.0
-
-**Curseforge:** https://www.curseforge.com/minecraft/mc-mods/gtm-extended-features
-
-- Latest Version: 2.3.0
+**Curseforge (2.3.0):** https://www.curseforge.com/minecraft/mc-mods/gtm-extended-features
 
 ## Developer Utilities
 
