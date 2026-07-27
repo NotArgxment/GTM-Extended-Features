@@ -15,7 +15,7 @@ public class LangHandler {
         // Regular item/block lang
         replace(provider, "block.extendedfeatures.robust_alloy_materializer", "Robust Alloy Materializer [RAM]");
         replace(provider, "block.extendedfeatures.large_cracking_machine", "Large Cracker Machine [LCM]");
-        replace(provider, "block.extendedfeatures.enlarged_reaction_chamber", "Enlarged Reaction Chamber [ERC]");
+        replace(provider, "block.extendedfeatures.synthesys_vessel", "Synthesys Vessel [SyVe]");
         replace(provider, "block.extendedfeatures.large_pyrolysis_oven", "Large Pyrolysis Oven [LPO]");
         replace(provider, "block.extendedfeatures.compact_assembly_line", "Compact Assembly Line [CAL]");
         replace(provider, "block.extendedfeatures.rock_processing_plant", "Rock Processing Plant [RPP]");
@@ -80,9 +80,8 @@ public class LangHandler {
         provider.add("extendedfeatures.compact_assembly_line.tooltip.2", "§fRuns §b4 §frecipes in parallel");
         provider.add("extendedfeatures.compact_assembly_line.tooltip.3", "§fOnly works using");
 
-        provider.add("extendedfeatures.enlarged_reaction_chamber.tooltip.0", "§fEven larger Black Box Reactor");
-        provider.add("extendedfeatures.enlarged_reaction_chamber.tooltip.1", "§7This machine is an improved version of the Large Chemical reactor");
-        provider.add("extendedfeatures.enlarged_reaction_chamber_tooltip.2", "§fRuns §b16 recipes §fin parallel");
+        provider.add("extendedfeatures.synthesys_vessel.tooltip.0", "§fEven larger Black Box Reactor");
+        provider.add("extendedfeatures.synthesys_vessel.tooltip.1", "§7This machine is an improved version of the Large Chemical reactor capable of running ");
 
         provider.add("extendedfeatures.rock_processing_plant.tooltip.0", "§7An all in one processing line, turns the rocks you normally get from the rock breaker into their direct processed outputs");
 
@@ -107,6 +106,9 @@ public class LangHandler {
 
         provider.add("extendedfeatures.uv_advanced_fusion_reactor.tooltip.0", "§fRuns");
         provider.add("extendedfeatures.uv_advanced_fusion_reactor.tooltip.1", " 16 Parallels");
+
+        provider.add("extendedfeatures.large_air_collector.tooltip.1", "§7A Bigger Gas Collector");
+        provider.add("extendedfeatures.air_processing_machine.tooltip.1", "§7A machine capable of processing the air from the environment to return valuable gasses");
 
         provider.add("extendedfeatures.regular.tooltip.1", "§fAllows");
         provider.add("extendedfeatures.regular.tooltip.2", "§fand");
