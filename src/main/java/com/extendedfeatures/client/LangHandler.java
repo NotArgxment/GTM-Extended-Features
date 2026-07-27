@@ -91,24 +91,15 @@ public class LangHandler {
         provider.add("extendedfeatures.disassembler.tooltip.0", "§7Allows any type of §emachine/controller §7to be recycled, returning what was used for that recipe");
         provider.add("extendedfeatures.disassembler.tooltip.1", "§fEach tier of machine needs the same energy hatch of that tier in order to work");
 
-        provider.add("extendedfeatures.expanded_databank_tootip.1", "§fAllows 16");
+        provider.add("extendedfeatures.expanded_databank_tootip.1", "§fAllows 16"); // inside a tooltip builer, followed by "extendedfeatures.styled.tooltip.5"
 
         provider.add("extendedfeatures.cloud_transmission_database.tooltip.1", "§fYour personal Data Center");
         provider.add("extendedfeatures.cloud_transmission_database.tooltip.2", "§fThis machine is a variant of the regular Data Bank capable of transmitting data using");
         provider.add("extendedfeatures.cloud_transmission_database.tooltip.3", "§fNeeds exactly 1 Data Access Hatch to form");
         provider.add("extendedfeatures.cloud_transmission_database.tooltip.4", "§fOnly allows");
 
-        provider.add("extendedfeatures.luv_advanced_fusion_reactor.tooltip.0", "§fRuns");
-        provider.add("extendedfeatures.luv_advanced_fusion_reactor.tooltip.1", " 4 Parallels");
-
-        provider.add("extendedfeatures.zpm_advanced_fusion_reactor.tooltip.0", "§fRuns");
-        provider.add("extendedfeatures.zpm_advanced_fusion_reactor.tooltip.1", " 8 Parallels");
-
-        provider.add("extendedfeatures.uv_advanced_fusion_reactor.tooltip.0", "§fRuns");
-        provider.add("extendedfeatures.uv_advanced_fusion_reactor.tooltip.1", " 16 Parallels");
-
-        provider.add("extendedfeatures.large_air_collector.tooltip.1", "§7A Bigger Gas Collector");
-        provider.add("extendedfeatures.air_processing_machine.tooltip.1", "§7A machine capable of processing the air from the environment to return valuable gasses");
+        provider.add("extendedfeatures.large_air_collector.tooltip.0", "§7A Bigger Gas Collector");
+        provider.add("extendedfeatures.air_processing_machine.tooltip.0", "§7A machine capable of processing the air from the environment to get valuable products from it");
 
         provider.add("extendedfeatures.regular.tooltip.1", "§fAllows");
         provider.add("extendedfeatures.regular.tooltip.2", "§fand");
