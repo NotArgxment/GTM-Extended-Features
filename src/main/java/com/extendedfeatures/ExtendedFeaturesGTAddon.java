@@ -35,9 +35,11 @@ public class ExtendedFeaturesGTAddon implements IGTAddon {
     public void addRecipes(Consumer<FinishedRecipe> provider) {
         RockProcessing.init(provider);
         UniversalCircuits.init(provider);
-        Wood.init(provider);
-        Crops.init(provider);
-        Skips.init(provider);
+        GreenhouseWood.init(provider);
+        GreenhouseCrops.init(provider);
+        ChemicalSkips.init(provider);
+        AirCollector.init(provider);
+        AirProcessing.init(provider);
     }
 
 }
