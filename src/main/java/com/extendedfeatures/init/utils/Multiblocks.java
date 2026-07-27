@@ -50,7 +50,8 @@ public class Multiblocks {
         ExtendedFeaturesRegister.creativeModeTab(() -> CreativeTabs.MULTIBLOCKS_TAB);
     }
 
-    public static MultiblockMachineDefinition[] ADVANCED_FUSION_REACTORS = null;
+    // goodbye Advanced Fusion Reactors, the PITA of kubejs scripts...
+
     public static MultiblockMachineDefinition ROBUST_ALLOY_MATERIALIZER = null;
     public static MultiblockMachineDefinition LARGE_CRACKING_MACHINE = null;
     public static MultiblockMachineDefinition SYNTHESIS_VESSEL = null;

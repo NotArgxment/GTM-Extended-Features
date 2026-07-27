@@ -21,9 +21,6 @@ public class LangHandler {
         replace(provider, "block.extendedfeatures.rock_processing_plant", "Rock Processing Plant [RPP]");
         replace(provider, "block.extendedfeatures.industrial_greenhouse", "Industrial Greenhouse [IGh]");
         replace(provider, "block.extendedfeatures.tree_growing_chamber", "Tree Growing Chamber [TGCh]");
-        replace(provider, "block.extendedfeatures.luv_advanced_fusion_reactor", "§dLuV §rAdvanced Fusion Reactor");
-        replace(provider, "block.extendedfeatures.zpm_advanced_fusion_reactor", "§cZPM §rAdvanced Fusion Reactor");
-        replace(provider, "block.extendedfeatures.uv_advanced_fusion_reactor", "§3UV §rAdvanced Fusion Reactor");
         replace(provider, "block.extendedfeatures.zpm_data_access_hatch", "ZPM Data Access Hatch");
         replace(provider, "block.extendedfeatures.uv_data_access_hatch", "UV Data Access Hatch");
         replace(provider, "block.extendedfeatures.uhv_data_access_hatch", "UHV Data Access Hatch");
