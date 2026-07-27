@@ -25,10 +25,9 @@ public class RecipeTypes {
     public static GTRecipeType GREENHOUSE_WOOD;
     public static GTRecipeType GREENHOUSE_CROPS;
     public static GTRecipeType CHEMICAL_REDUCTION;
-
-    // Future additions
-    // public static GTRecipeType AIR_REPROCESSING;
-    // public static GTRecipeType OIL_REFINERY;
+    public static GTRecipeType AIR_REPROCESSING;
+    public static GTRecipeType OIL_REFINERY;
+    public static GTRecipeType AIR_COLLECTOR;
 
     public static void init() {
         ROCK_PROCESSING_RECIPES = register("rock_processing_plant", MULTIBLOCK)
@@ -62,19 +61,24 @@ public class RecipeTypes {
                  .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
                  .setSound(GTSoundEntries.CHEMICAL);
 
-        /*
-         * AIR_REPROCESSING = register("air_reprocessor", MULTIBLOCK)
-         * .setEUIO(IO.IN)
-         * .setMaxIOSize(0, 9, 1, 0)
-         * .setProgressBar(GuiTextures.PROGRESS_BAR_MIXER, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
-         * .setSound(GTSoundEntries.BATH);
-         * 
-         * OIL_REFINERY = register("oil_refinery_skips", MULTIBLOCK)
-         * .setEUIO(IO.IN)
-         * .setMaxIOSize(0, 6, 6, 6)
-         * .setProgressBar(GuiTextures.PROGRESS_BAR_MIXER, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
-         * .setSound(GTSoundEntries.CHEMICAL);
-         */
+        AIR_REPROCESSING = register("air_reprocessor", MULTIBLOCK)
+            .setEUIO(IO.IN)
+            .setMaxIOSize(0, 9, 1, 0)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_MIXER, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.BATH);
+
+        OIL_REFINERY = register("oil_refinery_machine", MULTIBLOCK)
+            .setEUIO(IO.IN)
+            .setMaxIOSize(0, 6, 6, 6)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_MIXER, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+            .setSound(GTSoundEntries.CHEMICAL);
+
+        AIR_COLLECTOR = register("air_collection", MULTIBLOCK)
+                .setEUIO(IO.IN)
+                .setMaxIOSize(1, 0, 0, 1)
+                .setProgressBar(GuiTextures.CIRCUIT_OVERLAY, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+                .setSound(GTSoundEntries.COOLING);
+
     }
 
     public static GTRecipeType register(String name, String group, RecipeType<?>... proxyRecipes) {
