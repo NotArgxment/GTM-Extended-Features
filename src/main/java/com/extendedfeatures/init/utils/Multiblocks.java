@@ -1,7 +1,6 @@
 package com.extendedfeatures.init.utils;
 
-import com.extendedfeatures.CreativeTabs;
-import com.extendedfeatures.ExtendedFeaturesCore;
+import com.extendedfeatures.*;
 import com.extendedfeatures.client.RecipeTypes;
 import com.extendedfeatures.client.integrations.Configuration.EFConfig;
 import com.extendedfeatures.init.utils.internal.CustomShapeInfos;
@@ -25,7 +24,6 @@ import com.gregtechceu.gtceu.utils.FormattingUtil;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.*;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 
@@ -44,7 +42,7 @@ import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeModifiers.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.*;
-import static com.gregtechceu.gtceu.utils.FormattingUtil.toRomanNumeral;
+import static com.gregtechceu.gtceu.utils.FormattingUtil.*;
 
 public class Multiblocks {
 
@@ -52,6 +50,7 @@ public class Multiblocks {
         ExtendedFeaturesRegister.creativeModeTab(() -> CreativeTabs.MULTIBLOCKS_TAB);
     }
 
+    public static MultiblockMachineDefinition[] ADVANCED_FUSION_REACTORS = null;
     public static MultiblockMachineDefinition ROBUST_ALLOY_MATERIALIZER = null;
     public static MultiblockMachineDefinition LARGE_CRACKING_MACHINE = null;
     public static MultiblockMachineDefinition SYNTHESIS_VESSEL = null;
@@ -61,7 +60,8 @@ public class Multiblocks {
     public static MultiblockMachineDefinition INDUSTRIAL_GREENHOUSE = null;
     public static MultiblockMachineDefinition TREE_GROWING_CHAMBER = null;
     public static MultiblockMachineDefinition DISASSEMBLER = null;
-    public static MultiblockMachineDefinition[] ADVANCED_FUSION_REACTORS = null;
+    public static MultiblockMachineDefinition LARGE_AIR_COLLECTOR = null;
+    public static MultiblockMachineDefinition AIR_PROCESSING_MACHINE = null;
 
     static {
         if (EFConfig.INSTANCE.Multiblocks.RobustAlloyMaterializer || GTCEu.isDataGen()) {
@@ -202,12 +202,9 @@ public class Multiblocks {
             SYNTHESIS_VESSEL = ExtendedFeaturesRegister
                     .multiblock("synthesis_vessel", WorkableElectricMultiblockMachine::new)
                     .tooltips(
-                            Component.translatable("extendedfeatures.enlarged_reaction_chamber.tooltip.0"),
-                            Component.translatable("extendedfeatures.enlarged_reaction_chamber.tooltip.1"))
-                    .tooltipBuilder((stack, list) -> list.add(
-                            Component.translatable("extendedfeatures.regular.tooltip.1")
-                            .append(Component.translatable("extendedfeatures.styled.tooltip.2")
-                                    .withStyle(TooltipHelper.RAINBOW_HSL_SLOW))))
+                            Component.translatable("extendedfeatures.synthesis_vessel.tooltip.0"),
+                            Component.translatable("extendedfeatures.synthesis_vessel.tooltip.1")
+                    )
                     .rotationState(RotationState.NON_Y_AXIS)
                     .recipeTypes(LARGE_CHEMICAL_RECIPES, CHEMICAL_REDUCTION)
                     .recipeModifiers(
@@ -324,8 +321,8 @@ public class Multiblocks {
                                             .append(Component.translatable("extendedfeatures.%s_advanced_fusion_reactor.tooltip.1"
                                                             .formatted(VN[tier].toLowerCase(Locale.ROOT)))
                                                     .withStyle(CustomTooltipStyles.forTier(tier)))))
-                            .recipeType(GTRecipeTypes.FUSION_RECIPES)
-                            .recipeModifiers(FusionReactorMachine::recipeModifier, TIERED_PARALLEL)
+                            .recipeType(FUSION_RECIPES)
+                            .recipeModifiers(FusionReactorMachine::recipeModifier, OC_PERFECT, CUSTOM_PARALLEL.apply(4))
                             .appearanceBlock(() -> FusionReactorMachine.getCasingState(tier))
                             .pattern((definition) -> {
 
@@ -608,16 +605,88 @@ public class Multiblocks {
                             .where('E', blocks(CASING_TEMPERED_GLASS.get()))
                             .where('K', blocks(CASING_TUNGSTENSTEEL_GEARBOX.get()))
                             .where('O', blocks(CASING_LARGE_SCALE_ASSEMBLING.get())
-                                    .or(Predicates.abilities(PartAbility.IMPORT_ITEMS))
-                                    .or(Predicates.abilities(PartAbility.EXPORT_FLUIDS))
-                                    .or(Predicates.abilities(PartAbility.EXPORT_ITEMS))
-                                    .or(Predicates.abilities(PartAbility.INPUT_ENERGY).setMaxGlobalLimited(2))
+                                    .or(Predicates.abilities(PartAbility.IMPORT_ITEMS).setMaxGlobalLimited(1))
+                                    .or(Predicates.abilities(PartAbility.EXPORT_ITEMS).setMaxGlobalLimited(1))
+                                    .or(Predicates.abilities(PartAbility.INPUT_ENERGY).setMaxGlobalLimited(1))
                                     .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1))
                                     .or(Predicates.abilities(PartAbility.PARALLEL_HATCH).setMaxGlobalLimited(1)))
                             .build())
                     .workableCasingModel(
                             GTCEu.id("block/casings/gcym/large_scale_assembling_casing"),
                             GTCEu.id("block/multiblock/gcym/large_assembler"))
+                    .register();
+        }
+    }
+
+    static {
+        if (EFConfig.INSTANCE.Multiblocks.LargeAirCollector || GTCEu.isDataGen()) {
+            LARGE_AIR_COLLECTOR = ExtendedFeaturesRegister
+                    .multiblock("large_air_collector", WorkableElectricMultiblockMachine::new)
+                    .tooltips(
+                            Component.translatable("extendedfeatures.large_air_collector.tooltip.1")
+                    )
+                    .tooltipBuilder((stack, list) -> list.add(
+                            Component.translatable("extendedfeatures.regular.tooltip.1")
+                                    .append(Component.translatable("extendedfeatures.styled.tooltip.2")
+                                            .withStyle(TooltipHelper.RAINBOW_HSL_SLOW)))
+                    )
+                    .rotationState(RotationState.NON_Y_AXIS)
+                    .recipeType(AIR_COLLECTOR)
+                    .recipeModifiers(PARALLEL_HATCH, OC_NON_PERFECT)
+                    .appearanceBlock(CASING_CORROSION_PROOF)
+                    .pattern(definition -> FactoryBlockPattern.start()
+                            .aisle("ARRRA", " RPR ", "ARRRA")
+                            .aisle("AAAAA", "ADEDA", "AFAFA")
+                            .aisle("AAAAA", "BDEDB", "AAAAA")
+                            .aisle("AAAAA", "ADEDA", "AFAFA")
+                            .aisle("AAAAA", " A@A ", "AAAAA")
+                            .where('@', controller(blocks(definition.get())))
+                            .where(" ", any())
+                            .where("A", blocks(CASING_CORROSION_PROOF.get())
+                                    .or(abilities(PartAbility.IMPORT_ITEMS).setMaxGlobalLimited(1)) // required for circuit
+                                    .or(abilities(PartAbility.EXPORT_FLUIDS).setMaxGlobalLimited(4))
+                                    .or(abilities(PartAbility.INPUT_ENERGY).setMaxGlobalLimited(2))
+                                    .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1))
+                                    .or(abilities(PartAbility.PARALLEL_HATCH).setMaxGlobalLimited(1))
+                            )
+                            .where('R', blocks(CASING_CORROSION_PROOF.get())) // Forces the rotor area to be clear, just visuals :)
+                            .where("B", blocks(MOLYBDENUM_DISILICIDE_COIL_BLOCK.get()))
+                            .where("P", abilities(PartAbility.ROTOR_HOLDER))
+                            .where("E", blocks(CASING_TUNGSTENSTEEL_PIPE.get()))
+                            .where("D", blocks(CASING_TUNGSTENSTEEL_GEARBOX.get()))
+                            .where("F", blocks(CASING_EXTREME_ENGINE_INTAKE.get()))
+                            .build())
+                    .workableCasingModel(
+                            GTCEu.id("block/casings/gcym/corrosion_proof_casing"),
+                            GTCEu.id("block/multiblock/gcym/large_brewer"))
+                    .register();
+        }
+    }
+
+    static {
+        if (EFConfig.INSTANCE.Multiblocks.AirProcessingMachine || GTCEu.isDataGen()) {
+            AIR_PROCESSING_MACHINE = ExtendedFeaturesRegister
+                    .multiblock("air_processing_machine", WorkableElectricMultiblockMachine::new)
+                    .tooltips(
+                            Component.translatable("extendedfeatures.air_processor.tooltip.1")
+                    )
+                    .tooltipBuilder((stack, list) -> list.add(
+                            Component.translatable("extendedfeatures.regular.tooltip.1")
+                                    .append(Component.translatable("extendedfeatures.styled.tooltip.2")
+                                            .withStyle(TooltipHelper.RAINBOW_HSL_SLOW)))
+                    )
+                    .rotationState(RotationState.NON_Y_AXIS)
+                    .recipeType(AIR_REPROCESSING)
+                    .recipeModifiers(PARALLEL_HATCH, OC_NON_PERFECT)
+                    .appearanceBlock(CASING_CORROSION_PROOF)
+                    .pattern(definition -> FactoryBlockPattern.start()
+                            .aisle("A@A")
+                            .where('@', controller(blocks(definition.get())))
+                            .where('A', blocks(CASING_CORROSION_PROOF.get()))
+                            .build())
+                    .workableCasingModel(
+                            GTCEu.id("block/casings/gcym/corrosion_proof_casing"),
+                            GTCEu.id("block/multiblock/gcym/large_brewer"))
                     .register();
         }
     }
