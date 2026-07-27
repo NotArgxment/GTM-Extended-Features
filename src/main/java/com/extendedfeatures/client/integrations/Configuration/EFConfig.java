@@ -26,10 +26,6 @@ public class EFConfig {
     @Configurable.Comment("Configuration Toggles for Optical Features")
     public OpticalToggle OpticalMachines = new OpticalToggle();
 
-    @Configurable
-    @Configurable.Comment({ "Whether the Universal Circuits are Enabled." })
-    public boolean UniversalCircuits = true;
-
     public static class MultiblocksToggles {
 
         @Configurable
@@ -101,12 +97,27 @@ public class EFConfig {
         @Configurable.Comment({
                 "Whether the Disassembler is enabled",
                 "§cWarning: §rUniversal Circuits MUST be enabled",
-                "otherwise it could lead to some issues with recipes",
+                "otherwise it could lead to issues with their recipes",
                 "Default = True"
         })
         public boolean Disassembler = true;
 
+        @Configurable
+        @Configurable.Comment({
+                "Whether the Large Air Collector is Enabled"
+        })
+        public boolean LargeAirCollector = true;
+
+        @Configurable
+        @Configurable.Comment({
+                "Whether the Air Processing Machine is Enabled"
+        })
+        public boolean AirProcessingMachine = true;
     }
+
+    @Configurable
+    @Configurable.Comment({ "Whether the Universal Circuits are Enabled." })
+    public boolean UniversalCircuits = true;
 
     public static class OpticalToggle {
 
