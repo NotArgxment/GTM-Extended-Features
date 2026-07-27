@@ -6,12 +6,11 @@ import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.common.data.*;
 
 import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.item.*;
 
 import java.util.function.Consumer;
 
-public class Wood {
+public class GreenhouseWood {
 
     public static void init(Consumer<FinishedRecipe> provider) {
         addTreeRecipe(provider, "rubber_sapling", false,

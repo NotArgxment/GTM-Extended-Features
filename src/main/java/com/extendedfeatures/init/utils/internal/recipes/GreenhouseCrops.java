@@ -9,7 +9,7 @@ import net.minecraft.world.item.*;
 
 import java.util.function.Consumer;
 
-public class Crops {
+public class GreenhouseCrops {
 
     public static void init(Consumer<FinishedRecipe> provider) {
         // =====================================================
