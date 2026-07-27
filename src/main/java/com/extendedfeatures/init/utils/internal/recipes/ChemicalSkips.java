@@ -45,5 +45,52 @@ public class ChemicalSkips {
                 .EUt(GTValues.VA[GTValues.LuV])
                 .duration(2000)
                 .save(provider);
+
+        // ============================
+        //          Polymers
+        // ============================
+
+        // Polyethylene (is this really needed?)
+        CHEMICAL_REDUCTION.recipeBuilder("polyethylene")
+
+                .outputFluids(Polyethylene.getFluid(8000))
+                .save(provider);
+
+        // PVC
+        CHEMICAL_REDUCTION.recipeBuilder("polyvinyl_chloride")
+
+                .outputFluids(PolyvinylChloride.getFluid(16000))
+                .save(provider);
+
+        // PTFE
+        CHEMICAL_REDUCTION.recipeBuilder("polytetrafluoroethylene")
+
+                .outputFluids(Polytetrafluoroethylene.getFluid(8000))
+                .save(provider);
+
+        // PBI
+        CHEMICAL_REDUCTION.recipeBuilder("polybenzimidazole")
+
+                .outputFluids(Polybenzimidazole.getFluid(8000))
+                .save(provider);
+
+        // PVB
+        CHEMICAL_REDUCTION.recipeBuilder("polyvinyl_butyral")
+
+                .outputFluids(PolyvinylButyral.getFluid(8000))
+                .save(provider);
+
+        // PPS
+        CHEMICAL_REDUCTION.recipeBuilder("polyphenylene_sulfide")
+
+                .outputFluids(PolyphenyleneSulfide.getFluid(8000))
+                .save(provider);
+
+        // Epoxy
+        CHEMICAL_REDUCTION.recipeBuilder("epoxy")
+
+                .outputFluids(Epoxy.getFluid(8000))
+                .save(provider);
+
     }
 }
