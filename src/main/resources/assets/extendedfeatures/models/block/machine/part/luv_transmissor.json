@@ -1,6 +1,6 @@
 {
   "parent": "gtceu:block/overlay/front",
   "textures": {
-    "overlay": "extendedfeatures:block/machine/part/luv_receiver"
+    "overlay": "extendedfeatures:block/machine/part/luv_transmissor"
   }
 }
