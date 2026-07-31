@@ -3,8 +3,7 @@ package com.extendedfeatures.init.utils;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.utils.GradientUtil;
 
-import net.minecraft.network.chat.Style;
-import net.minecraft.network.chat.TextColor;
+import net.minecraft.network.chat.*;
 
 import java.util.Map;
 import java.util.function.UnaryOperator;
