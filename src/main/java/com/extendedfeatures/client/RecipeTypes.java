@@ -81,6 +81,7 @@ public class RecipeTypes {
 
     }
 
+    // Addon's own RecipeType - otherwise they register under GTCEu Namespace
     public static GTRecipeType register(String name, String group, RecipeType<?>... proxyRecipes) {
         ResourceLocation id = ExtendedFeaturesCore.id(name);
 
