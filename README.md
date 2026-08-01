@@ -13,7 +13,7 @@ Addon for GTCEu Modern 1.20.1 designed to provide quality of life changes for th
 
 # Current roadmap
 
-## Multiblocks
+### Multiblocks
 - [x] Better ABS [RAM]
 - [x] GCYM Cracker (IV) [ACU]
 - [x] GCYM Pyro (IV) [LPO]
@@ -29,14 +29,14 @@ Addon for GTCEu Modern 1.20.1 designed to provide quality of life changes for th
 - [ ] Fisher multiblock
 - [ ] Universal Computational Matrix Array (bigger HPCA)
 
-## Machines
+### Machines
 - [x] Expanded Data Hatches [ZPM, UV, UHV]
 - [x] Wireless Optical T/R Hatches [LuV, ZPM, UV]
 
-## Items
+### Items
 - [X] Universal Circuits
 
-## Potential addition (near future)
+### Potential addition (near future)
 - [ ] [AE2] Wireless ME/Stocking hatches
 - [ ] Wireless EU
 - [ ] Wireless CWU
