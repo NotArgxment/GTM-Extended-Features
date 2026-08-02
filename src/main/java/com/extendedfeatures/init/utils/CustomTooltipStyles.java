@@ -3,10 +3,8 @@ package com.extendedfeatures.init.utils;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.utils.GradientUtil;
 
-import net.minecraft.network.chat.Style;
-import net.minecraft.network.chat.TextColor;
+import net.minecraft.network.chat.*;
 
-import java.util.Map;
 import java.util.function.UnaryOperator;
 
 public class CustomTooltipStyles {
@@ -41,15 +39,12 @@ public class CustomTooltipStyles {
         return TextColor.fromRgb(blended & 0xFFFFFF);
     }
 
-    /*
+    /**
      * Side note:
-     * Some of this gradients may already exist in GTCEu;
-     * See "com.gregtechceu.gtceu.client.util.TooltipHelper" for reference
-     * UV is "BLINKING_CYAN"
-     * ZPM is "BLINKING_RED"
-     * HV is "BLINKING_ORANGE"
-     * LV is "BLINKING_GRAY"
+     * Some of this gradients may already exist in GTCEu, look at TooltipHelper.class for reference.
+     * UV is "BLINKING_CYAN", ZPM is "BLINKING_RED", HV is "BLINKING_ORANGE", LV is "BLINKING_GRAY",
      */
+
     public static final UnaryOperator<Style> LV_GRADIENT = style -> style
             .withColor(movingGradient(SPEED_SLOW, LV, WHITE));
 
@@ -92,14 +87,4 @@ public class CustomTooltipStyles {
     public static final UnaryOperator<Style> MAX_GRADIENT = style -> style
             .withColor(movingGradient(SPEED_SLOW, MAX, WHITE));
 
-    // Tiered parallel tooltip, MUST be paired with Tiered multiblocks (Example: Advanced Fusion Reactors)
-    public static final Map<Integer, UnaryOperator<Style>> TIER_GRADIENTS = Map.of(
-            GTValues.LuV, LuV_GRADIENT,
-            GTValues.ZPM, ZPM_GRADIENT,
-            GTValues.UV, UV_GRADIENT);
-
-    public static UnaryOperator<Style> forTier(int tier) {
-        return TIER_GRADIENTS.getOrDefault(
-                tier, LuV_GRADIENT);
-    }
 }
