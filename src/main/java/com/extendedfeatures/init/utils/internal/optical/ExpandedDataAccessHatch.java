@@ -3,9 +3,9 @@ package com.extendedfeatures.init.utils.internal.optical;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.DataAccessHatchMachine;
 
-public class ExpandedDataHatchLogic extends DataAccessHatchMachine {
+public class ExpandedDataAccessHatch extends DataAccessHatchMachine {
 
-    public ExpandedDataHatchLogic(IMachineBlockEntity holder, int tier, boolean isCreative) {
+    public ExpandedDataAccessHatch(IMachineBlockEntity holder, int tier, boolean isCreative) {
         super(holder, tier, isCreative);
     }
 
@@ -13,4 +13,5 @@ public class ExpandedDataHatchLogic extends DataAccessHatchMachine {
     protected int getInventorySize() {
         return 1;
     }
+
 }
