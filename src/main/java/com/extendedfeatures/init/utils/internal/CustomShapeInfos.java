@@ -1,11 +1,12 @@
 package com.extendedfeatures.init.utils.internal;
 
 import com.gregtechceu.gtceu.api.GTCEuAPI;
+import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
+import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
 import com.gregtechceu.gtceu.api.pattern.MultiblockShapeInfo;
-import com.gregtechceu.gtceu.common.machine.multiblock.electric.FusionReactorMachine;
 
-import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.*;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Blocks;
 
@@ -15,6 +16,7 @@ import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.common.data.GCYMBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTMachines.*;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.machines.GCYMMachines.*;
 
 @MethodsReturnNonnullByDefault
@@ -51,7 +53,9 @@ public class CustomShapeInfos {
                 .stream()
                 .sorted(Comparator.comparingInt(entry -> entry.getKey().getTier()))
                 .forEach(coil -> shapeInfo.add(builder
-                        .shallowCopy().where('X', coil.getValue().get()).build()
+                        .shallowCopy()
+                        .where('X', coil.getValue().get())
+                        .build()
                 ));
         return shapeInfo;
     }
@@ -82,7 +86,9 @@ public class CustomShapeInfos {
                 .stream()
                 .sorted(Comparator.comparingInt(entry -> entry.getKey().getTier()))
                 .forEach(coil -> shapeInfo.add(builder
-                        .shallowCopy().where('K', coil.getValue().get()).build()
+                        .shallowCopy()
+                        .where('K', coil.getValue().get())
+                        .build()
                 ));
         return shapeInfo;
     }
@@ -119,7 +125,44 @@ public class CustomShapeInfos {
                 .stream()
                 .sorted(Comparator.comparingInt(entry -> entry.getKey().getTier()))
                 .forEach(coil -> shapeInfo.add(builder
-                        .shallowCopy().where('K', coil.getValue().get()).build()
+                        .shallowCopy()
+                        .where('K', coil.getValue().get())
+                        .build()
+                ));
+        return shapeInfo;
+    }
+
+    public static List<MultiblockShapeInfo> SynthesisVessel(MultiblockMachineDefinition definition) {
+        List<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
+        var builder = MultiblockShapeInfo.builder()
+                .aisle("#F3D4F#", "#FD@DF#", "#F516F#")
+                .aisle("FNDDDNF", "FCK#KCF", "FNDDDNF")
+                .aisle("DDDDDDD", "DKK#KKD", "DDDDDDD")
+                .aisle("DDDDDDD", "D##K##D", "DDDDDDD")
+                .aisle("DDDDDDD", "DKK#KKD", "DDDDDDD")
+                .aisle("FNDDDNF", "FCK#KCF", "FNDDDNF")
+                .aisle("#F22DF#", "#FDDDF#", "#FDDDF#")
+                .where('@', definition, Direction.NORTH)
+                .where('1', MAINTENANCE_HATCH, Direction.NORTH)
+                .where('2', ENERGY_INPUT_HATCH[LV], Direction.SOUTH)
+                .where('3', ITEM_IMPORT_BUS[LV], Direction.NORTH)
+                .where('4', FLUID_IMPORT_HATCH[LV], Direction.NORTH)
+                .where('5', ITEM_EXPORT_BUS[LV], Direction.SOUTH)
+                .where('6', FLUID_EXPORT_HATCH[LV], Direction.SOUTH)
+                .where('#', Blocks.AIR.defaultBlockState())
+                .where('N', HEAT_VENT.getDefaultState())
+                .where('K', CASING_POLYTETRAFLUOROETHYLENE_PIPE.getDefaultState())
+                .where('D', CASING_PTFE_INERT.getDefaultState())
+                .where('F', ChemicalHelper.getBlock(TagPrefix.frameGt, Polytetrafluoroethylene));
+
+        GTCEuAPI.HEATING_COILS
+                .entrySet()
+                .stream()
+                .sorted(Comparator.comparingInt(entry -> entry.getKey().getTier()))
+                .forEach(coil -> shapeInfo.add(builder
+                        .shallowCopy()
+                        .where('C', coil.getValue().get())
+                        .build()
                 ));
         return shapeInfo;
     }
