@@ -58,13 +58,6 @@ public class EFConfig {
 
         @Configurable
         @Configurable.Comment({
-                "Whether the Advanced Fusion Reactors are Enabled",
-                "Default = True"
-        })
-        public boolean AdvancedFusionReactors = true;
-
-        @Configurable
-        @Configurable.Comment({
                 "Whether the Compact Assembly Line is Enabled",
                 "Tip: Controller recipe should contain 4 Assembly Line controllers",
                 "Default = True"
@@ -74,7 +67,7 @@ public class EFConfig {
         @Configurable
         @Configurable.Comment({
                 "Whether the Rock Processing Plant is Enabled",
-                "Tip: Controller recipe should contain a macerator, a centrifuge and an electrolyzer",
+                "Tip: Controller recipe should contain a large macerator, a large centrifuge and an large electrolyzer",
                 "Default = True"
         })
         public boolean RockProcessingPlant = true;
@@ -104,20 +97,12 @@ public class EFConfig {
 
         @Configurable
         @Configurable.Comment({
-                "Whether the Large Air Collector is Enabled"
+                "Whether the Large Air Collector is Enabled",
+                "Default = True"
         })
         public boolean LargeAirCollector = true;
 
-        @Configurable
-        @Configurable.Comment({
-                "Whether the Air Processing Machine is Enabled"
-        })
-        public boolean AirProcessingMachine = true;
     }
-
-    @Configurable
-    @Configurable.Comment({ "Whether the Universal Circuits are Enabled." })
-    public boolean UniversalCircuits = true;
 
     public static class OpticalToggle {
 
@@ -130,10 +115,18 @@ public class EFConfig {
 
         @Configurable
         @Configurable.Comment({
-                "Whether the Wireless Optical Hatches & Cloud Transmission Database are Enabled",
+                "Whether the Wireless Optical Hatches are Enabled",
                 "Default = True"
         })
         public boolean WirelessOptical = true;
+
+        @Configurable
+        @Configurable.Comment({
+                "Whether the Cloud Transmission Database is Enabled",
+                "§cNote: Requires Wireless Optical Hatches enabled to work",
+                "Default = True"
+        })
+        public boolean CloudTransmissionDatabase = true;
 
         @Configurable
         @Configurable.Comment({
@@ -142,12 +135,10 @@ public class EFConfig {
         })
         public boolean ExpandedDatabank = true;
 
-        @Configurable
-        @Configurable.Comment({
-                "Whether the Optical Tranmission Network is Enabled",
-                "Default = True"
-        })
-        public boolean OpticalTransmissionNetwork = true;
-
     }
+
+    @Configurable
+    @Configurable.Comment({ "Whether the Universal Circuits are Enabled." })
+    public boolean UniversalCircuits = true;
+
 }
