@@ -13,13 +13,9 @@ import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
 import com.gregtechceu.gtceu.api.machine.multiblock.*;
-import com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties;
-import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.pattern.*;
-import com.gregtechceu.gtceu.client.renderer.machine.DynamicRenderHelper;
 import com.gregtechceu.gtceu.client.util.TooltipHelper;
 import com.gregtechceu.gtceu.common.data.*;
-import com.gregtechceu.gtceu.common.machine.multiblock.electric.FusionReactorMachine;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 
 import net.minecraft.ChatFormatting;
@@ -27,22 +23,16 @@ import net.minecraft.network.chat.*;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 
-import java.util.Locale;
-
 import static com.extendedfeatures.ExtendedFeaturesCore.*;
-import static com.extendedfeatures.client.MachineUtils.*;
 import static com.extendedfeatures.client.RecipeTypes.*;
 import static com.extendedfeatures.init.utils.RecipeModifiers.*;
 
-import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.pattern.Predicates.*;
 import static com.gregtechceu.gtceu.common.data.GCYMBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GCYMRecipeTypes.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeModifiers.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
-import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.*;
-import static com.gregtechceu.gtceu.utils.FormattingUtil.*;
 
 public class Multiblocks {
 
@@ -62,7 +52,6 @@ public class Multiblocks {
     public static MultiblockMachineDefinition TREE_GROWING_CHAMBER = null;
     public static MultiblockMachineDefinition DISASSEMBLER = null;
     public static MultiblockMachineDefinition LARGE_AIR_COLLECTOR = null;
-    public static MultiblockMachineDefinition AIR_PROCESSING_MACHINE = null;
 
     static {
         if (EFConfig.INSTANCE.Multiblocks.RobustAlloyMaterializer || GTCEu.isDataGen()) {
@@ -207,27 +196,23 @@ public class Multiblocks {
                             Component.translatable("extendedfeatures.synthesis_vessel.tooltip.1")
                     )
                     .rotationState(RotationState.NON_Y_AXIS)
-                    .recipeTypes(LARGE_CHEMICAL_RECIPES, CHEMICAL_REDUCTION)
-                    .recipeModifiers(
-                            CUSTOM_PARALLEL.apply(8),
-                            OC_PERFECT,
-                            BATCH_MODE
-                    )
+                    .recipeTypes(CHEMICAL_REDUCTION)
+                    .recipeModifiers(OC_PERFECT, BATCH_MODE)
                     .appearanceBlock(CASING_PTFE_INERT)
                     .pattern(definition -> FactoryBlockPattern.start()
                             .aisle(" FDDDF ", " FDDDF ", " FDDDF ")
-                            .aisle("FDDDDDF", "FCK#KCF", "FDDDDDF")
+                            .aisle("FNDDDNF", "FCK#KCF", "FNDDDNF")
                             .aisle("DDDDDDD", "DKK#KKD", "DDDDDDD")
                             .aisle("DDDDDDD", "D##K##D", "DDDDDDD")
                             .aisle("DDDDDDD", "DKK#KKD", "DDDDDDD")
-                            .aisle("FDDDDDF", "FCK#KCF", "FDDDDDF")
+                            .aisle("FNDDDNF", "FCK#KCF", "FNDDDNF")
                             .aisle(" FDDDF ", " FD@DF ", " FDDDF ")
                             .where('@', controller(blocks(definition.get())))
                             .where('#', air())
                             .where(' ', any())
                             .where('F', frames(GTMaterials.Polytetrafluoroethylene))
                             .where('K', blocks(CASING_POLYTETRAFLUOROETHYLENE_PIPE.get()))
-                            .where('C', blocks(MOLYBDENUM_DISILICIDE_COIL_BLOCK.get()))
+                            .where('C', heatingCoils())
                             .where('D', blocks(CASING_PTFE_INERT.get())
                                     .or(Predicates.abilities(PartAbility.IMPORT_ITEMS))
                                     .or(Predicates.abilities(PartAbility.EXPORT_ITEMS))
@@ -235,10 +220,12 @@ public class Multiblocks {
                                     .or(Predicates.abilities(PartAbility.EXPORT_FLUIDS))
                                     .or(Predicates.abilities(PartAbility.INPUT_ENERGY).setMaxGlobalLimited(2))
                                     .or(Predicates.abilities(PartAbility.MAINTENANCE).setExactLimit(1)))
+                            .where('N', blocks(HEAT_VENT.get()))
                             .build())
                     .workableCasingModel(
                             GTCEu.id("block/casings/solid/machine_casing_inert_ptfe"),
                             GTCEu.id("block/multiblock/large_chemical_reactor"))
+                    .shapeInfos(CustomShapeInfos::SynthesisVessel)
                     .register();
         }
     }
@@ -321,7 +308,7 @@ public class Multiblocks {
                     .rotationState(RotationState.NON_Y_AXIS)
                     .recipeType(ASSEMBLY_LINE_RECIPES)
                     .recipeModifiers(
-                            CUSTOM_PARALLEL.apply(4),
+                            CUSTOM_PARALLEL(4),
                             OC_NON_PERFECT
                     )
                     .appearanceBlock(CASING_STEEL_SOLID)
@@ -345,7 +332,7 @@ public class Multiblocks {
                                     .or(Predicates.abilities(PartAbility.IMPORT_ITEMS))
                                     .or(Predicates.abilities(PartAbility.IMPORT_FLUIDS))
                                     .or(Predicates.abilities(PartAbility.INPUT_ENERGY).setMaxGlobalLimited(1))
-                                    .or(Predicates.abilities(WirelessAbilities.WIRELESS_OPTICAL_RECEIVER).setMaxGlobalLimited(1))
+                                    .or(Predicates.abilities(WirelessAbilities.WIRELESS_OPTICAL_RECEPTOR).setMaxGlobalLimited(1))
                             )
                             .where('N', Predicates.abilities(PartAbility.EXPORT_ITEMS))
                             .build())
@@ -415,7 +402,7 @@ public class Multiblocks {
                             GREENHOUSE_CROPS,
                             GREENHOUSE_WOOD)
                     .recipeModifiers(
-                            CUSTOM_PARALLEL.apply(8),
+                            CUSTOM_PARALLEL(8),
                             OC_NON_PERFECT,
                             BATCH_MODE
                     )
@@ -553,7 +540,7 @@ public class Multiblocks {
             LARGE_AIR_COLLECTOR = ExtendedFeaturesRegister
                     .multiblock("large_air_collector", WorkableElectricMultiblockMachine::new)
                     .tooltips(
-                            Component.translatable("extendedfeatures.large_air_collector.tooltip.1")
+                            Component.translatable("extendedfeatures.large_air_collector.tooltip.0")
                     )
                     .tooltipBuilder((stack, list) -> list.add(
                             Component.translatable("extendedfeatures.regular.tooltip.1")
@@ -585,34 +572,6 @@ public class Multiblocks {
                             .where("E", blocks(CASING_TUNGSTENSTEEL_PIPE.get()))
                             .where("D", blocks(CASING_TUNGSTENSTEEL_GEARBOX.get()))
                             .where("F", blocks(CASING_EXTREME_ENGINE_INTAKE.get()))
-                            .build())
-                    .workableCasingModel(
-                            GTCEu.id("block/casings/gcym/corrosion_proof_casing"),
-                            GTCEu.id("block/multiblock/gcym/large_brewer"))
-                    .register();
-        }
-    }
-
-    static {
-        if (EFConfig.INSTANCE.Multiblocks.AirProcessingMachine || GTCEu.isDataGen()) {
-            AIR_PROCESSING_MACHINE = ExtendedFeaturesRegister
-                    .multiblock("air_processing_machine", WorkableElectricMultiblockMachine::new)
-                    .tooltips(
-                            Component.translatable("extendedfeatures.air_processor.tooltip.1")
-                    )
-                    .tooltipBuilder((stack, list) -> list.add(
-                            Component.translatable("extendedfeatures.regular.tooltip.1")
-                                    .append(Component.translatable("extendedfeatures.styled.tooltip.2")
-                                            .withStyle(TooltipHelper.RAINBOW_HSL_SLOW)))
-                    )
-                    .rotationState(RotationState.NON_Y_AXIS)
-                    .recipeType(AIR_REPROCESSING)
-                    .recipeModifiers(PARALLEL_HATCH, OC_NON_PERFECT)
-                    .appearanceBlock(CASING_CORROSION_PROOF)
-                    .pattern(definition -> FactoryBlockPattern.start()
-                            .aisle("A@A")
-                            .where('@', controller(blocks(definition.get())))
-                            .where('A', blocks(CASING_CORROSION_PROOF.get()))
                             .build())
                     .workableCasingModel(
                             GTCEu.id("block/casings/gcym/corrosion_proof_casing"),
