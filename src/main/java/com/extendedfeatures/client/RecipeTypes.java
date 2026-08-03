@@ -18,6 +18,7 @@ import net.minecraft.world.item.crafting.RecipeType;
 
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.MULTIBLOCK;
 
+@SuppressWarnings("deprecated")
 public class RecipeTypes {
 
     public static GTRecipeType ROCK_PROCESSING_RECIPES;
@@ -63,13 +64,13 @@ public class RecipeTypes {
 
         AIR_REPROCESSING = register("air_reprocessor", MULTIBLOCK)
             .setEUIO(IO.IN)
-            .setMaxIOSize(0, 9, 1, 0)
+            .setMaxIOSize(0, 0, 1, 9)
             .setProgressBar(GuiTextures.PROGRESS_BAR_MIXER, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.BATH);
 
         OIL_REFINERY = register("oil_refinery_machine", MULTIBLOCK)
             .setEUIO(IO.IN)
-            .setMaxIOSize(0, 6, 6, 6)
+            .setMaxIOSize(0, 0, 6, 6)
             .setProgressBar(GuiTextures.PROGRESS_BAR_MIXER, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
             .setSound(GTSoundEntries.CHEMICAL);
 
