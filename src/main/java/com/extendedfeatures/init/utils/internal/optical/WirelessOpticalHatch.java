@@ -1,18 +1,14 @@
 package com.extendedfeatures.init.utils.internal.optical;
 
-import com.extendedfeatures.init.utils.internal.renderer.LinkedParticleAnimator;
-import com.extendedfeatures.init.utils.internal.renderer.ParticleBeamRenderer;
+import com.extendedfeatures.init.utils.internal.renderer.*;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.IDataAccessHatch;
-import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
-import com.gregtechceu.gtceu.api.machine.MetaMachine;
-import com.gregtechceu.gtceu.api.machine.feature.IInteractedMachine;
-import com.gregtechceu.gtceu.api.machine.feature.IMachineLife;
+import com.gregtechceu.gtceu.api.machine.*;
+import com.gregtechceu.gtceu.api.machine.feature.*;
 import com.gregtechceu.gtceu.api.machine.multiblock.part.MultiblockPartMachine;
 import com.gregtechceu.gtceu.api.recipe.GTRecipe;
-import com.gregtechceu.gtceu.common.machine.multiblock.part.DataAccessHatchMachine;
-import com.gregtechceu.gtceu.common.machine.multiblock.part.OpticalDataHatchMachine;
+import com.gregtechceu.gtceu.common.machine.multiblock.part.*;
 
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
@@ -22,28 +18,23 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.LevelChunk;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.*;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
-public class WirelessOpticalDataHatchMachine extends OpticalDataHatchMachine implements IMachineLife, IInteractedMachine {
+public class WirelessOpticalHatch extends OpticalDataHatchMachine implements IMachineLife, IInteractedMachine {
 
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
-            WirelessOpticalDataHatchMachine.class, MultiblockPartMachine.MANAGED_FIELD_HOLDER);
+            WirelessOpticalHatch.class, MultiblockPartMachine.MANAGED_FIELD_HOLDER);
 
     private static final int LINK_PARTICLE_DURATION_TICKS = 200; // 10 seconds
     private static final int LINK_PARTICLE_INTERVAL_TICKS = 4;
@@ -68,7 +59,7 @@ public class WirelessOpticalDataHatchMachine extends OpticalDataHatchMachine imp
                 if (value.gtTier == gtTier) return value;
             }
             throw new IllegalArgumentException(
-                    "No WirelessOpticalDataHatchMachine.WirelessTier registered for GT tier " + gtTier +
+                    "No WirelessOpticalHatch.WirelessTier registered for GT tier " + gtTier +
                             ". Only LuV, ZPM and UV are supported.");
         }
     }
@@ -90,7 +81,7 @@ public class WirelessOpticalDataHatchMachine extends OpticalDataHatchMachine imp
 
     private final List<LinkedParticleAnimator> particleAnimators = new ArrayList<>();
 
-    public WirelessOpticalDataHatchMachine(IMachineBlockEntity holder, boolean isTransmitter, int gtTier) {
+    public WirelessOpticalHatch(IMachineBlockEntity holder, boolean isTransmitter, int gtTier) {
         super(holder, isTransmitter);
         this.wirelessTier = WirelessTier.byGTTier(gtTier);
     }
@@ -132,13 +123,13 @@ public class WirelessOpticalDataHatchMachine extends OpticalDataHatchMachine imp
         Level level = getLevel();
         if (level != null && isTransmitter()) {
             for (BlockPos receiverPos : linkedReceiverPositions) {
-                if (MetaMachine.getMachine(level, receiverPos) instanceof WirelessOpticalDataHatchMachine receiver &&
+                if (MetaMachine.getMachine(level, receiverPos) instanceof WirelessOpticalHatch receiver &&
                         getPos().equals(receiver.linkedTransmitterPos)) {
                     receiver.linkedTransmitterPos = null;
                 }
             }
         } else if (level != null && linkedTransmitterPos != null &&
-                MetaMachine.getMachine(level, linkedTransmitterPos) instanceof WirelessOpticalDataHatchMachine transmitter) {
+                MetaMachine.getMachine(level, linkedTransmitterPos) instanceof WirelessOpticalHatch transmitter) {
             transmitter.linkedReceiverPositions.remove(getPos());
         }
     }
@@ -172,7 +163,7 @@ public class WirelessOpticalDataHatchMachine extends OpticalDataHatchMachine imp
         Level level = getLevel();
         if (level == null || !level.isLoaded(linkedTransmitterPos)) return false;
 
-        if (!(MetaMachine.getMachine(level, linkedTransmitterPos) instanceof WirelessOpticalDataHatchMachine partner) ||
+        if (!(MetaMachine.getMachine(level, linkedTransmitterPos) instanceof WirelessOpticalHatch partner) ||
                 !partner.isTransmitter()) {
             return false;
         }
@@ -245,11 +236,11 @@ public class WirelessOpticalDataHatchMachine extends OpticalDataHatchMachine imp
         int remainingSlots = wirelessTier.maxConnections - linkedReceiverPositions.size();
         if (remainingSlots <= 0) return 0;
 
-        List<WirelessOpticalDataHatchMachine> candidates = findCandidateReceivers(level, center, range);
+        List<WirelessOpticalHatch> candidates = findCandidateReceivers(level, center, range);
         candidates.sort((a, b) -> Double.compare(a.getPos().distSqr(center), b.getPos().distSqr(center)));
 
         int newLinks = 0;
-        for (WirelessOpticalDataHatchMachine receiver : candidates) {
+        for (WirelessOpticalHatch receiver : candidates) {
             if (remainingSlots <= 0) break;
             if (linkedReceiverPositions.contains(receiver.getPos())) continue;
 
@@ -277,11 +268,11 @@ public class WirelessOpticalDataHatchMachine extends OpticalDataHatchMachine imp
         return newLinks;
     }
 
-    private List<WirelessOpticalDataHatchMachine> findCandidateReceivers(ServerLevel level, BlockPos center,
-                                                                         int range) {
-        List<WirelessOpticalDataHatchMachine> found = new ArrayList<>();
+    private List<WirelessOpticalHatch> findCandidateReceivers(ServerLevel level, BlockPos center,
+                                                              int range) {
+        List<WirelessOpticalHatch> found = new ArrayList<>();
         forEachBlockEntityInRange(level, center, range, (candidatePos, blockEntity) -> {
-            if (MetaMachine.getMachine(level, candidatePos) instanceof WirelessOpticalDataHatchMachine other &&
+            if (MetaMachine.getMachine(level, candidatePos) instanceof WirelessOpticalHatch other &&
                     !other.isTransmitter() &&
                     other.wirelessTier == this.wirelessTier &&
                     other.isFormed()) {
