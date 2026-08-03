@@ -2,9 +2,7 @@ package com.extendedfeatures.client.integrations.Configuration;
 
 import com.extendedfeatures.ExtendedFeaturesCore;
 import dev.toma.configuration.Configuration;
-import dev.toma.configuration.config.Config;
-import dev.toma.configuration.config.ConfigHolder;
-import dev.toma.configuration.config.Configurable;
+import dev.toma.configuration.config.*;
 import dev.toma.configuration.config.format.ConfigFormats;
 
 @Config(id = ExtendedFeaturesCore.MOD_ID)

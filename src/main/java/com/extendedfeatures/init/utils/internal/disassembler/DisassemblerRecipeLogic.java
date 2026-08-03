@@ -71,7 +71,7 @@ public enum DisassemblerRecipeLogic implements GTRecipeType.ICustomRecipeLogic {
         return builder.buildRawRecipe();
     }
 
-    private @Nullable ServerLevel getServerLevel(IRecipeCapabilityHolder holder) {
+    private ServerLevel getServerLevel(IRecipeCapabilityHolder holder) {
         if (holder instanceof MetaMachine machine && machine.getLevel() instanceof ServerLevel serverLevel) {
             return serverLevel;
         }
