@@ -17,8 +17,8 @@ public class RockProcessing {
 
     public static void init(Consumer<FinishedRecipe> provider) {
 
-        final int rpfTime = 2000;
-        final var rpfEnergy = GTValues.VA[GTValues.EV];
+        final int rpfTime = 1200;
+        final var rpfEnergy = GTValues.VA[GTValues.HV];
 
         ROCK_PROCESSING_RECIPES.recipeBuilder("deepslate_processing")
                 .inputItems(new ItemStack(Blocks.DEEPSLATE), 1)
