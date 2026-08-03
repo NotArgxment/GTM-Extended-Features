@@ -32,11 +32,16 @@ Addon for GTCEu Modern 1.20.1 designed to provide quality of life changes for th
 ### Machines
 - [x] Expanded Data Hatches [ZPM, UV, UHV]
 - [x] Wireless Optical T/R Hatches [LuV, ZPM, UV]
+- [ ] Configurable Cleaning Maintenance Hatch
 
 ### Items
 - [X] Universal Circuits
 
-### Potential addition (near future)
-- [ ] [AE2] Wireless ME/Stocking hatches
+### Potential additions (for the near future)
+- [ ] Wireless ME/Stocking hatches
 - [ ] Wireless EU
 - [ ] Wireless CWU
+
+## Not planned if suggested
+- Sterile Cleanroom Hatches, Infinite Spray can or more -> [GTM Utils](https://www.curseforge.com/minecraft/mc-mods/gregtech-modern-utilities)
+- More stuff i have to put here...
