@@ -39,7 +39,6 @@ public class ExtendedFeaturesGTAddon implements IGTAddon {
         GreenhouseCrops.init(provider);
         ChemicalSkips.init(provider);
         AirCollector.init(provider);
-        AirProcessing.init(provider);
     }
 
 }
