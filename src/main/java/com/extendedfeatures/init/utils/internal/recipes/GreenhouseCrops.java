@@ -128,7 +128,7 @@ public class GreenhouseCrops {
                 .notConsumable(input)
                 .inputFluids(GTMaterials.Water.getFluid(waterMb))
                 .outputItems(output)
-                .duration(boosted ? 320 : 640)
+                .duration(boosted ? 250 : 320)
                 .EUt(GTValues.VA[GTValues.MV]);
 
         if (boosted) {

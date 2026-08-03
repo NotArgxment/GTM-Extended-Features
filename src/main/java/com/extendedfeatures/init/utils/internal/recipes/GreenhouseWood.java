@@ -103,16 +103,12 @@ public class GreenhouseWood {
                 new ItemStack(Items.MANGROVE_PROPAGULE, 4));
     }
 
-    private static void addTreeRecipe(
-                                      Consumer<FinishedRecipe> provider,
-                                      String id, boolean boosted,
-                                      ItemStack sapling,
-                                      ItemStack... outputs) {
+    private static void addTreeRecipe(Consumer<FinishedRecipe> provider, String id, boolean boosted, ItemStack sapling, ItemStack... outputs) {
         var builder = RecipeTypes.GREENHOUSE_WOOD.recipeBuilder(id)
                 .circuitMeta(boosted ? 2 : 1) // If boosted, use 2, else 1
                 .notConsumable(sapling)
                 .inputFluids(GTMaterials.Water.getFluid(1000))
-                .duration(boosted ? 320 : 640) // If boosted, last 320t, else 640t)
+                .duration(boosted ? 250 : 320) // If boosted, last 250t, else 320t)
                 .EUt(GTValues.VA[GTValues.MV]);
 
         if (boosted) {
