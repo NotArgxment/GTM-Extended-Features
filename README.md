@@ -17,15 +17,13 @@ Addon for GTCEu Modern 1.20.1 designed to provide quality of life changes for th
 - [x] Better ABS [RAM]
 - [x] GCYM Cracker (IV) [ACU]
 - [x] GCYM Pyro (IV) [LPO]
-- [ ] ~~Parallel Fusion Reactors [AFRs]~~ (removed for 2.4.0 because of balance concerns)
 - [x] Chemical Plant type multiblock (1-step lines) [SyVe]
 - [x] Databank with more connections [EDB]
 - [x] Databank with wireless conections [CTD]
 - [x] Ways to make wood [IGh & TGC]
 - [x] 1-Step Rock Processing [RPP]
-- [ ] 1-Step Oil Processing || Oil Refinery 
+- [ ] 1-Step Oil Processing [Oil Refinery]
 - [x] Parallel Air Collector
-- [ ] Gas Processor 
 - [ ] Fisher multiblock
 - [ ] Universal Computational Matrix Array (bigger HPCA)
 
@@ -38,10 +36,14 @@ Addon for GTCEu Modern 1.20.1 designed to provide quality of life changes for th
 - [X] Universal Circuits
 
 ### Potential additions (for the near future)
-- [ ] Wireless ME/Stocking hatches
-- [ ] Wireless EU
-- [ ] Wireless CWU
+Wireless ME/Stocking hatches
+
+Wireless EU
+
+Wireless CWU
 
 ## Not planned if suggested
 - Sterile Cleanroom Hatches, Infinite Spray can or more -> [GTM Utils](https://www.curseforge.com/minecraft/mc-mods/gregtech-modern-utilities)
+- Parallel Fusion Reactors (Removed for 2.4.0)
+- 1-Step Air recipes
 - More stuff i have to put here...
