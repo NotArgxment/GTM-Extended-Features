@@ -37,11 +37,13 @@ public class OpticalMachines {
     static {
         if (EFConfig.INSTANCE.OpticalMachines.ExpandedDataAccessHatches || GTCEu.isDataGen()) {
             ZPM_DATA_ACCESS_HATCH = ExtendedFeaturesRegister
-                    .machine("zpm_data_access_hatch", (holder) -> new ExpandedDataHatchLogic(holder, ZPM, false) {
+                    .machine("zpm_data_access_hatch", (holder) -> new ExpandedDataAccessHatch(holder, ZPM, false) {
+
                         @Override
                         protected int getInventorySize() {
                             return 36;
                         }
+
                     })
                     .tier(ZPM)
                     .rotationState(RotationState.ALL)
@@ -55,11 +57,13 @@ public class OpticalMachines {
                     .register();
 
             UV_DATA_ACCESS_HATCH = ExtendedFeaturesRegister
-                    .machine("uv_data_access_hatch", (holder) -> new ExpandedDataHatchLogic(holder, UV, false) {
+                    .machine("uv_data_access_hatch", (holder) -> new ExpandedDataAccessHatch(holder, UV, false) {
+
                         @Override
                         protected int getInventorySize() {
                             return 49;
                         }
+
                     })
                     .tier(UV)
                     .rotationState(RotationState.ALL)
@@ -73,11 +77,13 @@ public class OpticalMachines {
                     .register();
 
             UHV_DATA_ACCESS_HATCH = ExtendedFeaturesRegister
-                    .machine("uhv_data_access_hatch", (holder) -> new ExpandedDataHatchLogic(holder, UHV, false) {
+                    .machine("uhv_data_access_hatch", (holder) -> new ExpandedDataAccessHatch(holder, UHV, false) {
+
                         @Override
                         protected int getInventorySize() {
                             return 64;
                         }
+
                     })
                     .tier(UHV)
                     .rotationState(RotationState.ALL)
@@ -93,19 +99,19 @@ public class OpticalMachines {
     }
 
     // Wireless Optical T/R Hatches
-    public static MachineDefinition LUV_WIRELESS_TRANSMITTER = null;
-    public static MachineDefinition LUV_WIRELESS_RECEIVER = null;
+    public static MachineDefinition LUV_WIRELESS_TRANSMISSOR = null;
+    public static MachineDefinition LUV_WIRELESS_RECEPTOR = null;
 
-    public static MachineDefinition ZPM_WIRELESS_TRANSMITTER = null;
-    public static MachineDefinition ZPM_WIRELESS_RECEIVER = null;
+    public static MachineDefinition ZPM_WIRELESS_TRANSMISSOR = null;
+    public static MachineDefinition ZPM_WIRELESS_RECEPTOR = null;
 
-    public static MachineDefinition UV_WIRELESS_TRANSMITTER = null;
-    public static MachineDefinition UV_WIRELESS_RECEIVER = null;
+    public static MachineDefinition UV_WIRELESS_TRANSMISSOR = null;
+    public static MachineDefinition UV_WIRELESS_RECEPTOR = null;
 
     static {
         if (EFConfig.INSTANCE.OpticalMachines.WirelessOptical || GTCEu.isDataGen()) {
-            LUV_WIRELESS_TRANSMITTER = registerHatch("luv_wireless_data_transmitter",
-                    "LuV Wireless Transmission Hatch", LuV, true)
+            LUV_WIRELESS_TRANSMISSOR = registerHatch("luv_wireless_data_transmissor",
+                    "LuV Wireless Transmissor Hatch", LuV, true)
                     .tooltips(
                             Component.translatable("extendedfeatures.machine.wireless_optical_hatch.tooltip.range", 16),
                             Component.translatable("extendedfeatures.machine.wireless_optical_hatch.tooltip.connections", 4),
@@ -114,16 +120,16 @@ public class OpticalMachines {
                     .overlayTieredHullModel("luv_transmissor")
                     .register();
 
-            LUV_WIRELESS_RECEIVER = registerHatch("luv_wireless_data_receiver",
-                    "LuV Wireless Optical Reception Hatch", LuV, false)
+            LUV_WIRELESS_RECEPTOR = registerHatch("luv_wireless_data_receptor",
+                    "LuV Wireless Optical Receptor Hatch", LuV, false)
                     .tooltips(
                             Component.translatable("extendedfeatures.machine.wireless_optical_hatch.tooltip.receiver"),
                             Component.translatable("gtceu.part_sharing.disabled"))
-                    .overlayTieredHullModel("luv_receiver")
+                    .overlayTieredHullModel("luv_receptor")
                     .register();
 
-            ZPM_WIRELESS_TRANSMITTER = registerHatch("zpm_wireless_data_transmitter",
-                    "ZPM Wireless Transmission Hatch", ZPM, true)
+            ZPM_WIRELESS_TRANSMISSOR = registerHatch("zpm_wireless_data_transmissor",
+                    "ZPM Wireless Transmissor Hatch", ZPM, true)
                     .tooltips(
                             Component.translatable("extendedfeatures.machine.wireless_optical_hatch.tooltip.range", 24),
                             Component.translatable("extendedfeatures.machine.wireless_optical_hatch.tooltip.connections", 8),
@@ -132,15 +138,15 @@ public class OpticalMachines {
                     .overlayTieredHullModel("zpm_transmissor")
                     .register();
 
-            ZPM_WIRELESS_RECEIVER = registerHatch("zpm_wireless_data_receiver",
+            ZPM_WIRELESS_RECEPTOR = registerHatch("zpm_wireless_data_receptor",
                     "ZPM Wireless Reception Hatch", ZPM, false)
                     .tooltips(
                             Component.translatable("extendedfeatures.machine.wireless_optical_hatch.tooltip.receiver"),
                             Component.translatable("gtceu.part_sharing.disabled"))
-                    .overlayTieredHullModel("zpm_receiver")
+                    .overlayTieredHullModel("zpm_receptor")
                     .register();
 
-            UV_WIRELESS_TRANSMITTER = registerHatch("uv_wireless_data_transmitter",
+            UV_WIRELESS_TRANSMISSOR = registerHatch("uv_wireless_data_transmissor",
                     "UV Wireless Transmission Hatch", UV, true)
                     .tooltips(
                             Component.translatable("extendedfeatures.machine.wireless_optical_hatch.tooltip.range", 32),
@@ -150,34 +156,32 @@ public class OpticalMachines {
                     .overlayTieredHullModel("uv_transmissor")
                     .register();
 
-            UV_WIRELESS_RECEIVER = registerHatch("uv_wireless_data_receiver",
+            UV_WIRELESS_RECEPTOR = registerHatch("uv_wireless_data_receptor",
                     "UV Wireless Reception Hatch", UV, false)
                     .tooltips(
                             Component.translatable("extendedfeatures.machine.wireless_optical_hatch.tooltip.receiver"),
                             Component.translatable("gtceu.part_sharing.disabled"))
-                    .overlayTieredHullModel("uv_receiver")
+                    .overlayTieredHullModel("uv_receptor")
                     .register();
         }
     }
 
     private static MachineBuilder<MachineDefinition, ?> registerHatch(String name, String displayName, int tier, boolean isTransmitter) {
         return ExtendedFeaturesRegister
-                .machine(name, (holder) -> new WirelessOpticalDataHatchMachine(holder, isTransmitter, tier))
+                .machine(name, (holder) -> new WirelessOpticalHatch(holder, isTransmitter, tier))
                 .langValue(displayName)
                 .tier(tier)
                 .rotationState(RotationState.ALL)
-                /*
-                 * if -> IsTransmitter = true: Register a WIRELESS_OPTICAL_TRASMITTER
-                 * Or else, IsTransmitter = false -> Register a WIRELESS_OPTICAL_RECEIVER
-                 */
-                .abilities(isTransmitter
-                        ? WirelessAbilities.WIRELESS_OPTICAL_TRANSMITTER
-                        : WirelessAbilities.WIRELESS_OPTICAL_RECEIVER);
+                .abilities(
+                        isTransmitter
+                                ? WirelessAbilities.WIRELESS_OPTICAL_TRANSMISSOR
+                                : WirelessAbilities.WIRELESS_OPTICAL_RECEPTOR
+                );
     }
 
     // Related Multiblocks
     public static MultiblockMachineDefinition EXPANDED_DATABANK = null;
-    public static MultiblockMachineDefinition OPTICAL_TRANSMISSION_NETWORK = null;
+    public static MultiblockMachineDefinition CLOUD_TRANSMISSION_DATABASE = null;
 
     static {
         if (EFConfig.INSTANCE.OpticalMachines.ExpandedDatabank || GTCEu.isDataGen()) {
@@ -185,12 +189,9 @@ public class OpticalMachines {
                     .multiblock("expanded_databank", DataBankMachine::new)
                     .tooltips(
                             Component.translatable("gtceu.machine.data_bank.tooltip.0"),
-                            Component.translatable("gtceu.machine.data_bank.tooltip.1")
-                    )
-                    .tooltipBuilder((stack, list) -> list.add(
+                            Component.translatable("gtceu.machine.data_bank.tooltip.1"),
                             Component.translatable("extendedfeatures.expanded_databank_tootip.1")
-                                    .append(Component.translatable("extendedfeatures.styled.tooltip.5")
-                                            .withStyle(CustomTooltipStyles.IV_GRADIENT))))
+                    )
                     .rotationState(RotationState.NON_Y_AXIS)
                     .recipeType(DUMMY_RECIPES)
                     .appearanceBlock(ADVANCED_COMPUTER_CASING)
@@ -208,8 +209,7 @@ public class OpticalMachines {
                             .where('B', blocks(ADVANCED_COMPUTER_CASING.get())
                                     .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1))
                                     .or(abilities(PartAbility.INPUT_ENERGY).setMaxGlobalLimited(2))
-                                    .or(abilities(PartAbility.DATA_ACCESS).setMinGlobalLimited(1)
-                                            .setMaxGlobalLimited(6)))
+                                    .or(abilities(PartAbility.DATA_ACCESS).setMinGlobalLimited(1).setMaxGlobalLimited(6)))
                             .where('E', abilities(PartAbility.OPTICAL_DATA_TRANSMISSION).setMaxGlobalLimited(16))
                             .build())
                     .workableCasingModel(
@@ -220,17 +220,18 @@ public class OpticalMachines {
     }
 
     static {
-        if (EFConfig.INSTANCE.OpticalMachines.OpticalTransmissionNetwork || GTCEu.isDataGen()) {
-            OPTICAL_TRANSMISSION_NETWORK = ExtendedFeaturesRegister
-                    .multiblock("optical_transmission_network", DataBankMachine::new)
+        if (EFConfig.INSTANCE.OpticalMachines.CloudTransmissionDatabase || GTCEu.isDataGen()) {
+            CLOUD_TRANSMISSION_DATABASE = ExtendedFeaturesRegister
+                    .multiblock("cloud_transmission_database", DataBankMachine::new)
                     .tooltips(
                             Component.translatable("extendedfeatures.cloud_transmission_database.tooltip.1"),
-                            Component.translatable("extendedfeatures.cloud_transmission_database.tooltip.2"),
-                            Component.translatable("extendedfeatures.cloud_transmission_database.tooltip.3")
+                            Component.translatable("extendedfeatures.cloud_transmission_database.tooltip.2")
                     )
-                    .tooltipBuilder((stack, list) -> list.add(Component.translatable("extendedfeatures.cloud_transmission_database.tooltip.4")
+                    .tooltipBuilder((stack, list) -> list.add(
+                            Component.translatable("extendedfeatures.cloud_transmission_database.tooltip.3")
                             .append(Component.translatable("extendedfeatures.styled.tooltip.4")
-                                    .withStyle(TooltipHelper.RAINBOW_HSL_SLOW))))
+                                    .withStyle(TooltipHelper.RAINBOW_HSL_SLOW)))
+                    )
                     .rotationState(RotationState.NON_Y_AXIS)
                     .recipeType(DUMMY_RECIPES)
                     .appearanceBlock(HIGH_POWER_CASING)
@@ -251,7 +252,7 @@ public class OpticalMachines {
                                     .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1))
                                     .or(abilities(PartAbility.INPUT_ENERGY).setMaxGlobalLimited(2))
                                     .or(abilities(PartAbility.DATA_ACCESS).setExactLimit(1)))
-                            .where('H', abilities(WirelessAbilities.WIRELESS_OPTICAL_TRANSMITTER).setExactLimit(1))
+                            .where('H', abilities(WirelessAbilities.WIRELESS_OPTICAL_TRANSMISSOR).setExactLimit(1))
                             .build())
                     .workableCasingModel(
                             GTCEu.id("block/casings/hpca/high_power_casing"),
