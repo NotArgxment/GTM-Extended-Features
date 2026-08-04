@@ -48,18 +48,18 @@ public class CreativeTabs {
             )
             .register();
 
-    public static RegistryEntry<CreativeModeTab> OPTICAL_TAB = ExtendedFeaturesRegister
-            .defaultCreativeTab(ExtendedFeaturesCore.MOD_ID + "_optical",
+    public static RegistryEntry<CreativeModeTab> MACHINES_TAB = ExtendedFeaturesRegister
+            .defaultCreativeTab(ExtendedFeaturesCore.MOD_ID + "_machines",
                     builder -> builder
                             .displayItems(
                                     new GTCreativeModeTabs.RegistrateDisplayItemsGenerator(
-                                            ExtendedFeaturesCore.MOD_ID + "_optical",
+                                            ExtendedFeaturesCore.MOD_ID + "_machines",
                                             ExtendedFeaturesRegister))
                             .title(ExtendedFeaturesRegister.addLang(
                                     "itemGroup", ExtendedFeaturesCore.id("creative_tab_3"),
-                                    "Ext. Features: Optical Machines")
+                                    "Ext. Features: Machines")
                             )
-                            .icon(OpticalMachines.UV_DATA_ACCESS_HATCH::asStack)
+                            .icon(Machines.UV_DATA_ACCESS_HATCH::asStack)
                             .build()
             )
             .register();
