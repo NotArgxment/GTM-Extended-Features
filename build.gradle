@@ -1,30 +1,39 @@
 buildscript {
+
     repositories {
         maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
         mavenCentral()
     }
+
     dependencies {
         classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
     }
+
 }
 
 plugins {
+
     id "idea"
     id "eclipse"
     id "maven-publish"
     id 'net.neoforged.moddev.legacyforge' version '2.0.91'
     id 'com.diffplug.spotless' version '7.0.2'
+
 }
 
 sourceSets {
+
     main.resources {
         srcDir 'src/generated/resources'
     }
+
 }
 
 repositories {
+
     mavenLocal()
     mavenCentral()
+
     maven {
         name = 'GTCEu Maven'
         url = 'https://maven.gtceu.com'
@@ -38,10 +47,10 @@ repositories {
         url "https://maven.firstdark.dev/snapshots/"
     }
 
-    maven { // Registrate
+    maven {
+        // Registrate
         url = "https://maven.tterrag.com/"
         content {
-            // need to be specific here due to version overlaps
             includeGroup("com.tterrag.registrate")
         }
     }
@@ -75,6 +84,7 @@ repositories {
 
     maven {
         url = "https://api.modrinth.com/maven" }
+
 }
 
 version = mod_version
@@ -83,6 +93,7 @@ base { archivesName = archives_base_name }
 java { sourceCompatibility = targetCompatibility = JavaVersion.VERSION_17 }
 
 legacyForge {
+
     version = project.minecraft_version + '-' + project.forge_version
 
     parchment {
@@ -91,17 +102,9 @@ legacyForge {
     }
 
     runs {
-        configureEach {
-            // Recommended logging data for a userdev environment
-            // The markers can be added/remove as needed separated by commas.
-            // "SCAN": For mods scan.
-            // "REGISTRIES": For firing of registry events.
-            // "REGISTRYDUMP": For getting the contents of all registries.
-            systemProperty 'forge.logging.markers', 'REGISTRIES'
 
-            // Recommended logging level for the console
-            // You can set various levels here.
-            // Please read: https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels
+        configureEach {
+            systemProperty 'forge.logging.markers', 'REGISTRIES'
             logLevel = org.slf4j.event.Level.DEBUG
         }
 		
@@ -122,21 +125,19 @@ legacyForge {
         data {
             data()
             sourceSet = sourceSets.main
-            // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
             programArguments.addAll('--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath())
             programArguments.addAll('--existing-mod', 'gtceu')
         }
+
     }
 
     mods {
-        // define mod <-> source bindings
-        // these are used to tell the game which sources are for which mod
-        // mostly optional in a single mod project
-        // but multi mod projects should define one per mod
+
         "${mod_id}" {
             sourceSet(sourceSets.main)
         }
     }
+
 }
 
 jar {
@@ -146,17 +147,14 @@ jar {
 }
 
 dependencies {
+
+    // Annotations
     compileOnly("org.jetbrains:annotations:26.0.1")
 
-    // Mixin
+    // Mixins
     annotationProcessor('org.spongepowered:mixin:0.8.5:processor')
 
-    // TMRV, EMI, Jade
-    modCompileOnly("curse.maven:tmrv-1194921:7983491")
-    modRuntimeOnly("curse.maven:tmrv-1194921:7983491")
-
-    modRuntimeOnly("curse.maven:emi-580555:8081375")
-
+    // Jade
     modCompileOnly("curse.maven:jade-324717:6855440")
     modRuntimeOnly("curse.maven:jade-324717:6855440")
 
@@ -169,6 +167,27 @@ dependencies {
     // lombok
     compileOnly 'org.projectlombok:lombok:1.18.24'
     annotationProcessor 'org.projectlombok:lombok:1.18.24'
+
+    // ===================================
+    //       DEV INSTANCE MODS/QOL
+    // ===================================
+
+    // Emi
+    modRuntimeOnly("curse.maven:emi-580555:8081375")
+
+    // AE2
+    modRuntimeOnly("curse.maven:applied-energistics-2-223794:7148487")
+    modRuntimeOnly("curse.maven:guideme-1173950:8204776")
+
+    // Effortless Structure
+    modRuntimeOnly("curse.maven:effortless-676885:6251939")
+
+    // Spatial Tools (Copy pasting - Moving)
+    modRuntimeOnly("curse.maven:spatial-tools-compatible-1528726:8533862")
+
+    // KubeJS Aisle Tool
+    modRuntimeOnly("curse.maven:kubejs-aisle-tool-1236291:7543948")
+
 }
 
 mixin {
@@ -184,7 +203,7 @@ tasks.named('processResources', ProcessResources).configure {
             "mod_name": mod_name,
             "mod_url": mod_url,
             "mod_author": mod_author,
-            "forge_version": forge_version.split("\\.")[0], // only specify major version of forge
+            "forge_version": forge_version.split("\\.")[0],
             "minecraft_version": minecraft_version,
             "gtceu_version": gtceu_version,
             "jade_version": jade_version
@@ -198,13 +217,9 @@ tasks.named('processResources', ProcessResources).configure {
 
 tasks.named('jar', Jar).configure { finalizedBy 'reobfJar' }
 tasks.withType(JavaCompile).configureEach {
-    // ensure that the encoding is set to UTF-8, no matter what the system default is
-    // this fixes some edge cases with special characters not displaying correctly
-    // see http://yodaconditions.net/blog/fix-for-java-file-encoding-problems-with-gradle.html
-    // If Javadoc is generated, this must be specified in that task too.
     options.encoding = "UTF-8"
     options.release.set(17)
-    options.compilerArgs << "-Aquiet=true" // Suppress mixin notes
+    options.compilerArgs << "-Aquiet=true"
 }
 
 tasks.named('runClient') {
