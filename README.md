@@ -47,5 +47,3 @@ Wireless CWU
 - Parallel Fusion Reactors (Removed for 2.4.0)
 - 1-Step Air recipes
 - More stuff i have to put here...
-
-test
