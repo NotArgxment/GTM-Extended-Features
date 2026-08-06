@@ -21,8 +21,8 @@ public class EFConfig {
     public MultiblocksToggles Multiblocks = new MultiblocksToggles();
 
     @Configurable
-    @Configurable.Comment("Configuration Toggles for Optical Features")
-    public OpticalToggle OpticalMachines = new OpticalToggle();
+    @Configurable.Comment("Configuration Toggles for Normal Machines")
+    public MachineToggles RegularMachines = new MachineToggles();
 
     public static class MultiblocksToggles {
 
@@ -100,9 +100,24 @@ public class EFConfig {
         })
         public boolean LargeAirCollector = true;
 
+        @Configurable
+        @Configurable.Comment({
+                "Whether the Expanded Data Bank is Enabled",
+                "Default = True"
+        })
+        public boolean ExpandedDatabank = true;
+
+        @Configurable
+        @Configurable.Comment({
+                "Whether the Cloud Transmission Database is Enabled",
+                "§cNote: Requires Wireless Optical Hatches enabled to work",
+                "Default = True"
+        })
+        public boolean MatrixDataRelay = true;
+
     }
 
-    public static class OpticalToggle {
+    public static class MachineToggles {
 
         @Configurable
         @Configurable.Comment({
@@ -116,22 +131,14 @@ public class EFConfig {
                 "Whether the Wireless Optical Hatches are Enabled",
                 "Default = True"
         })
-        public boolean WirelessOptical = true;
+        public boolean WirelessOpticalHatches = true;
 
         @Configurable
         @Configurable.Comment({
-                "Whether the Cloud Transmission Database is Enabled",
-                "§cNote: Requires Wireless Optical Hatches enabled to work",
+                "Whether the Configurable Cleaning Maintenance Hatch is Enabled",
                 "Default = True"
         })
-        public boolean CloudTransmissionDatabase = true;
-
-        @Configurable
-        @Configurable.Comment({
-                "Whether the Expanded Data Bank is Enabled",
-                "Default = True"
-        })
-        public boolean ExpandedDatabank = true;
+        public boolean CCMHatch = true;
 
     }
 
