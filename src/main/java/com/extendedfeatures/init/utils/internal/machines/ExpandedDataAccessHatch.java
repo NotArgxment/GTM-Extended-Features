@@ -1,4 +1,4 @@
-package com.extendedfeatures.init.utils.internal.optical;
+package com.extendedfeatures.init.utils.internal.machines;
 
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.DataAccessHatchMachine;

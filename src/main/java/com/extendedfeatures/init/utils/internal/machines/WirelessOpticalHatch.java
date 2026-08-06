@@ -1,4 +1,4 @@
-package com.extendedfeatures.init.utils.internal.optical;
+package com.extendedfeatures.init.utils.internal.machines;
 
 import com.extendedfeatures.init.utils.internal.renderer.*;
 
@@ -13,6 +13,7 @@ import com.gregtechceu.gtceu.common.machine.multiblock.part.*;
 import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 
+import lombok.Getter;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -64,6 +65,7 @@ public class WirelessOpticalHatch extends OpticalDataHatchMachine implements IMa
         }
     }
 
+    @Getter
     private final WirelessTier wirelessTier;
 
     @Persisted
@@ -86,12 +88,8 @@ public class WirelessOpticalHatch extends OpticalDataHatchMachine implements IMa
         this.wirelessTier = WirelessTier.byGTTier(gtTier);
     }
 
-    public WirelessTier getWirelessTier() {
-        return wirelessTier;
-    }
-
     /** Transmitter-only: read-only view of currently linked receiver positions. */
-    public List<BlockPos> getLinkedReceiverPositions() {
+    public List<BlockPos> getLinkedReceptorPositions() {
         return List.copyOf(linkedReceiverPositions);
     }
 
