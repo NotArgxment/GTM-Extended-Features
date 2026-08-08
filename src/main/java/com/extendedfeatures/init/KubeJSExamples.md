@@ -66,6 +66,7 @@ ServerEvents.recipes(event => {
         .inputFluids()
         .itemOutputs()
         .outputFluids()
+        .circuit()
         .duration()
         .EUt(GTValues.VA[GTValues.TIER])
 });
