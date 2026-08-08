@@ -20,8 +20,6 @@ import com.extendedfeatures.init.utils.*;
 
 import org.apache.logging.log4j.*;
 
-import java.util.*;
-
 @Mod(ExtendedFeaturesCore.MOD_ID)
 @SuppressWarnings("removal")
 public class ExtendedFeaturesCore {
@@ -42,7 +40,6 @@ public class ExtendedFeaturesCore {
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::clientSetup);
         modEventBus.addListener(this::onBuildCreativeTab);
-        modEventBus.addListener(this::addMaterialRegistries);
 
         modEventBus.addGenericListener(GTRecipeType.class, this::registerRecipeTypes);
         modEventBus.addGenericListener(MachineDefinition.class, this::registerMachines);
@@ -62,18 +59,11 @@ public class ExtendedFeaturesCore {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        event.enqueueWork(() -> {
-            LOGGER.info("Hello from common setup! This is *after* registries are done, so we can do this:");
-            LOGGER.info("Look, I found a {}!", net.minecraft.world.item.Items.DIAMOND);
-        });
+        event.enqueueWork(() -> LOGGER.info("Hello from FMLCommonSetupEvent!"));
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
-        LOGGER.info("Companies cramming useless AI features are something i wish it didnt exist");
-    }
-
-    private void addMaterialRegistries(MaterialRegistryEvent event) {
-        GTCEuAPI.materialManager.createRegistry(ExtendedFeaturesCore.MOD_ID);
+        LOGGER.info("If you see this, congrats, the addon has been loaded!");
     }
 
     private void registerRecipeTypes(GTCEuAPI.RegisterEvent<ResourceLocation, GTRecipeType> event) {
@@ -82,7 +72,7 @@ public class ExtendedFeaturesCore {
 
     private void registerMachines(GTCEuAPI.RegisterEvent<ResourceLocation, MachineDefinition> event) {
         Multiblocks.init();
-        OpticalMachines.init();
+        Machines.init();
     }
 
 }
