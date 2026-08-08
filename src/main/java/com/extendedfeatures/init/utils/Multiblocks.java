@@ -5,7 +5,7 @@ import com.extendedfeatures.client.RecipeTypes;
 import com.extendedfeatures.client.integrations.Configuration.EFConfig;
 import com.extendedfeatures.init.utils.internal.CustomShapeInfos;
 import com.extendedfeatures.init.utils.internal.disassembler.DisassemblerMachine;
-import com.extendedfeatures.init.utils.internal.optical.WirelessAbilities;
+import com.extendedfeatures.init.utils.internal.CustomAbilities;
 
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
@@ -16,6 +16,7 @@ import com.gregtechceu.gtceu.api.machine.multiblock.*;
 import com.gregtechceu.gtceu.api.pattern.*;
 import com.gregtechceu.gtceu.client.util.TooltipHelper;
 import com.gregtechceu.gtceu.common.data.*;
+import com.gregtechceu.gtceu.common.machine.multiblock.electric.research.DataBankMachine;
 import com.gregtechceu.gtceu.utils.FormattingUtil;
 
 import net.minecraft.ChatFormatting;
@@ -52,6 +53,9 @@ public class Multiblocks {
     public static MultiblockMachineDefinition TREE_GROWING_CHAMBER = null;
     public static MultiblockMachineDefinition DISASSEMBLER = null;
     public static MultiblockMachineDefinition LARGE_AIR_COLLECTOR = null;
+    public static MultiblockMachineDefinition EXPANDED_DATABANK = null;
+    public static MultiblockMachineDefinition MATRIX_DATA_RELAY = null;
+
 
     static {
         if (EFConfig.INSTANCE.Multiblocks.RobustAlloyMaterializer || GTCEu.isDataGen()) {
@@ -308,7 +312,7 @@ public class Multiblocks {
                     .rotationState(RotationState.NON_Y_AXIS)
                     .recipeType(ASSEMBLY_LINE_RECIPES)
                     .recipeModifiers(
-                            CUSTOM_PARALLEL(4),
+                            MACHINE_PARALLEL(4),
                             OC_NON_PERFECT
                     )
                     .appearanceBlock(CASING_STEEL_SOLID)
@@ -332,7 +336,7 @@ public class Multiblocks {
                                     .or(Predicates.abilities(PartAbility.IMPORT_ITEMS))
                                     .or(Predicates.abilities(PartAbility.IMPORT_FLUIDS))
                                     .or(Predicates.abilities(PartAbility.INPUT_ENERGY).setMaxGlobalLimited(1))
-                                    .or(Predicates.abilities(WirelessAbilities.WIRELESS_OPTICAL_RECEPTOR).setMaxGlobalLimited(1))
+                                    .or(Predicates.abilities(CustomAbilities.WIRELESS_OPTICAL_RECEPTOR).setMaxGlobalLimited(1))
                             )
                             .where('N', Predicates.abilities(PartAbility.EXPORT_ITEMS))
                             .build())
@@ -353,29 +357,35 @@ public class Multiblocks {
                     .recipeModifiers(OC_NON_PERFECT, BATCH_MODE)
                     .appearanceBlock(CASING_SECURE_MACERATION)
                     .pattern(definition -> FactoryBlockPattern.start()
-                            .aisle("JJJJJJJ", "JGJGJGJ", "JGJGJGJ", "JJJJJJJ", "       ")
-                            .aisle("JKJKJKJ", "JKJKJKJ", "JKJKJKJ", "JKJKJKJ", "       ")
-                            .aisle("JKJKJKJ", "JKJKJKJ", "JKJKJKJ", "JKJKJKJ", "       ")
-                            .aisle("JKJKJKJ", "JKJKJKJ", "JKJKJKJ", "JKJKJKJ", "       ")
-                            .aisle("JJJJJJJ", "JJJIJJJ", "JJJJJJJ", "JJJJJJJ", "       ")
-                            .aisle("       ", "   I   ", "       ", "       ", "       ")
-                            .aisle(" BCCCB ", " BCICB ", " BCCCB ", " BCCCB ", " BCCCB ")
-                            .aisle(" CCCCC ", " CEEEC ", " CFFFC ", " C###C ", " CGGGC ")
-                            .aisle(" CCCCC ", " CEEEC ", " HFFFH ", " C###C ", " CGGGC ")
-                            .aisle(" CCCCC ", " CEEEC ", " CFFFC ", " C###C ", " CGGGC ")
-                            .aisle(" BCCCB ", " BCCCB ", " BC@CB ", " BCCCB ", " BCCCB ")
+                    .aisle("  CCCCCCCCC  ", "  CCCCCCCCC  ", "  CCCCCCCCC  ", "  CCCCCCCCC  ", "             ")
+                    .aisle("  CCCCCCCCC  ", "  CZCZCZCZC  ", "  CZCZCZCZC  ", "  CZCZCZCZC  ", "             ")
+                    .aisle("  CCCCCCCCC  ", "  CZCZCZCZC  ", "  CZCZCZCZC  ", "  CZCZCZCZC  ", "             ")
+                    .aisle("  CCCCCCCCC  ", "  CZCZCZCZC  ", "  CZCZCZCZC  ", "  CZCZCZCZC  ", "             ")
+                    .aisle("  CCCCCCCCC  ", "  CZCZCZCZC  ", "  CZCZCZCZC  ", "  CZCZCZCZC  ", "             ")
+                    .aisle("  CCCCCCCCC  ", "  CCCTCTCCC  ", "  CCCCCCCCC  ", "  CCCCCCCCC  ", "             ")
+                    .aisle("             ", "     T T     ", "             ", "             ", "             ")
+                    .aisle("   BBBBBBB   ", "   BBTBTBB   ", "   BBBBBBB   ", "    BBBBB    ", "             ")
+                    .aisle(" BBBBBBBBBBB ", " BBBDDDDDBBB ", " BBBEEEEEBBB ", "  BB#####BB  ", "   BBBBBBB   ")
+                    .aisle("             ", "BBDDD#D#DDDBB", "BEEEEEEEEEEBB", " B#########B ", "  BBFFFFFBB  ")
+                    .aisle("             ", "BDD#D#D#D#DDB", "BEEEEEEEEEEEB", "B###########B", " BFFFFFFFFFB ")
+                    .aisle("             ", "BDD#D#D#D#DDB", "BEEEEEEEEEEEB", "B###########B", "BBFFFFFFFFFBB")
+                    .aisle("             ", "GDD#D#D#D#DDG", "BEEEEEEEEEEEB", "B###########B", "BBFFFFFFFFFBB")
+                    .aisle("             ", "BDD#D#D#D#DDB", "BEEEEEEEEEEEB", "B###########B", "BBFFFFFFFFFBB")
+                    .aisle("             ", "BDD#D#D#D#DDB", "BEEEEEEEEEEEB", "B###########B", " BFFFFFFFFFB ")
+                    .aisle("             ", "BBDDD#D#DDDBB", "BBEEEEEEEEEBB", " B#########B ", " BBBFFFFFBBB ")
+                    .aisle(" BBBBBBBBBBB ", " BBBDDDDDBBB ", " BBBEEEEEBBB ", "  BB#####BB  ", "   BBBBBBB   ")
+                    .aisle("   BBBBBBB   ", "   BBB@BBB   ", "   BBBBBBB   ", "    BBBBB    ", "             ")
                             .where('@', controller(blocks(definition.get())))
                             .where(' ', any())
                             .where('#', air())
-                            .where('B', frames(GTMaterials.BlackSteel))
-                            .where('E', blocks(CASING_TUNGSTENSTEEL_GEARBOX.get()))
-                            .where('I', blocks(LD_ITEM_PIPE.get()))
-                            .where('J', blocks(CASING_NONCONDUCTING.get()))
-                            .where('K', blocks(ELECTROLYTIC_CELL.get()))
-                            .where('F', blocks(CRUSHING_WHEELS.get()))
-                            .where('G', blocks(CASING_LAMINATED_GLASS.get()))
-                            .where('H', abilities(PartAbility.ROTOR_HOLDER))
-                            .where('C', blocks(CASING_SECURE_MACERATION.get())
+                            .where('D', blocks(CASING_TUNGSTENSTEEL_GEARBOX.get()))
+                            .where('T', blocks(LD_ITEM_PIPE.get()))
+                            .where('C', blocks(CASING_NONCONDUCTING.get()))
+                            .where('Z', blocks(ELECTROLYTIC_CELL.get()))
+                            .where('E', blocks(CRUSHING_WHEELS.get()))
+                            .where('F', blocks(CASING_LAMINATED_GLASS.get()))
+                            .where('G', abilities(PartAbility.ROTOR_HOLDER))
+                            .where('B', blocks(CASING_SECURE_MACERATION.get())
                                     .or(Predicates.abilities(PartAbility.IMPORT_ITEMS))
                                     .or(Predicates.abilities(PartAbility.EXPORT_FLUIDS))
                                     .or(Predicates.abilities(PartAbility.EXPORT_ITEMS))
@@ -402,7 +412,7 @@ public class Multiblocks {
                             GREENHOUSE_CROPS,
                             GREENHOUSE_WOOD)
                     .recipeModifiers(
-                            CUSTOM_PARALLEL(8),
+                            MACHINE_PARALLEL(8),
                             OC_NON_PERFECT,
                             BATCH_MODE
                     )
@@ -576,6 +586,90 @@ public class Multiblocks {
                     .workableCasingModel(
                             GTCEu.id("block/casings/gcym/corrosion_proof_casing"),
                             GTCEu.id("block/multiblock/gcym/large_brewer"))
+                    .register();
+        }
+    }
+
+    static {
+        if (EFConfig.INSTANCE.Multiblocks.ExpandedDatabank || GTCEu.isDataGen()) {
+            EXPANDED_DATABANK = ExtendedFeaturesRegister
+                    .multiblock("expanded_databank", DataBankMachine::new)
+                    .tooltips(
+                            Component.translatable("gtceu.machine.data_bank.tooltip.0"),
+                            Component.translatable("gtceu.machine.data_bank.tooltip.1"),
+                            Component.translatable("extendedfeatures.expanded_databank_tootip.1")
+                    )
+                    .rotationState(RotationState.NON_Y_AXIS)
+                    .recipeType(DUMMY_RECIPES)
+                    .appearanceBlock(ADVANCED_COMPUTER_CASING)
+                    .pattern(definition -> FactoryBlockPattern.start()
+                            .aisle("   BBBBB   ", "   B   B   ", "   B   B   ", "   B   B   ", "   B   B   ", "   BBBBB   ")
+                            .aisle(" BBBDBDBBB ", "           ", "           ", "           ", "           ", " BBBDBDBBB ")
+                            .aisle("BBDDDBDDDBB", "B         B", "B         B", "B         B", "B         B", "BBDDDBDDDBB")
+                            .aisle("BDBBBBBBBDB", "  E E E E  ", "  E E E E  ", "  E E E E  ", "  E E E E  ", "BDBBBBBBBDB")
+                            .aisle("BBDDDBDDDBB", "B         B", "B         B", "B         B", "B         B", "BBDDDBDDDBB")
+                            .aisle(" BBBDBDBBB ", "           ", "           ", "           ", "           ", " BBBDBDBBB ")
+                            .aisle("   BB@BB   ", "   B   B   ", "   B   B   ", "   B   B   ", "   B   B   ", "   BBBBB   ")
+                            .where('@', controller(blocks(definition.get())))
+                            .where(' ', any())
+                            .where('D', blocks(COMPUTER_CASING.get()))
+                            .where('B', blocks(ADVANCED_COMPUTER_CASING.get())
+                                    .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1))
+                                    .or(abilities(PartAbility.INPUT_ENERGY).setMaxGlobalLimited(2))
+                                    .or(abilities(PartAbility.DATA_ACCESS).setMinGlobalLimited(1).setMaxGlobalLimited(6)))
+                            .where('E', abilities(PartAbility.OPTICAL_DATA_TRANSMISSION).setMaxGlobalLimited(16))
+                            .build())
+                    .workableCasingModel(
+                            GTCEu.id("block/casings/hpca/advanced_computer_casing/top"),
+                            GTCEu.id("block/multiblock/data_bank"))
+                    .register();
+        }
+    }
+
+    static {
+        if (EFConfig.INSTANCE.Multiblocks.MatrixDataRelay || GTCEu.isDataGen()) {
+            MATRIX_DATA_RELAY = ExtendedFeaturesRegister
+                    .multiblock("matrix_data_relay", DataBankMachine::new)
+                    .tooltips(
+                            Component.translatable("extendedfeatures.matrix_data_relay.tooltip.1")
+                    )
+                    .tooltipBuilder((stack, list) -> list.add(
+                            Component.translatable("extendedfeatures.matrix_data_relay.tooltip.2")
+                                    .append(Component.translatable("extendedfeatures.styled.tooltip.4")
+                                            .withStyle(TooltipHelper.RAINBOW_HSL_SLOW)))
+                    )
+                    .rotationState(RotationState.NON_Y_AXIS)
+                    .recipeType(DUMMY_RECIPES)
+                    .appearanceBlock(HIGH_POWER_CASING)
+                    .pattern(definition -> FactoryBlockPattern.start()
+                            .aisle("    CCCCC    ", "    C   C    ", "    C   C    ", "    C   C    ", "    CCCCC    ")
+                            .aisle("  DDDDDDDDD  ", "  EEC   CEE  ", "  EEC   CEE  ", "  EEC   CEE  ", "  DDDDDDDDD  ")
+                            .aisle(" DDCFFFFFCDD ", " EDEF F FEDE ", " EDEF F FEDE ", " EDEF F FEDE ", " DDCFFFFFCDD ")
+                            .aisle(" DCCCCFCCCCD ", " EE       EE ", " EE       EE ", " EE       EE ", " DCCCCFCCCCD ")
+                            .aisle("CDFCCCFCCCFDC", "CCF       FCC", "CCX       XCC", "CCF       FCC", "CDFCCCFCCCFDC")
+                            .aisle("CDFCCCFCCCFDC", "             ", "             ", "             ", "CDFCCCFCCCFDC")
+                            .aisle("CDFFFFFFFFFDC", "  F   F   F  ", "  X   H   X  ", "  F   F   F  ", "CDFFFFFFFFFDC")
+                            .aisle("CDFCCCFCCCFDC", "             ", "             ", "             ", "CDFCCCFCCCFDC")
+                            .aisle("CDFCCCFCCCFDC", "CCF       FCC", "CCX       XCC", "CCF       FCC", "CDFCCCFCCCFDC")
+                            .aisle(" DCCCCFCCCCD ", " EE       EE ", " EE       EE ", " EE       EE ", " DCCCCFCCCCD ")
+                            .aisle(" DDCFFFFFCDD ", " EDEF F FEDE ", " EDEF @ FEDE ", " EDEF F FEDE ", " DDCFFFFFCDD ")
+                            .aisle("  DDDDDDDDD  ", "  EEC   CEE  ", "  EEC   CEE  ", "  EEC   CEE  ", "  DDDDDDDDD  ")
+                            .aisle("    CCCCC    ", "    C   C    ", "    C   C    ", "    C   C    ", "    CCCCC    ")
+                            .where('@', controller(blocks(definition.get())))
+                            .where(' ', any())
+                            .where('#', air())
+                            .where('D', blocks(ADVANCED_COMPUTER_CASING.get()))
+                            .where('C', blocks(COMPUTER_CASING.get()))
+                            .where('E', blocks(CASING_LAMINATED_GLASS.get()))
+                            .where('F', blocks(HIGH_POWER_CASING.get())
+                                    .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1))
+                                    .or(abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1).setMaxGlobalLimited(2)))
+                            .where('H', abilities(CustomAbilities.WIRELESS_OPTICAL_TRANSMISSOR).setExactLimit(1))
+                            .where('X', abilities(PartAbility.DATA_ACCESS))
+                            .build())
+                    .workableCasingModel(
+                            GTCEu.id("block/casings/hpca/high_power_casing"),
+                            GTCEu.id("block/multiblock/hpca"))
                     .register();
         }
     }
