@@ -3,10 +3,7 @@ package com.extendedfeatures.client.integrations.Jade;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
-import snownee.jade.api.IWailaClientRegistration;
-import snownee.jade.api.IWailaCommonRegistration;
-import snownee.jade.api.IWailaPlugin;
-import snownee.jade.api.WailaPlugin;
+import snownee.jade.api.*;
 
 @WailaPlugin
 public class EFJadeIntegration implements IWailaPlugin {
