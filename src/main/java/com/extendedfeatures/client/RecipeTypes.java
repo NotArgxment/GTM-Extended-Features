@@ -62,18 +62,6 @@ public class RecipeTypes {
                  .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
                  .setSound(GTSoundEntries.CHEMICAL);
 
-        AIR_REPROCESSING = register("air_reprocessor", MULTIBLOCK)
-            .setEUIO(IO.IN)
-            .setMaxIOSize(0, 0, 1, 9)
-            .setProgressBar(GuiTextures.PROGRESS_BAR_MIXER, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
-            .setSound(GTSoundEntries.BATH);
-
-        OIL_REFINERY = register("oil_refinery_machine", MULTIBLOCK)
-            .setEUIO(IO.IN)
-            .setMaxIOSize(0, 0, 6, 6)
-            .setProgressBar(GuiTextures.PROGRESS_BAR_MIXER, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
-            .setSound(GTSoundEntries.CHEMICAL);
-
         AIR_COLLECTOR = register("air_collection", MULTIBLOCK)
                 .setEUIO(IO.IN)
                 .setMaxIOSize(1, 0, 0, 1)
