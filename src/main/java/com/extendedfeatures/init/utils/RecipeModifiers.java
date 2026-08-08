@@ -7,10 +7,11 @@ import com.gregtechceu.gtceu.api.recipe.modifier.*;
 
 public class RecipeModifiers {
 
-    public static RecipeModifier CUSTOM_PARALLEL(int parallels) {
+    public static RecipeModifier MACHINE_PARALLEL(int parallels) {
         if (parallels == 1) return RecipeModifier.NO_MODIFIER;
 
         return (MetaMachine machine, GTRecipe recipe) -> {
+
             int achievable = ParallelLogic.getParallelAmountWithoutEU(machine, recipe, parallels);
 
             if (achievable <= 1) return ModifierFunction.IDENTITY;
@@ -19,7 +20,9 @@ public class RecipeModifiers {
                     .durationMultiplier(2)
                     .parallels(achievable)
                     .build();
+
         };
+
     }
 
 }
