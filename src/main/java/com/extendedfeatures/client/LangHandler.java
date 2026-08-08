@@ -35,8 +35,11 @@ public class LangHandler {
 
         // Configuration lang
         replace(provider, "config.screen.extendedfeatures", "§7Mod Configuration §4(Restart to Apply Changes)");
+
         replace(provider, "config.extendedfeatures.option.Multiblocks", "§7Multiblocks");
-        replace(provider, "config.extendedfeatures.option.OpticalMachines", "§7Optical Features");
+        replace(provider, "config.extendedfeatures.option.RegularMachine", "§7Optical Features");
+        replace(provider, "config.extendedfeatures.option.UniversalCircuits", "§7Universal Circuits");
+
         replace(provider, "config.extendedfeatures.option.RobustAlloyMaterializer", "§7Robust Alloy Materializer");
         replace(provider, "config.extendedfeatures.option.LargeCrackingMachine", "§7Large Cracking Machine");
         replace(provider, "config.extendedfeatures.option.SynthesisVessel", "§7Synthesis Vessel");
@@ -46,27 +49,28 @@ public class LangHandler {
         replace(provider, "config.extendedfeatures.option.IndustrialGreenhouse", "§7Industrial Greenhouse");
         replace(provider, "config.extendedfeatures.option.TreeGrowingChamber", "§7Tree Growing Chamber");
         replace(provider, "config.extendedfeatures.option.Disassembler", "§7Disassembler");
+        replace(provider, "config.extendedfeatures.option.LargeAirCollector", "§7Large Air Collector");
+
         replace(provider, "config.extendedfeatures.option.ExpandedDatabank", "§7Expanded Data Bank");
-        replace(provider, "config.extendedfeatures.option.UniversalCircuits", "§7Universal Circuits");
         replace(provider, "config.extendedfeatures.option.ExpandedDataAccessHatches", "§7Expanded Data Access Hatches");
-        replace(provider, "config.extendedfeatures.option.WirelessOptical", "§7Wireless Optical Tranmisssors/Receptors");
-        replace(provider, "config.extendedfeatures.option.CloudTransmissionDatabase", "§7Cloud Transmission Database");
+        replace(provider, "config.extendedfeatures.option.WirelessOpticalHatches", "§7Wireless Optical Tranmisssors/Receptors");
+        replace(provider, "config.extendedfeatures.option.CloudTransmissionDatabase", "§7Cloud Transmission Database ");
 
         // Optical
         replace(provider, "extendedfeatures.machine.wireless_optical_hatch.tooltip.range", "Scan range: §f%s blocks§7 (right-click with an empty hand)");
-        replace(provider, "extendedfeatures.machine.wireless_optical_hatch.tooltip.connections", "Max linked receivers: §f%s");
-        replace(provider, "extendedfeatures.machine.wireless_optical_hatch.tooltip.scan", "Links to nearby unlinked receivers of the same tier, and to any physical Data Access Hatch in range");
-        replace(provider, "extendedfeatures.machine.wireless_optical_hatch.tooltip.receiver", "Gets linked automatically when scanned by a Wireless Transmission Hatch of the same tier");
+        replace(provider, "extendedfeatures.machine.wireless_optical_hatch.tooltip.connections", "Max linked receptors: §f%s");
+        replace(provider, "extendedfeatures.machine.wireless_optical_hatch.tooltip.scan", "Links to nearby unlinked receptors of the same tier, and to any physical Data Access Hatch in range");
+        replace(provider, "extendedfeatures.machine.wireless_optical_hatch.tooltip.receptor", "Gets linked automatically when scanned by a Wireless Transmission Hatch of the same tier");
         replace(provider, "extendedfeatures.machine.wireless_optical_hatch.not_formed", "This multiblock is not formed - form the structure before scanning");
-        replace(provider, "extendedfeatures.machine.wireless_optical_hatch.linked_summary", "Linked %s new receiver(s) and %s new data hatch(es)");
-        replace(provider, "extendedfeatures.machine.wireless_optical_hatch.no_receivers_found", "No new compatible receivers or data hatches found in range");
+        replace(provider, "extendedfeatures.machine.wireless_optical_hatch.linked_summary", "Linked %s new receptor(s) and %s new data hatch(es)");
+        replace(provider, "extendedfeatures.machine.wireless_optical_hatch.no_receptors_found", "No new compatible receptors or data hatches found in range");
         replace(provider, "extendedfeatures.machine.wireless_optical_hatch.range_shown", "Displaying current range of connections: %s blocks in X/Z");
 
         // Jade integration
         replace(provider, "config.jade.plugin_extendedfeatures.wireless_optical_hatch", "Wireless Optical Info");
         replace(provider, "extendedfeatures.jade.wireless_optical_hatch.linked_data_hatches", "Linked Data Access Hatches: %s");
-        replace(provider, "extendedfeatures.jade.wireless_optical_hatch.linked_receptors_header", "Linked Wireless Optical Receivers:");
-        replace(provider, "extendedfeatures.jade.wireless_optical_hatch.receptors_entry", "   - Receiver %s: %s");
+        replace(provider, "extendedfeatures.jade.wireless_optical_hatch.linked_receptors_header", "Linked Wireless Optical Receptors:");
+        replace(provider, "extendedfeatures.jade.wireless_optical_hatch.receptors_entry", "   - Receptor %s: %s");
         replace(provider, "extendedfeatures.jade.wireless_optical_hatch.no_receptors", "   - Not linked");
 
     }
@@ -89,11 +93,10 @@ public class LangHandler {
         provider.add("extendedfeatures.disassembler.tooltip.0", "§7Allows any type of §emachine/controller §7to be recycled, returning what was used for that recipe");
         provider.add("extendedfeatures.disassembler.tooltip.1", "§fEach tier of machine needs the same energy hatch of that tier in order to work");
 
-        provider.add("extendedfeatures.expanded_databank_tootip.1", "§fAllows 16 independent Optical Transmission connections");
+        provider.add("extendedfeatures.expanded_databank_tootip.1", "§fAllows 16 independent Optical Transmission Hatches");
 
-        provider.add("extendedfeatures.cloud_transmission_database.tooltip.1", "§fYour personal Data Center");
-        provider.add("extendedfeatures.cloud_transmission_database.tooltip.2", "§fNeeds exactly 1 Data Access Hatch to form");
-        provider.add("extendedfeatures.cloud_transmission_database.tooltip.3", "§fOnly allows"); // followed by "extendedfeatures.styled.tooltip.4"
+        provider.add("extendedfeatures.matrix_data_relay.tooltip.1", "§fYour personal Data Center");
+        provider.add("extendedfeatures.matrix_data_relay.tooltip.2", "§fOnly allows"); // followed by "extendedfeatures.styled.tooltip.4"
 
         provider.add("extendedfeatures.large_air_collector.tooltip.0", "§7A Bigger Gas Collector");
         provider.add("extendedfeatures.air_processing_machine.tooltip.0", "§7A machine capable of processing the air from the environment to get valuable products from it");
