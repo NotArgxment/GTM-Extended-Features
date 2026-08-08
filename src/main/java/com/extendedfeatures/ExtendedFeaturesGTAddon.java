@@ -1,6 +1,7 @@
 package com.extendedfeatures;
 
 import com.extendedfeatures.client.LangHandler;
+import com.extendedfeatures.init.utils.Multiblocks;
 import com.extendedfeatures.init.utils.internal.recipes.*;
 
 import com.gregtechceu.gtceu.api.addon.*;
@@ -33,6 +34,7 @@ public class ExtendedFeaturesGTAddon implements IGTAddon {
 
     @Override
     public void addRecipes(Consumer<FinishedRecipe> provider) {
+        MultiblockControllers.init(provider);
         RockProcessing.init(provider);
         UniversalCircuits.init(provider);
         GreenhouseWood.init(provider);
