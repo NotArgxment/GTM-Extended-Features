@@ -548,7 +548,7 @@ public class Multiblocks {
     static {
         if (EFConfig.INSTANCE.Multiblocks.LargeGasCollector || GTCEu.isDataGen()) {
             LARGE_GAS_COLLECTOR = ExtendedFeaturesRegister
-                    .multiblock("large_Gas_collector", WorkableElectricMultiblockMachine::new)
+                    .multiblock("large_gas_collector", WorkableElectricMultiblockMachine::new)
                     .tooltips(
                             Component.translatable("extendedfeatures.large_air_collector.tooltip.0")
                     )
