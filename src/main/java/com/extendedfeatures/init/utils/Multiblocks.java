@@ -52,7 +52,7 @@ public class Multiblocks {
     public static MultiblockMachineDefinition INDUSTRIAL_GREENHOUSE = null;
     public static MultiblockMachineDefinition TREE_GROWING_CHAMBER = null;
     public static MultiblockMachineDefinition DISASSEMBLER = null;
-    public static MultiblockMachineDefinition LARGE_AIR_COLLECTOR = null;
+    public static MultiblockMachineDefinition LARGE_GAS_COLLECTOR = null;
     public static MultiblockMachineDefinition EXPANDED_DATABANK = null;
     public static MultiblockMachineDefinition MATRIX_DATA_RELAY = null;
 
@@ -548,9 +548,9 @@ public class Multiblocks {
     }
 
     static {
-        if (EFConfig.INSTANCE.Multiblocks.LargeAirCollector || GTCEu.isDataGen()) {
-            LARGE_AIR_COLLECTOR = ExtendedFeaturesRegister
-                    .multiblock("large_air_collector", WorkableElectricMultiblockMachine::new)
+        if (EFConfig.INSTANCE.Multiblocks.LargeGasCollector || GTCEu.isDataGen()) {
+            LARGE_GAS_COLLECTOR = ExtendedFeaturesRegister
+                    .multiblock("large_Gas_collector", WorkableElectricMultiblockMachine::new)
                     .tooltips(
                             Component.translatable("extendedfeatures.large_air_collector.tooltip.0")
                     )
