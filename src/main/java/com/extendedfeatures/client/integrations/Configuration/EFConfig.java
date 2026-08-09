@@ -87,8 +87,7 @@ public class EFConfig {
         @Configurable
         @Configurable.Comment({
                 "Whether the Disassembler is enabled",
-                "§cWarning: §rUniversal Circuits MUST be enabled",
-                "otherwise it could lead to issues with their recipes",
+                "§cUniversal Circuits MUST be enabled",
                 "Default = True"
         })
         public boolean Disassembler = true;
@@ -109,8 +108,8 @@ public class EFConfig {
 
         @Configurable
         @Configurable.Comment({
-                "Whether the Cloud Transmission Database is Enabled",
-                "§cNote: Requires Wireless Optical Hatches enabled to work",
+                "Whether the Matrix Data Relay is Enabled",
+                "§cRequires Wireless Optical Hatches enabled",
                 "Default = True"
         })
         public boolean MatrixDataRelay = true;
