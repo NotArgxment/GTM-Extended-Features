@@ -1,7 +1,7 @@
 package com.extendedfeatures;
 
+import com.extendedfeatures.init.utils.internal.rendering.PacketManager;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
-import com.gregtechceu.gtceu.api.data.chemical.material.event.*;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
@@ -33,9 +33,13 @@ public class ExtendedFeaturesCore {
         EFConfig.init();
 
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
         UniversalCircuits.register(modEventBus);
 
         ExtendedFeaturesRegister.registerRegistrate();
+
+        // Has to be executed before common setup
+        PacketManager.register();
 
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::clientSetup);
