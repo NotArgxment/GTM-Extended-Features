@@ -1,15 +1,15 @@
-package com.extendedfeatures.init.utils.internal.renderer;
+package com.extendedfeatures.init.utils.internal.rendering.linking;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.phys.Vec3;
 
-public class ParticleBeamRenderer {
+public class ParticleRenderer {
 
-    private static final double DEFAULT_PARTICLES_PER_BLOCK = 1.5;
+    private static final double DEFAULT_PARTICLES_PER_BLOCK = 2;
 
-    private ParticleBeamRenderer() {}
+    private ParticleRenderer() {}
 
     public static Vec3 faceCenterTowards(BlockPos from, BlockPos to) {
         Vec3 fromCenter = Vec3.atCenterOf(from);
@@ -43,29 +43,6 @@ public class ParticleBeamRenderer {
             double t = (double) i / steps;
             Vec3 point = start.lerp(end, t);
             level.sendParticles(particle, point.x, point.y, point.z, 1, 0, 0, 0, 0);
-        }
-    }
-
-    // Draws the 4-edge wireframe of a horizontal (XZ-plane) square of the given half-extent,centered on the given point at the same Y level
-    public static void emitSquareOutline(ServerLevel level, Vec3 center, double halfExtent, ParticleOptions particle) {
-        emitSquareOutline(level, center, halfExtent, particle, DEFAULT_PARTICLES_PER_BLOCK);
-    }
-
-    public static void emitSquareOutline(ServerLevel level, Vec3 center, double halfExtent,
-                                         ParticleOptions particle, double particlesPerBlock) {
-        double edgeExtent = halfExtent - 0.5;
-        Vec3[] corners = new Vec3[4];
-        int i = 0;
-        for (int dx = -1; dx <= 1; dx += 2) {
-            for (int dz = -1; dz <= 1; dz += 2) {
-                corners[i++] = center.add(dx * edgeExtent, 0, dz * edgeExtent);
-            }
-        }
-        // corner indices: 0=(-,-) 1=(-,+) 2=(+,-) 3=(+,+)
-        int[][] edges = { { 0, 1 }, { 0, 2 }, { 1, 3 }, { 2, 3 } };
-
-        for (int[] edge : edges) {
-            emitLine(level, corners[edge[0]], corners[edge[1]], particle, particlesPerBlock);
         }
     }
 }

@@ -1,10 +1,10 @@
-package com.extendedfeatures.init.utils.internal.renderer;
+package com.extendedfeatures.init.utils.internal.rendering.linking;
 
 import com.gregtechceu.gtceu.api.machine.TickableSubscription;
 
 import java.util.function.Function;
 
-public class LinkedParticleAnimator {
+public class ParticleAnimator {
 
     private final int durationTicks;
     private final int intervalTicks;
@@ -14,7 +14,7 @@ public class LinkedParticleAnimator {
     private TickableSubscription subscription;
     private Runnable onComplete;
 
-    public LinkedParticleAnimator(int durationTicks, int intervalTicks, Runnable onFrame) {
+    public ParticleAnimator(int durationTicks, int intervalTicks, Runnable onFrame) {
         this.durationTicks = durationTicks;
         this.intervalTicks = intervalTicks;
         this.onFrame = onFrame;
