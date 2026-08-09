@@ -13,7 +13,7 @@ public class LangHandler {
 
     private static void Common(RegistrateLangProvider provider) {
 
-        // Regular item/block lang
+        // Multiblocks
         replace(provider, "block.extendedfeatures.robust_alloy_materializer", "Robust Alloy Materializer [RAM]");
         replace(provider, "block.extendedfeatures.large_cracking_machine", "Large Cracking Machine [LCM]");
         replace(provider, "block.extendedfeatures.synthesis_vessel", "Synthesis Vessel [SyVe]");
@@ -22,16 +22,24 @@ public class LangHandler {
         replace(provider, "block.extendedfeatures.rock_processing_plant", "Rock Processing Plant [RPP]");
         replace(provider, "block.extendedfeatures.industrial_greenhouse", "Industrial Greenhouse [IGh]");
         replace(provider, "block.extendedfeatures.tree_growing_chamber", "Tree Growing Chamber [TGCh]");
-        replace(provider, "block.extendedfeatures.zpm_data_access_hatch", "§cElite §rData Access Hatch");
-        replace(provider, "block.extendedfeatures.uv_data_access_hatch", "§3Ultimate §rData Access Hatch");
-        replace(provider, "block.extendedfeatures.uhv_data_access_hatch", "§4Epic §rData Access Hatch");
+        replace(provider, "block.extendedfeatures.disassembler", "Disassembler [DA]");
+        replace(provider, "block.extendedfeatures.rock_processing_plant", "Rock Processing Plant [RPP]");
+        replace(provider, "block.extendedfeatures.large_gas_collector", "Large Gas Collector [LGC]");
+        replace(provider, "block.extendedfeatures.expanded_databank", "Expanded Databank [EDb]");
+        replace(provider, "block.extendedfeatures.matrix_data_relay", "Matrix Data Relay [MDR]");
 
-        // Recipe types lang
+        // Expanded Data Hatches
+        replace(provider, "block.extendedfeatures.zpm_data_access_hatch", "Elite Data Access Hatch");
+        replace(provider, "block.extendedfeatures.uv_data_access_hatch", "Ultimate Data Access Hatch");
+        replace(provider, "block.extendedfeatures.uhv_data_access_hatch", "Epic Data Access Hatch");
+
+        // RecipeTypes lang keys
         replace(provider, "extendedfeatures.greenhouse_wood_recipes", "Tree Growing");
         replace(provider, "extendedfeatures.greenhouse_crop_recipes", "Crop Growing ");
         replace(provider, "extendedfeatures.disassembler_machine", "Disassembly");
         replace(provider, "extendedfeatures.rock_processing_plant", "Rock Processing");
         replace(provider, "extendedfeatures.chemical_skips", "Chemical Reduction");
+        replace(provider, "extendedfeatures.gas_collection", "Gas Collector");
 
         // Configuration lang
         replace(provider, "config.screen.extendedfeatures", "§7Mod Configuration §c(Restart to Apply Changes)");
