@@ -526,7 +526,7 @@ public class Multiblocks {
                             .aisle("OOOOOOO", "OOOOOOO", "OOOOOOO")
                             .aisle("OOOOOOO", "OKOKOKO", "ODODODO")
                             .aisle("OOOOOOO", "OKOKOKO", "ODODODO")
-                            .aisle("OOOOOOO", "OGOKOGO", "OOOOOOO")
+                            .aisle("OOOOOOO", "OGOKOGO", "OOODOOO")
                             .aisle("  OOO  ", "  O@O  ", "  OOO  ")
                             .where('@', controller(blocks(definition.get())))
                             .where('#', air())
