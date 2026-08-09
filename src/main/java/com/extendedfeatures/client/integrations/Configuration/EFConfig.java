@@ -97,7 +97,7 @@ public class EFConfig {
                 "Whether the Large Air Collector is Enabled",
                 "Default = True"
         })
-        public boolean LargeAirCollector = true;
+        public boolean LargeGasCollector = true;
 
         @Configurable
         @Configurable.Comment({
