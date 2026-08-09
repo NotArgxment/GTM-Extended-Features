@@ -1,6 +1,9 @@
 package com.extendedfeatures.init.utils.internal.machines;
 
-import com.extendedfeatures.init.utils.internal.renderer.*;
+import com.extendedfeatures.init.utils.internal.rendering.linking.ParticleAnimator;
+import com.extendedfeatures.init.utils.internal.rendering.PacketManager;
+import com.extendedfeatures.init.utils.internal.rendering.linking.ParticleRenderer;
+import com.extendedfeatures.init.utils.internal.rendering.range.RangePackets;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.IDataAccessHatch;
@@ -14,6 +17,7 @@ import com.lowdragmc.lowdraglib.syncdata.annotation.Persisted;
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
 
 import lombok.Getter;
+
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -27,6 +31,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.phys.*;
 
+import net.minecraftforge.network.PacketDistributor;
+import org.jetbrains.annotations.Nullable;
+
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.*;
 
@@ -37,8 +44,8 @@ public class WirelessOpticalHatch extends OpticalDataHatchMachine implements IMa
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
             WirelessOpticalHatch.class, MultiblockPartMachine.MANAGED_FIELD_HOLDER);
 
-    private static final int LINK_PARTICLE_DURATION_TICKS = 200; // 10 seconds
-    private static final int LINK_PARTICLE_INTERVAL_TICKS = 4;
+    private static final int durationTicks = 200; // 10 seconds
+    private static final int intervalTicks = 4;
 
     public enum WirelessTier {
         LuV(GTValues.LuV, 16, 4),
@@ -55,13 +62,11 @@ public class WirelessOpticalHatch extends OpticalDataHatchMachine implements IMa
             this.maxConnections = maxConnections;
         }
 
-        public static WirelessTier byGTTier(int gtTier) {
+        public static @Nullable WirelessTier byGTTier(int gtTier) {
             for (WirelessTier value : values()) {
                 if (value.gtTier == gtTier) return value;
             }
-            throw new IllegalArgumentException(
-                    "No WirelessOpticalHatch.WirelessTier registered for GT tier " + gtTier +
-                            ". Only LuV, ZPM and UV are supported.");
+            return null;
         }
     }
 
@@ -74,26 +79,23 @@ public class WirelessOpticalHatch extends OpticalDataHatchMachine implements IMa
     @Persisted
     private final List<BlockPos> linkedReceiverPositions = new ArrayList<>();
 
-    /**
-     * Transmitter-only: physical {@link DataAccessHatchMachine}s this transmitter reads research from.
-     * Unbounded - does NOT count against {@link WirelessTier#maxConnections}, which only limits receivers.
-     */
+    // Looks for any physical data hatch nearby inside the given range, calls the part. animator
     @Persisted
     private final List<BlockPos> linkedDataHatchPositions = new ArrayList<>();
 
-    private final List<LinkedParticleAnimator> particleAnimators = new ArrayList<>();
+    private final List<ParticleAnimator> particleAnimators = new ArrayList<>();
 
     public WirelessOpticalHatch(IMachineBlockEntity holder, boolean isTransmitter, int gtTier) {
         super(holder, isTransmitter);
         this.wirelessTier = WirelessTier.byGTTier(gtTier);
     }
 
-    /** Transmitter-only: read-only view of currently linked receiver positions. */
+    // Transmissor: read-only view of currently linked receiver positions
     public List<BlockPos> getLinkedReceptorPositions() {
         return List.copyOf(linkedReceiverPositions);
     }
 
-    /** Transmitter-only: read-only view of currently linked physical Data Access Hatch positions. */
+    // Transmissor: read-only view of currently linked physical Data Access Hatch positions
     public List<BlockPos> getLinkedDataHatchPositions() {
         return List.copyOf(linkedDataHatchPositions);
     }
@@ -112,7 +114,7 @@ public class WirelessOpticalHatch extends OpticalDataHatchMachine implements IMa
     // Lifecycle
     @Override
     public void onMachineRemoved() {
-        for (LinkedParticleAnimator animator : particleAnimators) {
+        for (ParticleAnimator animator : particleAnimators) {
             animator.stop();
         }
         particleAnimators.clear();
@@ -191,20 +193,13 @@ public class WirelessOpticalHatch extends OpticalDataHatchMachine implements IMa
             player.sendSystemMessage(Component.translatable("extendedfeatures.machine.wireless_optical_hatch.not_formed"));
             return;
         }
-        if (!(getLevel() instanceof ServerLevel serverLevel)) return;
+        if (!(getLevel() instanceof ServerLevel)) return;
 
-        spawnRangeCubeBeam(serverLevel, getPos(), wirelessTier.range);
+        showRangeCubeRender(getPos(), wirelessTier.range);
         player.sendSystemMessage(
                 Component.translatable("extendedfeatures.machine.wireless_optical_hatch.range_shown", wirelessTier.range));
     }
 
-    /**
-     * Scans a cubic area of {@code wirelessTier.range} blocks around this transmitter for:
-     * <ul>
-     *     <li>compatible, unlinked receiver hatches (bounded by the connection limit, closest first);</li>
-     *     <li>physical {@link DataAccessHatchMachine}s not yet linked (unbounded).</li>
-     * </ul>
-     */
     private void scanAndLink(Player player) {
         if (!isFormed()) {
             player.sendSystemMessage(Component.translatable("extendedfeatures.machine.wireless_optical_hatch.not_formed"));
@@ -226,7 +221,7 @@ public class WirelessOpticalHatch extends OpticalDataHatchMachine implements IMa
                             newReceiverLinks, newDataHatchLinks));
         } else {
             player.sendSystemMessage(
-                    Component.translatable("extendedfeatures.machine.wireless_optical_hatch.no_receivers_found"));
+                    Component.translatable("extendedfeatures.machine.wireless_optical_hatch.no_receptors_found"));
         }
     }
 
@@ -235,7 +230,7 @@ public class WirelessOpticalHatch extends OpticalDataHatchMachine implements IMa
         if (remainingSlots <= 0) return 0;
 
         List<WirelessOpticalHatch> candidates = findCandidateReceivers(level, center, range);
-        candidates.sort((a, b) -> Double.compare(a.getPos().distSqr(center), b.getPos().distSqr(center)));
+        candidates.sort(Comparator.comparingDouble(a -> a.getPos().distSqr(center)));
 
         int newLinks = 0;
         for (WirelessOpticalHatch receiver : candidates) {
@@ -326,23 +321,24 @@ public class WirelessOpticalHatch extends OpticalDataHatchMachine implements IMa
     }
 
     // Feedback
+
+    // Linking Beams
     private void spawnLinkBeam(ServerLevel level, BlockPos from, BlockPos to,
                                net.minecraft.core.particles.ParticleOptions particle) {
-        Vec3 start = ParticleBeamRenderer.faceCenterTowards(from, to);
-        Vec3 end = ParticleBeamRenderer.faceCenterTowards(to, from);
-        LinkedParticleAnimator animator = new LinkedParticleAnimator(LINK_PARTICLE_DURATION_TICKS,
-                LINK_PARTICLE_INTERVAL_TICKS, () -> ParticleBeamRenderer.emitLine(level, start, end, particle));
+        Vec3 start = ParticleRenderer.faceCenterTowards(from, to);
+        Vec3 end = ParticleRenderer.faceCenterTowards(to, from);
+        ParticleAnimator animator = new ParticleAnimator(
+                durationTicks, intervalTicks, () -> ParticleRenderer
+                    .emitLine(level, start, end, particle));
         particleAnimators.add(animator);
         animator.start(this::subscribeServerTick, () -> particleAnimators.remove(animator));
     }
 
-    private void spawnRangeCubeBeam(ServerLevel level, BlockPos center, int range) {
-        Vec3 centerVec = Vec3.atCenterOf(center);
-        LinkedParticleAnimator animator = new LinkedParticleAnimator(LINK_PARTICLE_DURATION_TICKS,
-                LINK_PARTICLE_INTERVAL_TICKS, () -> ParticleBeamRenderer.emitSquareOutline(level, centerVec, range,
-                ParticleTypes.SOUL_FIRE_FLAME));
-        particleAnimators.add(animator);
-        animator.start(this::subscribeServerTick, () -> particleAnimators.remove(animator));
+    // New Range Display
+    private void showRangeCubeRender(BlockPos center, int range) {
+        PacketManager.CHANNEL.send(
+                PacketDistributor.TRACKING_CHUNK.with(() -> Objects.requireNonNull(getLevel()).getChunkAt(center)),
+                new RangePackets(center, range, durationTicks));
     }
 
     public String getWirelessTierName() {
