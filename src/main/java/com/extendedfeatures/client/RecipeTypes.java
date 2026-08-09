@@ -22,12 +22,10 @@ import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.MULTIBLOCK;
 public class RecipeTypes {
 
     public static GTRecipeType ROCK_PROCESSING_RECIPES;
-    public static GTRecipeType DISASSEMBLER;
+    public static GTRecipeType DISASSEMBLER_RECIPES;
     public static GTRecipeType GREENHOUSE_WOOD;
     public static GTRecipeType GREENHOUSE_CROPS;
     public static GTRecipeType CHEMICAL_REDUCTION;
-    public static GTRecipeType AIR_REPROCESSING;
-    public static GTRecipeType OIL_REFINERY;
     public static GTRecipeType AIR_COLLECTOR;
 
     public static void init() {
@@ -49,7 +47,7 @@ public class RecipeTypes {
                 .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
                 .setSound(GTSoundEntries.MIXER);
 
-        DISASSEMBLER = register("disassembler_machine", MULTIBLOCK)
+        DISASSEMBLER_RECIPES = register("disassembler_machine", MULTIBLOCK)
                 .setEUIO(IO.IN)
                 .setMaxIOSize(1, 9, 0, 0)
                 .setProgressBar(GuiTextures.PROGRESS_BAR_MIXER, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
