@@ -22,7 +22,6 @@ Addon for GTCEu Modern 1.20.1 designed to provide quality of life changes for th
 - [x] Databank with wireless conections [CTD]
 - [x] Ways to make wood [IGh & TGC]
 - [x] 1-Step Rock Processing [RPP]
-- [ ] 1-Step Oil Processing [Oil Refinery]
 - [x] Parallel Air Collector
 - [ ] Fisher multiblock
 - [ ] Universal Computational Matrix Array (bigger HPCA)
@@ -30,7 +29,7 @@ Addon for GTCEu Modern 1.20.1 designed to provide quality of life changes for th
 ### Machines
 - [x] Expanded Data Hatches [ZPM, UV, UHV]
 - [x] Wireless Optical T/R Hatches [LuV, ZPM, UV]
-- [ ] Configurable Cleaning Maintenance Hatch
+- [X] Configurable Cleaning Maintenance Hatch
 
 ### Items
 - [X] Universal Circuits
@@ -46,4 +45,5 @@ Wireless CWU
 - Sterile Cleanroom Hatches, Infinite Spray can or more -> [GTM Utils](https://www.curseforge.com/minecraft/mc-mods/gregtech-modern-utilities)
 - Parallel Fusion Reactors (Removed for 2.4.0)
 - 1-Step Air recipes
+- 1-Step Oil Processing
 - More stuff i have to put here...
