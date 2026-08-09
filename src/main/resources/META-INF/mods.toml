@@ -11,7 +11,7 @@ issueTrackerURL = "https://github.com/NotArgxment/GTM-Extended-Features/issues"
     logoFile = "icon.png"
     credits = "GTCEu Modern Devs, Phoenixvine (PTF Dev), Herr Jolo (Chromatic Abberation Dev) & Witherschat (Universal Circuits Textures)"
     authors = "${mod_author}"
-    description = "This mod providers additional content to enhance both packdev and end-user experience inside GTCEu Modern"
+    description = "This mod provides additional content to enhance both packdev and the player experience in GTCEu Modern"
 
     [[dependencies.${mod_id}]]
         modId = "forge"
