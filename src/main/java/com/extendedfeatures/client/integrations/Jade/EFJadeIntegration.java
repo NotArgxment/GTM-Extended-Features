@@ -10,11 +10,11 @@ public class EFJadeIntegration implements IWailaPlugin {
 
     @Override
     public void register(IWailaCommonRegistration registration) {
-        registration.registerBlockDataProvider(new WirelessOpticalHatchProvider(), BlockEntity.class);
+        registration.registerBlockDataProvider(new WirelessOpticalProvider(), BlockEntity.class);
     }
 
     @Override
     public void registerClient(IWailaClientRegistration registration) {
-        registration.registerBlockComponent(new WirelessOpticalHatchProvider(), Block.class);
+        registration.registerBlockComponent(new WirelessOpticalProvider(), Block.class);
     }
 }

@@ -20,7 +20,7 @@ import java.util.*;
  * Shows, for {@link WirelessOpticalHatch} transmitters, the linked physical
  * Data Access Hatches (count) and linked Wireless Optical Receptors (positions) in the Jade tooltip.
  */
-public class WirelessOpticalHatchProvider implements IBlockComponentProvider, IServerDataProvider<BlockAccessor> {
+public class WirelessOpticalProvider implements IBlockComponentProvider, IServerDataProvider<BlockAccessor> {
 
     private static final String TAG_IS_TRANSMISSOR = "IsTransmitter";
     private static final String TAG_DATA_HATCH_COUNT = "DataHatchCount";
