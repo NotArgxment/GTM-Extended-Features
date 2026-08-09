@@ -1,5 +1,6 @@
 package com.extendedfeatures.init.utils;
 
+import com.extendedfeatures.CreativeTabs;
 import com.extendedfeatures.client.integrations.Configuration.EFConfig;
 import com.extendedfeatures.init.utils.internal.CustomAbilities;
 import com.extendedfeatures.init.utils.internal.machines.*;
@@ -8,6 +9,7 @@ import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.machine.multiblock.*;
 import com.gregtechceu.gtceu.api.registry.registrate.MachineBuilder;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 
 import static com.extendedfeatures.ExtendedFeaturesCore.ExtendedFeaturesRegister;
@@ -15,6 +17,10 @@ import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties.*;
 
 public class Machines {
+
+    static {
+        ExtendedFeaturesRegister.creativeModeTab(() -> CreativeTabs.MACHINES_TAB);
+    }
 
     // Configurable Cleaning Maintenance Hatch
     public static MachineDefinition CONFIGURABLE_CLEANING_MAINTENANCE_HATCH = null;
@@ -24,6 +30,18 @@ public class Machines {
             CONFIGURABLE_CLEANING_MAINTENANCE_HATCH = ExtendedFeaturesRegister
                     .machine("configurable_cleaning_maintenance_hatch",
                             (holder) -> new ConfigurableCleanroomHatch(holder, CleanroomType.CLEANROOM)
+                    )
+                    .tooltips(
+                            Component.translatable("gtceu.part_sharing.disabled"),
+                            Component.translatable("extendedfeatures.configurable_cleaning_maintenance_hatch"),
+                            Component.translatable("gtceu.machine.maintenance_hatch_tape_slot.tooltip"),
+                            Component.translatable("gtceu.machine.maintenance_hatch_tool_slot.tooltip"),
+                            Component.translatable("gtceu.machine.maintenance_hatch_cleanroom_auto.tooltip.1")
+                    )
+                    .tooltipBuilder((stack, tooltips) -> tooltips.add(
+                            Component.literal("  ")
+                                    .append(Component.translatable(CleanroomType.CLEANROOM.getTranslationKey())
+                                            .withStyle(ChatFormatting.GREEN)))
                     )
                     .tier(HV)
                     .rotationState(RotationState.ALL)
@@ -174,10 +192,9 @@ public class Machines {
                 .langValue(displayName)
                 .tier(tier)
                 .rotationState(RotationState.ALL)
-                .abilities(
-                        isTransmitter
-                                ? CustomAbilities.WIRELESS_OPTICAL_TRANSMISSOR
-                                : CustomAbilities.WIRELESS_OPTICAL_RECEPTOR
+                .abilities(isTransmitter
+                        ? CustomAbilities.WIRELESS_OPTICAL_TRANSMISSOR
+                        : CustomAbilities.WIRELESS_OPTICAL_RECEPTOR
                 );
     }
 
