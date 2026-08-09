@@ -12,23 +12,22 @@ import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
 
-import org.jetbrains.annotations.Nullable;
-
 import javax.annotation.ParametersAreNullableByDefault;
 import java.util.List;
+
+import static com.gregtechceu.gtceu.GTCEu.getMinecraftServer;
 
 @ParametersAreNullableByDefault
 public enum DisassemblerRecipeLogic implements GTRecipeType.ICustomRecipeLogic {
 
     INSTANCE;
 
-    private static final int BASE_DURATION = 50;
-    private static final int TICKS_PER_TIER = 50;
+    private static final int BASE_DURATION = 20;
+    private static final int TICKS_PER_TIER = 30;
 
     @Override
     public GTRecipe createCustomRecipe(IRecipeCapabilityHolder holder) {
         ServerLevel serverLevel = getServerLevel(holder);
-        if (serverLevel == null) return null;
 
         if (!(holder instanceof IRecipeLogicMachine recipeLogicMachine)) return null;
         GTRecipeType recipeType = recipeLogicMachine.getRecipeType();
@@ -41,7 +40,7 @@ public enum DisassemblerRecipeLogic implements GTRecipeType.ICustomRecipeLogic {
                 if (stack.isEmpty()) continue;
 
                 GTRecipe recipe = tryBuildRecipe(serverLevel, recipeType, stack);
-                if (recipe != null) return recipe;
+                return recipe;
             }
         }
         return null;
@@ -52,12 +51,14 @@ public enum DisassemblerRecipeLogic implements GTRecipeType.ICustomRecipeLogic {
         Integer tier = MachineUtil.getMachineTier(inputStack).orElse(null);
         if (tier == null) return null;
 
+        assert inputStack != null;
         List<ItemStack> components = ComponentResolver.resolve(serverLevel, inputStack);
         if (components.isEmpty()) return null;
 
         long euT = GTValues.VA[tier];
         int duration = BASE_DURATION + (tier * TICKS_PER_TIER);
 
+        assert recipeType != null;
         GTRecipeBuilder builder = recipeType
                 .recipeBuilder("disassemble/" + inputStack.getItem().builtInRegistryHolder().key().location().getPath())
                 .inputItems(inputStack.copyWithCount(1))
@@ -80,10 +81,9 @@ public enum DisassemblerRecipeLogic implements GTRecipeType.ICustomRecipeLogic {
 
     @Override
     public void buildRepresentativeRecipes() {
-        GTRecipeType recipeType = RecipeTypes.DISASSEMBLER;
+        GTRecipeType recipeType = RecipeTypes.DISASSEMBLER_RECIPES;
 
         ServerLevel serverLevel = getRepresentativeServerLevel();
-        if (serverLevel == null) return;
 
         for (MachineDefinition definition : GTRegistries.MACHINES) {
 
@@ -103,17 +103,14 @@ public enum DisassemblerRecipeLogic implements GTRecipeType.ICustomRecipeLogic {
     }
 
     private static boolean isExcludedFromDisassembly(MachineDefinition definition) {
+        assert definition != null;
         String path = definition.getId().getPath();
 
-        boolean isEnergyHatch = path.contains("energy_input_hatch") || path.contains("energy_output_hatch");
-        if (isEnergyHatch) return false;
-
-        return path.contains("transformer") || path.contains("energy_converter") || path.contains("_bus") ||
-                path.contains("hatch") || path.contains("diode");
+        return path.contains("transformer") || path.contains("energy_converter") || path.contains("_bus") || path.contains("hatch") || path.contains("diode");
     }
 
     private ServerLevel getRepresentativeServerLevel() {
-        var server = com.gregtechceu.gtceu.GTCEu.getMinecraftServer();
+        var server = getMinecraftServer();
         return server == null ? null : server.overworld();
     }
 }
