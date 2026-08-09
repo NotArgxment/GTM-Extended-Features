@@ -1,7 +1,6 @@
 package com.extendedfeatures.init.utils;
 
 import com.extendedfeatures.*;
-import com.extendedfeatures.client.RecipeTypes;
 import com.extendedfeatures.client.integrations.Configuration.EFConfig;
 import com.extendedfeatures.init.utils.internal.CustomShapeInfos;
 import com.extendedfeatures.init.utils.internal.disassembler.DisassemblerMachine;
@@ -55,7 +54,6 @@ public class Multiblocks {
     public static MultiblockMachineDefinition LARGE_GAS_COLLECTOR = null;
     public static MultiblockMachineDefinition EXPANDED_DATABANK = null;
     public static MultiblockMachineDefinition MATRIX_DATA_RELAY = null;
-
 
     static {
         if (EFConfig.INSTANCE.Multiblocks.RobustAlloyMaterializer || GTCEu.isDataGen()) {
