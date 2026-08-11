@@ -70,17 +70,17 @@ public class LangHandler {
         replace(provider, "extendedfeatures.machine.wireless_optical_hatch.tooltip.connections", "§7Max links allowed:§f %s");
         replace(provider, "extendedfeatures.machine.wireless_optical_hatch.tooltip.scan", "§7Links to nearby Wireless Receptors and Data Access Hatches across its range");
         replace(provider, "extendedfeatures.machine.wireless_optical_hatch.tooltip.receptor", "§7Gets linked automatically when scanned by a Wireless Transmissor of the same tier");
-        replace(provider, "extendedfeatures.machine.wireless_optical_hatch.not_formed", "§cThe hatch is not placed on a valid strucure!");
-        replace(provider, "extendedfeatures.machine.wireless_optical_hatch.linked_summary", "§fLinked§6 %s §fnew receptor(s) and§6 %s §fnew data hatch(es)");
+        replace(provider, "extendedfeatures.machine.wireless_optical_hatch.linked_summary", "Linked %s new receptor(s) and %s new data hatch(es)");
+        replace(provider, "extendedfeatures.machine.wireless_optical_hatch.range_shown", "Displaying current range of connections: %s blocks");
         replace(provider, "extendedfeatures.machine.wireless_optical_hatch.no_receptors_found", "§cNo new receptors or data hatches were found in range");
-        replace(provider, "extendedfeatures.machine.wireless_optical_hatch.range_shown", "§fDisplaying current range of connections:§c %s blocks");
+        replace(provider, "extendedfeatures.machine.wireless_optical_hatch.not_formed", "§cThe hatch is not placed on a valid strucure!");
 
         // Jade integration
         replace(provider, "config.jade.plugin_extendedfeatures.wireless_optical_hatch", "Wireless Optical Info");
         replace(provider, "extendedfeatures.jade.wireless_optical_hatch.linked_data_hatches", "§fLinked Data Access Hatches: §6%s");
         replace(provider, "extendedfeatures.jade.wireless_optical_hatch.linked_receptors_header", "§fLinked Wireless Optical Receptors:");
-        replace(provider, "extendedfeatures.jade.wireless_optical_hatch.receptors_entry", "   - Receptor %s: %s");
-        replace(provider, "extendedfeatures.jade.wireless_optical_hatch.no_receptors", "§c   - Not linked");
+        replace(provider, "extendedfeatures.jade.wireless_optical_hatch.receptors_entry", "    - Receptor %s: %s");
+        replace(provider, "extendedfeatures.jade.wireless_optical_hatch.no_receptors", "§c    - No receptors found");
 
     }
 
