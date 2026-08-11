@@ -20,6 +20,7 @@ import lombok.Getter;
 
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -49,8 +50,9 @@ public class WirelessOpticalHatch extends OpticalDataHatchMachine implements IMa
 
     public enum WirelessTier {
         LuV(GTValues.LuV, 16, 4),
-        ZPM(GTValues.ZPM, 24, 8),
-        UV(GTValues.UV, 32, 16);
+        ZPM(GTValues.ZPM, 32, 8),
+        UV(GTValues.UV, 64, 16),
+        UHV(GTValues.UHV, 128, 32);
 
         public final int gtTier;
         public final int range;
@@ -70,40 +72,46 @@ public class WirelessOpticalHatch extends OpticalDataHatchMachine implements IMa
         }
     }
 
+    // Only the same tier
     @Getter
     private final WirelessTier wirelessTier;
 
+    // stores the receptor pos
     @Persisted
-    private BlockPos linkedTransmitterPos;
+    private BlockPos linkedTransmissorPos;
 
+    // Makes a list of the linked receptors
     @Persisted
-    private final List<BlockPos> linkedReceiverPositions = new ArrayList<>();
+    private final List<BlockPos> linkedReceptorPositions = new ArrayList<>();
 
     // Looks for any physical data hatch nearby inside the given range, calls the part. animator
     @Persisted
     private final List<BlockPos> linkedDataHatchPositions = new ArrayList<>();
 
+    // Calls the particles
     private final List<ParticleAnimator> particleAnimators = new ArrayList<>();
 
-    public WirelessOpticalHatch(IMachineBlockEntity holder, boolean isTransmitter, int gtTier) {
-        super(holder, isTransmitter);
+    // Filters by TIER
+    public WirelessOpticalHatch(IMachineBlockEntity holder, boolean isTransmissor, int gtTier) {
+        super(holder, isTransmissor);
         this.wirelessTier = WirelessTier.byGTTier(gtTier);
     }
 
-    // Transmissor: read-only view of currently linked receiver positions
+    // Transmissor view of currently linked receptor positions
     public List<BlockPos> getLinkedReceptorPositions() {
-        return List.copyOf(linkedReceiverPositions);
+        return List.copyOf(linkedReceptorPositions);
     }
 
-    // Transmissor: read-only view of currently linked physical Data Access Hatch positions
+    // Transmissor view of currently linked physical Data Access Hatch positions
     public List<BlockPos> getLinkedDataHatchPositions() {
         return List.copyOf(linkedDataHatchPositions);
     }
 
+    // Compares between a linked receptor and a linked data hatch
     public boolean isLinked() {
         return isTransmitter()
-                ? !linkedReceiverPositions.isEmpty() || !linkedDataHatchPositions.isEmpty()
-                : linkedTransmitterPos != null;
+                ? !linkedReceptorPositions.isEmpty() || !linkedDataHatchPositions.isEmpty()
+                : linkedTransmissorPos != null;
     }
 
     @Override
@@ -122,32 +130,44 @@ public class WirelessOpticalHatch extends OpticalDataHatchMachine implements IMa
         // Clean up bidirectional bookkeeping so stale links don't linger
         Level level = getLevel();
         if (level != null && isTransmitter()) {
-            for (BlockPos receiverPos : linkedReceiverPositions) {
-                if (MetaMachine.getMachine(level, receiverPos) instanceof WirelessOpticalHatch receiver &&
-                        getPos().equals(receiver.linkedTransmitterPos)) {
-                    receiver.linkedTransmitterPos = null;
+            for (BlockPos receptorPos : linkedReceptorPositions) {
+                if (MetaMachine.getMachine(level, receptorPos) instanceof WirelessOpticalHatch receptor &&
+                        getPos().equals(receptor.linkedTransmissorPos)) {
+                    receptor.linkedTransmissorPos = null;
                 }
             }
-        } else if (level != null && linkedTransmitterPos != null &&
-                MetaMachine.getMachine(level, linkedTransmitterPos) instanceof WirelessOpticalHatch transmitter) {
-            transmitter.linkedReceiverPositions.remove(getPos());
+        } else
+            if (level != null && linkedTransmissorPos != null
+                    && MetaMachine.getMachine(level, linkedTransmissorPos) instanceof WirelessOpticalHatch transmissor) {
+            transmissor.linkedReceptorPositions.remove(getPos());
         }
     }
 
     // Recipe Logic
     @Override
     public boolean isRecipeAvailable(GTRecipe recipe, Collection<IDataAccessHatch> seen) {
+
         if (isTransmitter()) {
             seen.add(this);
-            if (!isFormed()) return false;
+
+            if (!isFormed())
+                return false;
 
             Level level = getLevel();
-            if (level == null) return false;
+
+            if (level == null)
+                return false;
 
             for (BlockPos dataHatchPos : linkedDataHatchPositions) {
-                if (!level.isLoaded(dataHatchPos)) continue;
-                if (!(MetaMachine.getMachine(level, dataHatchPos) instanceof DataAccessHatchMachine dataHatch)) continue;
-                if (seen.contains(dataHatch)) continue;
+
+                if (!level.isLoaded(dataHatchPos))
+                    continue;
+
+                if (!(MetaMachine.getMachine(level, dataHatchPos) instanceof DataAccessHatchMachine dataHatch))
+                    continue;
+
+                if (seen.contains(dataHatch))
+                    continue;
 
                 if (dataHatch.isRecipeAvailable(recipe, seen)) {
                     return true;
@@ -157,28 +177,44 @@ public class WirelessOpticalHatch extends OpticalDataHatchMachine implements IMa
         }
 
         seen.add(this);
-        if (!isFormed()) return false;
-        if (linkedTransmitterPos == null) return false;
+
+        if (!isFormed())
+            return false;
+
+        if (linkedTransmissorPos == null)
+            return false;
 
         Level level = getLevel();
-        if (level == null || !level.isLoaded(linkedTransmitterPos)) return false;
 
-        if (!(MetaMachine.getMachine(level, linkedTransmitterPos) instanceof WirelessOpticalHatch partner) ||
+        if (level == null || !level.isLoaded(linkedTransmissorPos))
+            return false;
+
+        if (!(MetaMachine.getMachine(level, linkedTransmissorPos) instanceof WirelessOpticalHatch partner) ||
                 !partner.isTransmitter()) {
             return false;
         }
-        if (seen.contains(partner)) return false;
+        if (seen.contains(partner))
+            return false;
 
         return partner.isRecipeAvailable(recipe, seen);
     }
 
     // Scan & Link
     @Override
-    public InteractionResult onUse(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand,
+    public InteractionResult onUse(BlockState state,
+                                   Level world,
+                                   BlockPos pos,
+                                   Player player,
+                                   InteractionHand hand,
                                    BlockHitResult hit) {
-        if (!player.getItemInHand(hand).isEmpty()) return InteractionResult.PASS;
-        if (!isTransmitter()) return InteractionResult.PASS;
-        if (world.isClientSide) return InteractionResult.SUCCESS;
+        if (!player.getItemInHand(hand).isEmpty())
+            return InteractionResult.PASS;
+
+        if (!isTransmitter())
+            return InteractionResult.PASS;
+
+        if (world.isClientSide)
+            return InteractionResult.SUCCESS;
 
         if (player.isShiftKeyDown()) {
             showRangeCube(player);
@@ -193,21 +229,28 @@ public class WirelessOpticalHatch extends OpticalDataHatchMachine implements IMa
             player.sendSystemMessage(Component.translatable("extendedfeatures.machine.wireless_optical_hatch.not_formed"));
             return;
         }
-        if (!(getLevel() instanceof ServerLevel)) return;
+        if (!(getLevel() instanceof ServerLevel))
+            return;
 
         showRangeCubeRender(getPos(), wirelessTier.range);
         player.sendSystemMessage(
-                Component.translatable("extendedfeatures.machine.wireless_optical_hatch.range_shown", wirelessTier.range));
+                Component.translatable(
+                        "extendedfeatures.machine.wireless_optical_hatch.range_shown", wirelessTier.range)
+        );
     }
 
     private void scanAndLink(Player player) {
         if (!isFormed()) {
-            player.sendSystemMessage(Component.translatable("extendedfeatures.machine.wireless_optical_hatch.not_formed"));
+            player.sendSystemMessage(
+                    Component.translatable(
+                            "extendedfeatures.machine.wireless_optical_hatch.not_formed")
+            );
             return;
         }
 
         Level level = getLevel();
-        if (!(level instanceof ServerLevel serverLevel)) return;
+        if (!(level instanceof ServerLevel serverLevel))
+            return;
 
         BlockPos center = getPos();
         int range = wirelessTier.range;
@@ -217,28 +260,39 @@ public class WirelessOpticalHatch extends OpticalDataHatchMachine implements IMa
 
         if (newReceiverLinks > 0 || newDataHatchLinks > 0) {
             player.sendSystemMessage(
-                    Component.translatable("extendedfeatures.machine.wireless_optical_hatch.linked_summary",
+                    Component.translatable(
+                            "extendedfeatures.machine.wireless_optical_hatch.linked_summary",
                             newReceiverLinks, newDataHatchLinks));
         } else {
             player.sendSystemMessage(
-                    Component.translatable("extendedfeatures.machine.wireless_optical_hatch.no_receptors_found"));
+                    Component.translatable("extendedfeatures.machine.wireless_optical_hatch.no_receptors_found")
+            );
         }
     }
 
-    private int linkReceivers(ServerLevel level, BlockPos center, int range) {
-        int remainingSlots = wirelessTier.maxConnections - linkedReceiverPositions.size();
+    private int linkReceivers(ServerLevel level,
+                              BlockPos center,
+                              int range) {
+
+        int remainingSlots = wirelessTier.maxConnections - linkedReceptorPositions.size();
+
         if (remainingSlots <= 0) return 0;
 
-        List<WirelessOpticalHatch> candidates = findCandidateReceivers(level, center, range);
+        List<WirelessOpticalHatch> candidates = findCandidateReceptors(level, center, range);
         candidates.sort(Comparator.comparingDouble(a -> a.getPos().distSqr(center)));
 
         int newLinks = 0;
-        for (WirelessOpticalHatch receiver : candidates) {
-            if (remainingSlots <= 0) break;
-            if (linkedReceiverPositions.contains(receiver.getPos())) continue;
 
-            receiver.linkedTransmitterPos = center;
-            linkedReceiverPositions.add(receiver.getPos());
+        for (WirelessOpticalHatch receiver : candidates) {
+
+            if (remainingSlots <= 0)
+                break;
+
+            if (linkedReceptorPositions.contains(receiver.getPos()))
+                continue;
+
+            receiver.linkedTransmissorPos = center;
+            linkedReceptorPositions.add(receiver.getPos());
             spawnLinkBeam(level, center, receiver.getPos(), ParticleTypes.END_ROD);
             remainingSlots--;
             newLinks++;
@@ -246,13 +300,19 @@ public class WirelessOpticalHatch extends OpticalDataHatchMachine implements IMa
         return newLinks;
     }
 
-    private int linkDataHatches(ServerLevel level, BlockPos center, int range) {
+    private int linkDataHatches(ServerLevel level,
+                                BlockPos center,
+                                int range) {
         List<DataAccessHatchMachine> candidates = findCandidateDataHatches(level, center, range);
 
         int newLinks = 0;
+
         for (DataAccessHatchMachine dataHatch : candidates) {
+
             BlockPos dataHatchPos = dataHatch.getPos();
-            if (linkedDataHatchPositions.contains(dataHatchPos)) continue;
+
+            if (linkedDataHatchPositions.contains(dataHatchPos))
+                continue;
 
             linkedDataHatchPositions.add(dataHatchPos);
             spawnLinkBeam(level, center, dataHatchPos, ParticleTypes.FLAME);
@@ -261,25 +321,28 @@ public class WirelessOpticalHatch extends OpticalDataHatchMachine implements IMa
         return newLinks;
     }
 
-    private List<WirelessOpticalHatch> findCandidateReceivers(ServerLevel level, BlockPos center,
+    private List<WirelessOpticalHatch> findCandidateReceptors(ServerLevel level,
+                                                              BlockPos center,
                                                               int range) {
+
         List<WirelessOpticalHatch> found = new ArrayList<>();
+
         forEachBlockEntityInRange(level, center, range, (candidatePos, blockEntity) -> {
-            if (MetaMachine.getMachine(level, candidatePos) instanceof WirelessOpticalHatch other &&
-                    !other.isTransmitter() &&
-                    other.wirelessTier == this.wirelessTier &&
-                    other.isFormed()) {
+            if (MetaMachine.getMachine(level, candidatePos) instanceof WirelessOpticalHatch other && !other.isTransmitter() && other.wirelessTier == this.wirelessTier && other.isFormed()) {
                 found.add(other);
             }
         });
         return found;
     }
 
-    private List<DataAccessHatchMachine> findCandidateDataHatches(ServerLevel level, BlockPos center, int range) {
+    private List<DataAccessHatchMachine> findCandidateDataHatches(ServerLevel level,
+                                                                  BlockPos center,
+                                                                  int range) {
+
         List<DataAccessHatchMachine> found = new ArrayList<>();
+
         forEachBlockEntityInRange(level, center, range, (candidatePos, blockEntity) -> {
-            if (MetaMachine.getMachine(level, candidatePos) instanceof DataAccessHatchMachine dataHatch &&
-                    dataHatch.isFormed()) {
+            if (MetaMachine.getMachine(level, candidatePos) instanceof DataAccessHatchMachine dataHatch && dataHatch.isFormed()) {
                 found.add(dataHatch);
             }
         });
@@ -287,15 +350,16 @@ public class WirelessOpticalHatch extends OpticalDataHatchMachine implements IMa
     }
 
     private interface BlockEntityVisitor {
-
         void visit(BlockPos pos, BlockEntity blockEntity);
     }
 
-    // Draws a Cube following each transmitter max distance and search's for receivers, replacing the Sphere searching method
-    private boolean isWithinCubeRange(BlockPos candidate, BlockPos center, int range) {
+    // Draws a Cube following each transmitter max distance and search's for receptors, replacing the Sphere searching method
+    private boolean isWithinCubeRange(BlockPos candidate,
+                                      BlockPos center,
+                                      int range) {
         return Math.abs(candidate.getX() - center.getX()) <= range &&
-                Math.abs(candidate.getY() - center.getY()) <= range &&
-                Math.abs(candidate.getZ() - center.getZ()) <= range;
+               Math.abs(candidate.getY() - center.getY()) <= range &&
+               Math.abs(candidate.getZ() - center.getZ()) <= range;
     }
 
     private void forEachBlockEntityInRange(ServerLevel level, BlockPos center, int range, BlockEntityVisitor visitor) {
@@ -306,13 +370,20 @@ public class WirelessOpticalHatch extends OpticalDataHatchMachine implements IMa
 
         for (int cx = chunkMinX; cx <= chunkMaxX; cx++) {
             for (int cz = chunkMinZ; cz <= chunkMaxZ; cz++) {
-                if (!level.hasChunk(cx, cz)) continue;
+
+                if (!level.hasChunk(cx, cz))
+                    continue;
+
                 LevelChunk chunk = level.getChunk(cx, cz);
 
                 for (BlockEntity blockEntity : chunk.getBlockEntities().values()) {
                     BlockPos candidatePos = blockEntity.getBlockPos();
-                    if (!isWithinCubeRange(candidatePos, center, range)) continue;
-                    if (candidatePos.equals(center)) continue;
+
+                    if (!isWithinCubeRange(candidatePos, center, range))
+                        continue;
+
+                    if (candidatePos.equals(center))
+                        continue;
 
                     visitor.visit(candidatePos, blockEntity);
                 }
@@ -320,21 +391,24 @@ public class WirelessOpticalHatch extends OpticalDataHatchMachine implements IMa
         }
     }
 
-    // Feedback
+    // Visual Feedback
 
     // Linking Beams
-    private void spawnLinkBeam(ServerLevel level, BlockPos from, BlockPos to,
-                               net.minecraft.core.particles.ParticleOptions particle) {
+    private void spawnLinkBeam(ServerLevel level, BlockPos from, BlockPos to, ParticleOptions particle) {
+
         Vec3 start = ParticleRenderer.faceCenterTowards(from, to);
         Vec3 end = ParticleRenderer.faceCenterTowards(to, from);
+
         ParticleAnimator animator = new ParticleAnimator(
                 durationTicks, intervalTicks, () -> ParticleRenderer
                     .emitLine(level, start, end, particle));
+
         particleAnimators.add(animator);
+
         animator.start(this::subscribeServerTick, () -> particleAnimators.remove(animator));
     }
 
-    // New Range Display
+    // Range Display
     private void showRangeCubeRender(BlockPos center, int range) {
         PacketManager.CHANNEL.send(
                 PacketDistributor.TRACKING_CHUNK.with(() -> Objects.requireNonNull(getLevel()).getChunkAt(center)),
