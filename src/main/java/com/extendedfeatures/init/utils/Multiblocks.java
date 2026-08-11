@@ -2,6 +2,7 @@ package com.extendedfeatures.init.utils;
 
 import com.extendedfeatures.*;
 import com.extendedfeatures.client.integrations.Configuration.EFConfig;
+import com.extendedfeatures.init.utils.internal.ExtendedAbilities;
 import com.extendedfeatures.init.utils.internal.CustomShapeInfos;
 import com.extendedfeatures.init.utils.internal.disassembler.DisassemblerMachine;
 import com.extendedfeatures.init.utils.internal.CustomAbilities;
@@ -334,7 +335,7 @@ public class Multiblocks {
                                     .or(Predicates.abilities(PartAbility.IMPORT_ITEMS))
                                     .or(Predicates.abilities(PartAbility.IMPORT_FLUIDS))
                                     .or(Predicates.abilities(PartAbility.INPUT_ENERGY).setMaxGlobalLimited(1))
-                                    .or(Predicates.abilities(CustomAbilities.WIRELESS_OPTICAL_RECEPTOR).setMaxGlobalLimited(1))
+                                    .or(Predicates.abilities(ExtendedAbilities.WIRELESS_OPTICAL_RECEPTOR).setMaxGlobalLimited(1))
                             )
                             .where('N', Predicates.abilities(PartAbility.EXPORT_ITEMS))
                             .build())
@@ -664,7 +665,7 @@ public class Multiblocks {
                             .where('F', blocks(HIGH_POWER_CASING.get())
                                     .or(abilities(PartAbility.MAINTENANCE).setExactLimit(1))
                                     .or(abilities(PartAbility.INPUT_ENERGY).setMinGlobalLimited(1).setMaxGlobalLimited(2)))
-                            .where('H', abilities(CustomAbilities.WIRELESS_OPTICAL_TRANSMISSOR).setExactLimit(1))
+                            .where('H', abilities(ExtendedAbilities.WIRELESS_OPTICAL_TRANSMISSOR).setExactLimit(1))
                             .where('X', abilities(PartAbility.DATA_ACCESS))
                             .build())
                     .workableCasingModel(
