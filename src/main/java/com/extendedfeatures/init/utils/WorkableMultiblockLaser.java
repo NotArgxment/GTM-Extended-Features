@@ -20,6 +20,7 @@ public class WorkableMultiblockLaser extends WorkableElectricMultiblockMachine {
 
     @Override
     public void onStructureFormed() {
+
         super.onStructureFormed();
 
         int laserCount = 0;

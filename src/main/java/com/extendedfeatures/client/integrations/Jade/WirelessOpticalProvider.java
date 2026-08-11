@@ -65,21 +65,21 @@ public class WirelessOpticalProvider implements IBlockComponentProvider, IServer
         if (receptors.isEmpty()) {
             tooltip.add(Component
                     .translatable("extendedfeatures.jade.wireless_optical_hatch.linked_receptors_header")
-                    .withStyle(ChatFormatting.GRAY));
+                    .withStyle(ChatFormatting.GOLD));
             tooltip.add(Component.translatable("extendedfeatures.jade.wireless_optical_hatch.no_receptors")
-                    .withStyle(ChatFormatting.DARK_GRAY));
+                    .withStyle(ChatFormatting.RED));
             return;
         }
 
         tooltip.add(Component.translatable("extendedfeatures.jade.wireless_optical_hatch.linked_receptors_header")
-                .withStyle(ChatFormatting.GRAY));
+                .withStyle(ChatFormatting.GOLD));
 
         int index = 1;
         for (BlockPos pos : receptors) {
             Component coords = Component.literal(pos.getX() + " " + pos.getY() + " " + pos.getZ())
                     .withStyle(ChatFormatting.GOLD);
             tooltip.add(Component.translatable("extendedfeatures.jade.wireless_optical_hatch.receptors_entry",
-                    index, coords).withStyle(ChatFormatting.WHITE));
+                    index, coords).withStyle(ChatFormatting.AQUA));
             index++;
         }
     }

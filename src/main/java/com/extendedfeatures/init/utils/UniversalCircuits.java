@@ -46,10 +46,13 @@ public class UniversalCircuits {
 
     static {
         if (EFConfig.INSTANCE.UniversalCircuits || GTCEu.isDataGen()) {
+
             for (Object[] data : CIRCUIT_DATA) {
                 int tier = (int) data[0];
+
                 String registryName = (String) data[1];
                 String displayName = (String) data[2];
+
                 TagKey<Item> tag = (TagKey<Item>) data[3];
 
                 UNIVERSAL_CIRCUITS[tier] = ExtendedFeaturesRegister
@@ -69,11 +72,11 @@ public class UniversalCircuits {
 
         for (int tier : highTiers) {
             ItemEntry<Item> entry = UNIVERSAL_CIRCUITS[tier];
+
             if (entry != null) {
                 result.add(entry);
             }
         }
-
         return result;
     }
 

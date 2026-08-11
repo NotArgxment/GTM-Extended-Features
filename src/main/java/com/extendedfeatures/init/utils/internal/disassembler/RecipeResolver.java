@@ -42,40 +42,44 @@ public class RecipeResolver {
             return Map.of();
         }
 
-        putIfPresent(map, CustomTags.ULV_CIRCUITS, GTValues.ULV);
-        putIfPresent(map, CustomTags.LV_CIRCUITS, GTValues.LV);
-        putIfPresent(map, CustomTags.MV_CIRCUITS, GTValues.MV);
-        putIfPresent(map, CustomTags.HV_CIRCUITS, GTValues.HV);
-        putIfPresent(map, CustomTags.EV_CIRCUITS, GTValues.EV);
-        putIfPresent(map, CustomTags.IV_CIRCUITS, GTValues.IV);
-        putIfPresent(map, CustomTags.LuV_CIRCUITS, GTValues.LuV);
-        putIfPresent(map, CustomTags.ZPM_CIRCUITS, GTValues.ZPM);
-        putIfPresent(map, CustomTags.UV_CIRCUITS, GTValues.UV);
+        ifApplicable(map, CustomTags.ULV_CIRCUITS, GTValues.ULV);
+        ifApplicable(map, CustomTags.LV_CIRCUITS, GTValues.LV);
+        ifApplicable(map, CustomTags.MV_CIRCUITS, GTValues.MV);
+        ifApplicable(map, CustomTags.HV_CIRCUITS, GTValues.HV);
+        ifApplicable(map, CustomTags.EV_CIRCUITS, GTValues.EV);
+        ifApplicable(map, CustomTags.IV_CIRCUITS, GTValues.IV);
+        ifApplicable(map, CustomTags.LuV_CIRCUITS, GTValues.LuV);
+        ifApplicable(map, CustomTags.ZPM_CIRCUITS, GTValues.ZPM);
+        ifApplicable(map, CustomTags.UV_CIRCUITS, GTValues.UV);
 
         if (GTCEuAPI.isHighTier()) {
-            putIfPresent(map, CustomTags.UHV_CIRCUITS, GTValues.UHV);
-            putIfPresent(map, CustomTags.UEV_CIRCUITS, GTValues.UEV);
-            putIfPresent(map, CustomTags.UIV_CIRCUITS, GTValues.UIV);
-            putIfPresent(map, CustomTags.UXV_CIRCUITS, GTValues.UXV);
-            putIfPresent(map, CustomTags.OpV_CIRCUITS, GTValues.OpV);
+            ifApplicable(map, CustomTags.UHV_CIRCUITS, GTValues.UHV);
+            ifApplicable(map, CustomTags.UEV_CIRCUITS, GTValues.UEV);
+            ifApplicable(map, CustomTags.UIV_CIRCUITS, GTValues.UIV);
+            ifApplicable(map, CustomTags.UXV_CIRCUITS, GTValues.UXV);
+            ifApplicable(map, CustomTags.OpV_CIRCUITS, GTValues.OpV);
         }
 
         return Map.copyOf(map);
     }
 
-    private static void putIfPresent(Map<TagKey<Item>, ItemStack> map, TagKey<Item> tag, int tier) {
+    private static void ifApplicable(Map<TagKey<Item>, ItemStack> map, TagKey<Item> tag, int tier) {
         ItemEntry<Item> entry = UniversalCircuits.UNIVERSAL_CIRCUITS[tier];
         if (entry != null) {
             map.put(tag, entry.asStack());
         }
     }
 
-    public static Optional<List<ItemStack>> resolveFromGTRecipeType(ServerLevel level, GTRecipeType recipeType,
+    public static Optional<List<ItemStack>> resolveFromGTRecipeType(ServerLevel level,
+                                                                    GTRecipeType recipeType,
                                                                     ItemStack targetStack) {
         for (GTRecipe recipe : level.getRecipeManager().getAllRecipesFor(recipeType)) {
-            if (!recipeProducesItem(recipe, targetStack)) continue;
 
-            if (recipeRequiresTool(recipe)) continue;
+            if (!recipeProducesItem(recipe, targetStack))
+                continue;
+
+            if (recipeRequiresTool(recipe))
+                continue;
 
             return Optional.of(extractItemInputs(recipe));
         }
@@ -84,8 +88,10 @@ public class RecipeResolver {
 
     private static boolean recipeRequiresTool(GTRecipe recipe) {
         for (Content content : recipe.getInputContents(ItemRecipeCapability.CAP)) {
-            if (!(content.content instanceof Ingredient ingredient)) continue;
-            if (requiresTool(ingredient)) return true;
+            if (!(content.content instanceof Ingredient ingredient))
+                continue;
+            if (requiresTool(ingredient))
+                return true;
         }
         return false;
     }
@@ -93,7 +99,8 @@ public class RecipeResolver {
     public static boolean requiresTool(Ingredient ingredient) {
         for (ItemStack stack : ingredient.getItems()) {
             for (TagKey<Item> tag : TOOL_TAGS) {
-                if (stack.is(tag)) return true;
+                if (stack.is(tag))
+                    return true;
             }
         }
         return false;
@@ -101,10 +108,13 @@ public class RecipeResolver {
 
     private static boolean recipeProducesItem(GTRecipe recipe, ItemStack targetStack) {
         List<Content> outputContents = recipe.getOutputContents(ItemRecipeCapability.CAP);
-        if (outputContents.isEmpty()) return false;
+        if (outputContents.isEmpty())
+            return false;
 
         for (Content content : outputContents) {
-            if (!(content.content instanceof Ingredient ingredient)) continue;
+            if (!(content.content instanceof Ingredient ingredient))
+                continue;
+
             for (ItemStack stack : ingredient.getItems()) {
                 if (ItemStack.isSameItem(stack, targetStack)) {
                     return true;
@@ -118,17 +128,24 @@ public class RecipeResolver {
         List<ItemStack> components = new ArrayList<>();
 
         for (Content content : recipe.getInputContents(ItemRecipeCapability.CAP)) {
-            if (!(content.content instanceof Ingredient ingredient)) continue;
-            if (ingredient.isEmpty()) continue;
+
+            if (!(content.content instanceof Ingredient ingredient))
+                continue;
+
+            if (ingredient.isEmpty())
+                continue;
 
             Optional<ItemStack> circuitReplacement = findUniversalCircuitReplacement(ingredient);
+
             if (circuitReplacement.isPresent()) {
                 components.add(circuitReplacement.get().copy());
                 continue;
             }
 
             ItemStack[] matches = ingredient.getItems();
-            if (matches.length == 0) continue;
+
+            if (matches.length == 0)
+                continue;
 
             ItemStack representative = matches[0].copy();
 
