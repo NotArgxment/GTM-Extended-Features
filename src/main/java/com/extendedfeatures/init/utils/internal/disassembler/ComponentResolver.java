@@ -43,7 +43,8 @@ public class ComponentResolver {
         Map<Object, ItemStack> merged = new LinkedHashMap<>();
 
         for (ItemStack stack : stacks) {
-            if (stack.isEmpty()) continue;
+            if (stack.isEmpty())
+                continue;
 
             Object key = new StackKey(stack);
 
@@ -66,7 +67,9 @@ public class ComponentResolver {
 
         @Override
         public boolean equals(Object obj) {
-            if (!(obj instanceof StackKey other)) return false;
+            if (!(obj instanceof StackKey other))
+                return false;
+
             return item == other.item && java.util.Objects.equals(tag, other.tag);
         }
 
@@ -83,12 +86,14 @@ public class ComponentResolver {
                 .getAllRecipesFor(RecipeType.CRAFTING)) {
             ItemStack result = recipe.getResultItem(registryAccess);
 
-            if (result.isEmpty() || !ItemStack.isSameItem(result, targetStack)) continue;
+            if (result.isEmpty() || !ItemStack.isSameItem(result, targetStack))
+                continue;
 
             List<ItemStack> components = new ArrayList<>();
             boolean requiresTool = false;
             for (Ingredient ingredient : recipe.getIngredients()) {
-                if (ingredient.isEmpty()) continue;
+                if (ingredient.isEmpty())
+                    continue;
 
                 // Skip recipes that require a tool (wrench, hammer, file, screwdriver, crowbar) as an
                 // ingredient. Tools aren't real components and shouldn't be produced/required by disassembly.
@@ -109,7 +114,8 @@ public class ComponentResolver {
                 }
             }
 
-            if (requiresTool) continue;
+            if (requiresTool)
+                continue;
 
             return Optional.of(components);
         }

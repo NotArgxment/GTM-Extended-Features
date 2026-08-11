@@ -29,15 +29,20 @@ public enum DisassemblerRecipeLogic implements GTRecipeType.ICustomRecipeLogic {
     public GTRecipe createCustomRecipe(IRecipeCapabilityHolder holder) {
         ServerLevel serverLevel = getServerLevel(holder);
 
-        if (!(holder instanceof IRecipeLogicMachine recipeLogicMachine)) return null;
+        if (!(holder instanceof IRecipeLogicMachine recipeLogicMachine))
+            return null;
+
         GTRecipeType recipeType = recipeLogicMachine.getRecipeType();
 
         var recipeHandlers = holder.getCapabilitiesFlat(IO.IN, ItemRecipeCapability.CAP);
 
         for (var handler : recipeHandlers) {
             for (var content : handler.getContents()) {
-                if (!(content instanceof ItemStack stack)) continue;
-                if (stack.isEmpty()) continue;
+                if (!(content instanceof ItemStack stack))
+                    continue;
+
+                if (stack.isEmpty())
+                    continue;
 
                 GTRecipe recipe = tryBuildRecipe(serverLevel, recipeType, stack);
                 return recipe;
@@ -49,11 +54,14 @@ public enum DisassemblerRecipeLogic implements GTRecipeType.ICustomRecipeLogic {
     private GTRecipe tryBuildRecipe(ServerLevel serverLevel, GTRecipeType recipeType,
                                               ItemStack inputStack) {
         Integer tier = MachineUtil.getMachineTier(inputStack).orElse(null);
-        if (tier == null) return null;
+        if (tier == null)
+            return null;
 
         assert inputStack != null;
         List<ItemStack> components = ComponentResolver.resolve(serverLevel, inputStack);
-        if (components.isEmpty()) return null;
+
+        if (components.isEmpty())
+            return null;
 
         long euT = GTValues.VA[tier];
         int duration = BASE_DURATION + (tier * TICKS_PER_TIER);
@@ -87,15 +95,19 @@ public enum DisassemblerRecipeLogic implements GTRecipeType.ICustomRecipeLogic {
 
         for (MachineDefinition definition : GTRegistries.MACHINES) {
 
-            if (definition.getRecipeTypes().length == 0) continue;
+            if (definition.getRecipeTypes().length == 0)
+                continue;
 
-            if (isExcludedFromDisassembly(definition)) continue;
+            if (isExcludedFromDisassembly(definition))
+                continue;
 
             ItemStack stack = definition.asStack();
-            if (stack.isEmpty()) continue;
+            if (stack.isEmpty())
+                continue;
 
             GTRecipe recipe = tryBuildRecipe(serverLevel, recipeType, stack);
-            if (recipe == null) continue;
+            if (recipe == null)
+                continue;
 
             recipe.setId(recipe.getId().withPrefix("/"));
             recipeType.getCategory().addRecipe(recipe);
@@ -106,7 +118,11 @@ public enum DisassemblerRecipeLogic implements GTRecipeType.ICustomRecipeLogic {
         assert definition != null;
         String path = definition.getId().getPath();
 
-        return path.contains("transformer") || path.contains("energy_converter") || path.contains("_bus") || path.contains("hatch") || path.contains("diode");
+        return path.contains("transformer")
+                || path.contains("energy_converter")
+                || path.contains("_bus")
+                || path.contains("hatch")
+                || path.contains("diode");
     }
 
     private ServerLevel getRepresentativeServerLevel() {
