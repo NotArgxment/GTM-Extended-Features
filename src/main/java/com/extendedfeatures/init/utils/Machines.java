@@ -2,7 +2,7 @@ package com.extendedfeatures.init.utils;
 
 import com.extendedfeatures.CreativeTabs;
 import com.extendedfeatures.client.integrations.Configuration.EFConfig;
-import com.extendedfeatures.init.utils.internal.CustomAbilities;
+import com.extendedfeatures.init.utils.internal.ExtendedAbilities;
 import com.extendedfeatures.init.utils.internal.machines.*;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.RotationState;
@@ -28,9 +28,7 @@ public class Machines {
     static {
         if (EFConfig.INSTANCE.RegularMachines.CCMHatch || GTCEu.isDataGen()) {
             CONFIGURABLE_CLEANING_MAINTENANCE_HATCH = ExtendedFeaturesRegister
-                    .machine("configurable_cleaning_maintenance_hatch",
-                            (holder) -> new ConfigurableCleanroomHatch(holder, CleanroomType.CLEANROOM)
-                    )
+                    .machine("configurable_cleaning_maintenance_hatch", (holder) -> new ConfigurableCleanroomHatch(holder, CleanroomType.CLEANROOM))
                     .tooltips(
                             Component.translatable("gtceu.part_sharing.disabled"),
                             Component.translatable("extendedfeatures.configurable_cleaning_maintenance_hatch"),
@@ -60,8 +58,7 @@ public class Machines {
     static {
         if (EFConfig.INSTANCE.RegularMachines.ExpandedDataAccessHatches || GTCEu.isDataGen()) {
             ZPM_DATA_ACCESS_HATCH = ExtendedFeaturesRegister
-                    .machine("zpm_data_access_hatch",
-                            (holder) -> new ExpandedDataAccessHatch(holder, ZPM, false) {
+                    .machine("zpm_data_access_hatch", (holder) -> new ExpandedDataAccessHatch(holder, ZPM, false) {
                                 @Override
                                 protected int getInventorySize() {
                                     return 36;
@@ -130,8 +127,8 @@ public class Machines {
 
     static {
         if (EFConfig.INSTANCE.RegularMachines.WirelessOpticalHatches || GTCEu.isDataGen()) {
-            LUV_WIRELESS_TRANSMISSOR = registerHatch("luv_wireless_data_transmissor",
-                    "LuV Wireless Optical Transmissor", LuV, true)
+            LUV_WIRELESS_TRANSMISSOR = WirelessHatchRegister
+                    ("luv_wireless_data_transmissor", "LuV Wireless Optical Transmissor", LuV, true)
                     .tooltips(
                             Component.translatable("extendedfeatures.machine.wireless_optical_hatch.tooltip.range", 16),
                             Component.translatable("extendedfeatures.machine.wireless_optical_hatch.tooltip.connections", 4),
@@ -140,62 +137,60 @@ public class Machines {
                     .overlayTieredHullModel("luv_transmissor")
                     .register();
 
-            LUV_WIRELESS_RECEPTOR = registerHatch("luv_wireless_data_receptor",
-                    "LuV Wireless Optical Receptor", LuV, false)
+            LUV_WIRELESS_RECEPTOR = WirelessHatchRegister
+                    ("luv_wireless_data_receptor", "LuV Wireless Optical Receptor", LuV, false)
                     .tooltips(
                             Component.translatable("extendedfeatures.machine.wireless_optical_hatch.tooltip.receptor"),
                             Component.translatable("gtceu.part_sharing.disabled"))
                     .overlayTieredHullModel("luv_receptor")
                     .register();
 
-            ZPM_WIRELESS_TRANSMISSOR = registerHatch("zpm_wireless_data_transmissor",
-                    "ZPM Wireless Optical Transmissor", ZPM, true)
+            ZPM_WIRELESS_TRANSMISSOR = WirelessHatchRegister
+                    ("zpm_wireless_data_transmissor", "ZPM Wireless Optical Transmissor", ZPM, true)
                     .tooltips(
-                            Component.translatable("extendedfeatures.machine.wireless_optical_hatch.tooltip.range", 24),
+                            Component.translatable("extendedfeatures.machine.wireless_optical_hatch.tooltip.range", 32),
                             Component.translatable("extendedfeatures.machine.wireless_optical_hatch.tooltip.connections", 8),
                             Component.translatable("extendedfeatures.machine.wireless_optical_hatch.tooltip.scan"),
                             Component.translatable("gtceu.part_sharing.disabled"))
                     .overlayTieredHullModel("zpm_transmissor")
                     .register();
 
-            ZPM_WIRELESS_RECEPTOR = registerHatch("zpm_wireless_data_receptor",
-                    "ZPM Wireless Optical Receptor", ZPM, false)
+            ZPM_WIRELESS_RECEPTOR = WirelessHatchRegister
+                    ("zpm_wireless_data_receptor", "ZPM Wireless Optical Receptor", ZPM, false)
                     .tooltips(
                             Component.translatable("extendedfeatures.machine.wireless_optical_hatch.tooltip.receptor"),
                             Component.translatable("gtceu.part_sharing.disabled"))
                     .overlayTieredHullModel("zpm_receptor")
                     .register();
 
-            UV_WIRELESS_TRANSMISSOR = registerHatch("uv_wireless_data_transmissor",
-                    "UV Wireless Optical Transmissor", UV, true)
+            UV_WIRELESS_TRANSMISSOR = WirelessHatchRegister
+                    ("uv_wireless_data_transmissor", "UV Wireless Optical Transmissor", UV, true)
                     .tooltips(
-                            Component.translatable("extendedfeatures.machine.wireless_optical_hatch.tooltip.range", 32),
+                            Component.translatable("extendedfeatures.machine.wireless_optical_hatch.tooltip.range", 64),
                             Component.translatable("extendedfeatures.machine.wireless_optical_hatch.tooltip.connections", 16),
                             Component.translatable("extendedfeatures.machine.wireless_optical_hatch.tooltip.scan"),
                             Component.translatable("gtceu.part_sharing.disabled"))
                     .overlayTieredHullModel("uv_transmissor")
                     .register();
 
-            UV_WIRELESS_RECEPTOR = registerHatch("uv_wireless_data_receptor",
-                    "UV Wireless Optical Receptor", UV, false)
+            UV_WIRELESS_RECEPTOR = WirelessHatchRegister
+                    ("uv_wireless_data_receptor", "UV Wireless Optical Receptor", UV, false)
                     .tooltips(
                             Component.translatable("extendedfeatures.machine.wireless_optical_hatch.tooltip.receptor"),
                             Component.translatable("gtceu.part_sharing.disabled"))
                     .overlayTieredHullModel("uv_receptor")
                     .register();
+
         }
     }
 
-    private static MachineBuilder<MachineDefinition, ?> registerHatch(String name, String displayName, int tier, boolean isTransmitter) {
+    private static MachineBuilder<MachineDefinition, ?> WirelessHatchRegister(String name, String displayName, int tier, boolean isTransmissor) {
         return ExtendedFeaturesRegister
-                .machine(name, (holder) -> new WirelessOpticalHatch(holder, isTransmitter, tier))
+                .machine(name, (holder) -> new WirelessOpticalHatch(holder, isTransmissor, tier))
                 .langValue(displayName)
                 .tier(tier)
                 .rotationState(RotationState.ALL)
-                .abilities(isTransmitter
-                        ? CustomAbilities.WIRELESS_OPTICAL_TRANSMISSOR
-                        : CustomAbilities.WIRELESS_OPTICAL_RECEPTOR
-                );
+                .abilities(isTransmissor ? ExtendedAbilities.WIRELESS_OPTICAL_TRANSMISSOR : ExtendedAbilities.WIRELESS_OPTICAL_RECEPTOR);
     }
 
     public static void init() {}
