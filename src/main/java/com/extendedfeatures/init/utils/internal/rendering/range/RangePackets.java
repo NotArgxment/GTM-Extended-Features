@@ -32,8 +32,10 @@ public class RangePackets {
     public static void handle(RangePackets msg, Supplier<NetworkEvent.Context> ctxSupplier) {
         NetworkEvent.Context ctx = ctxSupplier.get();
         ctx.enqueueWork(() -> {
-            if (ctx.getDirection().getReceptionSide() != LogicalSide.CLIENT) return;
-            RangeRenderer.showBoxAtPositionWithRange(msg.position, msg.range, msg.durationTicks);
+            if (ctx.getDirection().getReceptionSide() != LogicalSide.CLIENT)
+                return;
+            RangeRenderer
+                    .showBoxAtPositionWithRange(msg.position, msg.range, msg.durationTicks);
         });
         ctx.setPacketHandled(true);
     }

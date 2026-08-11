@@ -12,8 +12,8 @@ public class PacketManager {
     private static final String PROTOCOL_VERSION = "1";
 
     public static final SimpleChannel CHANNEL = NetworkRegistry
-            .newSimpleChannel(new ResourceLocation(
-                    ExtendedFeaturesCore.MOD_ID, "main"), () -> PROTOCOL_VERSION, // Network
+            .newSimpleChannel(new ResourceLocation(ExtendedFeaturesCore.MOD_ID, "main"),
+                    () -> PROTOCOL_VERSION, // Network
                     PROTOCOL_VERSION::equals, // Client
                     PROTOCOL_VERSION::equals); // Server
 
@@ -21,9 +21,6 @@ public class PacketManager {
 
     public static void register() {
         CHANNEL.registerMessage(nextId++,
-                RangePackets.class,
-                RangePackets::encode,
-                RangePackets::decode,
-                RangePackets::handle);
+                RangePackets.class, RangePackets::encode, RangePackets::decode, RangePackets::handle);
     }
 }

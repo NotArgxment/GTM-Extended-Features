@@ -39,7 +39,8 @@ public class RangeRenderer {
 
     public static void showBoxAtPositionWithRange(BlockPos position, int range, int durationTicks) {
         Minecraft mc = Minecraft.getInstance();
-        if (mc.level == null) return;
+        if (mc.level == null)
+            return;
         long expireAt = mc.level.getGameTime() + durationTicks;
         activeBoxes.put(position.immutable(), new ActiveBoxData(position.immutable(), range, expireAt));
     }
@@ -48,24 +49,21 @@ public class RangeRenderer {
         activeBoxes.remove(position);
     }
 
-    private static final RenderStateShard.TransparencyStateShard TRANSLUCENT_TRANSPARENCY = new RenderStateShard.TransparencyStateShard(
-            "translucent",
+    private static final RenderStateShard.TransparencyStateShard TRANSLUCENT_TRANSPARENCY = new RenderStateShard
+            .TransparencyStateShard("translucent",
             () -> {
                 RenderSystem.enableBlend();
                 RenderSystem.defaultBlendFunc();
             },
             RenderSystem::disableBlend);
 
-    private static final RenderStateShard.WriteMaskStateShard CUSTOM_COLOR_DEPTH_WRITE = new RenderStateShard.WriteMaskStateShard(
-            true, true);
+    private static final RenderStateShard.WriteMaskStateShard CUSTOM_COLOR_DEPTH_WRITE = new RenderStateShard
+            .WriteMaskStateShard(true, true);
 
     private static final RenderType TRANSLUCENT_FILL = RenderType.create(
             "wireless_range_fill",
             DefaultVertexFormat.POSITION_COLOR,
-            VertexFormat.Mode.QUADS,
-            256,
-            false,
-            true,
+            VertexFormat.Mode.QUADS, 256, false, true,
             RenderType.CompositeState.builder()
                     .setShaderState(new RenderStateShard.ShaderStateShard(GameRenderer::getPositionColorShader))
                     .setTransparencyState(TRANSLUCENT_TRANSPARENCY)
@@ -75,16 +73,15 @@ public class RangeRenderer {
 
     @SubscribeEvent
     public static void onRenderWorld(RenderLevelStageEvent event) {
-        if (event.getStage() != RenderLevelStageEvent.Stage.AFTER_TRANSLUCENT_BLOCKS) return;
+        if (event.getStage() != RenderLevelStageEvent.Stage.AFTER_TRANSLUCENT_BLOCKS)
+            return;
 
         Minecraft mc = Minecraft.getInstance();
-        if (mc.player == null || mc.level == null) return;
+        if (mc.player == null || mc.level == null)
+            return;
 
         long now = mc.level.getGameTime();
-        Iterator<ActiveBoxData> it = activeBoxes.values().iterator();
-        while (it.hasNext()) {
-            if (now >= it.next().expireAtGameTime) it.remove();
-        }
+        activeBoxes.values().removeIf(activeBoxData -> now >= activeBoxData.expireAtGameTime);
 
         if (activeBoxes.isEmpty()) return;
 
@@ -119,7 +116,7 @@ public class RangeRenderer {
 
             int posColour = pos.hashCode();
 
-            renderWalls(poseStack, buffer, x1, minY, z1, x2, maxY, z2, posColour, 0.3f);
+            renderWalls(poseStack, buffer, x1, minY, z1, x2, maxY, z2, posColour);
         }
 
         bufferSource.endBatch(TRANSLUCENT_FILL);
@@ -130,7 +127,7 @@ public class RangeRenderer {
     private static void renderWalls(PoseStack poseStack, VertexConsumer buffer,
                                     double x1, double y1, double z1,
                                     double x2, double y2, double z2,
-                                    int hashCode, float a) {
+                                    int hashCode) {
         var matrix = poseStack.last().pose();
 
         float baseHue = ((hashCode & 0xFFFFFF) / (float) 0xFFFFFF);
@@ -174,26 +171,26 @@ public class RangeRenderer {
         }
 
         // Wall 1
-        buffer.vertex(matrix, (float) x1, (float) y1, (float) z1).color(colors[0][0], colors[0][1], colors[0][2], a).endVertex();
-        buffer.vertex(matrix, (float) x2, (float) y1, (float) z1).color(colors[1][0], colors[1][1], colors[1][2], a).endVertex();
-        buffer.vertex(matrix, (float) x2, (float) y2, (float) z1).color(colors[2][0], colors[2][1], colors[2][2], a).endVertex();
-        buffer.vertex(matrix, (float) x1, (float) y2, (float) z1).color(colors[3][0], colors[3][1], colors[3][2], a).endVertex();
+        buffer.vertex(matrix, (float) x1, (float) y1, (float) z1).color(colors[0][0], colors[0][1], colors[0][2], (float) 0.3).endVertex();
+        buffer.vertex(matrix, (float) x2, (float) y1, (float) z1).color(colors[1][0], colors[1][1], colors[1][2], (float) 0.3).endVertex();
+        buffer.vertex(matrix, (float) x2, (float) y2, (float) z1).color(colors[2][0], colors[2][1], colors[2][2], (float) 0.3).endVertex();
+        buffer.vertex(matrix, (float) x1, (float) y2, (float) z1).color(colors[3][0], colors[3][1], colors[3][2], (float) 0.3).endVertex();
 
         // Wall 2
-        buffer.vertex(matrix, (float) x2, (float) y1, (float) z2).color(colors[4][0], colors[4][1], colors[4][2], a).endVertex();
-        buffer.vertex(matrix, (float) x1, (float) y1, (float) z2).color(colors[5][0], colors[5][1], colors[5][2], a).endVertex();
-        buffer.vertex(matrix, (float) x1, (float) y2, (float) z2).color(colors[6][0], colors[6][1], colors[6][2], a).endVertex();
-        buffer.vertex(matrix, (float) x2, (float) y2, (float) z2).color(colors[7][0], colors[7][1], colors[7][2], a).endVertex();
+        buffer.vertex(matrix, (float) x2, (float) y1, (float) z2).color(colors[4][0], colors[4][1], colors[4][2], (float) 0.3).endVertex();
+        buffer.vertex(matrix, (float) x1, (float) y1, (float) z2).color(colors[5][0], colors[5][1], colors[5][2], (float) 0.3).endVertex();
+        buffer.vertex(matrix, (float) x1, (float) y2, (float) z2).color(colors[6][0], colors[6][1], colors[6][2], (float) 0.3).endVertex();
+        buffer.vertex(matrix, (float) x2, (float) y2, (float) z2).color(colors[7][0], colors[7][1], colors[7][2], (float) 0.3).endVertex();
 
         // Walls 3 and 4
-        buffer.vertex(matrix, (float) x1, (float) y1, (float) z2).color(colors[5][0], colors[5][1], colors[5][2], a).endVertex();
-        buffer.vertex(matrix, (float) x1, (float) y1, (float) z1).color(colors[0][0], colors[0][1], colors[0][2], a).endVertex();
-        buffer.vertex(matrix, (float) x1, (float) y2, (float) z1).color(colors[3][0], colors[3][1], colors[3][2], a).endVertex();
-        buffer.vertex(matrix, (float) x1, (float) y2, (float) z2).color(colors[6][0], colors[6][1], colors[6][2], a).endVertex();
+        buffer.vertex(matrix, (float) x1, (float) y1, (float) z2).color(colors[5][0], colors[5][1], colors[5][2], (float) 0.3).endVertex();
+        buffer.vertex(matrix, (float) x1, (float) y1, (float) z1).color(colors[0][0], colors[0][1], colors[0][2], (float) 0.3).endVertex();
+        buffer.vertex(matrix, (float) x1, (float) y2, (float) z1).color(colors[3][0], colors[3][1], colors[3][2], (float) 0.3).endVertex();
+        buffer.vertex(matrix, (float) x1, (float) y2, (float) z2).color(colors[6][0], colors[6][1], colors[6][2], (float) 0.3).endVertex();
 
-        buffer.vertex(matrix, (float) x2, (float) y1, (float) z1).color(colors[1][0], colors[1][1], colors[1][2], a).endVertex();
-        buffer.vertex(matrix, (float) x2, (float) y1, (float) z2).color(colors[4][0], colors[4][1], colors[4][2], a).endVertex();
-        buffer.vertex(matrix, (float) x2, (float) y2, (float) z2).color(colors[7][0], colors[7][1], colors[7][2], a).endVertex();
-        buffer.vertex(matrix, (float) x2, (float) y2, (float) z1).color(colors[2][0], colors[2][1], colors[2][2], a).endVertex();
+        buffer.vertex(matrix, (float) x2, (float) y1, (float) z1).color(colors[1][0], colors[1][1], colors[1][2], (float) 0.3).endVertex();
+        buffer.vertex(matrix, (float) x2, (float) y1, (float) z2).color(colors[4][0], colors[4][1], colors[4][2], (float) 0.3).endVertex();
+        buffer.vertex(matrix, (float) x2, (float) y2, (float) z2).color(colors[7][0], colors[7][1], colors[7][2], (float) 0.3).endVertex();
+        buffer.vertex(matrix, (float) x2, (float) y2, (float) z1).color(colors[2][0], colors[2][1], colors[2][2], (float) 0.3).endVertex();
     }
 }
