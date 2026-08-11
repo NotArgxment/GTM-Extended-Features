@@ -68,7 +68,6 @@ public class CustomShapeInfos {
                 .aisle("FIIFIIF", "FKKDKKF", "D##D##D", "FKKDKKF", "FIIFIIF")
                 .aisle("5IIFIIF", "FKKFKKF", "FKKDKKF", "FKKFKKF", "FIIFIIF")
                 .aisle("5IIFIIF", "FIIFIIF", "FFFYFFF", "FIIFIIF", "FIIFIIF")
-
                 .where('@', definition, Direction.NORTH)
                 .where('1', FLUID_IMPORT_HATCH[LV], Direction.NORTH)
                 .where('2', PARALLEL_HATCH[IV], Direction.NORTH)
@@ -103,7 +102,6 @@ public class CustomShapeInfos {
                 .aisle("EGEEEGE", "HK###KH", "HK###KH", "HK###KH", "EGEEEGE")
                 .aisle(" FGGGF ", " GKKKG ", " GKKKG ", " GKKKG ", " FGGGF ")
                 .aisle("  33E  ", "  HHH  ", "  HHH  ", "  HHH  ", "  6E7  ")
-
                 .where('@', definition, Direction.NORTH)
                 .where('1', PARALLEL_HATCH[IV], Direction.NORTH)
                 .where('2', MAINTENANCE_HATCH, Direction.NORTH)
