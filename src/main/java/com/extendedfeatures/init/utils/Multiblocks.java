@@ -5,7 +5,6 @@ import com.extendedfeatures.client.integrations.Configuration.EFConfig;
 import com.extendedfeatures.init.utils.internal.ExtendedAbilities;
 import com.extendedfeatures.init.utils.internal.CustomShapeInfos;
 import com.extendedfeatures.init.utils.internal.disassembler.DisassemblerMachine;
-import com.extendedfeatures.init.utils.internal.CustomAbilities;
 
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
