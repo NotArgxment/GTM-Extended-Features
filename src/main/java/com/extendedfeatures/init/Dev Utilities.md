@@ -33,9 +33,9 @@ Allows any multiblock to run parallels **without a parallel hatch part in its st
 
 ```javascript
 // KubeJS
-const CustomParallel = Java.loadClass('com.extendedfeatures.init.utils.RecipeModifiers')
+const ExtendedFeatures = Java.loadClass('com.extendedfeatures.init.utils.RecipeModifiers')
 
-.recipeModifiers(CustomParallel.MACHINE_PARALLEL(value))
+.recipeModifiers(ExtendedFeatures.MACHINE_PARALLEL(int))
 ```
 
 ### Gradients based on the GTCEu Energy Tiers (LV -> MAX)
