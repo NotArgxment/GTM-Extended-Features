@@ -46,6 +46,8 @@ public class ChemicalSkips {
                 .duration(2000)
                 .save(provider);
 
+        /* For 2.4.1, WIP
+
         // ======================================
         //          Miscellaneous Skips
         // ======================================
@@ -123,6 +125,8 @@ public class ChemicalSkips {
 
 
         // Mutagen
+
+         */
 
     }
 }
