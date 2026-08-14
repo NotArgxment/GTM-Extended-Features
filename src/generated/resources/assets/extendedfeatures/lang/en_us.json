@@ -46,7 +46,7 @@
   "extendedfeatures.compact_assembly_line.tooltip.1": "§fAllows §bone §fenergy hatch",
   "extendedfeatures.compact_assembly_line.tooltip.2": "§fRuns §b4 §frecipes in parallel",
   "extendedfeatures.compact_assembly_line.tooltip.3": "§fOnly works using",
-  "extendedfeatures.configurable_cleaning_maintenance_hatch": "§fFor configurable multiblocks maintenance with Cleaning!",
+  "extendedfeatures.configurable_cleaning_maintenance_hatch": "§fFor configurable multiblock maintenance with Cleaning!",
   "extendedfeatures.disassembler.tooltip.0": "§fAllows any type of §emachine/controller §fto be recycled, returning what was used for that recipe",
   "extendedfeatures.disassembler.tooltip.1": "§fEach tier of machine needs the same energy hatch of that tier in order to work",
   "extendedfeatures.disassembler_machine": "Disassembly",
