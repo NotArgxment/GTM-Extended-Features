@@ -14,15 +14,15 @@ Addon for GTCEu Modern 1.20.1 designed to provide quality of life changes for th
 # Current roadmap
 
 ### Multiblocks
-- [x] Better ABS [RAM]
-- [x] GCYM Cracker (IV) [ACU]
+- [x] Parallel and laser capable ABS [RAM]
+- [x] GCYM Cracker (IV) [LCM]
 - [x] GCYM Pyro (IV) [LPO]
 - [x] Chemical Plant type multiblock (1-step lines) [SyVe]
 - [x] Databank with more connections [EDB]
-- [x] Databank with wireless conections [CTD]
+- [x] Databank with wireless connections [MRD]
 - [x] Ways to make wood [IGh & TGC]
 - [x] 1-Step Rock Processing [RPP]
-- [x] Parallel Air Collector
+- [x] GCYM Gas Collector (Multiblock)
 - [ ] Fisher multiblock
 - [ ] Universal Computational Matrix Array (bigger HPCA)
 
