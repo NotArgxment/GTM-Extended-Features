@@ -109,7 +109,7 @@ public class LangHandler {
 
         provider.add("extendedfeatures.large_air_collector.tooltip.0", "§fA Bigger Gas Collector");
 
-        provider.add("extendedfeatures.configurable_cleaning_maintenance_hatch", "§fFor configurable multiblocks maintenance with Cleaning!");
+        provider.add("extendedfeatures.configurable_cleaning_maintenance_hatch", "§fFor configurable multiblock maintenance with Cleaning!");
 
         provider.add("extendedfeatures.regular.tooltip.1", "§fAllows");
         provider.add("extendedfeatures.regular.tooltip.2", "§fand");
