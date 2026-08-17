@@ -65,7 +65,8 @@ public class WirelessOpticalHatch extends OpticalDataHatchMachine implements IMa
 
         public static @Nullable WirelessTier byGTTier(int gtTier) {
             for (WirelessTier value : values()) {
-                if (value.gtTier == gtTier) return value;
+                if (value.gtTier == gtTier)
+                    return value;
             }
             return null;
         }
@@ -83,11 +84,9 @@ public class WirelessOpticalHatch extends OpticalDataHatchMachine implements IMa
     @Persisted
     private final List<BlockPos> linkedReceptorPositions = new ArrayList<>();
 
-    // Looks for any physical data hatch nearby inside the given range, calls the part. animator
+    // Looks for any physical data hatch nearby inside the given range and calls the part. animator
     @Persisted
     private final List<BlockPos> linkedDataHatchPositions = new ArrayList<>();
-
-    // Calls the particles
     private final List<ParticleAnimator> particleAnimators = new ArrayList<>();
 
     // Filters by TIER
