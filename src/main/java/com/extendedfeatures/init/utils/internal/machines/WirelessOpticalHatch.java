@@ -51,8 +51,7 @@ public class WirelessOpticalHatch extends OpticalDataHatchMachine implements IMa
     public enum WirelessTier {
         LuV(GTValues.LuV, 16, 4),
         ZPM(GTValues.ZPM, 32, 8),
-        UV(GTValues.UV, 64, 16),
-        UHV(GTValues.UHV, 128, 32);
+        UV(GTValues.UV, 64, 16);
 
         public final int gtTier;
         public final int range;
