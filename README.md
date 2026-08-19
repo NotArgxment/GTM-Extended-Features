@@ -19,12 +19,13 @@ Addon for GTCEu Modern 1.20.1 designed to provide quality of life changes for th
 - [x] GCYM Pyro (IV) [LPO]
 - [x] Chemical Plant type multiblock (1-step lines) [SyVe]
 - [x] Databank with more connections [EDB]
-- [x] Databank with wireless connections [MRD]
+- [x] Databank with wireless connections [MDR]
 - [x] Ways to make wood [IGh & TGC]
 - [x] 1-Step Rock Processing [RPP]
 - [x] GCYM Gas Collector (Multiblock)
 - [ ] Fisher multiblock
-- [ ] Universal Computational Matrix Array (bigger HPCA)
+- [ ] Universal Computational Matrix Array (Expandable HPCA)
+- [ ] Energy Routing Hub (Expandable Active Transformer)
 
 ### Machines
 - [x] Expanded Data Hatches [ZPM, UV, UHV]
