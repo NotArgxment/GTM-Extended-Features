@@ -11,7 +11,7 @@ Addon for GTCEu Modern 1.20.1 designed to provide quality of life changes for th
 
 [KubeJS Examples](https://github.com/NotArgxment/GTM-Extended-Features/blob/main/src/main/java/com/extendedfeatures/init/KubeJSExamples.md)
 
-# Current roadmap
+# Current list of features
 
 ### Multiblocks
 - [x] Parallel and laser capable ABS [RAM]
