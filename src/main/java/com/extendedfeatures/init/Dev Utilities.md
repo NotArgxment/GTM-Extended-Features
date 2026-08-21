@@ -1,14 +1,16 @@
 # Developer utilities
+
 ### Laser Hatch-capable multiblocks
 
-Custom formation logic for multiblocks that can accept either Laser Hatches or Energy Hatches, available for both `Workable` and `CoilWorkable` multiblock types:
+Custom formation logic for multiblocks that can accept either Laser Hatches or Energy Hatches, available for both
+`Workable` and `CoilWorkable` multiblock types:
 
-| Laser | Energy Hatch | Valid formation? |
-|:---:|:---:|:---:|
-| 0 | 0 | ❌ |
-| 1 | 0 | ✅ |
-| 0 | 1 | ✅ |
-| 1 | 1 | ❌ (both at once isn't allowed) |
+| Laser | Energy Hatch |        Valid formation?         |
+|:-----:|:------------:|:-------------------------------:|
+|   0   |      0       |                ❌                |
+|   1   |      0       |                ✅                |
+|   0   |      1       |                ✅                |
+|   1   |      1       | ❌ (both at once isn't allowed)  |
 
 ```java
     public static MultiblockMachineDefinition TEST_MULTIBLOCK = REGISTER
@@ -19,12 +21,15 @@ Custom formation logic for multiblocks that can accept either Laser Hatches or E
 
 ```
 
-> There's no KubeJS example for this because on the KubeJS side it already works fine — the formation issue only shows up for multiblocks made on Java.
+> There's no KubeJS example for this because on the KubeJS side it already works fine — the formation issue only shows
+> up for multiblocks made on Java.
 
 ## Recipe Modifiers
 
 ### Machine Parallels
-Allows any multiblock to run parallels **without a parallel hatch part in its structure**. EU/t stays the same, but duration is multiplied ×2 for each parallel achieved.
+
+Allows any multiblock to run parallels **without a parallel hatch part in its structure**. EU/t stays the same, but
+duration is multiplied ×2 for each parallel achieved.
 
 ```java
 // Java
