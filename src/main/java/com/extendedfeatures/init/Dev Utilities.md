@@ -38,9 +38,9 @@ duration is multiplied ×2 for each parallel achieved.
 
 ```javascript
 // KubeJS
-const CustomParallel = Java.loadClass('com.extendedfeatures.init.utils.RecipeModifiers')
+const ExtendedFeatures = Java.loadClass('com.extendedfeatures.init.utils.RecipeModifiers')
 
-.recipeModifiers(CustomParallel.MACHINE_PARALLEL(value))
+.recipeModifiers(ExtendedFeatures.MACHINE_PARALLEL(int))
 ```
 
 ### Gradients based on the GTCEu Energy Tiers (LV -> MAX)
