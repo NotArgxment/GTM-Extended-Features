@@ -1,15 +1,15 @@
 package com.extendedfeatures;
 
-import com.extendedfeatures.init.utils.*;
-import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.common.data.GTCreativeModeTabs;
+import com.gregtechceu.gtceu.common.data.GTMachines;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.world.item.CreativeModeTab;
 
-import java.util.*;
-
 import static com.extendedfeatures.ExtendedFeaturesCore.ExtendedFeaturesRegister;
-import static com.extendedfeatures.init.utils.UniversalCircuits.UNIVERSAL_CIRCUITS;
+import static com.extendedfeatures.init.utils.Machines.*;
+import static com.extendedfeatures.init.utils.Multiblocks.*;
+import static com.extendedfeatures.init.utils.UniversalCircuits.*;
+import static com.gregtechceu.gtceu.api.GTValues.*;
 
 public class CreativeTabs {
 
@@ -27,7 +27,7 @@ public class CreativeTabs {
                                     "itemGroup", ExtendedFeaturesCore.id("creative_tab_1"),
                                     "Ext. Features: Multiblocks")
                             )
-                            .icon(Multiblocks.DISASSEMBLER::asStack)
+                            .icon(DISASSEMBLER::asStack)
                             .build()
             )
             .register();
@@ -43,7 +43,7 @@ public class CreativeTabs {
                             .title(ExtendedFeaturesRegister.addLang(
                                     "itemGroup", ExtendedFeaturesCore.id("creative_tab_2"),
                                     "Ext. Features: Universal Circuits"))
-                            .icon(() -> UNIVERSAL_CIRCUITS[GTValues.IV].asStack())
+                            .icon(() -> UNIVERSAL_CIRCUITS[IV].asStack())
                             .build()
             )
             .register();
@@ -59,7 +59,23 @@ public class CreativeTabs {
                                     "itemGroup", ExtendedFeaturesCore.id("creative_tab_3"),
                                     "Ext. Features: Machines")
                             )
-                            .icon(Machines.UV_DATA_ACCESS_HATCH::asStack)
+                            .icon(UV_DATA_ACCESS_HATCH::asStack)
+                            .build()
+            )
+            .register();
+
+    public static RegistryEntry<CreativeModeTab> HIGH_AMP_MACHINES = ExtendedFeaturesRegister
+            .defaultCreativeTab(ExtendedFeaturesCore.MOD_ID + "_high_amp_machines",
+                    builder -> builder
+                            .displayItems(
+                                    new GTCreativeModeTabs.RegistrateDisplayItemsGenerator(
+                                            ExtendedFeaturesCore.MOD_ID + "_high_amp_machines",
+                                            ExtendedFeaturesRegister))
+                            .title(ExtendedFeaturesRegister.addLang(
+                                    "itemGroup", ExtendedFeaturesCore.id("creative_tab_4"),
+                                    "Ext. Features: High Amp Machines")
+                            )
+                            .icon(() -> GTMachines.LASER_INPUT_HATCH_4096[UV].asStack())
                             .build()
             )
             .register();
